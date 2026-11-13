@@ -391,3 +391,12 @@ Notes: research/EU_IT/EU_IT_IT-1_working-notes_v0.01.md
 ## Evidence desk and request pack (2026-11-13)
 - [x] JDH Evidence desk: DL-205 (EE), DL-074 (FI), DL-040 (CZ, 3 files), DL-037 (CY), DL-102 (HR), DL-129 (LU) now hold the current official copies; old files kept under "replaced".
 - [x] Request pack written: research/REQUEST-PACK_EU_v1.00_2026-11-13.md (Part A pages to save by hand, Part B requests to 15 bodies).
+
+## Seed v1.68 (2026-11-13): request pack Part A evidence applied
+- [x] NO: L007, L008, L010, L011 Confirmed from Lovdata/NNP copies; 2025 resolution FOR-2024-12-13-3212 held; L009 in force 1.1.2027.
+- [x] PT: L019, L021, L022 official DR copies (FAT rates, green card fee EUR 0.75).
+- [x] IT: L009 GU decree copies; fund base deduction 4.50% (2025) / 4.40% (2026); L028-L030 added Proposed (IVASS orders, DPR 322/1998, D.Lgs 471/1997).
+- [x] BG: L003 DOPK current (Confirmed); L010 2026 euro return form and e-service 1483; A11 dropped; A12 moved to request B6.
+- [x] CY: L010 Tax Department announcement 8.1.2026 (gov.cy) Confirmed.
+- [ ] Still open in Part A: CY 9 January notice (Tax For All portal); HU A19 (CAPTCHA); optional A5 (NO location of risk), A8 (CY Gazette copy); PT NR 4/2016-R republished text; BG approving order number for form 5000.
+- [ ] PO to accept or reject EU_IT-L028 to L030.
