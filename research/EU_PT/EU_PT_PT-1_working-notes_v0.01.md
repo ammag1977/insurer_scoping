@@ -8,11 +8,11 @@ are reachable from Claude's workspace only through redirects; not used further i
 | Id | Source | Type | Access | Grade | Note |
 |---|---|---|---|---|---|
 | S1 | Codigo do Imposto do Selo (CIS, Lei n 150/99) with the Tabela Geral, consolidated text of the Autoridade Tributaria "Versao a data de 27-3-2025", amendments listed to Lei n 49/2025; desk DL-155, SHA-256 24254db4... | Statute | Desk | Primary (currency to re-check for amendments after 2025, e.g. the 2026 Budget Law) | Covers EU_PT-L002, L006, L008, L009, L012 |
-| S2 | Portaria n 74-B/2016, de 24 de marco (ASF supervision levy), as published (DR 2.a serie n 59, 24-03-2016); desk DL-157 main file | Regulation | Desk | Primary | Rule 7 candidate (regulator's levy) |
+| S2 | Portaria n 74-B/2016, de 24 de marco (ASF supervision levy), as published (DR 2.a serie n 59, 24-03-2016); desk DL-157 main file | Regulation | Desk | Primary | In scope by PO decision C04; rate source per B32 |
 | S3 | Portaria n 513/2025/2 (DR 2.a serie n 173, 09-09-2025), amending S2 arts 5 and 9 from 2026-01-01; desk DL-157 2026 file | Regulation | Desk | Primary | |
 | S4 | Lei n 53/2008, de 29 de agosto (Lei de Seguranca Interna), updated version from PGDL (non-official); desk DL-159 | Statute | Desk | Mirror | **Art 35 concerns the Armed Forces: no insurance levy found. Citation problem for EU_PT-L010.** |
 | S5 | Lei n 67/2013 (framework law of regulatory entities); desk DL-156 | Statute | Desk | Primary | Not read in detail (rule 7 candidate) |
-| S6 | Ministerial order on crop insurance regimes; desk DL-162 | Regulation | Desk | Not read | Lead for the crop insurance item |
+| S6 | Ministerial order on crop insurance regimes; desk DL-162 | Regulation | Desk | Not read | PO decision B25: PT-L013 (DL 10-B/2020) out of scope; crop insurance basis still to research |
 
 ## Findings
 
@@ -40,15 +40,20 @@ are reachable from Claude's workspace only through redirects; not used further i
   - 3, 8, 9, 10, 11, 12, 13, 16, 17, 18: 9%
   - Classes 11 and 12 (aircraft and ship liability) between 5% and 9%: open.
 
-### ASF supervision levy (taxa de supervisao), S2 and S3 (rule 7 candidate)
-- **Payers (S2 art 3):** insurers with their seat in Portugal; EU insurers active in Portugal through a branch **or on freedom of services**; third-country branches.
+### ASF supervision levy (taxa de supervisao), S2 and S3 (in scope, PO decision C04)
+- **Legal basis:** made under art 38(2) of the ASF statutes (Decreto-Lei n 1/2015, de 6 de janeiro) and art 34(3) of Lei n 67/2013 (S2 preamble). **Confirms PO decision B32** (rate source: Portaria 74-B/2016 art 5(b), cited on EU_PT-L004).
+- **Payers (S2 art 3):** insurers with their seat in Portugal; EU insurers active in Portugal through a branch **or on freedom of services**; third-country branches. Scopes: HOME, FOE, FOS.
 - **Base (art 4):** all premium processed, net of refunds and cancellations, on direct business where Portugal is the state of the risk or commitment.
-- **Rates (art 5):** **0.242% non-life** (unchanged by S3). Life 0.048%, raised to 0.078% from 2026-01-01 (S3 arts 2-3).
-- **Period:** annual, by reference to premium processed in the year (art 6). The ASF sets the payment modes and deadlines by norma regulamentar (art 2): not held.
-- **Scope decision for the PO:** a regulator's cost-recovery levy, out of scope under rule 7 as for OSFI, FSRA, APRA and ASIC? The seed marks it "Sets the rate".
+- **Rate (art 5(b)):** **0.242%** of direct premium of the non-life classes ("restantes ramos"). **Confirms C04.** S3 changes only art 5(a) (life: 0.048% to 0.078%) and art 9 (pension funds) from 2026-01-01; art 5(b) is shown as "[...]", i.e. unchanged.
+- **Period:** annual, by reference to premium processed in the year (art 6). The ASF may set instalment payment by norma regulamentar (arts 2, 6): not held (Gap).
+- **Class coverage:** all non-life classes 1-18.
 
 ### Parafiscal levies not yet read
 The INEM, ANEPC (civil protection), FGA (motor guarantee fund) and FAT (workers' compensation fund) contributions on premiums are commonly cited for Portugal. None was among the desk copies read; EU_PT-L010 appears to point at the wrong instrument (S4). **Gap: needs the seed's Taxes and Legislation rows and the official texts.**
+
+### PO decisions register v1.25 check
+- C04 (ASF levy in scope, 0.242%) and B32 (rate source Portaria 74-B/2016 art 5(b), under art 38 ASF statutes, DL 1/2015): **confirmed** from S2 and S3.
+- B25 (PT-L013, DL 10-B/2020, out of scope): not checked; the DL-162 crop insurance order was not read.
 
 ## Open items
 See research/EU_PT/FOLLOW-UP-snippet.md (to be merged into research/FOLLOW-UP.md).
