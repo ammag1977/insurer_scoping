@@ -1,1 +1,6 @@
 a8229a7a17700162db5e5516ed8025ddcb812e3d9d6aabe2451b4f9c3c2cd51f  EU_CZ-L002_Zakon-30-2024-Sb_e-Sbirka-zneni-2025-07-01_asat-2026-11-13.txt
+f0f04e7451bdb1d0a80b2d11441e88710617a503d3e380398482db2627f0e994  EU_CZ-L002_Zakon-30-2024-Sb_e-Sbirka-IZ-zneni-2025-07-01_asat-2026-11-13.pdf
+a55d6fb04f115e4f2b727bc0882ee0b9592bca4b95f7afdeebe99092c3f25e67  EU_CZ-L002_Zakon-30-2024-Sb_e-Sbirka-PZZ-vyhlasene_asat-2026-11-13.pdf
+91062403a7d090ce7ee392aba5cd6964eacdc009a02584d0019ef1df16df0b5a  EU_CZ-L002_Zakon-30-2024-Sb_e-Sbirka-IZ-zneni-2024-10-01_v2025-01-01_asat-2026-11-13.pdf
+27fb1ba09d41202ec14b162ddcbe04cd78df7f085f31e54dcca5c10431950c87  EU_CZ-NEW_Zakon-277-2009-Sb-pojistovnictvi_e-Sbirka-IZ-zneni-2025-07-01_asat-2026-11-13.pdf
+c6d51fa47faecf076c35c4e0a53a68e8c4a87895f6e35d66e3b572d114fc9c84  EU_CZ-SRC_CKP-Vyrocni-zprava-2025_asat-2026-11-13.pdf
