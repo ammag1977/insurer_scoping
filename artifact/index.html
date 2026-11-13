@@ -1,0 +1,849 @@
+<title>Insurer Scoping</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: a client register. Sticky search bar, then one column of record sections; tables scroll inside their own box. */
+:root {
+  --bg: #f4f6f8; --surface: #ffffff; --ink: #17212b; --muted: #5a6875; --line: #dbe1e7; --soft: #eaeef2;
+  --accent: #0f5c6e; --accent-ink: #ffffff; --accent-soft: #e0eff2;
+  --ok: #1d6b3f; --ok-bg: #e3f3e9; --bad: #a3271b; --bad-bg: #fbe7e4; --rev: #8a5a00; --rev-bg: #fdf1d6; --na: #5a6875; --na-bg: #eceff2;
+  --sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0f151b; --surface: #161e26; --ink: #e3e9ef; --muted: #98a6b3; --line: #2a3540; --soft: #1d2731;
+  --accent: #5fb3c6; --accent-ink: #0b1418; --accent-soft: #17323a;
+  --ok: #7fd3a1; --ok-bg: #173226; --bad: #f39a8f; --bad-bg: #3a1c19; --rev: #f0c46b; --rev-bg: #362a12; --na: #98a6b3; --na-bg: #232d37;
+  color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --bg: #0f151b; --surface: #161e26; --ink: #e3e9ef; --muted: #98a6b3; --line: #2a3540; --soft: #1d2731;
+  --accent: #5fb3c6; --accent-ink: #0b1418; --accent-soft: #17323a;
+  --ok: #7fd3a1; --ok-bg: #173226; --bad: #f39a8f; --bad-bg: #3a1c19; --rev: #f0c46b; --rev-bg: #362a12; --na: #98a6b3; --na-bg: #232d37;
+  color-scheme: dark; }
+
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font: 15px/1.5 var(--sans); }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--surface); }
+.bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--surface); border-bottom: 1px solid var(--line); }
+.wrap { max-width: 1120px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.bar .wrap { display: flex; align-items: center; gap: 16px; padding-block: 12px; flex-wrap: wrap; }
+.brand { font-weight: 700; font-size: 16px; letter-spacing: .01em; color: var(--ink); text-decoration: none; white-space: nowrap; }
+.brand span { color: var(--accent); }
+.search { flex: 1 1 320px; display: flex; min-width: 0; }
+input[type=search], input[type=text] { flex: 1; min-width: 0; font: inherit; font-size: 16px; padding: 9px 12px; border: 1px solid var(--line); border-radius: 6px; background: var(--bg); color: var(--ink); }
+input:focus-visible, button:focus-visible, a:focus-visible, label:focus-visible, select:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+select { font: inherit; font-size: 14px; padding: 8px 10px; border: 1px solid var(--line); border-radius: 6px; background: var(--bg); color: var(--ink); max-width: 100%; }
+main.wrap { padding-block: 24px 64px; display: grid; gap: 20px; }
+main > * { min-width: 0; }
+h1 { font-size: 26px; line-height: 1.2; margin: 0; text-wrap: balance; }
+h2 { font-size: 17px; margin: 0; text-wrap: balance; }
+.eyebrow { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+.muted { color: var(--muted); } .small { font-size: 13px; }
+.mono { font-family: var(--mono); font-size: 13.5px; }
+section.panel { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 18px 20px; display: grid; gap: 14px; min-width: 0; }
+.panel-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.step { font-family: var(--mono); font-size: 12px; color: var(--accent); margin-right: 8px; }
+.kv { display: grid; grid-template-columns: 180px minmax(0, 1fr); gap: 6px 18px; margin: 0; }
+.kv dt { color: var(--muted); } .kv dd { margin: 0; overflow-wrap: anywhere; }
+.table-box { overflow-x: auto; border: 1px solid var(--line); border-radius: 6px; }
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+th, td { text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+tbody tr:last-child td { border-bottom: 0; }
+th { background: var(--soft); font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); white-space: nowrap; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+tr.ended td { color: var(--muted); }
+tfoot td { font-weight: 600; background: var(--soft); border-top: 1px solid var(--line); }
+.pill { display: inline-block; padding: 2px 9px; border-radius: 999px; font-size: 12px; font-weight: 600; white-space: nowrap; }
+.p-Consistent, .p-checked { background: var(--ok-bg); color: var(--ok); }
+.p-Inconsistent { background: var(--bad-bg); color: var(--bad); }
+.p-Review { background: var(--rev-bg); color: var(--rev); }
+.p-Not, .p-none { background: var(--na-bg); color: var(--na); }
+.cc { display: inline-block; font-family: var(--mono); font-size: 12px; padding: 0 5px; border: 1px solid var(--line); border-radius: 4px; margin-right: 6px; color: var(--muted); }
+.btn { display: inline-block; font: inherit; font-weight: 600; font-size: 14px; padding: 9px 16px; border-radius: 6px; border: 1px solid var(--accent); background: var(--accent); color: var(--accent-ink); cursor: pointer; text-decoration: none; white-space: nowrap; }
+.btn.ghost { background: transparent; color: var(--accent); }
+.btn.small { padding: 4px 10px; font-size: 13px; }
+.btn.danger { border-color: var(--bad); color: var(--bad); background: transparent; }
+.btn.danger.armed { background: var(--bad); color: var(--surface); }
+.btn:disabled { opacity: .5; cursor: default; }
+a { color: var(--accent); }
+.results { display: grid; }
+.row-link { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 16px; padding: 12px 14px; border-bottom: 1px solid var(--line); text-decoration: none; color: var(--ink); align-items: start; }
+a.row-link:hover { background: var(--soft); }
+.row-link:last-child { border-bottom: 0; }
+.row-link .meta { grid-column: 1 / -1; font-size: 13px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 4px 14px; }
+.row-link strong { font-weight: 600; overflow-wrap: anywhere; }
+.badge { font-size: 12px; font-weight: 600; color: var(--accent); background: var(--accent-soft); border-radius: 999px; padding: 2px 9px; white-space: nowrap; }
+.notice { background: var(--accent-soft); border-radius: 6px; padding: 14px 16px; display: grid; gap: 10px; }
+.actions { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+.inline-form { display: flex; gap: 10px; flex-wrap: wrap; }
+.inline-form input { flex: 1 1 240px; }
+.status { font-size: 13px; color: var(--muted); }
+.status.err { color: var(--bad); }
+pre.narrative { white-space: pre-wrap; font: 13px/1.5 var(--mono); background: var(--soft); border-radius: 6px; padding: 12px 14px; margin: 0; max-height: 320px; overflow: auto; }
+.stats { display: flex; flex-wrap: wrap; gap: 8px 22px; font-size: 14px; }
+.stats b { font-variant-numeric: tabular-nums; }
+.clients { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; }
+.client-card { display: grid; gap: 6px; padding: 14px 16px; border: 1px solid var(--line); border-radius: 8px; text-decoration: none; color: var(--ink); background: var(--surface); }
+.client-card:hover { border-color: var(--accent); }
+.client-card strong { font-size: 16px; overflow-wrap: anywhere; }
+.client-card .small { color: var(--muted); }
+.crumbs { display: flex; gap: 8px; flex-wrap: wrap; font-size: 13px; }
+@media (max-width: 640px) { .kv { grid-template-columns: minmax(0, 1fr); } .kv dd { margin-bottom: 6px; } h1 { font-size: 22px; } section.panel { padding: 16px; } }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<header class="bar">
+  <div class="wrap">
+    <a class="brand" href="#clients">Insurer <span>Scoping</span></a>
+    <form class="search" id="searchForm" role="search">
+      <input id="q" type="search" placeholder="Search the EIOPA register: name, LEI or identification code" autocomplete="off" aria-label="Search the EIOPA register">
+    </form>
+  </div>
+</header>
+<main class="wrap" id="view">
+  <section class="panel"><p class="muted">Loading the EIOPA register…</p></section>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script>
+/* ======================================================================
+   Reference data
+   ====================================================================== */
+const COUNTRY = { AT:"Austria", BE:"Belgium", BG:"Bulgaria", HR:"Croatia", CY:"Cyprus", CZ:"Czechia", DK:"Denmark", EE:"Estonia",
+  FI:"Finland", FR:"France", DE:"Germany", EL:"Greece", GR:"Greece", HU:"Hungary", IE:"Ireland", IT:"Italy", LV:"Latvia", LT:"Lithuania",
+  LU:"Luxembourg", MT:"Malta", NL:"Netherlands", PL:"Poland", PT:"Portugal", RO:"Romania", SK:"Slovakia", SI:"Slovenia", ES:"Spain",
+  SE:"Sweden", IS:"Iceland", LI:"Liechtenstein", NO:"Norway", UK:"United Kingdom", GB:"United Kingdom", CH:"Switzerland",
+  US:"United States", AU:"Australia", BM:"Bermuda", MX:"Mexico", AI:"Anguilla", CA:"Canada", JP:"Japan", HK:"Hong Kong",
+  SG:"Singapore", ZA:"South Africa", AE:"United Arab Emirates", BR:"Brazil", CN:"China", IN:"India", TR:"Türkiye",
+  KY:"Cayman Islands", GG:"Guernsey", JE:"Jersey", IM:"Isle of Man" };
+const EEA = new Set("AT BE BG HR CY CZ DK EE FI FR DE EL HU IE IT LV LT LU MT NL PL PT RO SK SI ES SE IS LI NO".split(" "));
+const TO_EIOPA = { GR: "EL", GB: "UK" };
+const GENERIC = new Set(("insurance assurance reinsurance company co limited ltd dac designated activity plc public se sa s a ag nv n v ab " +
+  "as asa oy spa p the of and de des du la le compagnie versicherung versicherungs aktiengesellschaft gmbh mutual europe european international group").split(" "));
+const LOB = { C0010: "Medical expense insurance", C0020: "Income protection insurance", C0030: "Workers' compensation insurance",
+  C0040: "Motor vehicle liability insurance", C0050: "Other motor insurance", C0060: "Marine, aviation and transport insurance",
+  C0070: "Fire and other damage to property insurance", C0080: "General liability insurance", C0090: "Credit and suretyship insurance",
+  C0100: "Legal expenses insurance", C0110: "Assistance", C0120: "Miscellaneous financial loss" };
+const ANNEX_I = { C0010: "1, 2", C0020: "1, 2", C0030: "1, 2", C0040: "10", C0050: "3", C0060: "4, 5, 6, 7, 11, 12",
+  C0070: "8, 9", C0080: "13", C0090: "14, 15", C0100: "17", C0110: "18", C0120: "16" };
+const PDFJS = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/";
+
+/* ======================================================================
+   State and helpers
+   ====================================================================== */
+const state = { data: null, byKey: new Map(), index: [], research: new Map(), clients: new Map(),
+  dbStatus: "loading", db: null, downloads: undefined, from: null, addQuery: "", uploading: null, armed: null };
+const view = document.getElementById("view");
+const q = document.getElementById("q");
+
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" }[c]));
+const cname = c => COUNTRY[c] || c;
+const fmt = n => (n == null ? "" : Number(n).toLocaleString("en-GB", { maximumFractionDigits: 0 }));
+const today = () => new Date().toISOString().slice(0, 10);
+const clean = s => String(s).normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase()
+  .replace(/&/g, " and ").replace(/designated activity company/g, "dac").replace(/public limited company/g, "plc")
+  .replace(/[^a-z0-9 ]/g, " ").split(/\s+/).filter(Boolean);
+const ended = c => !!(c.re || c.oe);
+
+/* ======================================================================
+   EIOPA register
+   ====================================================================== */
+async function loadRegister() {
+  const res = await fetch("eiopa.json");
+  if (!res.ok) throw new Error("eiopa.json " + res.status);
+  const d = await res.json();
+  state.data = d;
+  for (const r of d.e) {
+    const ent = { key: r[0], name: r[1], official: r[2] || r[1], nca: d.ncas[r[3]], home: r[4], code: r[5], lei: r[6],
+      countries: r[7].map(c => ({ country: c[0], status: d.statuses[c[1]], rs: c[2], re: c[3], os: c[4], oe: c[5] })) };
+    state.byKey.set(ent.key, ent);
+    state.index.push({ ent, words: clean(ent.name + " " + ent.official) });
+  }
+}
+
+function search(text, limit = 25) {
+  const t = text.trim();
+  if (!t) return [];
+  const up = t.toUpperCase();
+  const exact = state.index.filter(x => x.ent.lei.toUpperCase() === up || x.ent.code.toUpperCase() === up);
+  if (exact.length) return exact.map(x => x.ent);
+  const toks = clean(t);
+  let core = toks.filter(w => !GENERIC.has(w));
+  if (!core.length) core = toks;
+  const extra = toks.filter(w => GENERIC.has(w));
+  const out = [];
+  for (const x of state.index) {
+    let score = 0, ok = true;
+    for (const tk of core) {
+      if (x.words.includes(tk)) score += 2;
+      else if (x.words.some(w => w.startsWith(tk))) score += 1.5;
+      else if (tk.length > 3 && x.words.some(w => w.includes(tk))) score += 0.5;
+      else { ok = false; break; }
+    }
+    if (!ok) continue;
+    for (const tk of extra) if (x.words.includes(tk)) score += 0.3;
+    if (clean(x.ent.name).join(" ") === toks.join(" ")) score += 3;
+    out.push({ ent: x.ent, score: score - x.words.length * 0.01 });
+  }
+  return out.sort((a, b) => b.score - a.score).slice(0, limit).map(x => x.ent);
+}
+
+/* ======================================================================
+   SFCR PDF reading (runs in the browser)
+   Rebuilds a layout-preserving text view of the PDF, then reads the
+   Solvency II templates by their row (R) and column (C) codes.
+   ====================================================================== */
+function loadScript(src) {
+  return new Promise((res, rej) => { const s = document.createElement("script"); s.src = src; s.onload = res;
+    s.onerror = () => rej(new Error("Could not load the PDF reader")); document.head.appendChild(s); });
+}
+async function pdfLib() {
+  if (!window.pdfjsLib) { await loadScript(PDFJS + "pdf.min.js"); await loadScript(PDFJS + "pdf.worker.min.js"); }
+  return window.pdfjsLib;
+}
+
+async function pdfText(file, progress) {
+  const lib = await pdfLib();
+  const doc = await lib.getDocument({ data: new Uint8Array(await file.arrayBuffer()), isEvalSupported: false }).promise;
+  const pages = [];
+  for (let p = 1; p <= doc.numPages; p++) {
+    progress(`Reading page ${p} of ${doc.numPages}`);
+    const page = await doc.getPage(p);
+    const vp = page.getViewport({ scale: 1 });
+    const tc = await page.getTextContent();
+    const items = [], weight = {};
+    for (const it of tc.items) {
+      if (!it.str || !it.str.trim()) continue;
+      const m = lib.Util.transform(vp.transform, it.transform);
+      const ang = ((Math.round(Math.atan2(m[1], m[0]) / (Math.PI / 2)) * 90) + 360) % 360;
+      weight[ang] = (weight[ang] || 0) + it.str.length;
+      items.push({ s: it.str, x: m[4], y: m[5], ang, w: it.width, h: Math.hypot(m[2], m[3]) || 8 });
+    }
+    const main = Number(Object.entries(weight).sort((a, b) => b[1] - a[1])[0]?.[0] || 0);
+    const rad = main * Math.PI / 180, cos = Math.cos(rad), sin = Math.sin(rad);
+    const rows = items.filter(i => i.ang === main).map(i => ({ ...i, x: i.x * cos + i.y * sin, y: -i.x * sin + i.y * cos }));
+    pages.push(layoutPage(rows));
+  }
+  return pages.join("\n\f");
+}
+
+function median(a) { if (!a.length) return 0; const s = [...a].sort((x, y) => x - y); return s[Math.floor(s.length / 2)]; }
+function layoutPage(items) {
+  if (!items.length) return "";
+  const charW = median(items.map(i => i.w / i.s.length).filter(v => v > 0)) || 5;
+  const lineH = median(items.map(i => i.h)) || 8;
+  const minX = Math.min(...items.map(i => i.x));
+  items.sort((a, b) => a.y - b.y || a.x - b.x);
+  const lines = [];
+  for (const it of items) {
+    const last = lines[lines.length - 1];
+    if (last && Math.abs(it.y - last.y) < lineH * 0.5) last.items.push(it); else lines.push({ y: it.y, items: [it] });
+  }
+  return lines.map(l => {
+    let out = "", endX = -1e9;
+    for (const it of l.items.sort((a, b) => a.x - b.x)) {
+      const col = Math.round((it.x - minX) / charW);
+      if (out.length && col <= out.length) out += (it.x - endX < charW * 0.3) ? "" : " ";
+      else out += " ".repeat(Math.max(0, col - out.length));
+      out += it.s; endX = it.x + it.w;
+    }
+    return out.replace(/\s+$/, "");
+  }).join("\n");
+}
+
+const TITLE = /\bS\.\d\d\.\d\d(?:\.\d\d)?\b/;
+const NUM = /(?<!\S)(\(?-?\d[\d,.]*\)?|-)(?!\S)/g;
+const ISO2 = new Set(("AT BE BG HR CY CZ DK EE FI FR DE EL GR HU IE IT LV LT LU MT NL PL PT RO SK SI ES SE IS LI NO " +
+  "GB UK CH US CA AU JP BM KY GG JE IM HK SG ZA AE BR MX CN IN TR").split(" "));
+
+function numValue(tok) {
+  if (tok === "-") return 0;
+  const neg = tok.startsWith("(") || tok.startsWith("-");
+  let t = tok.replace(/^[(\-]+|[)\-]+$/g, "");
+  if (/^\d{1,3}(\.\d{3})+$/.test(t)) t = t.replace(/\./g, "");
+  const v = parseFloat(t.replace(/,/g, ""));
+  return isNaN(v) ? null : (neg ? -v : v);
+}
+const isCountryTable = (lines, a) => /by country|location of risk/i.test(lines.slice(a, a + 4).join(" "));
+function* regions(lines, prefix, start = 0) {
+  let i = start;
+  while (i < lines.length) {
+    const m = lines[i].match(TITLE);
+    if (m && m[0].startsWith(prefix)) {
+      const kind = isCountryTable(lines, i);
+      let j = i + 1;
+      while (j < lines.length && j - i < 260) {
+        const t = lines[j].match(TITLE);
+        if (t && (!t[0].startsWith(prefix) || isCountryTable(lines, j) !== kind)) break;
+        j++;
+      }
+      yield [i, j]; i = j;
+    } else i++;
+  }
+}
+function rowValues(lines, k, rcode) {
+  for (const line of [lines[k], lines[k + 1] || ""]) {
+    const idx = line.indexOf(rcode), after = idx >= 0 ? idx + rcode.length : 0;
+    const vals = [...line.matchAll(NUM)].filter(m => m.index >= after && !/^R\d{4}$/.test(m[0]))
+      .map(m => [m.index + m[0].length / 2, m[0]]);
+    if (vals.length) return vals;
+  }
+  return [];
+}
+const codesIn = line => [...line.matchAll(/\bC0\d{3}\b/g)].map(m => [m.index + 2.5, m[0]]);
+const nearest = (cols, pos) => cols.reduce((b, c) => Math.abs(c[0] - pos) < Math.abs(b[0] - pos) ? c : b)[1];
+
+function parseLob(lines, start = 0) {
+  for (const [a, b] of regions(lines, "S.05.01", start)) {
+    if (isCountryTable(lines, a)) continue;
+    const result = {}; let header = null;
+    for (let k = a; k < b; k++) {
+      const codes = codesIn(lines[k]);
+      if (codes.length) header = codes;
+      if (header && /\bR0110\b/.test(lines[k]))
+        for (const [pos, tok] of rowValues(lines, k, "R0110")) {
+          const v = numValue(tok); if (v == null) continue;
+          const col = nearest(header, pos); result[col] = (result[col] || 0) + v;
+        }
+    }
+    if (Object.keys(result).length) return result;
+  }
+  return {};
+}
+function parseCountries(lines, start = 0) {
+  for (const [prefix, rcode] of [["S.04.05", "R0020"], ["S.05.02", "R0110"], ["S.05.01", "R0110"]]) {
+    for (const [a, b] of regions(lines, prefix, start)) {
+      if (prefix === "S.05.01" && !isCountryTable(lines, a)) continue;
+      let anchors = [], home = null, header = null;
+      for (let k = a; k < b; k++) {
+        const line = lines[k];
+        if (home === null) { const m = line.match(/\bHome\b/) || line.match(/\bC0010\b|\bC0080\b/); if (m) home = m.index + 3; }
+        const toks = [...line.matchAll(/\b[A-Z]{2}\b/g)].filter(m => ISO2.has(m[0])).map(m => [m.index + 1, m[0]]);
+        if (toks.length && !anchors.length && !/\bR0\d{3}\b.*\d/.test(line.slice(toks[0][0])))
+          anchors = toks.concat([...line.matchAll(/\bTotal\b/g)].map(m => [m.index + 2, "TOTAL"]));
+        const codes = codesIn(line);
+        if (codes.length > 1) header = codes;
+        if ((anchors.length || header) && new RegExp(`\\b${rcode}\\b`).test(line)) {
+          const cols = anchors.length ? (home !== null ? [[home, "HOME"]] : []).concat(anchors)
+            : [[header[0][0], "HOME"], ...header.slice(1, -1).map(c => [c[0], "?"]), [header[header.length - 1][0], "TOTAL"]];
+          const vals = rowValues(lines, k, rcode);
+          const labels = vals.length === cols.length ? [...cols].sort((x, y) => x[0] - y[0]).map(c => c[1])
+            : vals.map(([pos]) => nearest(cols, pos));
+          const out = {};
+          vals.forEach(([, tok], i) => { const v = numValue(tok), lab = labels[i];
+            if (v != null && lab !== "TOTAL" && lab !== "?") out[lab] = (out[lab] || 0) + v; });
+          if (Object.keys(out).length) return { template: prefix, premiums: out };
+        }
+      }
+    }
+  }
+  return null;
+}
+
+function parseSfcr(text, ncas) {
+  const lines = text.split("\n");
+  const info = {};
+  for (const [label, key] of [["Undertaking name", "name"], ["Undertaking identification code", "id_code"],
+    ["Type of code of undertaking", "id_type"], ["Type of undertaking", "type"], ["Country of authorisation", "country"],
+    ["Reporting reference date", "reporting_date"]]) {
+    const m = text.match(new RegExp(`^\\s*${label}\\s{2,}(.+?)\\s*$`, "m"));
+    if (m) info[key] = m[1];
+  }
+  const soloStart = Math.max(0, lines.findIndex(l => /^\s*Undertaking name\s{2,}/.test(l)));
+  let lob = parseLob(lines, soloStart);
+  if (!Object.keys(lob).length && soloStart) lob = parseLob(lines);
+  let countries = parseCountries(lines, soloStart);
+  if (!countries && soloStart) { countries = parseCountries(lines); if (countries) countries.groupLevel = true; }
+  const flat = text.replace(/\s+/g, " "), lower = flat.toLowerCase();
+  const firstPages = text.split("\f").slice(0, 3).join("\n");
+  const years = (firstPages.match(/\b20\d\d\b/g) || []).sort();
+  const nm = text.match(/^.{0,20}(material lines of business|lines of business and geographical)[^\n]*$/im);
+  const branches = new Set([...flat.matchAll(/\b([A-Z][a-z]+(?: [A-Z][a-z]+)?) [Bb]ranch\b/g)].map(m => m[1])
+    .concat([...flat.matchAll(/\bbranch(?:es)? in ([A-Z][a-z]+(?: [A-Z][a-z]+)?)/g)].map(m => m[1])));
+  return {
+    pages: text.split("\f").length, generalInfo: info,
+    leis: [...new Set(text.match(/\b[A-Z0-9]{18}\d{2}\b/g) || [])],
+    ncasNamed: ncas.filter(n => lower.includes(n.replace(/\s*\(.*\)\s*$/, "").trim().toLowerCase())),
+    lob, countries, branches: [...branches],
+    narrative: nm ? text.slice(nm.index, nm.index + 1500).replace(/[ \t]+/g, " ").trim() : "",
+    yearGuess: years.length ? years[years.length - 1] : "",
+  };
+}
+
+/* ---------- compare with EIOPA ---------- */
+function normName(n) {
+  let s = String(n).toLowerCase().replace(/&/g, " and ").replace(/\bsfcr\b|\b20\d\d\b|\./g, " ");
+  for (const [a, b] of [["designated activity company", "dac"], ["public limited company", "plc"], ["limited", "ltd"], ["company", "co"]]) s = s.split(a).join(b);
+  return s.replace(/\(.*?\)/g, " ").replace(/[^a-z0-9 ]/g, " ").split(/\s+/).filter(Boolean);
+}
+function nameScore(a, b) {
+  const A = new Set(normName(a)), B = new Set(normName(b));
+  if (!A.size || !B.size) return 0;
+  const inter = [...A].filter(x => B.has(x)).length;
+  if (inter === A.size || inter === B.size) return 100;
+  return Math.round(200 * inter / (A.size + B.size));
+}
+function parseDmy(s) { const m = /^(\d\d)\/(\d\d)\/(\d{4})$/.exec(s || ""); return m ? new Date(+m[3], m[2] - 1, +m[1]) : null; }
+function reportingDate(p) {
+  const raw = p.generalInfo.reporting_date || "";
+  const d = parseDmy(raw) || (raw && !isNaN(Date.parse(raw)) ? new Date(Date.parse(raw)) : null);
+  return d || (p.yearGuess ? new Date(+p.yearGuess, 11, 31) : null);
+}
+function activeAt(row, at) {
+  const end = parseDmy(row.re) || parseDmy(row.oe), start = parseDmy(row.os) || parseDmy(row.rs);
+  if (end && (!at || end <= at)) return false;
+  if (start && at && start > at) return false;
+  return true;
+}
+
+function runChecks(ent, p, docName) {
+  const out = [], add = (check, eiopa, sfcr, result, note = "") => out.push({ check, eiopa, sfcr, result, note });
+  const gi = p.generalInfo, at = reportingDate(p);
+  const sname = gi.name || docName;
+  const score = Math.max(nameScore(sname, ent.name), nameScore(sname, ent.official));
+  add("Entity name", ent.name, sname || "Not found", score >= 90 ? "Consistent" : score >= 75 ? "Review" : "Inconsistent",
+    score >= 90 ? "" : `Name similarity ${score}%`);
+  if ((gi.id_type || "").toUpperCase() === "LEI") add("LEI", ent.lei || "Not in register", gi.id_code, gi.id_code === ent.lei ? "Consistent" : "Inconsistent");
+  else if (p.leis.length) add("LEI", ent.lei || "Not in register", p.leis.join(", "), p.leis.includes(ent.lei) ? "Consistent" : "Review", "LEI codes found in the SFCR text");
+  else add("LEI", ent.lei || "Not in register", "Not stated", "Not available");
+  if (gi.country) { const c = TO_EIOPA[gi.country] || gi.country; add("Home country", ent.home, gi.country, c === ent.home ? "Consistent" : "Inconsistent"); }
+  else add("Home country", ent.home, "Not stated in the SFCR", "Not available");
+  if (p.ncasNamed.includes(ent.nca)) add("Supervisor (NCA)", ent.nca, ent.nca, "Consistent");
+  else add("Supervisor (NCA)", ent.nca, p.ncasNamed.join(", ") || "Not found in text", p.ncasNamed.length ? "Inconsistent" : "Review");
+  const dom = ent.countries.filter(c => c.status === "Domestic undertaking");
+  if (dom.length && !dom.some(c => activeAt(c, null)))
+    add("Home authorisation", "Ended " + (dom[0].re || dom[0].oe), "SFCR filed", "Inconsistent", "EIOPA shows the home authorisation as ended");
+
+  const passports = {};
+  ent.countries.forEach(c => (passports[c.country] = passports[c.country] || []).push(c));
+  const cp = p.countries;
+  if (!cp) add("Countries of business", `${Object.keys(passports).length} countries`, "No country table in SFCR", "Not available",
+    "The SFCR has no premiums-by-country table, so country activity can’t be checked. This usually means at least 90% of premium is written in the home country.");
+  else {
+    const label = cp.groupLevel ? " (group level)" : "";
+    for (const [code, prem] of Object.entries(cp.premiums)) {
+      if (code === "HOME" || prem <= 0) continue;
+      const c = TO_EIOPA[code] || code, name = `${cname(c)} (${c})`, rows = passports[c] || [];
+      const ev = rows.map(r => `${r.status} from ${r.os || r.rs}` + (r.re || r.oe ? ` to ${r.re || r.oe}` : "")).join("; ");
+      const sv = `Direct GWP ${fmt(prem)}${label}`;
+      if (!EEA.has(c)) add(`Country: ${name}`, ev || "Outside EIOPA register", sv, "Review", "Non-EEA country: check local authorisation and taxes outside EIOPA");
+      else if (!rows.length) add(`Country: ${name}`, "No passport recorded", sv, "Inconsistent", "Premium reported but no EIOPA registration for this country");
+      else if (!rows.some(r => activeAt(r, at))) add(`Country: ${name}`, ev, sv, "Inconsistent", "Passport not active at the SFCR reporting date");
+      else add(`Country: ${name}`, ev, sv, "Consistent");
+    }
+    const shown = new Set(Object.keys(cp.premiums).map(k => TO_EIOPA[k] || k));
+    const quiet = Object.keys(passports).filter(c => !shown.has(c) && c !== ent.home && passports[c].some(r => activeAt(r, at))).sort();
+    if (quiet.length) add("Passports without premium shown", quiet.join(", "), "Not in SFCR country table", "Review",
+      "The SFCR lists only the home country and top 5 countries, so these may still have premium");
+  }
+  const byName = Object.fromEntries(Object.entries(COUNTRY).map(([k, v]) => [v.toLowerCase(), TO_EIOPA[k] || k]));
+  const branchRows = [...new Set(ent.countries.filter(c => c.status === "EEA branch").map(c => c.country))].sort();
+  const mentioned = [...new Set(p.branches.map(b => byName[b.toLowerCase()]).filter(Boolean))].sort();
+  if (branchRows.length || mentioned.length) {
+    const same = branchRows.join() === mentioned.join();
+    add("Branches", branchRows.join(", ") || "None", mentioned.join(", ") || "None mentioned", same ? "Consistent" : "Review",
+      same ? "" : "Branch countries differ between the register and the SFCR text");
+  }
+  return out;
+}
+
+function buildResult(ent, p, file) {
+  const at = reportingDate(p);
+  const lob = p.lob, total = Object.entries(lob).filter(([k, v]) => LOB[k] && v > 0).reduce((s, [, v]) => s + v, 0);
+  const lines = Object.entries(lob).filter(([k, v]) => LOB[k] && v > 0)
+    .map(([k, v]) => ({ code: k, line: LOB[k], classes: ANNEX_I[k], gwp: v, share: total ? v / total * 100 : 0 })).sort((a, b) => b.gwp - a.gwp);
+  const prem = {};
+  if (p.countries) for (const [k, v] of Object.entries(p.countries.premiums)) prem[k === "HOME" ? ent.home : (TO_EIOPA[k] || k)] = v;
+  const codes = [...new Set(ent.countries.map(c => c.country).concat(Object.keys(prem)))];
+  const scope = codes.map(c => {
+    const regs = ent.countries.filter(r => r.country === c);
+    return { country: c, basis: [...new Set(regs.map(r => r.status))].sort().join(", ") || (EEA.has(c) ? "No EIOPA registration" : "Non-EEA: outside the EIOPA register"),
+      active: regs.some(r => activeAt(r, at)), premium: prem[c] ?? null };
+  }).sort((a, b) => (a.premium == null) - (b.premium == null) || (b.premium || 0) - (a.premium || 0) || a.country.localeCompare(b.country));
+  return { key: ent.key, name: ent.name, home: ent.home, code: ent.code, researchedOn: today(),
+    sfcr: { name: file.name, date: "", url: "", repository: "Uploaded PDF", reportingDate: p.generalInfo.reporting_date || (p.yearGuess ? "Year " + p.yearGuess : ""), pages: p.pages },
+    checks: runChecks(ent, p, file.name.replace(/\.pdf$/i, "")),
+    directNonLife: { lines, total }, countryPremiums: prem, countryTemplate: p.countries?.template || "",
+    groupLevel: !!p.countries?.groupLevel, scope, narrative: p.narrative };
+}
+
+/* ======================================================================
+   Storage (page database)
+   ====================================================================== */
+async function saveDoc(path, data) {
+  if (!state.db) throw new Error("no_db");
+  await state.db.doc(path).set(data);
+}
+async function removeDoc(path) { if (state.db) await state.db.doc(path).delete(); }
+function clientsWith(key) { return [...state.clients.values()].filter(c => (c.companies || []).includes(key)).sort((a, b) => a.name.localeCompare(b.name)); }
+
+/* ======================================================================
+   Views
+   ====================================================================== */
+function render() {
+  if (!state.data) return;
+  const h = decodeURIComponent(location.hash.slice(1));
+  const active = document.activeElement && document.activeElement.id;
+  if (h.startsWith("client-")) {
+    const c = state.clients.get(h.slice(7));
+    if (c) { state.from = c.id; renderClient(c); }
+    else if (state.dbStatus === "loading") view.innerHTML = `<section class="panel"><p class="muted">Loading client…</p></section>`;
+    else view.innerHTML = `<section class="panel"><h2>This client no longer exists</h2><p><a href="#clients">Back to clients</a></p></section>`;
+  } else if (h === "search") renderSearch();
+  else if (h && state.byKey.has(h)) renderCompany(state.byKey.get(h));
+  else { state.from = null; renderHome(); }
+  if (active === "addQ") { const el = document.getElementById("addQ"); if (el) { el.focus(); el.setSelectionRange(el.value.length, el.value.length); } }
+}
+
+const dbNote = () => state.dbStatus === "loading" ? '<p class="muted">Loading…</p>'
+  : state.dbStatus === "unavailable" ? '<p class="muted">Saved clients can’t be loaded in this view. Open the page on claude.ai while signed in.</p>' : "";
+
+function renderHome() {
+  const clients = [...state.clients.values()].sort((a, b) => a.name.localeCompare(b.name));
+  view.innerHTML = `<section class="panel"><div><div class="eyebrow">Premium tax scoping</div><h1 style="margin-top:4px">Clients</h1></div>
+    <p class="muted" style="margin:0;max-width:68ch">Set up a client, then add the insurance companies it owns or manages.
+    Each company is checked against the EIOPA register and its SFCR to scope premium tax obligations.</p>
+    <form class="inline-form" id="newClient"><input id="clientName" type="text" placeholder="New client name, e.g. Kingfisher plc" maxlength="120" required aria-label="New client name">
+      <button class="btn" type="submit" ${state.db ? "" : "disabled"}>Create client</button></form>
+    <span class="status" id="clientStatus" aria-live="polite"></span></section>
+    <section class="panel"><div class="panel-head"><h2>Your clients</h2><span class="status">${clients.length ? clients.length + (clients.length === 1 ? " client" : " clients") : ""}</span></div>
+    ${dbNote() || (clients.length ? `<div class="clients">${clients.map(c => {
+      const n = (c.companies || []).length, done = (c.companies || []).filter(k => state.research.get(k)?.sfcr).length;
+      return `<a class="client-card" href="#client-${esc(c.id)}"><strong>${esc(c.name)}</strong>
+        <span class="small">${n} ${n === 1 ? "company" : "companies"} · ${done} SFCR${done === 1 ? "" : "s"} checked</span>
+        <span class="small">Created ${esc(c.createdOn || "")}</span></a>`; }).join("")}</div>`
+      : '<p class="muted">No clients yet. Create your first client above.</p>')}</section>
+    <section class="panel"><div class="stats"><span><b>${fmt(state.index.length)}</b> undertakings in the EIOPA register</span>
+      <span><b>${fmt(state.data.e.reduce((n, r) => n + r[7].length, 0))}</b> country registrations</span>
+      <span><b>${[...state.research.values()].filter(r => r.sfcr).length}</b> SFCRs checked</span></div>
+      <p class="small muted" style="margin:0">Use the search bar to look up any company without adding it to a client.</p></section>`;
+  document.getElementById("newClient").addEventListener("submit", async e => {
+    e.preventDefault();
+    const name = document.getElementById("clientName").value.trim(), st = document.getElementById("clientStatus");
+    if (!name) return;
+    const id = "c" + Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
+    try {
+      await saveDoc("clients/" + id, { id, name, companies: [], createdOn: today() });
+      location.hash = "client-" + id;
+    } catch { st.textContent = "The client couldn’t be saved. Check you’re signed in to claude.ai and try again."; st.classList.add("err"); }
+  });
+}
+
+function companyRow(ent, extra = "") {
+  const r = state.research.get(ent.key);
+  return `<div class="row-link"><a href="#${esc(ent.key)}" style="text-decoration:none;color:inherit"><strong>${esc(ent.name)}</strong></a>${extra || (r && r.sfcr ? '<span class="badge">SFCR checked</span>' : "<span></span>")}
+    <span class="meta"><span>${esc(cname(ent.home))}</span><span>NCA: ${esc(ent.nca)}</span>
+    <span class="mono">${esc(ent.code)}</span><span class="mono">${esc(ent.lei || "No LEI")}</span></span></div>`;
+}
+
+function renderSearch() {
+  const text = q.value, hits = search(text);
+  view.innerHTML = `<section class="panel"><div class="panel-head"><h2>${text.trim() ? `Matches for “${esc(text.trim())}”` : "Search the EIOPA register"}</h2>
+    <span class="status">${hits.length ? hits.length + (hits.length === 25 ? "+ shown" : " found") : ""}</span></div>
+    ${!text.trim() ? '<p class="muted">Type a company name, LEI or identification code in the search bar.</p>'
+      : hits.length ? `<div class="table-box results">${hits.map(e => companyRow(e)).join("")}</div>`
+      : '<p class="muted">No undertakings in the EIOPA register match this. Try fewer words or the LEI.</p>'}</section>`;
+}
+
+function clientTotals(c) {
+  return (c.companies || []).map(k => state.byKey.get(k)).filter(Boolean).map(ent => {
+    const r = state.research.get(ent.key);
+    return { ent, r, active: new Set(ent.countries.filter(x => !ended(x)).map(x => x.country)).size,
+      dnl: r && r.sfcr ? r.directNonLife?.total || 0 : null };
+  });
+}
+
+function renderClient(c) {
+  const rows = clientTotals(c);
+  const hits = state.addQuery.trim() ? search(state.addQuery, 12) : [];
+  const has = new Set(c.companies || []);
+  view.innerHTML = `<div style="display:grid;gap:6px"><div class="crumbs"><a href="#clients">Clients</a><span class="muted">/</span><span>${esc(c.name)}</span></div>
+    <div class="eyebrow">Client</div><h1>${esc(c.name)}</h1></div>
+    <div class="actions"><button class="btn" id="clientXlsx" type="button" ${rows.length ? "" : "disabled"}>Download client scoping file</button>
+      <span class="status" id="xlsxStatus" aria-live="polite"></span></div>
+
+    <section class="panel"><div class="panel-head"><h2>Insurance companies</h2>
+      <span class="status">${rows.length} ${rows.length === 1 ? "company" : "companies"} · ${rows.filter(x => x.dnl != null).length} SFCRs checked</span></div>
+      ${rows.length ? `<div class="table-box"><table><thead><tr><th>Company</th><th>Home</th><th>Identification code</th><th class="num">Active countries</th>
+        <th>SFCR</th><th class="num">Direct non-life GWP (€’000)</th><th></th></tr></thead><tbody>
+        ${rows.map(x => `<tr><td><a href="#${esc(x.ent.key)}">${esc(x.ent.name)}</a></td><td><span class="cc">${esc(x.ent.home)}</span></td>
+          <td class="mono">${esc(x.ent.code)}</td><td class="num">${x.active}</td>
+          <td>${x.dnl != null ? '<span class="pill p-checked">Checked</span>' : '<span class="pill p-none">Not yet</span>'}</td>
+          <td class="num">${x.dnl != null ? fmt(x.dnl) : ""}</td>
+          <td><button class="btn danger small" type="button" data-remove="${esc(x.ent.key)}">${state.armed === "rm-" + x.ent.key ? "Confirm remove" : "Remove"}</button></td></tr>`).join("")}
+        </tbody></table></div>` : '<p class="muted">No companies yet. Search for one below and add it.</p>'}</section>
+
+    <section class="panel"><div class="panel-head"><h2>Add insurance companies</h2></div>
+      <input id="addQ" type="search" placeholder="Search the EIOPA register to add a company" autocomplete="off" aria-label="Search for a company to add" value="${esc(state.addQuery)}">
+      <span class="status" id="addStatus" aria-live="polite"></span>
+      ${hits.length ? `<div class="table-box results">${hits.map(e => companyRow(e, has.has(e.key)
+        ? '<span class="badge">Added</span>' : `<button class="btn small" type="button" data-add="${esc(e.key)}">Add</button>`)).join("")}</div>`
+        : state.addQuery.trim() ? '<p class="muted">No undertakings in the EIOPA register match this.</p>' : ""}</section>
+
+    <section class="panel"><div class="panel-head"><h2>Delete client</h2></div>
+      <p class="small muted" style="margin:0">Deletes the client and its company list. Checked SFCR results stay on each company’s page.</p>
+      <div><button class="btn danger" type="button" id="delClient">${state.armed === "del-" + c.id ? "Confirm delete client" : "Delete client"}</button></div></section>`;
+
+  const addQ = document.getElementById("addQ");
+  let t;
+  addQ.addEventListener("input", () => { clearTimeout(t); t = setTimeout(() => { state.addQuery = addQ.value; renderClient(c); const el = document.getElementById("addQ"); el.focus(); el.setSelectionRange(el.value.length, el.value.length); }, 150); });
+  view.querySelectorAll("[data-add]").forEach(b => b.addEventListener("click", async () => {
+    b.disabled = true;
+    try { await saveDoc("clients/" + c.id, { ...c, companies: [...(c.companies || []), b.dataset.add] }); }
+    catch { document.getElementById("addStatus").textContent = "The company couldn’t be added. Try again."; b.disabled = false; }
+  }));
+  view.querySelectorAll("[data-remove]").forEach(b => b.addEventListener("click", async () => {
+    const key = b.dataset.remove;
+    if (state.armed !== "rm-" + key) { state.armed = "rm-" + key; renderClient(c); return; }
+    state.armed = null;
+    try { await saveDoc("clients/" + c.id, { ...c, companies: (c.companies || []).filter(k => k !== key) }); } catch { renderClient(c); }
+  }));
+  document.getElementById("delClient").addEventListener("click", async () => {
+    if (state.armed !== "del-" + c.id) { state.armed = "del-" + c.id; renderClient(c); return; }
+    state.armed = null;
+    try { await removeDoc("clients/" + c.id); location.hash = "clients"; } catch { renderClient(c); }
+  });
+  wireDownload("clientXlsx", () => ({ filename: `${safeName(c.name)} - premium tax scoping.xlsx`, data: clientWorkbook(c) }));
+}
+
+function renderCompany(ent) {
+  const r = state.research.get(ent.key);
+  const from = state.from && state.clients.get(state.from);
+  const inClients = clientsWith(ent.key);
+  const others = [...state.clients.values()].filter(c => !(c.companies || []).includes(ent.key)).sort((a, b) => a.name.localeCompare(b.name));
+  const active = ent.countries.filter(c => !ended(c)).length;
+  const up = state.uploading && state.uploading.key === ent.key ? state.uploading : null;
+
+  let html = `<div style="display:grid;gap:6px"><div class="crumbs">${from ? `<a href="#clients">Clients</a><span class="muted">/</span><a href="#client-${esc(from.id)}">${esc(from.name)}</a><span class="muted">/</span>` : `<a href="#clients">Clients</a><span class="muted">/</span>`}<span>${esc(ent.name)}</span></div>
+    <div class="eyebrow">${esc(cname(ent.home))} · ${esc(ent.nca)}</div><h1>${esc(ent.name)}</h1>
+    ${ent.official !== ent.name ? `<div class="muted">${esc(ent.official)}</div>` : ""}
+    <div class="small muted">${inClients.length ? "Client: " + inClients.map(c => `<a href="#client-${esc(c.id)}">${esc(c.name)}</a>`).join(", ") : "Not added to a client"}</div></div>
+    <div class="actions"><button class="btn" id="xlsxBtn" type="button">Download Excel scoping file</button>
+    ${others.length ? `<select id="addTo" aria-label="Client to add this company to">${others.map(c => `<option value="${esc(c.id)}">${esc(c.name)}</option>`).join("")}</select>
+      <button class="btn ghost" id="addToBtn" type="button">Add to client</button>` : ""}
+    <span class="status" id="xlsxStatus" aria-live="polite"></span></div>`;
+
+  html += `<section class="panel"><div class="panel-head"><h2><span class="step">1</span>EIOPA register</h2>
+    <span class="status">${active} of ${ent.countries.length} registrations active</span></div>
+    <dl class="kv"><dt>International name</dt><dd>${esc(ent.name)}</dd><dt>Name of NCA</dt><dd>${esc(ent.nca)}</dd>
+    <dt>Home country</dt><dd>${esc(cname(ent.home))} <span class="cc">${esc(ent.home)}</span></dd>
+    <dt>Identification code</dt><dd class="mono">${esc(ent.code)}</dd><dt>LEI</dt><dd class="mono">${esc(ent.lei || "Not recorded")}</dd></dl>
+    <div class="table-box"><table><thead><tr><th>EU country where the entity operates</th><th>Cross-border status</th>
+    <th>Registration start</th><th>Registration end</th><th>Operation start</th><th>Operation end</th></tr></thead><tbody>
+    ${ent.countries.map(c => `<tr class="${ended(c) ? "ended" : ""}"><td><span class="cc">${esc(c.country)}</span>${esc(cname(c.country))}</td>
+      <td>${esc(c.status)}</td><td>${esc(c.rs)}</td><td>${esc(c.re)}</td><td>${esc(c.os)}</td><td>${esc(c.oe)}</td></tr>`).join("")}
+    </tbody></table></div></section>`;
+
+  const uploadCtl = `<div class="actions"><label class="btn${r && r.sfcr ? " ghost" : ""}" for="sfcrFile" tabindex="0" id="sfcrLabel">${r && r.sfcr ? "Upload a different SFCR PDF" : "Upload SFCR PDF"}</label>
+    <input id="sfcrFile" type="file" accept="application/pdf,.pdf" hidden ${up && up.busy ? "disabled" : ""}>
+    <span class="status${up && up.error ? " err" : ""}" id="uploadStatus" aria-live="polite">${esc(up ? up.message : "")}</span></div>`;
+  html += `<section class="panel"><div class="panel-head"><h2><span class="step">2</span>Latest SFCR</h2>
+    ${r && r.researchedOn ? `<span class="status">Checked ${esc(r.researchedOn)}</span>` : ""}</div>`;
+  if (state.dbStatus === "loading" && !r) html += `<p class="muted">Loading…</p>`;
+  else if (!r || !r.sfcr) {
+    html += `<div class="notice"><div><strong>No SFCR has been checked for this company yet.</strong>
+      <div class="small">Upload the company’s latest SFCR PDF. The page reads it in your browser, checks it against the EIOPA register and lists the direct non-life lines of business.
+      Irish SFCRs are in the <a href="https://www.centralbank.ie/regulation/industry-market-sectors/insurance-reinsurance/solvency-and-financial-condition-report-repository" target="_blank" rel="noopener">Central Bank of Ireland repository</a>; for other countries, use the company’s website.</div></div>
+      ${uploadCtl}</div>`;
+  } else {
+    html += `<dl class="kv"><dt>Document</dt><dd>${esc(r.sfcr.name)}</dd>
+      <dt>Reporting date</dt><dd>${esc(r.sfcr.reportingDate || r.sfcr.date)}</dd>
+      <dt>Source</dt><dd>${r.sfcr.url ? `<a href="${esc(r.sfcr.url)}" target="_blank" rel="noopener">${esc(r.sfcr.repository)}</a>` : esc(r.sfcr.repository)}</dd></dl>
+      ${r.unsaved ? '<p class="small muted" style="margin:0">These results are shown for this visit only; they couldn’t be saved to the page.</p>' : ""}${uploadCtl}`;
+  }
+  html += `</section>`;
+
+  if (r && r.sfcr) {
+    const counts = {};
+    r.checks.forEach(c => counts[c.result] = (counts[c.result] || 0) + 1);
+    html += `<section class="panel"><div class="panel-head"><h2><span class="step">3</span>SFCR against EIOPA: potential inconsistencies</h2>
+      <span class="status">${["Inconsistent", "Review", "Consistent", "Not available"].filter(k => counts[k]).map(k => `${counts[k]} ${k.toLowerCase()}`).join(" · ")}</span></div>
+      <div class="table-box"><table><thead><tr><th>Check</th><th>EIOPA register</th><th>SFCR</th><th>Result</th><th>Note</th></tr></thead><tbody>
+      ${r.checks.map(c => `<tr><td>${esc(c.check)}</td><td>${esc(c.eiopa)}</td><td>${esc(c.sfcr)}</td>
+        <td><span class="pill p-${esc(c.result.split(" ")[0])}">${esc(c.result)}</span></td><td class="small">${esc(c.note)}</td></tr>`).join("")}
+      </tbody></table></div></section>`;
+    const d = r.directNonLife || { lines: [], total: 0 };
+    html += `<section class="panel"><div class="panel-head"><h2><span class="step">4</span>Direct non-life insurance programmes</h2>
+      <span class="status">S.05.01, gross written premium, direct business (R0110)</span></div>
+      ${d.lines.length ? `<div class="table-box"><table><thead><tr><th>Solvency II line of business</th><th>Annex I classes</th>
+        <th class="num">Direct GWP (€’000)</th><th class="num">Share</th></tr></thead><tbody>
+        ${d.lines.map(l => `<tr><td>${esc(l.line)}</td><td>${esc(l.classes)}</td><td class="num">${fmt(l.gwp)}</td><td class="num">${l.share.toFixed(1)}%</td></tr>`).join("")}
+        </tbody><tfoot><tr><td>Total direct non-life</td><td></td><td class="num">${fmt(d.total)}</td><td class="num">100%</td></tr></tfoot></table></div>
+        <p class="small muted" style="margin:0">Figures are in the SFCR’s reporting units, normally €’000. Annex I classes are indicative.</p>`
+      : `<p>No direct non-life premium was found in the SFCR. The company may write only life or reinsurance business, or the table couldn’t be read from this PDF.</p>`}
+      ${r.narrative ? `<div class="eyebrow">What the SFCR says about its business</div><pre class="narrative">${esc(r.narrative)}</pre>` : ""}</section>`;
+  }
+
+  const scope = scopeRows(ent, r);
+  html += `<section class="panel"><div class="panel-head"><h2><span class="step">${r && r.sfcr ? 5 : 3}</span>Countries to scope for premium tax</h2></div>
+    <p class="small muted" style="margin:0;max-width:75ch">Every country with an EIOPA registration${r && r.sfcr ? " or SFCR premium" : ""}.
+    Countries with active passports may need premium tax registration or nil returns even where no premium is shown.
+    ${r && r.groupLevel ? " Country premiums are taken from the group-level table." : ""}</p>
+    <div class="table-box"><table><thead><tr><th>Country</th><th>Basis (EIOPA)</th><th>Active</th><th class="num">Direct GWP (SFCR)</th></tr></thead><tbody>
+    ${scope.map(s => `<tr><td><span class="cc">${esc(s.country)}</span>${esc(cname(s.country))}</td><td>${esc(s.basis)}</td>
+      <td>${s.active ? "Yes" : "No"}</td><td class="num">${s.premium == null ? (r && r.sfcr ? '<span class="muted">Not shown</span>' : "") : fmt(s.premium)}</td></tr>`).join("")}
+    </tbody></table></div></section>`;
+
+  const scrollY = window.scrollY, same = view.dataset.key === ent.key;
+  view.innerHTML = html; view.dataset.key = ent.key;
+  if (!same) window.scrollTo(0, 0); else window.scrollTo(0, scrollY);
+
+  wireDownload("xlsxBtn", () => ({ filename: `${safeName(ent.name)} - premium tax scoping.xlsx`, data: companyWorkbook(ent, r) }));
+  const addBtn = document.getElementById("addToBtn");
+  if (addBtn) addBtn.addEventListener("click", async () => {
+    const c = state.clients.get(document.getElementById("addTo").value); if (!c) return;
+    addBtn.disabled = true;
+    try { await saveDoc("clients/" + c.id, { ...c, companies: [...(c.companies || []), ent.key] }); }
+    catch { document.getElementById("xlsxStatus").textContent = "The company couldn’t be added. Try again."; addBtn.disabled = false; }
+  });
+  const label = document.getElementById("sfcrLabel");
+  label.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); document.getElementById("sfcrFile").click(); } });
+  document.getElementById("sfcrFile").addEventListener("change", e => { const f = e.target.files[0]; if (f) handleUpload(ent, f); });
+}
+
+function scopeRows(ent, r) {
+  if (r && r.scope) return r.scope;
+  const map = new Map();
+  for (const c of ent.countries) {
+    const m = map.get(c.country) || { country: c.country, statuses: new Set(), active: false };
+    m.statuses.add(c.status); if (!ended(c)) m.active = true; map.set(c.country, m);
+  }
+  return [...map.values()].map(m => ({ country: m.country, basis: [...m.statuses].sort().join(", "), active: m.active, premium: null }))
+    .sort((a, b) => a.country.localeCompare(b.country));
+}
+
+/* ======================================================================
+   Upload
+   ====================================================================== */
+async function handleUpload(ent, file) {
+  const set = (message, extra = {}) => { state.uploading = { key: ent.key, message, busy: true, ...extra }; const el = document.getElementById("uploadStatus");
+    if (el && location.hash.slice(1) === ent.key) { el.textContent = message; el.classList.toggle("err", !!extra.error); } };
+  if (!/\.pdf$/i.test(file.name) && file.type !== "application/pdf") { set("Choose a PDF file.", { error: true, busy: false }); return; }
+  try {
+    set("Loading the PDF reader…");
+    const text = await pdfText(file, msg => set(msg));
+    if (text.replace(/\s/g, "").length < 500) { set("This PDF has no readable text (it may be a scanned image), so it can’t be checked.", { error: true, busy: false }); return; }
+    set("Checking against the EIOPA register…");
+    const result = buildResult(ent, parseSfcr(text, state.data.ncas), file);
+    try { await saveDoc("research/" + ent.key, result); state.uploading = null; }
+    catch { state.research.set(ent.key, { ...result, unsaved: true }); state.uploading = null; render(); }
+  } catch (err) {
+    set("The PDF couldn’t be read. Check it’s the SFCR and try again.", { error: true, busy: false });
+  }
+}
+
+/* ======================================================================
+   Excel files
+   ====================================================================== */
+const safeName = s => s.replace(/[\\/:*?"<>|]/g, "").slice(0, 120);
+function sheet(rows, widths) { const ws = XLSX.utils.aoa_to_sheet(rows); ws["!cols"] = widths.map(w => ({ wch: w })); return ws; }
+const NOTES = [["Notes"], ["Premium figures are in the SFCR's reporting units, normally EUR thousands."],
+  ["SFCR country tables show only the home country and top 5 countries; passports without premium shown may still have business."],
+  ["Annex I classes are an indicative mapping from Solvency II lines of business."]];
+const TAX_COLS = ["Premium tax registration needed?", "Filing frequency", "Fiscal representative?", "Notes"];
+
+function companyWorkbook(ent, r) {
+  const wb = XLSX.utils.book_new(), s = r && r.sfcr;
+  XLSX.utils.book_append_sheet(wb, sheet([["Premium tax scoping file"], [],
+    ["Company", ent.name], ["Official name", ent.official], ["Name of NCA", ent.nca], ["Home country", `${cname(ent.home)} (${ent.home})`],
+    ["Identification code", ent.code], ["LEI", ent.lei || "Not recorded"], ["Clients", clientsWith(ent.key).map(c => c.name).join(", ")], [],
+    ["EIOPA source", state.data.source], ["SFCR", s ? s.name : "Not checked yet"], ["SFCR reporting date", s ? (s.reportingDate || s.date) : ""],
+    ["SFCR source", s ? (s.url || s.repository) : ""], ["SFCR checked on", r ? r.researchedOn : ""], ["File prepared on", today()], [], ...NOTES], [24, 90]), "Summary");
+  XLSX.utils.book_append_sheet(wb, sheet([["Country", "Code", "Cross-border status", "Registration start", "Registration end", "Operation start", "Operation end"],
+    ...ent.countries.map(c => [cname(c.country), c.country, c.status, c.rs, c.re, c.os, c.oe])], [18, 7, 24, 18, 18, 16, 16]), "EIOPA countries");
+  if (s) {
+    XLSX.utils.book_append_sheet(wb, sheet([["Check", "EIOPA register", "SFCR", "Result", "Note"],
+      ...r.checks.map(c => [c.check, c.eiopa, c.sfcr, c.result, c.note])], [30, 34, 34, 14, 70]), "SFCR checks");
+    const lines = (r.directNonLife || { lines: [] }).lines, n = lines.length;
+    const rows = [["Solvency II line of business", "Annex I classes", "Direct GWP (EUR 000)", "Share"],
+      ...lines.map((l, i) => [l.line, l.classes, { v: l.gwp, t: "n", z: "#,##0" }, { f: `IF($C$${n + 2}=0,0,C${i + 2}/$C$${n + 2})`, t: "n", z: "0.0%" }]),
+      ["Total direct non-life", "", { f: n ? `SUM(C2:C${n + 1})` : "0", t: "n", z: "#,##0" }, { f: `IF(C${n + 2}=0,0,1)`, t: "n", z: "0.0%" }]];
+    XLSX.utils.book_append_sheet(wb, sheet(rows, [44, 18, 22, 10]), "Direct non-life");
+  }
+  XLSX.utils.book_append_sheet(wb, sheet([["Country", "Code", "Basis (EIOPA)", "Active passport", "Direct GWP (SFCR, EUR 000)", ...TAX_COLS],
+    ...scopeRows(ent, r).map(x => [cname(x.country), x.country, x.basis, x.active ? "Yes" : "No", x.premium == null ? "" : { v: x.premium, t: "n", z: "#,##0" }, "", "", "", ""])],
+    [18, 7, 30, 15, 24, 30, 18, 22, 40]), "Scope countries");
+  return XLSX.write(wb, { bookType: "xlsx", type: "array" });
+}
+
+function clientWorkbook(c) {
+  const wb = XLSX.utils.book_new(), rows = clientTotals(c);
+  XLSX.utils.book_append_sheet(wb, sheet([["Premium tax scoping file"], [], ["Client", c.name], ["Companies", rows.length],
+    ["SFCRs checked", rows.filter(x => x.dnl != null).length], ["EIOPA source", state.data.source], ["File prepared on", today()], [], ...NOTES], [22, 90]), "Summary");
+  XLSX.utils.book_append_sheet(wb, sheet([["Company", "Official name", "Home country", "Name of NCA", "Identification code", "LEI", "Active countries",
+    "SFCR", "SFCR reporting date", "Direct non-life GWP (EUR 000)"],
+    ...rows.map(x => [x.ent.name, x.ent.official, x.ent.home, x.ent.nca, x.ent.code, x.ent.lei, x.active,
+      x.r && x.r.sfcr ? x.r.sfcr.name : "Not checked", x.r && x.r.sfcr ? (x.r.sfcr.reportingDate || x.r.sfcr.date) : "",
+      x.dnl == null ? "" : { v: x.dnl, t: "n", z: "#,##0" }])], [36, 36, 12, 34, 18, 24, 15, 34, 20, 26]), "Companies");
+  const scope = [["Company", "Country", "Code", "Basis (EIOPA)", "Active passport", "Direct GWP (SFCR, EUR 000)", ...TAX_COLS]];
+  rows.forEach(x => scopeRows(x.ent, x.r).forEach(s => scope.push([x.ent.name, cname(s.country), s.country, s.basis, s.active ? "Yes" : "No",
+    s.premium == null ? "" : { v: s.premium, t: "n", z: "#,##0" }, "", "", "", ""])));
+  XLSX.utils.book_append_sheet(wb, sheet(scope, [34, 18, 7, 30, 15, 24, 30, 18, 22, 40]), "Scope matrix");
+  const dnl = [["Company", "Solvency II line of business", "Annex I classes", "Direct GWP (EUR 000)"]];
+  rows.forEach(x => (x.r?.directNonLife?.lines || []).forEach(l => dnl.push([x.ent.name, l.line, l.classes, { v: l.gwp, t: "n", z: "#,##0" }])));
+  XLSX.utils.book_append_sheet(wb, sheet(dnl, [34, 44, 18, 22]), "Direct non-life");
+  const checks = [["Company", "Check", "EIOPA register", "SFCR", "Result", "Note"]];
+  rows.forEach(x => (x.r?.checks || []).forEach(k => checks.push([x.ent.name, k.check, k.eiopa, k.sfcr, k.result, k.note])));
+  XLSX.utils.book_append_sheet(wb, sheet(checks, [34, 30, 34, 34, 14, 70]), "SFCR checks");
+  return XLSX.write(wb, { bookType: "xlsx", type: "array" });
+}
+
+function wireDownload(id, make) {
+  const btn = document.getElementById(id), status = document.getElementById("xlsxStatus");
+  if (!btn) return;
+  if (state.downloads === null || typeof XLSX === "undefined") { btn.disabled = true; status.textContent = "Excel download isn’t available in this view."; return; }
+  btn.addEventListener("click", async () => {
+    btn.disabled = true; status.textContent = "Preparing file…";
+    try {
+      const dl = state.downloads ?? await claude.use("downloads");
+      if (!dl) { status.textContent = "Excel download isn’t available in this view."; return; }
+      await dl.save(make()); status.textContent = "Saved";
+    } catch (e) { status.textContent = e && e.code === "declined" ? "Download cancelled" : "The file couldn’t be saved. Try again."; }
+    finally { btn.disabled = false; }
+  });
+}
+
+/* ======================================================================
+   Start
+   ====================================================================== */
+let timer;
+document.getElementById("searchForm").addEventListener("submit", e => { e.preventDefault(); q.blur(); });
+q.addEventListener("input", () => {
+  clearTimeout(timer);
+  timer = setTimeout(() => { if (location.hash !== "#search") location.hash = "search"; else renderSearch(); }, 150);
+});
+addEventListener("hashchange", () => { state.armed = null; render(); });
+
+async function connectDb() {
+  let db = null;
+  try { db = await claude.use("db"); } catch { db = null; }
+  if (!db) { state.dbStatus = "unavailable"; render(); return; }
+  state.db = db;
+  const loaded = { research: false, clients: false };
+  const slow = setTimeout(() => { if (state.dbStatus === "loading") { state.dbStatus = "unavailable"; render(); } }, 10000);
+  const ready = () => { if (loaded.research && loaded.clients) { clearTimeout(slow); state.dbStatus = "ready"; } render(); };
+  db.collection("research").onSnapshot(snap => {
+    const unsaved = [...state.research.values()].filter(r => r.unsaved);
+    state.research = new Map(snap.docs.filter(d => d.exists).map(d => [d.data().key || d.id, d.data()]));
+    unsaved.forEach(r => { if (!state.research.has(r.key)) state.research.set(r.key, r); });
+    loaded.research = true; ready();
+  }, () => { loaded.research = true; ready(); });
+  db.collection("clients").onSnapshot(snap => {
+    state.clients = new Map(snap.docs.filter(d => d.exists).map(d => [d.data().id || d.id, { ...d.data(), id: d.data().id || d.id }]));
+    loaded.clients = true; ready();
+  }, () => { loaded.clients = true; ready(); });
+}
+async function connectDownloads() {
+  try { state.downloads = await claude.use("downloads"); } catch { state.downloads = null; }
+  if (state.downloads === null) render();
+}
+
+loadRegister().then(() => {
+  render();
+  if (window.claude && claude.use) { connectDb(); connectDownloads(); }
+  else { state.dbStatus = "unavailable"; state.downloads = null; render(); }
+}).catch(() => {
+  view.innerHTML = `<section class="panel"><h2>The EIOPA register couldn’t be loaded</h2><p class="muted">Reload the page to try again.</p></section>`;
+});
+</script>

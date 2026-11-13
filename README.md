@@ -35,3 +35,10 @@ Data to CSV**, save it over `data/eiopa_export.csv` and restart the app. The reg
   have business.
 - Figures are in the SFCR's reporting units (usually €'000).
 - Only the Irish SFCR repository is connected; other countries need a manual upload.
+
+## Web page (claude.ai Artifact)
+
+`artifact/index.html` is the version published as a claude.ai page: set up clients, add insurers from the EIOPA
+register, upload an SFCR PDF on a company page (read in the browser with the same rules as `sfcr.py`) and download
+Excel scoping files per company or per client. `artifact/eiopa.json` is built from the EIOPA export with
+`python tools/build_eiopa_json.py`. `tools/research.py "Company name"` runs the SFCR research from the command line.
