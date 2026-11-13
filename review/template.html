@@ -1,0 +1,183 @@
+<title>Filing Frequency Review</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: a review sheet. Sticky summary and filters, then one block per jurisdiction with a row per tax and its verdict controls. */
+:root {
+  --bg: #f4f6f8; --surface: #ffffff; --ink: #17212b; --muted: #5a6875; --line: #dbe1e7; --soft: #eaeef2;
+  --accent: #0f5c6e; --accent-ink: #ffffff; --accent-soft: #e0eff2;
+  --ok: #1d6b3f; --ok-bg: #e3f3e9; --bad: #a3271b; --bad-bg: #fbe7e4; --rev: #8a5a00; --rev-bg: #fdf1d6; --na: #5a6875; --na-bg: #eceff2;
+  --sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0f151b; --surface: #161e26; --ink: #e3e9ef; --muted: #98a6b3; --line: #2a3540; --soft: #1d2731;
+  --accent: #5fb3c6; --accent-ink: #0b1418; --accent-soft: #17323a;
+  --ok: #7fd3a1; --ok-bg: #173226; --bad: #f39a8f; --bad-bg: #3a1c19; --rev: #f0c46b; --rev-bg: #362a12; --na: #98a6b3; --na-bg: #232d37;
+  color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --bg: #0f151b; --surface: #161e26; --ink: #e3e9ef; --muted: #98a6b3; --line: #2a3540; --soft: #1d2731;
+  --accent: #5fb3c6; --accent-ink: #0b1418; --accent-soft: #17323a;
+  --ok: #7fd3a1; --ok-bg: #173226; --bad: #f39a8f; --bad-bg: #3a1c19; --rev: #f0c46b; --rev-bg: #362a12; --na: #98a6b3; --na-bg: #232d37;
+  color-scheme: dark; }
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font: 15px/1.5 var(--sans); }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--surface); }
+.wrap { max-width: 1180px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--surface); border-bottom: 1px solid var(--line); }
+.bar .wrap { padding-block: 12px; display: grid; gap: 10px; }
+.head { display: flex; flex-wrap: wrap; gap: 6px 18px; align-items: baseline; justify-content: space-between; }
+h1 { margin: 0; font-size: 22px; text-wrap: balance; }
+h2 { margin: 0; font-size: 17px; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.eyebrow { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+.muted { color: var(--muted); } .small { font-size: 13px; }
+.stats { display: flex; flex-wrap: wrap; gap: 4px 16px; font-size: 13px; color: var(--muted); }
+.stats b { color: var(--ink); font-variant-numeric: tabular-nums; }
+.filters { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { font: inherit; font-size: 13px; border: 1px solid var(--line); background: var(--surface); color: var(--muted); padding: 4px 11px; border-radius: 999px; cursor: pointer; }
+.chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.chip .n { font-family: var(--mono); font-size: 11px; margin-left: 4px; opacity: .8; }
+main.wrap { padding-block: 20px 64px; display: grid; gap: 18px; }
+main > * { min-width: 0; }
+.intro { max-width: 80ch; margin: 0; color: var(--muted); font-size: 14px; }
+section.jur { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 16px 18px; display: grid; gap: 12px; min-width: 0; }
+.code { font-family: var(--mono); font-size: 12px; padding: 1px 6px; border: 1px solid var(--line); border-radius: 4px; color: var(--muted); font-weight: 500; }
+.rows { display: grid; gap: 0; }
+.row { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.6fr) minmax(250px, 1fr); gap: 8px 18px; padding: 14px 0; border-top: 1px solid var(--line); }
+.row:first-child { border-top: 0; padding-top: 4px; }
+.row > * { min-width: 0; }
+.tax { font-weight: 600; overflow-wrap: anywhere; }
+.freq { display: inline-block; margin-top: 4px; padding: 2px 9px; border-radius: 999px; font-size: 12.5px; font-weight: 600; background: var(--ok-bg); color: var(--ok); }
+.freq.nr { background: var(--na-bg); color: var(--na); }
+.filing { font-size: 14px; }
+.cite { font-size: 12.5px; color: var(--muted); margin-top: 4px; }
+.flag { margin-top: 6px; font-size: 12.5px; padding: 6px 9px; border-radius: 6px; background: var(--rev-bg); color: var(--rev); }
+.flag.nr { background: var(--na-bg); color: var(--na); }
+.review { display: grid; gap: 6px; align-content: start; }
+.verdicts { display: flex; gap: 6px; flex-wrap: wrap; }
+.v { font: inherit; font-size: 13px; font-weight: 600; padding: 5px 11px; border-radius: 6px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); cursor: pointer; }
+.v.ok[aria-pressed="true"] { background: var(--ok-bg); border-color: var(--ok); color: var(--ok); }
+.v.chg[aria-pressed="true"] { background: var(--bad-bg); border-color: var(--bad); color: var(--bad); }
+.v:disabled { opacity: .5; cursor: default; }
+textarea { font: inherit; font-size: 13.5px; width: 100%; min-height: 58px; padding: 7px 9px; border: 1px solid var(--line); border-radius: 6px; background: var(--bg); color: var(--ink); resize: vertical; }
+.save { font: inherit; font-size: 13px; font-weight: 600; padding: 5px 12px; border-radius: 6px; border: 1px solid var(--accent); background: var(--accent); color: var(--accent-ink); cursor: pointer; justify-self: start; }
+.who { font-size: 12px; color: var(--muted); }
+.status { font-size: 12px; color: var(--muted); }
+.status.err { color: var(--bad); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.empty { padding: 24px; color: var(--muted); }
+@media (max-width: 860px) { .row { grid-template-columns: minmax(0, 1fr); } }
+</style>
+
+<header class="bar"><div class="wrap">
+  <div class="head"><div><div class="eyebrow">Insurer Scoping · tax data review</div><h1>Filing Frequency Review</h1></div>
+    <div class="stats" id="stats"></div></div>
+  <div class="filters" id="filters" role="group" aria-label="Show"></div>
+</div></header>
+<main class="wrap">
+  <p class="intro">Each line is the filing frequency used for one premium tax in the Insurer Scoping app, taken from the research runs in the Jurisdictional Data Hub - Europe (snapshot <span id="snap"></span>; all runs unvalidated). Mark each line <b>Agree</b> or <b>Change needed</b>, and say what should change in the note. Lines flagged in amber were inferred rather than read directly from a record; grey lines have no filing detail in the hub.</p>
+  <div id="list"><section class="jur"><p class="muted">Loading…</p></section></div>
+</main>
+
+<script>
+const DATA = /*DATA*/null;
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const state = { reviews: new Map(), db: null, user: null, me: null, names: {}, filter: "all", status: "loading", drafts: {} };
+try { state.filter = localStorage.getItem("ffr.filter") || "all"; } catch {}
+const rows = DATA.jurisdictions.flatMap(j => j.taxes.map((t, i) => ({ ...t, id: `${j.jdh}-${i}`, jdh: j.jdh, jurName: j.name, run: j.run, runStatus: j.status })));
+document.getElementById("snap").textContent = DATA.snapshot;
+
+const verdictOf = r => state.reviews.get(r.id)?.verdict || "";
+const FILTERS = [["all", "All lines", () => true], ["flagged", "Inferred, review closely", r => r.flag === "inferred"],
+  ["nr", "Not researched", r => r.flag === "nr"], ["open", "Not reviewed yet", r => !verdictOf(r)],
+  ["agree", "Agreed", r => verdictOf(r) === "agree"], ["change", "Change needed", r => verdictOf(r) === "change"]];
+
+function render() {
+  const counts = { agree: 0, change: 0 };
+  rows.forEach(r => { const v = verdictOf(r); if (v) counts[v]++; });
+  document.getElementById("stats").innerHTML = `<span><b>${rows.length}</b> lines</span><span><b>${counts.agree}</b> agreed</span>
+    <span><b>${counts.change}</b> change needed</span><span><b>${rows.length - counts.agree - counts.change}</b> not reviewed</span>`;
+  document.getElementById("filters").innerHTML = FILTERS.map(([k, label, fn]) =>
+    `<button class="chip" type="button" data-f="${k}" aria-pressed="${state.filter === k}">${label}<span class="n">${rows.filter(fn).length}</span></button>`).join("");
+  const fn = (FILTERS.find(f => f[0] === state.filter) || FILTERS[0])[2];
+  const shown = rows.filter(fn);
+  const canWrite = !!state.db;
+  const note = state.status === "unavailable" ? `<p class="small status err" style="margin:0">Reviews can’t be loaded or saved in this view. Open the page on claude.ai while signed in.</p>` : "";
+  const byJur = [];
+  shown.forEach(r => { let g = byJur.find(x => x.jdh === r.jdh); if (!g) byJur.push(g = { jdh: r.jdh, name: r.jurName, run: r.run, status: r.runStatus, rows: [] }); g.rows.push(r); });
+  document.getElementById("list").innerHTML = note + (byJur.length ? byJur.map(g => `<section class="jur">
+    <h2><span class="code">${esc(g.jdh)}</span>${esc(g.name)} <span class="small muted" style="font-weight:400">research run ${esc(g.run)} (${esc(g.status)})</span></h2>
+    <div class="rows">${g.rows.map(r => {
+      const rv = state.reviews.get(r.id) || {}, v = rv.verdict || "", d = state.drafts[r.id];
+      const noteVal = d !== undefined ? d : (rv.note || "");
+      return `<div class="row" id="row-${esc(r.id)}">
+        <div><div class="tax">${esc(r.name)}</div><span class="freq ${r.flag === "nr" ? "nr" : ""}">${esc(r.frequency)}</span></div>
+        <div><div class="filing">${esc(r.filing)}</div><div class="cite">${esc(r.cite)}</div>
+          ${r.flagNote ? `<div class="flag ${r.flag === "nr" ? "nr" : ""}">${esc(r.flagNote)}</div>` : ""}</div>
+        <div class="review">
+          <div class="verdicts"><button type="button" class="v ok" data-v="agree" data-id="${esc(r.id)}" aria-pressed="${v === "agree"}" ${canWrite ? "" : "disabled"}>Agree</button>
+            <button type="button" class="v chg" data-v="change" data-id="${esc(r.id)}" aria-pressed="${v === "change"}" ${canWrite ? "" : "disabled"}>Change needed</button></div>
+          <label class="small muted" for="note-${esc(r.id)}">Note${v === "change" ? " (what should change?)" : ""}</label>
+          <textarea id="note-${esc(r.id)}" data-note="${esc(r.id)}" placeholder="${v === "change" ? "e.g. quarterly, not monthly; cite the source" : "Optional"}" ${canWrite ? "" : "disabled"}>${esc(noteVal)}</textarea>
+          <button type="button" class="save" data-save="${esc(r.id)}" ${canWrite ? "" : "disabled"} ${d === undefined ? "hidden" : ""}>Save note</button>
+          <span class="status" id="st-${esc(r.id)}" aria-live="polite"></span>
+          ${rv.by ? `<span class="who">${v === "agree" ? "Agreed" : v === "change" ? "Change requested" : "Noted"} by ${esc(state.names[rv.by] || "a reviewer")} on ${esc(rv.on || "")}</span>` : ""}
+        </div></div>`; }).join("")}</div></section>`).join("")
+    : `<section class="jur"><p class="empty">No lines match this filter.</p></section>`);
+}
+
+async function save(id, patch) {
+  const st = document.getElementById("st-" + id);
+  const cur = state.reviews.get(id) || {};
+  const doc = { verdict: cur.verdict || "", note: cur.note || "", ...patch, id, by: state.me || "", on: new Date().toISOString().slice(0, 10) };
+  try { if (st) st.textContent = "Saving…"; await state.db.doc("reviews/" + id).set(doc); delete state.drafts[id]; }
+  catch { if (st) { st.textContent = "Couldn’t save. Try again."; st.classList.add("err"); } }
+}
+
+document.addEventListener("click", e => {
+  const f = e.target.closest("[data-f]");
+  if (f) { state.filter = f.dataset.f; try { localStorage.setItem("ffr.filter", state.filter); } catch {} render(); return; }
+  const v = e.target.closest("[data-v]");
+  if (v && state.db) {
+    const id = v.dataset.id, cur = state.reviews.get(id) || {};
+    const verdict = cur.verdict === v.dataset.v ? "" : v.dataset.v;
+    const note = state.drafts[id] !== undefined ? state.drafts[id] : (cur.note || "");
+    save(id, { verdict, note }); return;
+  }
+  const s = e.target.closest("[data-save]");
+  if (s && state.db) { const id = s.dataset.save; save(id, { note: state.drafts[id] ?? "" }); }
+});
+document.addEventListener("input", e => {
+  const t = e.target.closest("[data-note]");
+  if (!t) return;
+  state.drafts[t.dataset.note] = t.value;
+  const b = document.querySelector(`[data-save="${CSS.escape(t.dataset.note)}"]`); if (b) b.hidden = false;
+});
+
+async function resolveNames() {
+  if (!state.user) return;
+  const ids = [...new Set([...state.reviews.values()].map(r => r.by).filter(Boolean))].filter(id => !(id in state.names));
+  if (!ids.length) return;
+  try { const ps = await state.user.profiles(ids); ids.forEach(id => state.names[id] = (ps[id] && ps[id].name) || "a reviewer"); render(); } catch {}
+}
+
+async function start() {
+  render();
+  if (!(window.claude && claude.use)) { state.status = "unavailable"; render(); return; }
+  let db = null;
+  try { db = await claude.use("db"); } catch {}
+  try { state.user = await claude.use("user"); if (state.user) state.me = await state.user.id(); } catch {}
+  if (!db) { state.status = "unavailable"; render(); return; }
+  state.db = db;
+  const slow = setTimeout(() => { if (state.status === "loading") { state.status = "unavailable"; render(); } }, 10000);
+  db.collection("reviews").onSnapshot(snap => {
+    clearTimeout(slow); state.status = "ready";
+    state.reviews = new Map(snap.docs.filter(d => d.exists).map(d => [d.id, d.data()]));
+    const active = document.activeElement && document.activeElement.id;
+    render(); resolveNames();
+    if (active) { const el = document.getElementById(active); if (el) el.focus(); }
+  }, () => { clearTimeout(slow); state.status = "unavailable"; render(); });
+}
+start();
+</script>

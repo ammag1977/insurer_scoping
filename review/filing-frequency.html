@@ -1,0 +1,183 @@
+<title>Filing Frequency Review</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: a review sheet. Sticky summary and filters, then one block per jurisdiction with a row per tax and its verdict controls. */
+:root {
+  --bg: #f4f6f8; --surface: #ffffff; --ink: #17212b; --muted: #5a6875; --line: #dbe1e7; --soft: #eaeef2;
+  --accent: #0f5c6e; --accent-ink: #ffffff; --accent-soft: #e0eff2;
+  --ok: #1d6b3f; --ok-bg: #e3f3e9; --bad: #a3271b; --bad-bg: #fbe7e4; --rev: #8a5a00; --rev-bg: #fdf1d6; --na: #5a6875; --na-bg: #eceff2;
+  --sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0f151b; --surface: #161e26; --ink: #e3e9ef; --muted: #98a6b3; --line: #2a3540; --soft: #1d2731;
+  --accent: #5fb3c6; --accent-ink: #0b1418; --accent-soft: #17323a;
+  --ok: #7fd3a1; --ok-bg: #173226; --bad: #f39a8f; --bad-bg: #3a1c19; --rev: #f0c46b; --rev-bg: #362a12; --na: #98a6b3; --na-bg: #232d37;
+  color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --bg: #0f151b; --surface: #161e26; --ink: #e3e9ef; --muted: #98a6b3; --line: #2a3540; --soft: #1d2731;
+  --accent: #5fb3c6; --accent-ink: #0b1418; --accent-soft: #17323a;
+  --ok: #7fd3a1; --ok-bg: #173226; --bad: #f39a8f; --bad-bg: #3a1c19; --rev: #f0c46b; --rev-bg: #362a12; --na: #98a6b3; --na-bg: #232d37;
+  color-scheme: dark; }
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font: 15px/1.5 var(--sans); }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--surface); }
+.wrap { max-width: 1180px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--surface); border-bottom: 1px solid var(--line); }
+.bar .wrap { padding-block: 12px; display: grid; gap: 10px; }
+.head { display: flex; flex-wrap: wrap; gap: 6px 18px; align-items: baseline; justify-content: space-between; }
+h1 { margin: 0; font-size: 22px; text-wrap: balance; }
+h2 { margin: 0; font-size: 17px; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.eyebrow { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+.muted { color: var(--muted); } .small { font-size: 13px; }
+.stats { display: flex; flex-wrap: wrap; gap: 4px 16px; font-size: 13px; color: var(--muted); }
+.stats b { color: var(--ink); font-variant-numeric: tabular-nums; }
+.filters { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { font: inherit; font-size: 13px; border: 1px solid var(--line); background: var(--surface); color: var(--muted); padding: 4px 11px; border-radius: 999px; cursor: pointer; }
+.chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.chip .n { font-family: var(--mono); font-size: 11px; margin-left: 4px; opacity: .8; }
+main.wrap { padding-block: 20px 64px; display: grid; gap: 18px; }
+main > * { min-width: 0; }
+.intro { max-width: 80ch; margin: 0; color: var(--muted); font-size: 14px; }
+section.jur { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 16px 18px; display: grid; gap: 12px; min-width: 0; }
+.code { font-family: var(--mono); font-size: 12px; padding: 1px 6px; border: 1px solid var(--line); border-radius: 4px; color: var(--muted); font-weight: 500; }
+.rows { display: grid; gap: 0; }
+.row { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.6fr) minmax(250px, 1fr); gap: 8px 18px; padding: 14px 0; border-top: 1px solid var(--line); }
+.row:first-child { border-top: 0; padding-top: 4px; }
+.row > * { min-width: 0; }
+.tax { font-weight: 600; overflow-wrap: anywhere; }
+.freq { display: inline-block; margin-top: 4px; padding: 2px 9px; border-radius: 999px; font-size: 12.5px; font-weight: 600; background: var(--ok-bg); color: var(--ok); }
+.freq.nr { background: var(--na-bg); color: var(--na); }
+.filing { font-size: 14px; }
+.cite { font-size: 12.5px; color: var(--muted); margin-top: 4px; }
+.flag { margin-top: 6px; font-size: 12.5px; padding: 6px 9px; border-radius: 6px; background: var(--rev-bg); color: var(--rev); }
+.flag.nr { background: var(--na-bg); color: var(--na); }
+.review { display: grid; gap: 6px; align-content: start; }
+.verdicts { display: flex; gap: 6px; flex-wrap: wrap; }
+.v { font: inherit; font-size: 13px; font-weight: 600; padding: 5px 11px; border-radius: 6px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); cursor: pointer; }
+.v.ok[aria-pressed="true"] { background: var(--ok-bg); border-color: var(--ok); color: var(--ok); }
+.v.chg[aria-pressed="true"] { background: var(--bad-bg); border-color: var(--bad); color: var(--bad); }
+.v:disabled { opacity: .5; cursor: default; }
+textarea { font: inherit; font-size: 13.5px; width: 100%; min-height: 58px; padding: 7px 9px; border: 1px solid var(--line); border-radius: 6px; background: var(--bg); color: var(--ink); resize: vertical; }
+.save { font: inherit; font-size: 13px; font-weight: 600; padding: 5px 12px; border-radius: 6px; border: 1px solid var(--accent); background: var(--accent); color: var(--accent-ink); cursor: pointer; justify-self: start; }
+.who { font-size: 12px; color: var(--muted); }
+.status { font-size: 12px; color: var(--muted); }
+.status.err { color: var(--bad); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.empty { padding: 24px; color: var(--muted); }
+@media (max-width: 860px) { .row { grid-template-columns: minmax(0, 1fr); } }
+</style>
+
+<header class="bar"><div class="wrap">
+  <div class="head"><div><div class="eyebrow">Insurer Scoping · tax data review</div><h1>Filing Frequency Review</h1></div>
+    <div class="stats" id="stats"></div></div>
+  <div class="filters" id="filters" role="group" aria-label="Show"></div>
+</div></header>
+<main class="wrap">
+  <p class="intro">Each line is the filing frequency used for one premium tax in the Insurer Scoping app, taken from the research runs in the Jurisdictional Data Hub - Europe (snapshot <span id="snap"></span>; all runs unvalidated). Mark each line <b>Agree</b> or <b>Change needed</b>, and say what should change in the note. Lines flagged in amber were inferred rather than read directly from a record; grey lines have no filing detail in the hub.</p>
+  <div id="list"><section class="jur"><p class="muted">Loading…</p></section></div>
+</main>
+
+<script>
+const DATA = {"snapshot": "2026-11-13", "jurisdictions": [{"jdh": "EU_AT", "name": "Austria", "run": "2026-Oct-30 · v2.1", "status": "Unvalidated", "taxes": [{"name": "Insurance tax (Versicherungssteuer)", "frequency": "Monthly payment; annual return", "filing": "Self-assess and pay by the 15th of the second month after each month; special prepayment 15 December; annual return (Vers 1) by 30 April", "cite": "VersStG § 8(1), (1a), (2)", "flag": "inferred", "flagNote": "Inferred: The run's frequency answer says Monthly; 'annual return' added for the Vers 1 / Feu 1 annual returns due 30 April."}, {"name": "Motor-related insurance tax", "frequency": "Monthly payment; annual return", "filing": "Paid and reported with the insurance tax on the Vers 1 annual return (monthly amounts)", "cite": "VersStG § 8; Form Vers 1", "flag": "inferred", "flagNote": "Inferred: The run's frequency answer says Monthly; 'annual return' added for the Vers 1 / Feu 1 annual returns due 30 April."}, {"name": "Fire protection tax", "frequency": "Monthly payment; annual return", "filing": "By the 15th of the second following month; annual return (Feu 1) by 30 April", "cite": "FeuerschStG § 6; Form Feu 1", "flag": "inferred", "flagNote": "Inferred: The run's frequency answer says Monthly; 'annual return' added for the Vers 1 / Feu 1 annual returns due 30 April."}]}, {"jdh": "EU_BE", "name": "Belgium", "run": "2026-Oct-30 · v2.1", "status": "Unvalidated", "taxes": [{"name": "Annual tax on insurance (TAO)", "frequency": "Monthly", "filing": "By the 20th of the month after the month the premium fell due, paid the same day; December advance by 15 December", "cite": "CDTD art 179/1"}, {"name": "INAMI motor 10% / 5% (8°)", "frequency": "Monthly", "filing": "Monthly actuals, or provisional payments with an annual statement", "cite": "Law 14 July 1994 art 191; INAMI", "flag": "inferred", "flagNote": "Inferred: Taken from the run's summary of alternate frequencies ('INAMI: monthly actuals or provisional payments')."}, {"name": "INAMI 9°: fire 6.56% / motor-related 7.56% / workers comp 3.29%", "frequency": "Monthly; workers' compensation quarterly", "filing": "Fire and motor-related monthly; workers' compensation quarterly, within two months after the quarter", "cite": "Law 14 July 1994 art 191 al 1, 9°; INAMI"}, {"name": "INAMI hospitalisation 10%", "frequency": "Half-yearly", "filing": "Half-yearly declarations", "cite": "Law 14 July 1994 art 191 al 1, 13°; INAMI"}, {"name": "Red Cross 0.35%", "frequency": "Monthly (with INAMI)", "filing": "Same payer chain and options as the INAMI contribution", "cite": "Law 7 August 1974; AR 16 December 1974", "flag": "inferred", "flagNote": "Inferred: Set to follow INAMI because the record says it uses the same payer chain and options."}, {"name": "Fire fund supplement", "frequency": "Not researched", "filing": "Rate and collection set by royal decree, not read in the run", "cite": "Law 30 July 1979 art 9", "flag": "nr", "flagNote": "No filing detail in the hub for this tax."}, {"name": "Motor guarantee fund", "frequency": "Not researched", "filing": "Calculation set by royal decree, not read in the run", "cite": "Law 21 November 1989 art 19bis-4", "flag": "nr", "flagNote": "No filing detail in the hub for this tax."}]}, {"jdh": "EU_DK", "name": "Denmark", "run": "2026-Oct-30 · v2.1", "status": "Unvalidated", "taxes": [{"name": "Non-life tax 1.1%", "frequency": "Monthly", "filing": "Return and payment by the 15th of the following month; nil return required", "cite": "Skadesforsikringsafgiftsloven §§ 8-9; Opkraevningsloven § 2"}, {"name": "Motor liability tax", "frequency": "Monthly", "filing": "By the 15th of the following month via TastSelv; mopeds annually; minimum tax reconciled annually (29.102 by 1 April)", "cite": "ANSAL § 5(1); OPKL § 2(2)"}, {"name": "Pleasure-boat tax", "frequency": "Monthly", "filing": "Declared and paid by the 15th of the following month", "cite": "LYSTFAL §§ 6-7"}, {"name": "Natural hazard pools", "frequency": "Not researched", "filing": "Collected with the first premium of the calendar year; remittance route not recorded", "cite": "Naturskadeloven § 24(3)", "flag": "nr", "flagNote": "No filing detail in the hub for this tax."}, {"name": "Scrapping contribution", "frequency": "Not researched", "filing": "Collected by motor liability insurers; remittance route not recorded", "cite": "Miljoebidragsloven ss 2-5", "flag": "nr", "flagNote": "No filing detail in the hub for this tax."}]}, {"jdh": "EU_FR", "name": "France", "run": "2026-Oct-30 · v2.1", "status": "Unvalidated", "taxes": [{"name": "TSCA", "frequency": "Monthly", "filing": "Form 2787-SD within 15 days after the end of the month the premium notices were issued; provisional liquidation option", "cite": "Notice 2787-NOT-SD; CGI art 991"}, {"name": "CatNat levy 12%", "frequency": "Monthly (with TSCA)", "filing": "Line FA of form 2787-SD, under the TSCA rules", "cite": "CGI art 235 ter ZE"}, {"name": "FGAO", "frequency": "Monthly (with TSCA)", "filing": "Collected under the TSCA rules and recovered monthly by the fund", "cite": "Code des assurances arts L421-4-1, A421-3", "flag": "inferred", "flagNote": "Inferred: From 'recovered monthly by the fund'."}, {"name": "FGTI per contract", "frequency": "Monthly (with TSCA)", "filing": "Form 2787-SD section I: contracts issued in the month", "cite": "Form 2787-SD; Code des assurances art L422-1"}, {"name": "FNGRA", "frequency": "Not researched", "filing": "Filing frequency not recorded in the run", "cite": "Code rural art L361-2-1", "flag": "nr", "flagNote": "No filing detail in the hub for this tax."}, {"name": "TSA and health contributions", "frequency": "Quarterly", "filing": "Online return to URSSAF due 30 April, 31 July, 31 October and 31 January; annual summary by 30 June N+1", "cite": "CSS art L862-4; Guide TSA 2026"}, {"name": "FADPS", "frequency": "Annual contribution, declared with TSCA", "filing": "Form 2787-SD section H with the TSCA", "cite": "Code des assurances art L426-1; R427-3", "flag": "inferred", "flagNote": "Inferred: An annual contribution, declared on the monthly TSCA return (2787-SD section H)."}]}, {"jdh": "EU_DE", "name": "Germany", "run": "2026-Oct-30 · v8.1", "status": "Unvalidated", "taxes": [{"name": "Insurance tax (Versicherungsteuer)", "frequency": "Monthly", "filing": "15 days after period end (file and pay); quarterly if prior-year tax ≤ EUR 6,000, annual if ≤ EUR 1,000; nil returns required", "cite": "VersStG § 8(1)-(2)"}, {"name": "Fire protection tax (Feuerschutzsteuer)", "frequency": "Monthly", "filing": "15 days after period end; quarterly if prior-year tax ≤ EUR 2,400, annual if ≤ EUR 400; nil returns required", "cite": "FeuerschStG § 8(1)-(2)"}]}, {"jdh": "EEA_IS", "name": "Iceland", "run": "2026-Oct-27 · v1", "status": "Unvalidated", "taxes": [{"name": "Building safety fee", "frequency": "Within 3 months of collection", "filing": "Remit within 3 months of collection; final settlement each year", "cite": "Act 160/2010 art 50; Reg 1068/2010 art 3"}, {"name": "Avalanche levy", "frequency": "Not researched", "filing": "Collected with the natural catastrophe insurance premium; remittance not recorded", "cite": "Act 49/1997 art 12", "flag": "nr", "flagNote": "No filing detail in the hub for this tax."}, {"name": "Property valuation fee", "frequency": "Monthly basis", "filing": "Percentage of fire valuations at each month end; rate and filing not held", "cite": "Act 6/2001 art 24(2)(b)", "flag": "inferred", "flagNote": "Inferred: From month-end valuations; the run does not hold how or when it is filed."}]}, {"jdh": "EU_IE", "name": "Ireland", "run": "2026-Oct-30 · v2.1", "status": "Unvalidated", "taxes": [{"name": "Non-life levy 3% (s 125)", "frequency": "Quarterly", "filing": "Statement (SDCA125) and payment within 25 days after the quarter: 25 April, 25 July, 25 October, 25 January; nil statement required", "cite": "SDCA s 125(2); Form SDCA125"}, {"name": "Policy levy EUR 1 (s 125C)", "frequency": "Quarterly", "filing": "Statement and payment within 25 days of the quarter end; nil statement required", "cite": "SDCA s 125C"}, {"name": "ICF contribution (s 6)", "frequency": "Quarterly (with the levy)", "filing": "Reported on the same SDCA125 statement as the s 125 levy", "cite": "Insurance Act 1964 s 6; Form SDCA125"}, {"name": "Health insurance levy (s 125A)", "frequency": "Quarterly", "filing": "Statement each quarter; payment by the 21st of the second month after the period", "cite": "SDCA s 125A"}]}, {"jdh": "EEA_LI", "name": "Liechtenstein", "run": "2026-Oct-27 · v1", "status": "Unvalidated", "taxes": [{"name": "LI premium levy", "frequency": "Half-yearly", "filing": "Statement and payment within 30 days after each half-year; tax office may allow another procedure", "cite": "SteG art 109"}, {"name": "Swiss stamp duty (in LI)", "frequency": "Quarterly", "filing": "Under Swiss stamp duty law: within 30 days after each quarter", "cite": "LGBl 1974 Nr 33; StG arts 21-26", "flag": "inferred", "flagNote": "Inferred: Quarterly under the Swiss rules, which the record says apply unchanged in Liechtenstein."}]}, {"jdh": "EU_MT", "name": "Malta", "run": "2026-Oct-27 · v1", "status": "Unvalidated", "taxes": [{"name": "Duty on policies", "frequency": "Not researched", "filing": "Regulations on when insurers account for the duty were not held", "cite": "DDTA art 30(1)", "flag": "nr", "flagNote": "No filing detail in the hub for this tax."}]}, {"jdh": "EU_NL", "name": "Netherlands", "run": "2026-Oct-30 · v4.1", "status": "Unvalidated", "taxes": [{"name": "Insurance premium tax (assurantiebelasting)", "frequency": "Monthly, quarterly or annual (set by the tax office)", "filing": "Return and payment by the end of the month after the period", "cite": "AWR arts 10(2), 19; Form RV 030"}]}, {"jdh": "EU_ES", "name": "Spain", "run": "2026-Oct-30 · v2.1", "status": "Unvalidated", "taxes": [{"name": "IPS", "frequency": "Monthly; annual summary", "filing": "Model 430 in the first 20 days of the following month (July by 20 September); model 480 annual summary in January", "cite": "Ley 13/1996 art 12 Trece; AEAT"}, {"name": "CCS liquidation 0.15%", "frequency": "Monthly", "filing": "To the Consorcio through the SIR", "cite": "RDL 7/2004 art 23(4); Resolucion Consorcio 31 October 2018", "flag": "inferred", "flagNote": "Inferred: The source record was cut off after 'monthly within the first…'; confirm against the Consorcio resolutions."}, {"name": "CCS extraordinary risks", "frequency": "Monthly", "filing": "Models 10 / 11 to the Consorcio through the SIR", "cite": "RDL 7/2004 arts 7, 18; Resolucion Consorcio 31 October 2018", "flag": "inferred", "flagNote": "Inferred: The source record was cut off after 'monthly within the first…'; confirm against the Consorcio resolutions."}, {"name": "CCS motor fund 1.5%", "frequency": "Monthly", "filing": "Model 20 to the Consorcio through the SIR", "cite": "RDL 7/2004 art 18(1)", "flag": "inferred", "flagNote": "Inferred: The source record was cut off after 'monthly within the first…'; confirm against the Consorcio resolutions."}, {"name": "Environmental fund 8%", "frequency": "Monthly", "filing": "Paid monthly to the Consorcio", "cite": "Resolucion DGSFP 31 October 2018", "flag": "inferred", "flagNote": "Inferred: The source record was cut off after 'monthly within the first…'; confirm against the Consorcio resolutions."}]}, {"jdh": "EU_ES_FORAL", "name": "Spain · foral territories", "run": "2026-Oct-30 · v2.1", "status": "Unvalidated", "taxes": [{"name": "IPS (foral) 8%", "frequency": "Monthly; annual summary", "filing": "Bizkaia, Alava, Gipuzkoa within 25 days after the month; Navarra within 20 days; annual summary 480 in January", "cite": "Concierto art 32; Convenio art 37; foral orders"}, {"name": "CCS liquidation 0.15%", "frequency": "Monthly", "filing": "To the Consorcio through the SIR (state-wide)", "cite": "RDL 7/2004 art 23(4)", "flag": "inferred", "flagNote": "Inferred: Copied from EU_ES (state-wide Consorcio surcharge); same caveat as EU_ES."}, {"name": "CCS extraordinary risks", "frequency": "Monthly", "filing": "To the Consorcio through the SIR (state-wide)", "cite": "RDL 7/2004 arts 7, 18", "flag": "inferred", "flagNote": "Inferred: Copied from EU_ES (state-wide Consorcio surcharge); same caveat as EU_ES."}, {"name": "CCS motor fund 1.5%", "frequency": "Monthly", "filing": "To the Consorcio through the SIR (state-wide)", "cite": "RDL 7/2004 art 18(1)", "flag": "inferred", "flagNote": "Inferred: Copied from EU_ES (state-wide Consorcio surcharge); same caveat as EU_ES."}, {"name": "Environmental fund 8%", "frequency": "Monthly", "filing": "Paid monthly to the Consorcio (state-wide)", "cite": "Resolucion DGSFP 31 October 2018", "flag": "inferred", "flagNote": "Inferred: Copied from EU_ES (state-wide Consorcio surcharge); same caveat as EU_ES."}]}, {"jdh": "EUR_CH", "name": "Switzerland", "run": "2026-Oct-30 · v2.1", "status": "Unvalidated", "taxes": [{"name": "Federal stamp duty on premiums", "frequency": "Quarterly", "filing": "Statement (Form. 11) within 30 days after the end of each business quarter; ESTV may allow another procedure", "cite": "StV arts 26, 28; StG art 26"}]}, {"jdh": "EUR_GB", "name": "United Kingdom", "run": "2026-Oct-30 · v2.1", "status": "Unvalidated", "taxes": [{"name": "IPT", "frequency": "Quarterly", "filing": "Return IPT100 by the last day of the month after the quarter; payment by direct debit or transfer 7 days later", "cite": "Notice IPT1 18.1, 20.2; FA 1994 s 49"}, {"name": "London fire contribution", "frequency": "Annual return; quarterly payments", "filing": "Return of gross sums insured each 1 June; contribution payable quarterly in advance", "cite": "Metropolitan Fire Brigade Act 1865 ss 13-16"}]}]};
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const state = { reviews: new Map(), db: null, user: null, me: null, names: {}, filter: "all", status: "loading", drafts: {} };
+try { state.filter = localStorage.getItem("ffr.filter") || "all"; } catch {}
+const rows = DATA.jurisdictions.flatMap(j => j.taxes.map((t, i) => ({ ...t, id: `${j.jdh}-${i}`, jdh: j.jdh, jurName: j.name, run: j.run, runStatus: j.status })));
+document.getElementById("snap").textContent = DATA.snapshot;
+
+const verdictOf = r => state.reviews.get(r.id)?.verdict || "";
+const FILTERS = [["all", "All lines", () => true], ["flagged", "Inferred, review closely", r => r.flag === "inferred"],
+  ["nr", "Not researched", r => r.flag === "nr"], ["open", "Not reviewed yet", r => !verdictOf(r)],
+  ["agree", "Agreed", r => verdictOf(r) === "agree"], ["change", "Change needed", r => verdictOf(r) === "change"]];
+
+function render() {
+  const counts = { agree: 0, change: 0 };
+  rows.forEach(r => { const v = verdictOf(r); if (v) counts[v]++; });
+  document.getElementById("stats").innerHTML = `<span><b>${rows.length}</b> lines</span><span><b>${counts.agree}</b> agreed</span>
+    <span><b>${counts.change}</b> change needed</span><span><b>${rows.length - counts.agree - counts.change}</b> not reviewed</span>`;
+  document.getElementById("filters").innerHTML = FILTERS.map(([k, label, fn]) =>
+    `<button class="chip" type="button" data-f="${k}" aria-pressed="${state.filter === k}">${label}<span class="n">${rows.filter(fn).length}</span></button>`).join("");
+  const fn = (FILTERS.find(f => f[0] === state.filter) || FILTERS[0])[2];
+  const shown = rows.filter(fn);
+  const canWrite = !!state.db;
+  const note = state.status === "unavailable" ? `<p class="small status err" style="margin:0">Reviews can’t be loaded or saved in this view. Open the page on claude.ai while signed in.</p>` : "";
+  const byJur = [];
+  shown.forEach(r => { let g = byJur.find(x => x.jdh === r.jdh); if (!g) byJur.push(g = { jdh: r.jdh, name: r.jurName, run: r.run, status: r.runStatus, rows: [] }); g.rows.push(r); });
+  document.getElementById("list").innerHTML = note + (byJur.length ? byJur.map(g => `<section class="jur">
+    <h2><span class="code">${esc(g.jdh)}</span>${esc(g.name)} <span class="small muted" style="font-weight:400">research run ${esc(g.run)} (${esc(g.status)})</span></h2>
+    <div class="rows">${g.rows.map(r => {
+      const rv = state.reviews.get(r.id) || {}, v = rv.verdict || "", d = state.drafts[r.id];
+      const noteVal = d !== undefined ? d : (rv.note || "");
+      return `<div class="row" id="row-${esc(r.id)}">
+        <div><div class="tax">${esc(r.name)}</div><span class="freq ${r.flag === "nr" ? "nr" : ""}">${esc(r.frequency)}</span></div>
+        <div><div class="filing">${esc(r.filing)}</div><div class="cite">${esc(r.cite)}</div>
+          ${r.flagNote ? `<div class="flag ${r.flag === "nr" ? "nr" : ""}">${esc(r.flagNote)}</div>` : ""}</div>
+        <div class="review">
+          <div class="verdicts"><button type="button" class="v ok" data-v="agree" data-id="${esc(r.id)}" aria-pressed="${v === "agree"}" ${canWrite ? "" : "disabled"}>Agree</button>
+            <button type="button" class="v chg" data-v="change" data-id="${esc(r.id)}" aria-pressed="${v === "change"}" ${canWrite ? "" : "disabled"}>Change needed</button></div>
+          <label class="small muted" for="note-${esc(r.id)}">Note${v === "change" ? " (what should change?)" : ""}</label>
+          <textarea id="note-${esc(r.id)}" data-note="${esc(r.id)}" placeholder="${v === "change" ? "e.g. quarterly, not monthly; cite the source" : "Optional"}" ${canWrite ? "" : "disabled"}>${esc(noteVal)}</textarea>
+          <button type="button" class="save" data-save="${esc(r.id)}" ${canWrite ? "" : "disabled"} ${d === undefined ? "hidden" : ""}>Save note</button>
+          <span class="status" id="st-${esc(r.id)}" aria-live="polite"></span>
+          ${rv.by ? `<span class="who">${v === "agree" ? "Agreed" : v === "change" ? "Change requested" : "Noted"} by ${esc(state.names[rv.by] || "a reviewer")} on ${esc(rv.on || "")}</span>` : ""}
+        </div></div>`; }).join("")}</div></section>`).join("")
+    : `<section class="jur"><p class="empty">No lines match this filter.</p></section>`);
+}
+
+async function save(id, patch) {
+  const st = document.getElementById("st-" + id);
+  const cur = state.reviews.get(id) || {};
+  const doc = { verdict: cur.verdict || "", note: cur.note || "", ...patch, id, by: state.me || "", on: new Date().toISOString().slice(0, 10) };
+  try { if (st) st.textContent = "Saving…"; await state.db.doc("reviews/" + id).set(doc); delete state.drafts[id]; }
+  catch { if (st) { st.textContent = "Couldn’t save. Try again."; st.classList.add("err"); } }
+}
+
+document.addEventListener("click", e => {
+  const f = e.target.closest("[data-f]");
+  if (f) { state.filter = f.dataset.f; try { localStorage.setItem("ffr.filter", state.filter); } catch {} render(); return; }
+  const v = e.target.closest("[data-v]");
+  if (v && state.db) {
+    const id = v.dataset.id, cur = state.reviews.get(id) || {};
+    const verdict = cur.verdict === v.dataset.v ? "" : v.dataset.v;
+    const note = state.drafts[id] !== undefined ? state.drafts[id] : (cur.note || "");
+    save(id, { verdict, note }); return;
+  }
+  const s = e.target.closest("[data-save]");
+  if (s && state.db) { const id = s.dataset.save; save(id, { note: state.drafts[id] ?? "" }); }
+});
+document.addEventListener("input", e => {
+  const t = e.target.closest("[data-note]");
+  if (!t) return;
+  state.drafts[t.dataset.note] = t.value;
+  const b = document.querySelector(`[data-save="${CSS.escape(t.dataset.note)}"]`); if (b) b.hidden = false;
+});
+
+async function resolveNames() {
+  if (!state.user) return;
+  const ids = [...new Set([...state.reviews.values()].map(r => r.by).filter(Boolean))].filter(id => !(id in state.names));
+  if (!ids.length) return;
+  try { const ps = await state.user.profiles(ids); ids.forEach(id => state.names[id] = (ps[id] && ps[id].name) || "a reviewer"); render(); } catch {}
+}
+
+async function start() {
+  render();
+  if (!(window.claude && claude.use)) { state.status = "unavailable"; render(); return; }
+  let db = null;
+  try { db = await claude.use("db"); } catch {}
+  try { state.user = await claude.use("user"); if (state.user) state.me = await state.user.id(); } catch {}
+  if (!db) { state.status = "unavailable"; render(); return; }
+  state.db = db;
+  const slow = setTimeout(() => { if (state.status === "loading") { state.status = "unavailable"; render(); } }, 10000);
+  db.collection("reviews").onSnapshot(snap => {
+    clearTimeout(slow); state.status = "ready";
+    state.reviews = new Map(snap.docs.filter(d => d.exists).map(d => [d.id, d.data()]));
+    const active = document.activeElement && document.activeElement.id;
+    render(); resolveNames();
+    if (active) { const el = document.getElementById(active); if (el) el.focus(); }
+  }, () => { clearTimeout(slow); state.status = "unavailable"; render(); });
+}
+start();
+</script>
