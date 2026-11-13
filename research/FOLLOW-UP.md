@@ -416,3 +416,13 @@ Notes: research/EU_IT/EU_IT_IT-1_working-notes_v0.01.md
 ## Seed v1.72 (2026-11-13): CJEU C-678/11 applied
 - [x] EU-L004 added (official CURIA text). EU-seated insurers: mandatory representative contrary to art 56 TFEU (GR, PT flags). IS/LI/NO-seated insurers, and LI and NO rules: conditional on absence of adequate tax assistance arrangements (paras 66-71). Third-country insurers: no conflict. IT optional-representative rule consistent.
 - [ ] Check current mutual tax assistance arrangements (OECD/CoE convention, bilateral) between IS/LI/NO and the relevant states before relying on the conditional justification.
+
+## Seed v1.73 (2026-11-13): Denmark DK-1 v2.2 decisions a-f applied
+- [x] Representative optional by statute (form 29.032 Conflicting); DFIM outside the model; guarantee fund dated rates (2027 consumer nil), UNAUTH NA; Naturskaderaadet and Garantifonden quarterly; scrapping URL; currency checks; L008-L009 Proposed.
+- [ ] DK: provider access to Naturskadebasen and the guarantee fund system; TastSelv area for insurance taxes; Revisorordningen for a provider with no Danish CVR/SE; form 29.102.
+
+## Seed v1.74 (2026-11-13): Ireland, Iceland, Malta decisions applied
+- [x] IE: Revenue NfG (FA 2025) current-law source; UNAUTH TC NA; ICF NA for UNAUTH EEA and ends 1.1.2027; health levy registered insurers only; quarterly s 125C statement; L012-L017 Proposed.
+- [x] IS: building fee to State treasury; HMS 0.0021% monthly (flagged); NTI premium added as related collection; L003 withdrawn; L008-L012 Proposed.
+- [x] MT: Protection and Compensation Fund levy added (Proposed, HOME); class 12 / class 2 notes; compounding Secondary; art 47(3) onboarding question; L003-L010 Proposed.
+- [ ] PO to accept or reject Proposed law rows: EEA_LI-L004-L009, EU_DK-L008-L009, EU_IE-L012-L017, EEA_IS-L008-L012, EU_MT-L003-L010.
