@@ -433,3 +433,7 @@ Notes: research/EU_IT/EU_IT_IT-1_working-notes_v0.01.md
 
 ## Seed v1.77 (2026-11-13): Iceland acts from Althingi (saved by the PO)
 - [x] EEA_IS-L010, L011, L012 Confirmed (Lagasafn 158a). Unauthorised scopes Not applicable (licence required). Fees collected with the fire premium (48/1994 art 7). Provider filing not restricted (77/1998 art 2 covers courts only). L013 accepted (v1.78, Confirmed).
+
+## Seed v1.79 (2026-11-13): Spanish foral ES-2 v2.2 decisions applied
+- [x] P10 system date (authority date for information); Bizkaia 480 due 25 January; old representative wording historical; Bizkaia 430/480 form added; Alava form note corrected; 15 foral law rows added as Proposed (8 with copies held).
+- [ ] ES foral: second-check Bizkaia late-filing surcharge (NF 2/2005 art 27 vs 28 / 26.7) for a late model 430; BOB original of DF 112/2009; OF 603/2020 (Alava) and DF 100/2020 (Bizkaia) texts (low priority); accept or reject the 15 Proposed law rows.
