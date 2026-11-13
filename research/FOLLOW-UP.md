@@ -430,3 +430,6 @@ Notes: research/EU_IT/EU_IT_IT-1_working-notes_v0.01.md
 ## Iceland bills (2026-11-13, saved by the PO)
 - [ ] WATCH: Bill 4 (158th session, government bill) amends Act 49/1997 art 12: levy renamed "ofanflodagjald"; base changes from insured value (vatryggingarverdmaeti) to sum insured (vatryggingarfjarhaed) - expressly reaching supplementary fire insurance and buildings under construction; rate stays 0.3 per mille; in force on passage. Update EEA_IS avalanche rows when enacted.
 - [x] Bill 17 (members' bill) amends Act 160/2010 art 27 (building managers) only - no effect on the building safety fee (art 50).
+
+## Seed v1.77 (2026-11-13): Iceland acts from Althingi (saved by the PO)
+- [x] EEA_IS-L010, L011, L012 Confirmed (Lagasafn 158a). Unauthorised scopes Not applicable (licence required). Fees collected with the fire premium (48/1994 art 7). Provider filing not restricted (77/1998 art 2 covers courts only). L013 Proposed.
