@@ -38,6 +38,10 @@ These sites refuse automated access from our environment. We did not try to get 
 | A17 | Italy | IVASS orders 153/2024 and 166/2025 (management-cost deduction for the CONSAP funds) | ivass.it | Road and hunting fund base |
 | A18 | Poland | UFG pages on the contribution (reporting channel, bank accounts) | ufg.pl (server error to automated browsers) | EU_PL UFG rows |
 | A19 | Hungary | Adozona article on the small-insurer bands ending 2027-01-01 (lead only), and any autumn 2026 tax bill on parlament.hu | adozona.hu (403); parlament.hu | EU_HU insurance tax rows |
+| A20 | Spain (Bizkaia, Alava) | Model 480 rules for the insurance premium tax: Bizkaia Orden Foral 499/2006 and the Alava equivalent (Claude is trying these first) | bizkaia.eus; araba.eus | ES-2 run page (foral territories) |
+| A21 | Spain (Gipuzkoa, Bizkaia) | Current consolidated Norma Foral General Tributaria: Gipuzkoa NF 2/2005, and the Spanish text of the Bizkaia general tax norm (Claude is trying these first) | gipuzkoa.eus; bizkaia.eus | ES-2 run page (foral territories) |
+| A22 | Iceland | Current acts from Althingi: Insurance Activities Act 100/2016; Fire Insurance Act 48/1994; HMS Act 137/2019; Act 77/1998; bills 158/s/0004 and 158/s/17 (save each page as PDF) | althingi.is/lagas/nuna/2016100.html, .../1994048.html, .../2019137.html, .../1998077.html; althingi.is/altext/158/s/0004.html and /17.html (Cloudflare check blocks us) | EEA_IS taxpayer for unauthorised scopes; L010-L012 |
+| A23 | Malta | Tax and Customs guidance, forms and e-service rules for duty on insurance policies (compounding), and its rules on agents filing for a foreign insurer, including the 22 June 2026 notice on additional documentation | mtca.gov.mt (Cloudflare block to us); https://mtca.gov.mt/news-results-page/2026/06/22/duty-on-documents-and-transfers-rules---additional-documentation-requirements | EU_MT stamp duty rows (period, return, channel) |
 
 ---
 
@@ -182,6 +186,88 @@ Seed rows: EU_PT INEM, crop contribution, stamp duty
 > - **INEM:** what is the payment channel for the contribution from 1-8-2026 (DL 143/2026 annex art 19)?
 > - **IFAP:** when and how do insurers that opt in pay the 8% crop compensation contribution (Portaria 65/2014 regulation art 33)?
 > - **AT:** how does a non-resident insurer appoint its stamp duty representative (CIS art 2(1)(i)), and is there guidance on the EU-law position for EEA insurers?
+
+### B16. Romania: BAAR and the Policyholders' Guarantee Fund (FGA)
+Contact: baar.ro; the FGA website
+Seed rows: EU_RO "Road Victims Protection Fund" (BAAR National Protection Fund), AIDA database contribution, FGA contribution
+
+> To BAAR:
+> 1. What is the National Protection Fund contribution rate for 2025 and 2026 under Law 132/2017 and BAAR's rules, and what are the form, channel and bank account for the monthly payment (due the 28th)?
+> 2. What is the basis and rate of the database (AIDA) contribution, and how is it paid?
+> 3. May an authorised service provider submit the reports for the insurer?
+>
+> To the FGA: please confirm the channel and bank account (IBAN) for the monthly contribution due on the 15th, and whether an authorised agent may transmit the report.
+
+### B17. Estonia: Estonian Traffic Insurance Fund (Eesti Liikluskindlustuse Fond)
+Contact: lkf.ee
+Seed rows: EU_EE "Motor Insurance Fund Membership Fee"
+
+> 1. Please send the council decision setting the 2026 member fees: the fixed fee, the proportional fee (3.0%) and the insolvency part (0.1%).
+> 2. On what premium base is the proportional fee calculated (written, concluded or collected), and for what period?
+> 3. What are the reporting form, the due dates and the invoicing or payment procedure? Is a report needed for a period with no premium?
+
+### B18. Austria: Federal Ministry of Finance (BMF), Finanzamt fuer Grossbetriebe
+Contact: bmf.gv.at
+Seed rows: EU_AT insurance tax, fire protection tax, motor-related insurance tax (run AT-1)
+
+> 1. How does an EU insurer writing in Austria under the freedom to provide services, with no Austrian tax number, register for and file the Versicherungssteuer and Feuerschutzsteuer returns in FinanzOnline?
+> 2. Were the 2025 monthly returns filed through FinanzOnline or another route?
+> 3. May a service provider established in another EU state file these returns for the insurer, or is that reserved to an Austrian Steuerberater under the WTBG?
+
+### B19. Germany: Federal Central Tax Office (BZSt)
+Contact: bzst.de
+Seed rows: EU_DE Versicherungsteuer and Feuerschutzsteuer (run DE-1)
+
+> 1. May a service provider file the Versicherungsteuer-Anmeldung for a client insurer through ELSTER using its own organisation certificate, and if so, how is the authorisation recorded?
+> 2. What channel is used for the notifications under the Versicherungsteuer-Durchfuehrungsverordnung (VersStDV), such as the registration notice and changes of representative?
+
+### B20. Netherlands: Belastingdienst
+Contact: belastingdienst.nl
+Seed rows: EU_NL assurantiebelasting (run NL-1)
+
+> 1. How is the return period for assurantiebelasting set for a foreign insurer: on request, or assigned by the Belastingdienst? Is quarterly the default?
+> 2. Must a return be filed for a period with no premium?
+> 3. Is there an electronic channel for foreign insurers, or are returns filed only on paper by post?
+
+### B21. United Kingdom: London Fire Commissioner
+Contact: london-fire.gov.uk
+Seed rows: GB London fire brigade contribution (run GB-1)
+
+> Please send the return form, the filing channel and the payment instructions for the insurers' contribution to the London Fire Commissioner, and confirm the period and due date.
+
+### B22. France: FGAO, URSSAF and DGFiP
+Contact: fondsdegarantie.fr; urssaf.fr; impots.gouv.fr
+Seed rows: EU_FR FGAO contribution, health levy (TSA), insurance tax (run FR-1)
+
+> To the FGAO: how are the monthly contributions collected (statement, direct debit or transfer), and what is the channel?
+>
+> To URSSAF: how is the taxe de solidarite additionnelle (TSA) declared and paid by a foreign insurer, and may a delegate file it?
+>
+> To the DGFiP: please confirm the rate for Guyane, where the return form shows a half rate that differs from the tax code (CGI).
+
+### B23. Iceland: HMS and Natural Catastrophe Insurance of Iceland (NTI)
+Contact: hms.is; nti.is
+Seed rows: EEA_IS "Fire Valuation / Appraisal Fee", "Building Safety Fee", "Prevention Tax (Avalanche and Landslide Fund)"
+
+> To HMS:
+> 1. Please send the 2025 fee schedule, and confirm item 10.2 of the schedule in force from 1 January 2026: is the fire-valuation fee 0.0021% of the fire valuation charged each month (the web page shows 0.00021%)?
+> 2. What are the invoice terms?
+> 3. Is the building safety fee (Act 160/2010 art 50) paid to the State treasury or to HMS, and to which account?
+>
+> To NTI:
+> 1. Please send the remittance statement and annual report forms, and the channel for submitting them (Reg 770/2023 arts 16-17).
+> 2. Does the 50% premium surcharge continue in 2026?
+> 3. Please send the collection agreement under Act 55/1992 art 23.
+> 4. Is a nil statement expected for a month with no premium?
+
+### B24. Malta: Commissioner for Tax and Customs (MTCA)
+Contact: mtca.gov.mt
+Seed rows: EU_MT "Stamp Duty"
+
+> 1. How does an EU insurer writing in Malta under the freedom to provide services account for duty on insurance policies (Cap 364 art 27): per policy within 15 working days (SL 364.06 r 2(1)), or by compounding under SL 364.02? If by compounding, what period, report form, due date and payment channel apply, and how is the authorisation obtained?
+> 2. How does such an insurer register with the Commissioner (SL 364.06 r 13)?
+> 3. May a service provider established in another EU state file and pay for the insurer?
+> 4. Please confirm the treatment of class 2 (sickness cover other than medical) and class 12 (ship liability) under art 27(c).
 
 ---
 

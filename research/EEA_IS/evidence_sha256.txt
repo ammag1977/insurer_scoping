@@ -1,0 +1,7 @@
+1aeae556b414eb3e9602c53f33f453b373d13fb38c71c47a922144ec9e6958d7  EEA_IS-L007_Reglugerd-1068-2010_B-deild-original_asat-2026-11-13.pdf  (retrieved 2026-11-13, run IS-2)
+aa294d5f815a18292e6c6a8c966b38c6ca1a76a52591a87c01898821d421edc3  EEA_IS-L007_Reglugerd-um-byggingaroryggisgjald-nr-1068-2010_asat-2026-11-13.pdf  (retrieved 2026-11-13, run IS-2)
+d3a12738c8bda4415d1b0ae7ac31b3c9f88e6934d8a56efabf4e45f6c3a7b2a7  EEA_IS-NEW_Gjaldskra-HMS-gildir-2026-01-01_asat-2026-11-13.pdf  (retrieved 2026-11-13, run IS-2)
+7d5538f5604bf322f997721e0fd2434f4de8d82282b7661f9d3785f595ba50dd  EEA_IS-NEW_Gjaldskra-HMS-webpage_asat-2026-11-13.html  (retrieved 2026-11-13, run IS-2)
+74ebe8e107a72b1a12bf86ea56af0238031b58c2ceff06309796aaacf85cc545  EEA_IS-NEW_NTI-frett-idgjald-haekkar-2024-11-27_asat-2026-11-13.html  (retrieved 2026-11-13, run IS-2)
+b3aa9c4a29c5fe34b88b23d5a4202d4a74a50529355b341341fc4131411c2898  EEA_IS-NEW_Reglugerd-770-2023-Natturuhamfaratrygging_asat-2026-11-13.pdf  (retrieved 2026-11-13, run IS-2)
+1c85fd6ac37787c50f113d911825db69ff2a2d8da2680463f7778977a9b1421d  EEA_IS-NEW_Reglugerd-770-2023_B-deild-original_asat-2026-11-13.pdf  (retrieved 2026-11-13, run IS-2)

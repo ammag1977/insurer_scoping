@@ -400,3 +400,7 @@ Notes: research/EU_IT/EU_IT_IT-1_working-notes_v0.01.md
 - [x] CY: L010 Tax Department announcement 8.1.2026 (gov.cy) Confirmed.
 - [ ] Still open in Part A: CY 9 January notice (Tax For All portal); HU A19 (CAPTCHA); optional A5 (NO location of risk), A8 (CY Gazette copy); PT NR 4/2016-R republished text; BG approving order number for form 5000.
 - [x] EU_IT-L028 to L030 accepted (v1.69, Confirmed).
+
+## Request pack v1.01 (2026-11-13)
+- [x] Added A20-A23 (ES foral texts - Claude fetching; Iceland Althingi acts; Malta MTCA guidance) and B16-B24 (RO BAAR/FGA, EE LKF, AT BMF, DE BZSt, NL Belastingdienst, GB London Fire Commissioner, FR FGAO/URSSAF/DGFiP, IS HMS/NTI, MT MTCA).
+- [ ] IS-2 and MT-2 reported: decisions pending (see notes v0.02).
