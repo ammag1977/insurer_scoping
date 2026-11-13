@@ -18,7 +18,8 @@ Validated tax information only, not tax advice. Newest country first within each
 - [ ] Save by hand (sites block automated access): DL-192 Lithuania occupational accidents law (e-seimas TAIS.94855, bot check); DL-201 France arrete 24 July 2026 FGTI (Legifrance bot check); DL-204 Belgium loi-programme 30 May 2026 (ejustice CAPTCHA). Not yet available: DL-169 Romania Norma ASF 27/2025 (MO 1196/24.12.2025; ASF has not posted it, portal unreachable); DL-034 Cyprus (no official consolidation).
 - [x] Register v1.28: all recommendations accepted (B44 rejected); applied in **seed v1.56**.
 - [x] Saved by hand 2026-11-13 and filed (seed v1.57): DL-217 Portugal DL 143/2026, DL-201 France arrete 24 July 2026, DL-169 Romania Norma ASF 27/2025 (MO 1196/2025), DL-034 Cyprus Law 96(I)/2000 (as published, cylaw copy).
-- [ ] Still needed: DL-192 Lithuania current Lithuanian text (only the English translation of the 1999 original is held); DL-204 Belgium loi-programme 30 May 2026 (eJustice CAPTCHA); official consolidated Cyprus Law 96(I)/2000.
+- [ ] Still needed: DL-192 Lithuania current Lithuanian text (only the English translation of the 1999 original is held); DL-204 Belgium loi-programme 30 May 2026 (eJustice CAPTCHA).
+- [x] Cyprus: PO accepted Law 96(I)/2000 as published plus its 10 amending laws (to 71(I)/2026) as the evidence set; EU_CY-L001 re-cited and Confirmed (seed v1.58).
 - [ ] Supply the shared run library from the earlier runs' workspace: work/lib/run_lib.py, classes.py, translit.py, and the run data files (e.g. as a zip or a repository). Needed for the formal run pages, PDFs, client templates and model scoring.
 
 ## EU_EE Estonia (EE-1, statute reading v0.01, 2026-11-13)
