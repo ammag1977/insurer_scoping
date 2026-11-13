@@ -7,6 +7,22 @@ Validated tax information only, not tax advice. Newest country first within each
 - [ ] Upload the seed workbook: Jurisdiction-Research-Seed-EU-Direct-NonLife v1.58 or later (Scopes, Taxes, Legislation, Sources, Forms tabs).
 - [ ] Supply the shared run library from the earlier runs' workspace: work/lib/run_lib.py, classes.py, translit.py, and the run data files (e.g. as a zip or a repository). Needed for the formal run pages, PDFs, client templates and model scoring.
 
+## EEA_NO Norway (NO-1, statute reading v0.01, 2026-11-13)
+Notes: research/EEA_NO/EEA_NO_NO-1_working-notes_v0.01.md
+
+### Documents to supply (Lovdata blocks Claude's workspace)
+- [ ] DL-011: Stortingsvedtak om avgift pa trafikkforsikringer for 2026 (FOR-2025-12-18-2756), plus the 2025 resolution: save from lovdata.no and upload to the desk.
+- [ ] DL-187: Forskrift om saeravgifter (FOR-2001-12-11-1451), kapittel 3-23 Avgift pa trafikkforsikringer: save from lovdata.no.
+- [ ] Skatteetaten guidance on the road traffic insurance tax: registration, returns (frequency and due dates), payment, foreign insurers' representatives.
+- [ ] Norsk naturskadepool board decisions on the natural perils premium rate for 2025 and 2026 (naturskade.no).
+
+### Decisions needed
+- [ ] Natural perils premium: in scope as a parafiscal levy (collected from policyholders, set by the pool board), or out of scope?
+- [ ] New Special Excise Duties Act (LOV-2026-06-19-41) not yet in force: record it as Proposed legislation with a future Valid From, and watch for the commencement date.
+
+### Research still to do (Claude)
+- [ ] Road traffic insurance tax under the current regulation (once supplied): rate per vehicle, period, return, due date, nil return, representative rules.
+
 ## EU_RO Romania (RO-1, statute reading v0.01, 2026-11-13)
 Notes: research/EU_RO/EU_RO_RO-1_working-notes_v0.01.md
 
