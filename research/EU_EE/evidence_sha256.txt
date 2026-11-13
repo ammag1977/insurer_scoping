@@ -1,0 +1,4 @@
+6fbe60a17688896ed9638c18adaaadb46f860456b83be6ce797d729310b6686f  EU_EE-L001_KindlTS_RT-107072015001_version-31-12-2015-to-08-01-2017_desk-DL-052.pdf
+c1a92b0ad24983724ee3e0f44f55dac716ab1600b8528b655127dcee7b724b8e  EU_EE-L001_KindlTS_RT-akt-107072015001_kehtiv-20-07-2026_rendered-text_asat-2026-11-13.txt
+8a1bf1f096a5807dd147902af15740afc0bae30ed6ebe6259cacf0b73d068bfc  EU_EE-NEW_LKindlS_RT-akt-129062024010_kehtiv-31-12-2024_rendered-text_asat-2026-11-13.txt
+f379ec140aaaa006228ad1c9c758e4112b6719a947737a5ec253ff5429db8a0e  EU_EE-NEW_MKS_Maksukorralduse-seadus_kehtiv-31-10-2026_rendered-text_asat-2026-11-13.txt
