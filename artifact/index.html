@@ -796,7 +796,8 @@ function renderReport(c) {
   const ins = rep.insurers;
   let html = `<div style="display:grid;gap:6px"><div class="crumbs"><a href="#clients">Clients</a><span class="muted">/</span><a href="#client-${esc(c.id)}">${esc(c.name)}</a><span class="muted">/</span><span>Report</span></div>
     <div class="eyebrow">Client report · premium tax scoping · ${esc(today())}</div><h1>${esc(c.name)}</h1></div>
-    <div class="actions"><button class="btn" id="reportXlsx" type="button" ${ins.length ? "" : "disabled"}>Download report (Excel)</button>
+    <div class="actions"><button class="btn" id="reportPdf" type="button" ${ins.length ? "" : "disabled"}>Download report (PDF)</button>
+    <button class="btn ghost" id="reportXlsx" type="button" ${ins.length ? "" : "disabled"}>Download report (Excel)</button>
     <span class="status" id="xlsxStatus" aria-live="polite"></span></div>
     <section class="panel"><div class="report-stats">
       <div><b>${ins.length}</b><span>Insurers</span></div>
@@ -849,7 +850,108 @@ function renderReport(c) {
   const scrollY = window.scrollY, same = view.dataset.key === "report-" + c.id;
   view.innerHTML = html; view.dataset.key = "report-" + c.id;
   window.scrollTo(0, same ? scrollY : 0);
+  wireDownload("reportPdf", async () => ({ filename: `${safeName(c.name)} - client premium tax report.pdf`, data: await reportPdf(c) }));
   wireDownload("reportXlsx", () => ({ filename: `${safeName(c.name)} - client premium tax report.xlsx`, data: clientWorkbook(c) }));
+}
+
+/* ---------- client report as PDF (jsPDF + AutoTable, loaded on demand) ---------- */
+const JSPDF = "https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js";
+const AUTOTABLE = "https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js";
+async function pdfMaker() {
+  if (!window.jspdf) await loadScript(JSPDF);
+  if (!window.jspdf.jsPDF.API.autoTable) await loadScript(AUTOTABLE);
+  return window.jspdf.jsPDF;
+}
+// Standard PDF fonts cover Western European characters only; simplify anything else.
+const pdfSafe = t => String(t ?? "").replace(/[‘’]/g, "'").replace(/[“”]/g, '"').replace(/[–—]/g, "-")
+  .replace(/[^\x00-\xFF€]/g, ch => ch.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^\x00-\xFF]/g, "?"));
+
+async function reportPdf(c) {
+  const JsPDF = await pdfMaker();
+  const rep = clientReport(c), ins = rep.insurers;
+  const doc = new JsPDF({ orientation: "landscape", unit: "pt", format: "a4" });
+  const W = doc.internal.pageSize.getWidth(), M = 40;
+  const ink = [23, 33, 43], muted = [90, 104, 117], accent = [15, 92, 110], ok = [29, 107, 63], rev = [138, 90, 0];
+  const head = { fillColor: [234, 238, 242], textColor: muted, fontStyle: "bold", fontSize: 8 };
+  const base = { styles: { font: "helvetica", fontSize: 8.5, cellPadding: 4, textColor: ink, lineColor: [219, 225, 231], lineWidth: 0.5, overflow: "linebreak" },
+    headStyles: head, margin: { left: M, right: M, top: 50, bottom: 40 }, theme: "grid" };
+  let y = 0;
+  const heading = (text, size = 13) => {
+    if (y > doc.internal.pageSize.getHeight() - 90) { doc.addPage(); y = 50; } else if (y > 60) y += 10;
+    doc.setFont("helvetica", "bold"); doc.setFontSize(size); doc.setTextColor(...ink); doc.text(pdfSafe(text), M, y); y += 10;
+  };
+  const para = (text, size = 8.5, color = muted) => {
+    doc.setFont("helvetica", "normal"); doc.setFontSize(size); doc.setTextColor(...color);
+    const lines = doc.splitTextToSize(pdfSafe(text), W - 2 * M); doc.text(lines, M, y + 8); y += lines.length * (size * 1.25) + 6;
+  };
+  const table = opts => { doc.autoTable({ ...base, startY: y + 4, ...opts }); y = doc.lastAutoTable.finalY + 22; };
+  const colorLevel = d => { if (d.section === "body" && (d.cell.raw === "Likely" || d.cell.raw === "Possible")) {
+    d.cell.styles.textColor = d.cell.raw === "Likely" ? ok : rev; d.cell.styles.fontStyle = "bold"; } };
+
+  // Title block
+  doc.setFillColor(...accent); doc.rect(0, 0, W, 6, "F");
+  doc.setFont("helvetica", "bold"); doc.setFontSize(9); doc.setTextColor(...muted);
+  doc.text("CLIENT REPORT  ·  PREMIUM TAX SCOPING  ·  " + today(), M, 40);
+  doc.setFontSize(22); doc.setTextColor(...ink); doc.text(pdfSafe(c.name), M, 68);
+  y = 84;
+  table({ head: [["Insurers", "SFCRs checked", "Countries in scope", "Countries with likely obligations", "Direct non-life GWP (EUR 000, checked SFCRs)"]],
+    body: [[ins.length, `${rep.checked} of ${ins.length}`, rep.countries.length, rep.likely, fmt(rep.totalGwp)]],
+    styles: { ...base.styles, fontSize: 12, fontStyle: "bold", halign: "left" } });
+  if (rep.checked < ins.length) { y -= 14; para(`${ins.length - rep.checked} insurer(s) have no SFCR checked yet: their programmes and premium are missing and their countries come from the EIOPA register only.`); y += 6; }
+
+  heading("Countries for the client");
+  para("Likely: the insurer is authorised there or its SFCR shows direct premium there. Possible: the insurer holds an active passport but no premium is shown; premium tax registration or nil returns may still be needed.");
+  table({ head: [["Country", "Code", "Likelihood", "Insurers and basis", "Direct GWP shown (EUR 000)"]],
+    body: rep.countries.map(x => [cname(x.country), x.country, x.level,
+      x.insurers.map(i => `${i.name}: ${i.reason}`).join("\n"), x.hasPremium ? fmt(x.premium) : "Not shown"].map(pdfSafe)),
+    columnStyles: { 0: { cellWidth: 95 }, 1: { cellWidth: 38 }, 2: { cellWidth: 62 }, 4: { cellWidth: 95, halign: "right" } }, didParseCell: colorLevel });
+
+  if (ins.length > 1 && rep.countries.length) {
+    heading("Country by insurer");
+    const perPage = 8;
+    for (let start = 0; start < ins.length; start += perPage) {
+      const part = ins.slice(start, start + perPage);
+      table({ head: [["Country", ...part.map(i => pdfSafe(shortName(i.ent.name)))]],
+        body: rep.countries.map(x => [pdfSafe(cname(x.country)), ...part.map(i => (i.obligations.find(o => o.country === x.country) || {}).level || "")]),
+        columnStyles: { 0: { cellWidth: 110 } }, didParseCell: d => { colorLevel(d); if (d.column.index > 0) d.cell.styles.halign = "center"; } });
+    }
+  }
+
+  if (rep.programmes.length) {
+    heading("Direct non-life programmes across the client");
+    table({ head: [["Solvency II line of business", "Annex I classes", "Written by", "Direct GWP (EUR 000)"]],
+      body: rep.programmes.map(p => [p.line, p.classes, p.insurers.join(", "), fmt(p.gwp)].map(pdfSafe)),
+      columnStyles: { 1: { cellWidth: 90 }, 3: { cellWidth: 110, halign: "right" } } });
+  }
+
+  doc.addPage(); y = 50;
+  heading("Insurers", 15); y += 6;
+  for (const i of ins) {
+    heading(i.ent.name, 11);
+    para(`${cname(i.ent.home)} · ${i.ent.nca} · Identification code ${i.ent.code} · LEI ${i.ent.lei || "not recorded"} · ` +
+      (i.lines ? `SFCR checked: ${i.r.sfcr.name} (reporting date ${i.r.sfcr.reportingDate || i.r.sfcr.date})` : "SFCR not checked"));
+    if (i.lines && i.lines.length) table({ head: [["Direct non-life programme", "Annex I classes", "Direct GWP (EUR 000)", "Share"]],
+      body: i.lines.map(l => [l.line, l.classes, fmt(l.gwp), l.share.toFixed(1) + "%"].map(pdfSafe)),
+      columnStyles: { 1: { cellWidth: 90 }, 2: { cellWidth: 110, halign: "right" }, 3: { cellWidth: 60, halign: "right" } } });
+    else { para(i.lines ? "No direct non-life premium in the SFCR." : "Programmes not available: upload the SFCR on the insurer's page.", 8.5, ink); }
+    table({ head: [["Country", "Likelihood", "Basis", "Direct GWP (EUR 000)"]],
+      body: i.obligations.map(o => [`${cname(o.country)} (${o.country})`, o.level, o.reason, o.premium ? fmt(o.premium) : ""].map(pdfSafe)),
+      columnStyles: { 0: { cellWidth: 140 }, 1: { cellWidth: 70 }, 3: { cellWidth: 110, halign: "right" } }, didParseCell: colorLevel });
+  }
+
+  heading("Basis of this report", 11);
+  ["Registrations come from the EIOPA Register of Insurance Undertakings export. Registrations with an end date in the past are excluded.",
+   "Premium and programmes come from each insurer's SFCR: S.05.01 (gross written premium, direct business) and S.04.05 or S.05.02 (premium by country).",
+   "SFCR country tables show only the home country and the top 5 countries, so a passport without premium shown may still have business.",
+   "Annex I classes are an indicative mapping. Premium tax rules for each country and class still need to be confirmed."].forEach(t => para("•  " + t));
+
+  const n = doc.getNumberOfPages();
+  for (let pg = 1; pg <= n; pg++) {
+    doc.setPage(pg); doc.setFont("helvetica", "normal"); doc.setFontSize(8); doc.setTextColor(...muted);
+    doc.text(pdfSafe(`${c.name} · Client premium tax report · ${today()}`), M, doc.internal.pageSize.getHeight() - 20);
+    doc.text(`Page ${pg} of ${n}`, W - M, doc.internal.pageSize.getHeight() - 20, { align: "right" });
+  }
+  return doc.output("arraybuffer");
 }
 
 function scopeRows(ent, r) {
@@ -965,7 +1067,7 @@ function wireDownload(id, make) {
     try {
       const dl = state.downloads ?? await claude.use("downloads");
       if (!dl) { status.textContent = "Excel download isn’t available in this view."; return; }
-      await dl.save(make()); status.textContent = "Saved";
+      await dl.save(await make()); status.textContent = "Saved";
     } catch (e) { status.textContent = e && e.code === "declined" ? "Download cancelled" : "The file couldn’t be saved. Try again."; }
     finally { btn.disabled = false; }
   });
