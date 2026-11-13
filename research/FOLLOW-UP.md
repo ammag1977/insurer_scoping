@@ -6,7 +6,9 @@ Validated tax information only, not tax advice. Newest country first within each
 ## All runs (needed once)
 - [x] Seed workbook v1.33 received 2026-11-13 (research/seed/). Checked against all 18 runs: see **research/seed/seed-v1.33-check_2026-11-13.md** for 10 conflicts, 5 new items and the seed taxes not yet researched.
 - [x] Seed v1.51 received 2026-11-13 (v1.33 was out of date). **Seed v1.52** built from it with the run findings (67 rows green, 20 yellow, 27 added peach), plus **Decisions Register v1.26** (14 decisions, 11 proposed laws). Both kept locally in research/seed/, off GitHub.
-- [ ] Return Decisions Register v1.26 with your decisions (A08-A09, B40-B43, C08-C11, E18-E21 and the 11 Proposed laws); the next seed version applies them.
+- [x] Register v1.26: all recommendations and all 11 proposed laws accepted 2026-11-13; applied in **seed v1.53** (kept locally, off GitHub).
+- [ ] Save for the seed (E19, B40, B41): current Estonian Insurance Activities Act (riigiteataja.ee), current Luxembourg Versicherungsteuergesetz and Feuerschutzsteuergesetz (Legilux texte coordonne), current Bulgarian ZDZP; Decreto-Lei 1/2015 ASF statutes (Diario da Republica) for EU_PT-L003; mark desk item DL-159 as a Problem (Armed Forces text).
+- [ ] Decide the Polish PIU membership contribution scope (C11 left it open).
 - [ ] Supply the shared run library from the earlier runs' workspace: work/lib/run_lib.py, classes.py, translit.py, and the run data files (e.g. as a zip or a repository). Needed for the formal run pages, PDFs, client templates and model scoring.
 
 ## EU_EE Estonia (EE-1, statute reading v0.01, 2026-11-13)
