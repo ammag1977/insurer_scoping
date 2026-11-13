@@ -4,11 +4,10 @@ from datetime import datetime
 
 from rapidfuzz import fuzz
 
-from eiopa import COUNTRY_NAMES
+from eiopa import COUNTRY_NAMES, iso, jur
 from sfcr import ANNEX_I, LOB, _norm
 
-EEA = set("AT BE BG HR CY CZ DK EE FI FR DE EL HU IE IT LV LT LU MT NL PL PT RO SK SI ES SE IS LI NO".split())
-TO_EIOPA = {"GR": "EL", "GB": "UK"}  # SFCRs use ISO codes, EIOPA uses EL and UK
+EEA = set("AT BE BG HR CY CZ DK EE FI FR DE GR HU IE IT LV LT LU MT NL PL PT RO SK SI ES SE IS LI NO".split())
 
 OK, BAD, REVIEW, NA = "Consistent", "Inconsistent", "Review", "Not available"
 
@@ -67,10 +66,10 @@ def checks(entity, sfcr, sfcr_doc_name=""):
 
     # Home country
     if gi.get("country"):
-        c = TO_EIOPA.get(gi["country"], gi["country"])
-        add("Home country", entity["home_country"], gi["country"], OK if c == entity["home_country"] else BAD)
+        c = iso(gi["country"])
+        add("Home country", jur(entity["home_country"]), jur(gi["country"]), OK if c == entity["home_country"] else BAD)
     else:
-        add("Home country", entity["home_country"], "Not stated (filed with the home-country regulator)", NA)
+        add("Home country", jur(entity["home_country"]), "Not stated (filed with the home-country regulator)", NA)
 
     # Supervisor
     nca = entity["nca"]
@@ -100,8 +99,8 @@ def checks(entity, sfcr, sfcr_doc_name=""):
         for code, prem in cp["premiums"].items():
             if code == "HOME" or prem <= 0:
                 continue
-            c = TO_EIOPA.get(code, code)
-            name = f"{COUNTRY_NAMES.get(c, c)} ({c})"
+            c = iso(code)
+            name = f"{COUNTRY_NAMES.get(c, c)} ({jur(c)})"
             rows = passports.get(c, [])
             ev = "; ".join(f'{r["status"]} from {r["operation_start"] or r["registration_start"]}'
                            + (f' to {r["registration_end"] or r["operation_end"]}'
@@ -117,21 +116,21 @@ def checks(entity, sfcr, sfcr_doc_name=""):
                 add(f"Country: {name}", ev, sv, BAD, "Passport not active at the SFCR reporting date")
             else:
                 add(f"Country: {name}", ev, sv, OK)
-        shown = {TO_EIOPA.get(k, k) for k in cp["premiums"]}
+        shown = {iso(k) for k in cp["premiums"]}
         quiet = sorted(c for c, rows in passports.items()
                        if c not in shown and c != entity["home_country"] and any(_active(r, at) for r in rows))
         if quiet:
-            add("Passports without premium shown", ", ".join(quiet), "Not in SFCR country table", REVIEW,
+            add("Passports without premium shown", ", ".join(map(jur, quiet)), "Not in SFCR country table", REVIEW,
                 "The SFCR lists only the home country and top 5 countries, so these may still have premium")
 
     # Branches
     branch_rows = sorted({r["country"] for r in entity["countries"] if r["status"] == "EEA branch"})
     by_name = {v.lower(): k for k, v in COUNTRY_NAMES.items()}
-    mentioned = sorted({TO_EIOPA.get(by_name[b.lower()], by_name[b.lower()])
+    mentioned = sorted({iso(by_name[b.lower()])
                         for b in sfcr["branch_mentions"] if b.lower() in by_name})
     if branch_rows or mentioned:
         res = OK if set(branch_rows) == set(mentioned) else REVIEW
-        add("Branches", ", ".join(branch_rows) or "None", ", ".join(mentioned) or "None mentioned", res,
+        add("Branches", ", ".join(map(jur, branch_rows)) or "None", ", ".join(map(jur, mentioned)) or "None mentioned", res,
             "" if res == OK else "Branch countries differ between the register and the SFCR text")
     return out
 
@@ -152,7 +151,7 @@ def scope_countries(entity, sfcr):
     prem = {}
     if sfcr and sfcr.get("country_premiums"):
         for k, v in sfcr["country_premiums"]["premiums"].items():
-            prem[entity["home_country"] if k == "HOME" else TO_EIOPA.get(k, k)] = v
+            prem[entity["home_country"] if k == "HOME" else iso(k)] = v
     rows = []
     for c in sorted({r["country"] for r in entity["countries"]} | set(prem)):
         regs = [r for r in entity["countries"] if r["country"] == c]

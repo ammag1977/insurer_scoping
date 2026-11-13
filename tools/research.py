@@ -51,7 +51,7 @@ def research(query, sfcr_url=None, pdf=None):
                  "pages": parsed["pages"]},
         "checks": analysis.checks(e, parsed, source["name"]),
         "directNonLife": analysis.direct_non_life(parsed),
-        "countryPremiums": {(e["home_country"] if k == "HOME" else analysis.TO_EIOPA.get(k, k)): v
+        "countryPremiums": {(e["home_country"] if k == "HOME" else eiopa.iso(k)): v
                             for k, v in cp.get("premiums", {}).items()},
         "countryTemplate": cp.get("template", ""),
         "groupLevel": bool(cp.get("group_level")),

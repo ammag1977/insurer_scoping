@@ -15,13 +15,33 @@ DATA = Path(__file__).parent / "data" / "eiopa_export.csv"
 COUNTRY_NAMES = {
     "AT": "Austria", "BE": "Belgium", "BG": "Bulgaria", "HR": "Croatia", "CY": "Cyprus",
     "CZ": "Czechia", "DK": "Denmark", "EE": "Estonia", "FI": "Finland", "FR": "France",
-    "DE": "Germany", "EL": "Greece", "GR": "Greece", "HU": "Hungary", "IE": "Ireland",
+    "DE": "Germany", "GR": "Greece", "HU": "Hungary", "IE": "Ireland",
     "IT": "Italy", "LV": "Latvia", "LT": "Lithuania", "LU": "Luxembourg", "MT": "Malta",
     "NL": "Netherlands", "PL": "Poland", "PT": "Portugal", "RO": "Romania", "SK": "Slovakia",
     "SI": "Slovenia", "ES": "Spain", "SE": "Sweden", "IS": "Iceland", "LI": "Liechtenstein",
-    "NO": "Norway", "UK": "United Kingdom", "GB": "United Kingdom", "CH": "Switzerland",
+    "NO": "Norway", "GB": "United Kingdom", "CH": "Switzerland",
     "US": "United States",
 }
+
+
+# ISO 3166 codes throughout: the EIOPA register uses EL for Greece and UK for the United Kingdom.
+TO_ISO = {"EL": "GR", "UK": "GB"}
+
+
+def iso(code):
+    code = (code or "").strip()
+    return TO_ISO.get(code, code)
+
+
+EU27 = set("AT BE BG HR CY CZ DK EE FI FR DE GR HU IE IT LV LT LU MT NL PL PT RO SK SI ES SE".split())
+EEA3 = {"IS", "LI", "NO"}
+EUR_OTHER = set("GB CH GG JE IM GI AD MC SM VA UA RS ME MK AL BA MD TR".split())
+
+
+def jur(code):
+    """JurCode shown to people, as in the Jurisdictional Data Hub: EU_GR, EEA_NO, EUR_GB."""
+    c = iso(code)
+    return f"EU_{c}" if c in EU27 else f"EEA_{c}" if c in EEA3 else f"EUR_{c}" if c in EUR_OTHER else c
 
 
 def _date(value):
@@ -36,7 +56,7 @@ def _load():
         rows = list(csv.DictReader(f, delimiter=";"))
     entities = {}
     for r in rows:
-        key = (r["Home Country"].strip(), r["Identification code"].strip())
+        key = (iso(r["Home Country"]), r["Identification code"].strip())
         e = entities.setdefault(key, {
             "international_name": r["International Name"].strip(),
             "official_name": r["Official name of the entity"].strip(),
@@ -47,7 +67,7 @@ def _load():
             "countries": [],
         })
         e["countries"].append({
-            "country": r["EU Country where the entity operates"].strip(),
+            "country": iso(r["EU Country where the entity operates"]),
             "status": r["Cross border status"].strip(),
             "registration_start": _date(r["Registration start date"]),
             "registration_end": _date(r["Registration end date"]),
