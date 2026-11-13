@@ -404,3 +404,7 @@ Notes: research/EU_IT/EU_IT_IT-1_working-notes_v0.01.md
 ## Request pack v1.01 (2026-11-13)
 - [x] Added A20-A23 (ES foral texts - Claude fetching; Iceland Althingi acts; Malta MTCA guidance) and B16-B24 (RO BAAR/FGA, EE LKF, AT BMF, DE BZSt, NL Belastingdienst, GB London Fire Commissioner, FR FGAO/URSSAF/DGFiP, IS HMS/NTI, MT MTCA).
 - [ ] IS-2 and MT-2 reported: decisions pending (see notes v0.02).
+
+## Seed v1.70 (2026-11-13): Belgium BE-1 v2.2 decisions applied
+- [x] Motor guarantee fund: information only (out of scope); fire fund collector/terms corrected; annual tax 9.25% to 30.6.2026, 9.6% from 1.7.2026; L017-L019 added (Confirmed).
+- [ ] BE onboarding: request INAMI declaration forms/circulars (rsbi@riziv-inami.fgov.be) and the FSMA fire fund declaration form from each client.
