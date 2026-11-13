@@ -1,0 +1,4 @@
+486593129c13905a5c6331eb6768277399609d5496ae8a54321de3beafdbb3fe  EU_BG-L001_Insurance-Code_asat-2026-11-13.pdf  (retrieved 2026-11-13, fsc.bg)
+e691d14ec22e37b1cfb37bff4785771d283221541576ec38db0af6499a7cc210  EU_BG-L002_Insurance-Premium-Tax-Act_asat-2026-11-13.pdf  (retrieved 2026-11-13, fsc.bg)
+ea8da397269d20b700f05aa2934a6aa0828cae62cd69cdfc591e3e4799a89af7  EU_BG-NEW_FSC-Decision-720-GF-2025_GF-budget-2026_asat-2026-11-13.pdf  (retrieved 2026-11-13, fsc.bg)
+f04bd5d5447d31e674a794fd94991630e0a1a422432afabf14c13f7bc5b6ee3c  EU_BG-NEW_FSC-Decision-838-GF-2024_GF-contributions-2025_asat-2026-11-13.pdf  (retrieved 2026-11-13, fsc.bg)
