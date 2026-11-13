@@ -15,3 +15,4 @@ f4d904f2ac62f14866d67a0bde1a292b7c5be61a866f7a880896d39a18d506dd  EEA_NO-NEW_Skt
 6244ffa20d3c09a5cf8c87f4cc0e7bea8836612fdce68bb95139271d42bc50f0  EEA_NO-NEW_Sktfvf-8-4-1-8-4-2-handbook_asat-2026-11-13.pdf
 aad13413f4e57289519e55305b601150d646c320a4d030257e436cddca4bc3a5  EEA_NO-NEW_Sktfvl-8-4-handbook_asat-2026-11-13.pdf
 086b0c44f212c3af3fdce4385f012cac3de7b9716dd59c0ebc5a8bc9d2e665fb  EEA_NO-NEW_TFF-member-companies_asat-2026-11-13.pdf
+280c8a0920ecdccd65faff8721c5e0be7ec7678e05af6373105d38e95eff4c17  EEA_NO-L002_2025_Storting-minutes-2024-12-13-votes-resolution-XI_asat-2026-11-13.pdf

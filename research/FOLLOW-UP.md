@@ -347,3 +347,12 @@ Notes: research/EU_IT/EU_IT_IT-1_working-notes_v0.01.md
 - [ ] TU 174/2024 equivalents of L 1216 arts 11, 20, 21 and the penalties now in D.Lgs 173/2024.
 - [ ] Nil-return position for each return (rule 18) and provider filing (P4).
 - [ ] Re-check S1, S5, S6 for amendments published after 22-10-2026.
+
+## Seed v1.63 (2026-11-13): Latvia LV-2 and Greece GR-2 applied
+- [x] LV: three LTAB payments mapped (Guarantee Fund deductions 2.6% / +0.94%, maintenance contribution, road safety 2%); Insured Protection Fund suspended (0%); UNAUTH Not applicable.
+- [x] GR: IPT now Nomos 5177/2025 art 43 (L017 ends 13.2.2025); representative Mandatory with EU-law conflict flag; Auxiliary Fund 4.5% / 6% HOME; L019-L026 added To check.
+- [ ] LV: 2026 LTAB maintenance amounts; Road Traffic Safety Council due day.
+- [ ] GR: Motor Insurers' Bureau contribution legal basis (Bureau rules); Bank of Greece decision on the Auxiliary Fund rate.
+
+## Runs reported, awaiting PO decisions (2026-11-13)
+- [ ] EE-2, PL-2, HU-2, FI-2, BG-2, SK-2: see each country's working notes v0.02.
