@@ -1,0 +1,12 @@
+deeb63e8237160984b08b016cde6275fad44b2a1def4fc9fd4815edec5a9f063  EU_SK-L002_Act-No-213-2018-Coll-on-Insurance-Tax_asat-2026-11-13.pdf
+2994a7e0c7b88af9fcf12504b9ea06c919f95049aba0af4a75ee55174ff19571  EU_SK-L002_Act-No-213-2018-Coll-on-Insurance-Tax_v2025-01-01_asat-2026-11-13.pdf
+d9f5eadc1611e25f8f76566d32b5b00f2cebe0d6d21c1fc9b8d6864759fa3f1f  EU_SK-L004_Zakon-c-563-2009-Z-z-o-sprave-dani_asat-2026-11-13.pdf
+e78e0d892c34a45681830c3050fb79a91c996d0817181fe9b9d62c4fb98c1f63  EU_SK-NEW_Act-261-2025-consolidation-amending-213-2018_asat-2026-11-13.pdf
+3840b56e14e135c741643085fa768db4bc547e6e39c6e549c07ddae62c51cd54  EU_SK-NEW_Act-39-2015-Insurance-Act-s68-MTPL-levy_asat-2026-11-13.pdf
+8d62168966bdf02d2b8dcb3846736bf2508a27c8f654d2d2c5c1ebc30e092423  EU_SK-NEW_Act-39-2015-Insurance-Act-s68-MTPL-levy_v2025-01-01_asat-2026-11-13.pdf
+22d7b6055acd2dde0352cf26f9d82a0cb36ac24f894d63c4868f0a1255d7f1de  EU_SK-NEW_Act-77-2026-uninsured-vehicles-amending-381-2001_asat-2026-11-13.pdf
+28ca98e66b60c9391e2dfdfbfb0f64c059c2e5c8ad6e251b6bc8aad127bea872  EU_SK-NEW_FS-QA-rate-change-2026-1-POIST-2026-IM_asat-2026-11-13.pdf
+8a0d8e4bf1b4b0305c34bb3f25aa3ba1960fa3c48ac8783091f7be450aa9bdfe  EU_SK-NEW_FS-info-amendment-261-2025-1-Poist-2025-I_asat-2026-11-13.pdf
+f58b2cd63ff9676b3a0eddbb966f207acb88952a96fa17a0d9cea3be066912d5  EU_SK-NEW_FS-insurance-tax-return-form-DPDPv18_asat-2026-11-13.pdf
+c1c87d97ab316f06902e862baa63c67519a75ca143f1b995fff5c2979303fd60  EU_SK-NEW_FS-payment-info-1-Poist-2025-IM_asat-2026-11-13.pdf
+10c475df41f823b7a3035b090c72501862eff05d5a78834fb0ff98335484688e  EU_SK-NEW_MF-instructions-insurance-tax-return-DPDPv26-poucenie_asat-2026-11-13.pdf
