@@ -377,3 +377,8 @@ Notes: research/EU_IT/EU_IT_IT-1_working-notes_v0.01.md
 - [ ] HR: ePorezna acceptance of IZ-PAOKO and FPO; HVZ accounts and report template; OPZ late-interest rate.
 - [ ] SI: ZFU tax register route for non-residents; ZZZS reporting instructions; DPZP payment reference.
 - [ ] LU-2 reported, awaiting PO decisions. CZ-2 still running.
+
+## Seed v1.66 (2026-11-13): LU-2 applied
+- [x] Single 4% insurance tax; representative Mandatory with conflict (non-EU, and NO/IS/LI under the EU-seat test); class 15 NA; fire tax classes 8-9; FGA called by its board; FIAA added; L009-L018 Confirmed (official copies held).
+- [ ] LU: ask the AED (Bureau d'imposition 3) to confirm class 15, the EEA representative point, payment date and weekend rule; eAssurance specification; FGA call rates 2025-2026; current AO penalty text.
+- [ ] CZ-2 still running.
