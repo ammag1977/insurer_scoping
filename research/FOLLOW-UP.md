@@ -7,6 +7,22 @@ Validated tax information only, not tax advice. Newest country first within each
 - [ ] Upload the seed workbook: Jurisdiction-Research-Seed-EU-Direct-NonLife v1.58 or later (Scopes, Taxes, Legislation, Sources, Forms tabs).
 - [ ] Supply the shared run library from the earlier runs' workspace: work/lib/run_lib.py, classes.py, translit.py, and the run data files (e.g. as a zip or a repository). Needed for the formal run pages, PDFs, client templates and model scoring.
 
+## EU_CZ Czechia (CZ-1, statute reading v0.01, 2026-11-13)
+Notes: research/EU_CZ/EU_CZ_CZ-1_working-notes_v0.01.md
+
+### Documents to supply
+- [ ] Seed rows for EU_CZ: Taxes tab (which levies the seed expects) and Legislation (is there an EU_CZ-L001?).
+- [ ] Financial Administration (financnisprava.gov.cz, not reachable from Claude's workspace): confirmation that Czechia has no insurance premium tax, e.g. the list of taxes it administers.
+- [ ] Czech Insurers' Bureau (ckp.cz, not reachable): the members' contribution rules and the current year's contribution rates, plus how the 3% damage-prevention fund instalments are reported and paid (form or portal, bank details).
+
+### Decisions needed
+- [ ] Bureau membership contributions (Act 30/2024 s 54, 61(5)), set by the Bureau's assembly, not by statute: in scope as a parafiscal levy, or out of scope under rule 7?
+- [ ] Accept the damage-prevention fund levy (3% of motor TPL premium received, s 73(3)) as the EU_CZ motor levy for HOME, FOE and FOS scopes.
+
+### Research still to do (Claude)
+- [ ] Nil-return position for the quarterly fund instalments (rule 18); provider filing (P4); fiscal representation (none expected).
+- [ ] Re-check e-Sbirka for amendments after the version of 2025-07-01 before issue.
+
 ## EU_IT Italy (IT-1, statute reading v0.01, 2026-11-13)
 Notes: research/EU_IT/EU_IT_IT-1_working-notes_v0.01.md
 
