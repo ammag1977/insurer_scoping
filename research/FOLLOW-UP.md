@@ -412,3 +412,7 @@ Notes: research/EU_IT/EU_IT_IT-1_working-notes_v0.01.md
 ## Seed v1.71 (2026-11-13): Liechtenstein LI-2 decisions applied
 - [x] D1 split (Swiss duty: insurer pays HOME/FOE on Form 11 FL, policyholder pays FOS/UNAUTH on Form 12 FL; LI levy residual, half-yearly); D2 representative Mandatory with possible EU/EEA conflict; D3 both location-of-risk views; D4 P10 kept; L001-L003 fixed; L004-L009 Proposed.
 - [ ] LI: read CJEU C-678/11 (curia/EUR-Lex blocked to us) incl. EEA recovery-assistance point; llv.li Meldeformular, merkblatt, e-filing, nil returns (blocked); accept or reject L004-L009.
+
+## Seed v1.72 (2026-11-13): CJEU C-678/11 applied
+- [x] EU-L004 added (official CURIA text). EU-seated insurers: mandatory representative contrary to art 56 TFEU (GR, PT flags). IS/LI/NO-seated insurers, and LI and NO rules: conditional on absence of adequate tax assistance arrangements (paras 66-71). Third-country insurers: no conflict. IT optional-representative rule consistent.
+- [ ] Check current mutual tax assistance arrangements (OECD/CoE convention, bilateral) between IS/LI/NO and the relevant states before relying on the conditional justification.
