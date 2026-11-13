@@ -368,3 +368,12 @@ Notes: research/EU_IT/EU_IT_IT-1_working-notes_v0.01.md
 - [ ] NO: Lovdata texts (PO to save): 2025 resolution FOR number, skatteforvaltningsforskriften, skattebetalingsloven, trafikktrygdforskriften s 1a.
 - [ ] CY: Minister direction on the MIF surcharge; MIF Internal Agreement; Tax Department notices 7 and 9 Jan 2026.
 - [ ] Review dates: FI crop exemption 2027-09-01; NO pool rate 0.10 per mille from 2027.
+
+## Seed v1.65 (2026-11-13): IT-2, PT-2, HR-2, SI-2 applied
+- [x] All recommendations accepted and applied; duplicate or wrong-instrument law rows withdrawn (Status Out of scope, not deleted): EU_IT-L006, L007; EU_PT-L005-L010, L012, L014.
+- [x] 13 Copy currency check values outside the list (from v1.64) mapped to list values.
+- [ ] IT: CONSAP payment route; IVASS deduction; Trento/Bolzano/FVG motor TPL rates; Trentino fire contribution amount; DPR 322/1998 art 3; 2025 and 2026 road and hunting decrees (one file per year).
+- [ ] PT: Portarias 194/2007, 403/86, 167/2013; INEM channel after 1-8-2026; IFAP timing; AT guidance on appointing the stamp duty representative.
+- [ ] HR: ePorezna acceptance of IZ-PAOKO and FPO; HVZ accounts and report template; OPZ late-interest rate.
+- [ ] SI: ZFU tax register route for non-residents; ZZZS reporting instructions; DPZP payment reference.
+- [ ] LU-2 reported, awaiting PO decisions. CZ-2 still running.
