@@ -387,3 +387,7 @@ Notes: research/EU_IT/EU_IT_IT-1_working-notes_v0.01.md
 - [x] CKP row split: damage-prevention fund 3% quarterly in scope (HOME/FOE/FOS); membership contributions Out of scope; UNAUTH Not applicable; L002 Confirmed (e-Sbirka); L003-L005 added.
 - [ ] CZ: request from CKP - Statut, 2025-2026 membership resolutions, quarterly instalment instructions (account, statement, nil practice), third-party authorised person.
 - [ ] CZ: check parliamentary bills amending Act 30/2024 s 73.
+
+## Evidence desk and request pack (2026-11-13)
+- [x] JDH Evidence desk: DL-205 (EE), DL-074 (FI), DL-040 (CZ, 3 files), DL-037 (CY), DL-102 (HR), DL-129 (LU) now hold the current official copies; old files kept under "replaced".
+- [x] Request pack written: research/REQUEST-PACK_EU_v1.00_2026-11-13.md (Part A pages to save by hand, Part B requests to 15 bodies).
