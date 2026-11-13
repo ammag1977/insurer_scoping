@@ -5,3 +5,5 @@ d3a12738c8bda4415d1b0ae7ac31b3c9f88e6934d8a56efabf4e45f6c3a7b2a7  EEA_IS-NEW_Gja
 74ebe8e107a72b1a12bf86ea56af0238031b58c2ceff06309796aaacf85cc545  EEA_IS-NEW_NTI-frett-idgjald-haekkar-2024-11-27_asat-2026-11-13.html  (retrieved 2026-11-13, run IS-2)
 b3aa9c4a29c5fe34b88b23d5a4202d4a74a50529355b341341fc4131411c2898  EEA_IS-NEW_Reglugerd-770-2023-Natturuhamfaratrygging_asat-2026-11-13.pdf  (retrieved 2026-11-13, run IS-2)
 1c85fd6ac37787c50f113d911825db69ff2a2d8da2680463f7778977a9b1421d  EEA_IS-NEW_Reglugerd-770-2023_B-deild-original_asat-2026-11-13.pdf  (retrieved 2026-11-13, run IS-2)
+278196aee9724b0a2bff76f781cdfefd53ab9eff6eabf4c1b7b8448092904c3b  EEA_IS-L005_Bill-158-thskj-4-amending-Act-49-1997-art12-ofanflodagjald_asat-2026-11-13.pdf
+051ae29ae0f268beef1147ca15063bc20d49bab1d3763b0c882e99350a7c31cc  EEA_IS-L001_Bill-158-thskj-17-amending-Act-160-2010-byggingarstjorar_asat-2026-11-13.pdf

@@ -426,3 +426,7 @@ Notes: research/EU_IT/EU_IT_IT-1_working-notes_v0.01.md
 - [x] IS: building fee to State treasury; HMS 0.0021% monthly (flagged); NTI premium added as related collection; L003 withdrawn; L008-L012 Proposed.
 - [x] MT: Protection and Compensation Fund levy added (Proposed, HOME); class 12 / class 2 notes; compounding Secondary; art 47(3) onboarding question; L003-L010 Proposed.
 - [x] All Proposed law rows accepted (v1.75): 23 Confirmed; To check (no official copy yet): EEA_IS-L010, L011, L012 (althingi.is blocked - request pack A22); EU_MT-L010 now Confirmed (v1.76).
+
+## Iceland bills (2026-11-13, saved by the PO)
+- [ ] WATCH: Bill 4 (158th session, government bill) amends Act 49/1997 art 12: levy renamed "ofanflodagjald"; base changes from insured value (vatryggingarverdmaeti) to sum insured (vatryggingarfjarhaed) - expressly reaching supplementary fire insurance and buildings under construction; rate stays 0.3 per mille; in force on passage. Update EEA_IS avalanche rows when enacted.
+- [x] Bill 17 (members' bill) amends Act 160/2010 art 27 (building managers) only - no effect on the building safety fee (art 50).
