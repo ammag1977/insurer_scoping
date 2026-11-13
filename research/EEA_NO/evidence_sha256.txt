@@ -20,3 +20,4 @@ b42cb0f64a221f2648a740a2c0465438c625a869057e7bad31cec3522806492d  EEA_NO-L011_NN
 e31e411bfa2d125fce79838337312c0af2ec981ae29093dbd771d31b7b0d85d9  EEA_NO-L010_bilansvarslova-LOV-1961-02-03_Lovdata-sist-endret-LOV-2022-02-18-5_asat-2026-11-13.pdf
 3ed0fca9c6b1f4b93605a1d5cd22ba9ba77c4372ee08b44f7fd34ed4f2d2ab35  EEA_NO-L010_trafikktrygdforskriften-FOR-1974-04-01-3_Lovdata-sist-endret-FOR-2022-09-28-1672_asat-2026-11-13.pdf
 48feb1c421efcdd3cdd004a000db9a492a25e0870baf838236850a846382a01e  EEA_NO-L008_skattebetalingsloven-LOV-2005-06-17-67_Lovdata-sist-endret-LOV-2026-06-19-45_asat-2026-11-13.pdf
+ccaaaf5b9b8545c545dac16a2447571ee7a46c2ba94b391dd9e3ee36a9cd9508  EEA_NO-L002_Stortingsvedtak-avgift-trafikkforsikringer-2025-FOR-2024-12-13-3212_Lovdata_asat-2026-11-13.pdf
