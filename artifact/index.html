@@ -112,6 +112,14 @@ pre.narrative { white-space: pre-wrap; font: 13px/1.5 var(--mono); background: v
 .cls { display: flex; gap: 8px; align-items: flex-start; font-size: 14px; cursor: pointer; }
 .cls input { margin-top: 4px; accent-color: var(--accent); }
 .tax-country { display: grid; gap: 8px; }
+.prog-list { display: grid; gap: 10px; }
+.prog, .prog-form { border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; display: grid; gap: 8px; }
+.prog h3 { margin: 0; font-size: 15px; }
+.prog-form { background: var(--soft); }
+.prog-fields { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: 10px; }
+.prog-fields label { display: grid; gap: 4px; }
+.country-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 4px 12px; }
+@media (max-width: 640px) { .prog-fields { grid-template-columns: minmax(0, 1fr); } }
 .tax-country h3 { margin: 6px 0 0; font-size: 15px; display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
 td.nowrap { white-space: nowrap; }
 .crumbs { display: flex; gap: 8px; flex-wrap: wrap; font-size: 13px; }
@@ -170,7 +178,7 @@ const PDFJS = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/";
 /* ======================================================================
    State and helpers
    ====================================================================== */
-const state = { tax: null, taxBy: new Map(), classes: new Map(), data: null, byKey: new Map(), index: [], research: new Map(), clients: new Map(),
+const state = { programmes: new Map(), progEdit: null, tax: null, taxBy: new Map(), classes: new Map(), data: null, byKey: new Map(), index: [], research: new Map(), clients: new Map(),
   dbStatus: "loading", db: null, downloads: undefined, from: null, addQuery: "", uploading: null, armed: null };
 const view = document.getElementById("view");
 const q = document.getElementById("q");
@@ -750,10 +758,12 @@ function renderCompany(ent) {
       <span><b>${n}</b> ${esc(name)}${sugg.includes(+n) ? ' <span class="small muted">· SFCR</span>' : ""}</span></label>`).join("")}</form>
     <div class="actions"><button class="btn" type="button" id="saveClasses" ${state.db ? "" : "disabled"}>${cl.confirmed ? "Save changes" : "Confirm classes"}</button><span class="status" id="classStatus" aria-live="polite"></span></div></section>`;
 
+  html += renderProgrammes(ent, r, base + 1) + renderProgrammeTaxes(ent, r, base + 2);
+
   const tr = taxRows(ent, r);
   const byCountry = new Map();
   tr.forEach(x => byCountry.set(x.country, [...(byCountry.get(x.country) || []), x]));
-  html += `<section class="panel"><div class="panel-head"><h2><span class="step">${base + 1}</span>Premium taxes by country and class</h2>
+  html += `<section class="panel"><div class="panel-head"><h2><span class="step">${base + 3}</span>Premium taxes by country and class</h2>
     <span class="status">${state.tax ? `${esc(state.tax.source)} · ${esc(state.tax.snapshot)}` : "Tax data loading…"}</span></div>
     <p class="small muted" style="margin:0;max-width:85ch">For each country with likely or possible obligations and each ticked class: the taxes that apply, the rate or treatment, and how often each return is filed. Tax data comes from the research runs in the Jurisdictional Data Hub - Europe, which are still marked unvalidated.</p>
     ${!cl.list.length ? '<p class="muted" style="margin:0">Tick and confirm the insurer’s classes above to see its premium taxes.</p>'
@@ -774,7 +784,7 @@ function renderCompany(ent) {
       }).join("")}</section>`;
 
   const scope = scopeRows(ent, r);
-  html += `<section class="panel"><div class="panel-head"><h2><span class="step">${base + 2}</span>Countries to scope for premium tax</h2></div>
+  html += `<section class="panel"><div class="panel-head"><h2><span class="step">${base + 4}</span>Countries to scope for premium tax</h2></div>
     <p class="small muted" style="margin:0;max-width:75ch">Every country with an EIOPA registration${r && r.sfcr ? " or SFCR premium" : ""}.
     Countries with active passports may need premium tax registration or nil returns even where no premium is shown.
     ${r && r.groupLevel ? " Country premiums are taken from the group-level table." : ""}</p>
@@ -787,6 +797,7 @@ function renderCompany(ent) {
   view.innerHTML = html; view.dataset.key = ent.key;
   if (!same) window.scrollTo(0, 0); else window.scrollTo(0, scrollY);
 
+  wireProgrammes(ent);
   const saveCls = document.getElementById("saveClasses");
   if (saveCls) saveCls.addEventListener("click", async () => {
     const list = [...document.querySelectorAll('#classForm input[name="cls"]:checked')].map(i => +i.value);
@@ -875,6 +886,138 @@ function taxRows(ent, r) {
 }
 const freqClass = f => /^not researched/i.test(f) ? "p-none" : /exempt/i.test(f) ? "p-Not" : "p-checked";
 
+/* ---------- insurance programmes: classes attached to each programme, taxes per programme and country ---------- */
+const programmesOf = key => state.programmes.get(key) || [];
+function scopeCountries(ent, r) { return obligations(ent, r).filter(o => o.level !== OUT); }
+function programmeTaxes(ent, r, prog) {
+  const obl = obligations(ent, r), lvl = Object.fromEntries(obl.map(o => [o.country, o.level]));
+  const countries = prog.countries && prog.countries.length ? prog.countries : obl.filter(o => o.level !== OUT).map(o => o.country);
+  const out = [];
+  for (const c of countries) {
+    const level = lvl[c] || "Selected";
+    if (!inEurope(c)) { out.push({ country: c, level: OUT, status: "out" }); continue; }
+    const jurs = state.taxBy.get(c) || [];
+    if (!jurs.length) { out.push({ country: c, level, status: "notResearched" }); continue; }
+    for (const J of jurs) {
+      const taxes = J.taxes.map((t, i) => ({ ...t, index: i, classes: [] }));
+      for (const k of prog.classes || []) {
+        const cls = J.classes[String(k)]; if (!cls) continue;
+        cls.cells.forEach((cell, i) => { const text = cell[0] || "";
+          if (/^Not applicable/i.test(text)) return;
+          taxes[i].classes.push({ cls: k, rate: text, cite: cell[1] || "", exempt: /^(Exempt|Excluded)/i.test(text) }); });
+      }
+      const used = taxes.filter(t => t.classes.length).map(t => ({ ...t, payable: t.classes.some(x => !x.exempt) }));
+      out.push({ country: c, level, status: "ok", jdh: J.jdh, jurName: J.name, run: J.run, runStatus: J.status, taxes: used });
+    }
+  }
+  return out;
+}
+function programmeRows(ent, r) {
+  const rows = [];
+  for (const prog of programmesOf(ent.key)) for (const pc of programmeTaxes(ent, r, prog)) {
+    const base = [ent.name, prog.name, (prog.classes || []).join(", "), cname(pc.country), jur(pc.country), pc.level];
+    if (pc.status === "out") rows.push([...base, "", "OUT OF SCOPE for this project (non-European country)", "", "", "", "", "", ""]);
+    else if (pc.status === "notResearched") rows.push([...base, "", "Not yet researched in the hub", "", "", "", "", "", ""]);
+    else if (!pc.taxes.length) rows.push([...base, pc.jdh, "No premium tax for these classes", "", "", "", "", "", ""]);
+    else pc.taxes.forEach(t => t.classes.forEach(x => rows.push([...base, pc.jdh, t.name, x.cls, x.rate, x.cite,
+      x.exempt ? "No return (exempt)" : t.frequency, x.exempt ? "" : t.filing, x.exempt ? "" : t.cite])));
+  }
+  return rows;
+}
+const PROG_HEAD = ["Insurer", "Programme", "Programme classes", "Country", "JurCode", "Likelihood", "Tax jurisdiction", "Tax", "Class",
+  "Rate or treatment", "Rate citation", "Filing frequency", "Filing and due date", "Filing citation"];
+const PROG_WIDTHS = [30, 26, 14, 16, 10, 12, 12, 34, 6, 34, 22, 22, 50, 26];
+const rateByClass = t => t.classes.map(x => `Class ${x.cls}: ${x.rate}`).join("; ");
+
+function renderProgrammes(ent, r, step) {
+  const list = programmesOf(ent.key), auth = insurerClasses(ent.key).list, inScope = scopeCountries(ent, r);
+  const ed = state.progEdit && state.progEdit.key === ent.key ? state.progEdit : null;
+  const editor = d => `<form class="prog-form" id="progForm">
+      <div class="prog-fields"><label class="small" for="pgName"><b>Programme name</b><input id="pgName" type="text" maxlength="120" required value="${esc(d.name)}" placeholder="e.g. Home insurance, Commercial liability"></label>
+      <label class="small" for="pgDesc"><b>Description</b> <span class="muted">(optional)</span><input id="pgDesc" type="text" maxlength="300" value="${esc(d.description)}" placeholder="e.g. Buildings and contents for homeowners, sold through retail partners"></label></div>
+      <div class="small"><b>Classes of business covered</b> ${auth.length ? `<span class="muted">· authorised classes are marked</span>` : ""}</div>
+      <div class="classes-grid">${Object.entries(CLASS_NAMES).map(([n, name]) => `<label class="cls"><input type="checkbox" name="pgcls" value="${n}" ${d.classes.includes(+n) ? "checked" : ""}>
+        <span><b>${n}</b> ${esc(name)}${auth.includes(+n) ? ' <span class="small muted">· authorised</span>' : ""}</span></label>`).join("")}</div>
+      <div class="small"><b>Countries</b></div>
+      <div class="actions small"><label class="cls"><input type="radio" name="pgscope" value="all" ${d.countries.length ? "" : "checked"}> All countries in scope for this insurer (${inScope.length})</label>
+        <label class="cls"><input type="radio" name="pgscope" value="some" ${d.countries.length ? "checked" : ""}> Selected countries only</label></div>
+      <div class="country-grid" id="pgCountries" ${d.countries.length ? "" : "hidden"}>${inScope.map(o => `<label class="cls"><input type="checkbox" name="pgc" value="${esc(o.country)}" ${d.countries.includes(o.country) ? "checked" : ""}>
+        <span><span class="cc">${esc(jur(o.country))}</span>${esc(cname(o.country))}</span></label>`).join("")}</div>
+      <div class="actions"><button class="btn" type="submit" ${state.db ? "" : "disabled"}>Save programme</button><button class="btn ghost" type="button" id="pgCancel">Cancel</button>
+        <span class="status" id="pgStatus" aria-live="polite"></span></div></form>`;
+  return `<section class="panel"><div class="panel-head"><h2><span class="step">${step}</span>Insurance programmes</h2>
+      <span class="status">${list.length} programme${list.length === 1 ? "" : "s"}</span></div>
+    <p class="small muted" style="margin:0;max-width:85ch">Add the insurance programmes the insurer writes and attach the classes of business each one covers. The premium taxes for each programme follow below.</p>
+    ${list.length ? `<div class="prog-list">${list.map(pg => {
+      const off = (pg.classes || []).filter(k => auth.length && !auth.includes(k));
+      return ed && ed.id === pg.id ? editor(ed.draft) : `<div class="prog"><div class="panel-head"><h3>${esc(pg.name)}</h3>
+        <div class="actions"><button class="btn ghost small" type="button" data-pedit="${esc(pg.id)}">Edit</button>
+        <button class="btn danger small" type="button" data-pdel="${esc(pg.id)}">${state.armed === "pdel-" + pg.id ? "Confirm delete" : "Delete"}</button></div></div>
+        ${pg.description ? `<div class="small muted">${esc(pg.description)}</div>` : ""}
+        <div class="chips">${(pg.classes || []).map(k => `<span class="chip ${off.includes(k) ? "P" : "L"}" title="${esc(CLASS_NAMES[k])}">${k} ${esc(CLASS_NAMES[k])}</span>`).join("") || '<span class="muted small">No classes attached</span>'}</div>
+        ${off.length ? `<div class="small status err">Class${off.length > 1 ? "es" : ""} ${off.join(", ")} not in the insurer’s authorised classes.</div>` : ""}
+        <div class="small muted">Countries: ${pg.countries && pg.countries.length ? pg.countries.map(c => esc(jur(c))).join(", ") : "all countries in scope"}</div></div>`; }).join("")}</div>` : ""}
+    ${ed && !ed.id ? editor(ed.draft) : !ed ? `<div><button class="btn" type="button" id="pgAdd" ${state.db ? "" : "disabled"}>Add programme</button></div>` : ""}</section>`;
+}
+
+function renderProgrammeTaxes(ent, r, step) {
+  const list = programmesOf(ent.key);
+  return `<section class="panel"><div class="panel-head"><h2><span class="step">${step}</span>Premium taxes by programme</h2>
+      <span class="status">${state.tax ? `${esc(state.tax.source)} · ${esc(state.tax.snapshot)}` : "Tax data loading…"}</span></div>
+    ${!list.length ? '<p class="muted" style="margin:0">Add a programme above to see the taxes payable on it.</p>' : list.map(pg => {
+      const res = programmeTaxes(ent, r, pg);
+      return `<div class="tax-country"><h3>${esc(pg.name)} <span class="small muted" style="font-weight:400">· classes ${(pg.classes || []).join(", ") || "none"}</span></h3>
+        ${!(pg.classes || []).length ? '<p class="small muted" style="margin:0">Attach classes to this programme to see its taxes.</p>' :
+        `<div class="table-box"><table><thead><tr><th>Jurisdiction</th><th>Tax</th><th>Rate or treatment by class</th><th>Filing frequency</th><th>Filing and due date</th></tr></thead><tbody>
+        ${res.map(pc => pc.status === "out" ? `<tr class="ended"><td><span class="cc">${esc(jur(pc.country))}</span>${esc(cname(pc.country))}</td><td colspan="4"><span class="lk lk-Out">Out of scope</span> Non-European country: OUT OF SCOPE for this project</td></tr>`
+          : pc.status === "notResearched" ? `<tr><td><span class="cc">${esc(jur(pc.country))}</span>${esc(cname(pc.country))}</td><td colspan="4" class="muted">Not yet researched in the Jurisdictional Data Hub - Europe</td></tr>`
+          : !pc.taxes.length ? `<tr><td><span class="cc">${esc(pc.jdh)}</span>${esc(pc.jurName)}</td><td colspan="4" class="muted">No premium tax for these classes</td></tr>`
+          : pc.taxes.map((t, i) => `<tr class="${t.payable ? "" : "ended"}">${i === 0 ? `<td rowspan="${pc.taxes.length}" class="nowrap"><span class="cc">${esc(pc.jdh)}</span>${esc(pc.jurName)}<div class="small"><span class="lk lk-${lkc(pc.level)}">${esc(pc.level)}</span></div></td>` : ""}
+              <td>${esc(t.name)}</td><td class="small">${t.classes.map(x => `<div><b>${x.cls}</b> ${esc(x.rate)}${x.cite ? ` <span class="muted">· ${esc(x.cite)}</span>` : ""}</div>`).join("")}</td>
+              <td>${t.payable ? `<span class="pill ${freqClass(t.frequency)}">${esc(t.frequency)}</span>` : '<span class="pill p-Not">No return (exempt)</span>'}</td>
+              <td class="small">${t.payable ? `${esc(t.filing)}<div class="muted">${esc(t.cite)}</div>` : ""}</td></tr>`).join("")).join("")}
+        </tbody></table></div>`}</div>`; }).join("")}</section>`;
+}
+
+function wireProgrammes(ent) {
+  const list = programmesOf(ent.key);
+  const add = document.getElementById("pgAdd");
+  if (add) add.addEventListener("click", () => { state.progEdit = { key: ent.key, id: null, draft: { name: "", description: "", classes: [...insurerClasses(ent.key).list], countries: [] } }; render(); document.getElementById("pgName")?.focus(); });
+  view.querySelectorAll("[data-pedit]").forEach(b => b.addEventListener("click", () => {
+    const pg = list.find(x => x.id === b.dataset.pedit); if (!pg) return;
+    state.progEdit = { key: ent.key, id: pg.id, draft: { name: pg.name, description: pg.description || "", classes: [...(pg.classes || [])], countries: [...(pg.countries || [])] } }; render(); }));
+  view.querySelectorAll("[data-pdel]").forEach(b => b.addEventListener("click", async () => {
+    const id = b.dataset.pdel;
+    if (state.armed !== "pdel-" + id) { state.armed = "pdel-" + id; render(); return; }
+    state.armed = null;
+    try { await saveDoc("programmes/" + ent.key, { key: ent.key, list: list.filter(x => x.id !== id), updatedOn: today() }); } catch { render(); }
+  }));
+  const form = document.getElementById("progForm");
+  if (!form) return;
+  const ed = state.progEdit;
+  const sync = () => {
+    ed.draft.name = document.getElementById("pgName").value; ed.draft.description = document.getElementById("pgDesc").value;
+    ed.draft.classes = [...form.querySelectorAll('input[name="pgcls"]:checked')].map(i => +i.value);
+    const some = form.querySelector('input[name="pgscope"]:checked')?.value === "some";
+    document.getElementById("pgCountries").hidden = !some;
+    ed.draft.countries = some ? [...form.querySelectorAll('input[name="pgc"]:checked')].map(i => i.value) : [];
+  };
+  form.addEventListener("input", sync); form.addEventListener("change", sync);
+  document.getElementById("pgCancel").addEventListener("click", () => { state.progEdit = null; render(); });
+  form.addEventListener("submit", async e => {
+    e.preventDefault(); sync();
+    const st = document.getElementById("pgStatus"), d = ed.draft;
+    if (!d.name.trim()) { st.textContent = "Give the programme a name."; st.classList.add("err"); return; }
+    if (form.querySelector('input[name="pgscope"]:checked')?.value === "some" && !d.countries.length) { st.textContent = "Pick at least one country, or choose all countries in scope."; st.classList.add("err"); return; }
+    const item = { id: ed.id || "p" + Date.now().toString(36) + Math.random().toString(36).slice(2, 5), name: d.name.trim(), description: d.description.trim(),
+      classes: [...d.classes].sort((a, b) => a - b), countries: d.countries };
+    const next = ed.id ? list.map(x => x.id === ed.id ? item : x) : [...list, item];
+    st.textContent = "Saving…";
+    try { await saveDoc("programmes/" + ent.key, { key: ent.key, list: next, updatedOn: today() }); state.progEdit = null; render(); }
+    catch { st.textContent = "The programme couldn’t be saved. Try again."; st.classList.add("err"); }
+  });
+}
+
 function obligations(ent, r) {
   const checked = !!(r && r.sfcr);
   const prem = checked ? (r.countryPremiums || {}) : {};
@@ -930,6 +1073,10 @@ function clientReport(c) {
   }
   return { insurers, countries: list, programmes: [...programmes.values()].sort((a, b) => b.gwp - a.gwp),
     taxes: [...taxes.values()].sort((a, b) => a.jurName.localeCompare(b.jurName) || a.tax.localeCompare(b.tax)),
+    progLines: insurers.flatMap(i => programmesOf(i.ent.key).flatMap(pg => programmeTaxes(i.ent, i.r, pg).flatMap(pc =>
+      pc.status !== "ok" ? [{ insurer: i.ent.name, key: i.ent.key, prog: pg, pc, tax: null }]
+      : pc.taxes.length ? pc.taxes.map(t => ({ insurer: i.ent.name, key: i.ent.key, prog: pg, pc, tax: t })) : [{ insurer: i.ent.name, key: i.ent.key, prog: pg, pc, tax: null }]))),
+    progCount: insurers.reduce((n, i) => n + programmesOf(i.ent.key).length, 0),
     notResearched: [...notResearched].sort(), outOfScope: [...outOfScope].sort(),
     inScope: list.filter(x => x.level !== OUT).length, noClasses: insurers.filter(i => !i.classes.list.length).map(i => i.ent.name),
     checked: insurers.filter(i => i.lines).length, likely: list.filter(x => x.level === "Likely").length,
@@ -962,6 +1109,18 @@ function renderReport(c) {
       <td>${x.insurers.map(i => `<div><a href="#${esc(i.key)}">${esc(i.name)}</a> <span class="small muted">· ${esc(i.reason)}</span></div>`).join("")}</td>
       <td class="num">${x.hasPremium ? fmt(x.premium) : '<span class="muted">Not shown</span>'}</td></tr>`).join("")}
     </tbody></table></div>` : '<p class="muted">No countries yet. Add insurers to this client.</p>'}</section>`;
+
+  const progStatus = l => l.pc.status === "out" ? "OUT OF SCOPE for this project" : l.pc.status === "notResearched" ? "Not yet researched in the hub" : "No premium tax for these classes";
+  html += `<section class="panel"><div class="panel-head"><h2>Insurance programmes and premium taxes</h2>
+    <span class="status">${rep.progCount} programme${rep.progCount === 1 ? "" : "s"}</span></div>
+    ${rep.progCount ? `<div class="table-box"><table><thead><tr><th>Insurer</th><th>Programme</th><th>Jurisdiction</th><th>Tax</th><th>Rate or treatment by class</th><th>Filing frequency</th></tr></thead><tbody>
+      ${rep.progLines.map(l => `<tr class="${l.tax && !l.tax.payable ? "ended" : ""}"><td><a href="#${esc(l.key)}">${esc(l.insurer)}</a></td>
+        <td><b>${esc(l.prog.name)}</b><div class="small muted">Classes ${(l.prog.classes || []).join(", ") || "none"}</div></td>
+        <td class="nowrap"><span class="cc">${esc(l.pc.jdh || jur(l.pc.country))}</span>${esc(l.pc.jurName || cname(l.pc.country))}</td>
+        ${l.tax ? `<td>${esc(l.tax.name)}</td><td class="small">${l.tax.classes.map(x => `<div><b>${x.cls}</b> ${esc(x.rate)}</div>`).join("")}</td>
+          <td>${l.tax.payable ? `<span class="pill ${freqClass(l.tax.frequency)}">${esc(l.tax.frequency)}</span>` : '<span class="pill p-Not">No return (exempt)</span>'}</td>`
+          : `<td colspan="3" class="muted">${esc(progStatus(l))}</td>`}</tr>`).join("")}
+    </tbody></table></div>` : '<p class="muted" style="margin:0">No programmes yet. Add them on each insurer’s page.</p>'}</section>`;
 
   html += `<section class="panel"><div class="panel-head"><h2>Premium taxes and filing frequency</h2>
     <span class="status">${state.tax ? `${esc(state.tax.source)} · ${esc(state.tax.snapshot)}` : ""}</span></div>
@@ -1066,6 +1225,14 @@ async function reportPdf(c) {
     body: rep.countries.map(x => [cname(x.country), jur(x.country), x.level,
       x.insurers.map(i => `${i.name}: ${i.reason}`).join("\n"), x.hasPremium ? fmt(x.premium) : "Not shown"].map(pdfSafe)),
     columnStyles: { 0: { cellWidth: 95 }, 1: { cellWidth: 58 }, 2: { cellWidth: 70 }, 4: { cellWidth: 95, halign: "right" } }, didParseCell: colorLevel });
+
+  heading("Insurance programmes and premium taxes");
+  if (rep.progCount) table({ head: [["Insurer", "Programme (classes)", "Jurisdiction", "Tax", "Rate or treatment by class", "Filing frequency"]],
+    body: rep.progLines.map(l => [l.insurer, `${l.prog.name} (${(l.prog.classes || []).join(", ") || "no classes"})`, `${l.pc.jurName || cname(l.pc.country)} (${l.pc.jdh || jur(l.pc.country)})`,
+      l.tax ? l.tax.name : (l.pc.status === "out" ? "OUT OF SCOPE for this project" : l.pc.status === "notResearched" ? "Not yet researched in the hub" : "No premium tax for these classes"),
+      l.tax ? l.tax.classes.map(x => `${x.cls}: ${x.rate}`).join("\n") : "", l.tax ? (l.tax.payable ? l.tax.frequency : "No return (exempt)") : ""].map(pdfSafe)),
+    columnStyles: { 0: { cellWidth: 95 }, 1: { cellWidth: 110 }, 2: { cellWidth: 95 }, 3: { cellWidth: 120 }, 5: { cellWidth: 95, fontStyle: "bold" } } });
+  else para("No programmes yet. Add them on each insurer's page.");
 
   heading("Premium taxes and filing frequency");
   para(`Taxes payable for each insurer's classes of business, with the filing frequency of each return; exempt classes left out. Source: ${state.tax ? state.tax.source + ", " + state.tax.snapshot : "tax data not loaded"}; research runs marked unvalidated.` +
@@ -1199,6 +1366,9 @@ function companyWorkbook(ent, r) {
     ...scopeRows(ent, r).map(x => [cname(x.country), jur(x.country), x.basis, x.active ? "Yes" : "No", x.premium == null ? "" : { v: x.premium, t: "n", z: "#,##0" }, "", "", "", ""])],
     [18, 7, 30, 15, 24, 30, 18, 22, 40]), "Scope countries");
   XLSX.utils.book_append_sheet(wb, sheet([TAX_HEAD, ...taxSheetRows(ent, r)], TAX_WIDTHS), "Premium taxes");
+  XLSX.utils.book_append_sheet(wb, sheet([["Programme", "Description", "Classes", "Countries"], ...programmesOf(ent.key).map(pg => [pg.name, pg.description || "",
+    (pg.classes || []).join(", "), pg.countries && pg.countries.length ? pg.countries.map(jur).join(", ") : "All countries in scope"])], [30, 50, 14, 50]), "Programmes");
+  XLSX.utils.book_append_sheet(wb, sheet([PROG_HEAD, ...programmeRows(ent, r)], PROG_WIDTHS), "Programme taxes");
   return XLSX.write(wb, { bookType: "xlsx", type: "array" });
 }
 
@@ -1235,6 +1405,10 @@ function clientWorkbook(c) {
     ...rep.outOfScope.map(c => [cname(c), jur(c), "", "OUT OF SCOPE for this project (non-European country)", "", "", "", "", "", ""])];
   XLSX.utils.book_append_sheet(wb, sheet(tj, [16, 10, 14, 34, 40, 22, 12, 40, 50, 26]), "Taxes by jurisdiction");
   XLSX.utils.book_append_sheet(wb, sheet([TAX_HEAD, ...rep.insurers.flatMap(i => taxSheetRows(i.ent, i.r))], TAX_WIDTHS), "Premium taxes detail");
+  XLSX.utils.book_append_sheet(wb, sheet([["Insurer", "Programme", "Description", "Classes", "Countries"], ...rep.insurers.flatMap(i => programmesOf(i.ent.key).map(pg =>
+    [i.ent.name, pg.name, pg.description || "", (pg.classes || []).join(", "), pg.countries && pg.countries.length ? pg.countries.map(jur).join(", ") : "All countries in scope"]))],
+    [30, 30, 50, 14, 50]), "Programmes");
+  XLSX.utils.book_append_sheet(wb, sheet([PROG_HEAD, ...rep.insurers.flatMap(i => programmeRows(i.ent, i.r))], PROG_WIDTHS), "Programme taxes");
   const scope = [["Company", "Country", "JurCode", "Basis (EIOPA)", "Active passport", "Direct GWP (SFCR, EUR 000)", ...TAX_COLS]];
   rows.forEach(x => scopeRows(x.ent, x.r).forEach(s => scope.push([x.ent.name, cname(s.country), jur(s.country), s.basis, s.active ? "Yes" : "No",
     s.premium == null ? "" : { v: s.premium, t: "n", z: "#,##0" }, "", "", "", ""])));
@@ -1272,7 +1446,7 @@ q.addEventListener("input", () => {
   clearTimeout(timer);
   timer = setTimeout(() => { if (location.hash !== "#search") location.hash = "search"; else renderSearch(); }, 150);
 });
-addEventListener("hashchange", () => { state.armed = null; render(); });
+addEventListener("hashchange", () => { state.armed = null; state.progEdit = null; render(); });
 
 async function connectDb() {
   let db = null;
@@ -1289,6 +1463,10 @@ async function connectDb() {
     unsaved.forEach(r => { if (!state.research.has(r.key)) state.research.set(r.key, r); });
     loaded.research = true; ready();
   }, () => { loaded.research = true; ready(); });
+  db.collection("programmes").onSnapshot(snap => {
+    state.programmes = new Map(snap.docs.filter(d => d.exists).map(d => [d.id, d.data().list || []]));
+    if (!state.progEdit) render();
+  }, () => {});
   db.collection("classes").onSnapshot(snap => {
     state.classes = new Map(snap.docs.filter(d => d.exists).map(d => [d.id, d.data()]));
     render();
