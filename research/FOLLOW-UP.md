@@ -14,7 +14,9 @@ Validated tax information only, not tax advice. Newest country first within each
 - [x] Evidence Copy Desk: 16 copies saved 2026-11-13 reviewed; 11 correct, recorded in **seed v1.54** (NO L002 and L005 now Confirmed).
 - [ ] Save again (desk items set to Problem): DL-099 Nomos 5113/2024 as published in FEK A 96/2024 (the file saved is an AADE circular); DL-104 ZOZO NN 33/23 consolidated (the file saved is the 2013 amending act); DL-121 the whole Italian Private Insurance Code (only art 1 was printed); DL-138 likumi.lv id 274969; DL-193 likumi.lv id 87547 (both saved from the old wrong URLs).
 - [ ] Still to save: Norway 2025 road traffic tax resolution; Italy 2026 road victims fund decree and the hunting victims fund decrees 2025-2026; Romania 2026 guarantee fund norm (DL-169).
-- [ ] Decide Register v1.27: B44 (Croatia re-cite to ZOZO NN 33/23), E22 (Norway tax base per vehicle per day), EU_GR-L018 (AADE circular, Proposed).
+- [x] 2026-11-13: Claude fetched the evidence copies itself (Normattiva export, likumi.lv, GU, et.gr store, NJT, Slov-Lex, PISRS, FSC, diariodarepublica.pt, BOE, BOFiP, gesetze-im-internet.de, wetten.overheid.nl, riigiteataja.ee) and filed them in the JDH Europe evidence desk; recorded in **seed v1.55** (50 law rows, 28 To check -> Confirmed).
+- [ ] Save by hand (sites block automated access): DL-192 Lithuania occupational accidents law (e-seimas TAIS.94855, bot check); DL-201 France arrete 24 July 2026 FGTI (Legifrance bot check); DL-204 Belgium loi-programme 30 May 2026 (ejustice CAPTCHA). Not yet available: DL-169 Romania Norma ASF 27/2025 (MO 1196/24.12.2025; ASF has not posted it, portal unreachable); DL-034 Cyprus (no official consolidation).
+- [ ] Decide Register v1.28 (B44 already rejected): E22, B45, B47, B48, E23, E24 and proposed laws EU_GR-L018, EU_PT-L016.
 - [ ] Supply the shared run library from the earlier runs' workspace: work/lib/run_lib.py, classes.py, translit.py, and the run data files (e.g. as a zip or a repository). Needed for the formal run pages, PDFs, client templates and model scoring.
 
 ## EU_EE Estonia (EE-1, statute reading v0.01, 2026-11-13)
