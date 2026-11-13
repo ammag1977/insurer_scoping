@@ -89,6 +89,22 @@ pre.narrative { white-space: pre-wrap; font: 13px/1.5 var(--mono); background: v
 .client-card:hover { border-color: var(--accent); }
 .client-card strong { font-size: 16px; overflow-wrap: anywhere; }
 .client-card .small { color: var(--muted); }
+.report-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; }
+.report-stats div { border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; display: grid; gap: 2px; }
+.report-stats b { font-size: 24px; font-variant-numeric: tabular-nums; line-height: 1.2; }
+.report-stats span { font-size: 13px; color: var(--muted); }
+.lk { display: inline-block; padding: 2px 9px; border-radius: 999px; font-size: 12px; font-weight: 600; white-space: nowrap; }
+.lk-Likely { background: var(--ok-bg); color: var(--ok); }
+.lk-Possible { background: var(--rev-bg); color: var(--rev); }
+.matrix th.ins { white-space: normal; min-width: 110px; max-width: 160px; text-transform: none; letter-spacing: 0; font-size: 12px; }
+.matrix td.mark { text-align: center; font-size: 15px; }
+.mark-L { color: var(--ok); } .mark-P { color: var(--rev); }
+.insurer { border-top: 1px solid var(--line); padding-top: 16px; display: grid; gap: 10px; }
+.insurer:first-of-type { border-top: 0; padding-top: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { font-size: 13px; border-radius: 6px; padding: 2px 8px; border: 1px solid var(--line); white-space: nowrap; }
+.chip.L { background: var(--ok-bg); border-color: transparent; color: var(--ok); }
+.chip.P { background: var(--rev-bg); border-color: transparent; color: var(--rev); }
 .crumbs { display: flex; gap: 8px; flex-wrap: wrap; font-size: 13px; }
 @media (max-width: 640px) { .kv { grid-template-columns: minmax(0, 1fr); } .kv dd { margin-bottom: 6px; } h1 { font-size: 22px; } section.panel { padding: 16px; } }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
@@ -497,6 +513,11 @@ function render() {
     if (c) { state.from = c.id; renderClient(c); }
     else if (state.dbStatus === "loading") view.innerHTML = `<section class="panel"><p class="muted">Loading client…</p></section>`;
     else view.innerHTML = `<section class="panel"><h2>This client no longer exists</h2><p><a href="#clients">Back to clients</a></p></section>`;
+  } else if (h.startsWith("report-")) {
+    const c = state.clients.get(h.slice(7));
+    if (c) { state.from = c.id; renderReport(c); }
+    else if (state.dbStatus === "loading") view.innerHTML = `<section class="panel"><p class="muted">Loading report…</p></section>`;
+    else view.innerHTML = `<section class="panel"><h2>This client no longer exists</h2><p><a href="#clients">Back to clients</a></p></section>`;
   } else if (h === "search") renderSearch();
   else if (h && state.byKey.has(h)) renderCompany(state.byKey.get(h));
   else { state.from = null; renderHome(); }
@@ -575,7 +596,8 @@ function renderClient(c) {
   const has = new Set(c.companies || []);
   view.innerHTML = `<div style="display:grid;gap:6px"><div class="crumbs"><a href="#clients">Clients</a><span class="muted">/</span><span>${esc(c.name)}</span></div>
     <div class="eyebrow">Client</div><h1>${esc(c.name)}</h1></div>
-    <div class="actions"><button class="btn" id="clientXlsx" type="button" ${rows.length ? "" : "disabled"}>Download client scoping file</button>
+    <div class="actions">${rows.length ? `<a class="btn" href="#report-${esc(c.id)}">View client report</a>` : ""}
+      <button class="btn ghost" id="clientXlsx" type="button" ${rows.length ? "" : "disabled"}>Download client scoping file</button>
       <span class="status" id="xlsxStatus" aria-live="polite"></span></div>
 
     <section class="panel"><div class="panel-head"><h2>Insurance companies</h2>
@@ -717,6 +739,119 @@ function renderCompany(ent) {
   document.getElementById("sfcrFile").addEventListener("change", e => { const f = e.target.files[0]; if (f) handleUpload(ent, f); });
 }
 
+/* ======================================================================
+   Client report
+   A country is LIKELY when the insurer is authorised there (home country)
+   or its SFCR shows direct premium there; POSSIBLE when it holds an active
+   EIOPA passport but no premium is shown (the SFCR lists only the top 5
+   countries, and nil returns may still be due).
+   ====================================================================== */
+function activeNow(rows) {
+  const now = new Date();
+  return rows.some(r => { const end = parseDmy(r.re) || parseDmy(r.oe); return !end || end > now; });
+}
+function obligations(ent, r) {
+  const checked = !!(r && r.sfcr);
+  const prem = checked ? (r.countryPremiums || {}) : {};
+  const codes = [...new Set(ent.countries.map(c => c.country).concat(Object.keys(prem)))];
+  const out = [];
+  for (const c of codes) {
+    const regs = ent.countries.filter(x => x.country === c);
+    const live = regs.length && activeNow(regs);
+    const p = prem[c];
+    const basis = [...new Set(regs.map(x => x.status))].sort().join(", ") || (EEA.has(c) ? "No EIOPA registration" : "Outside the EIOPA register");
+    let level = null, reason = "";
+    if (p > 0) { level = "Likely"; reason = "Direct premium in SFCR" + (live ? "" : regs.length ? "; EIOPA registration ended" : EEA.has(c) ? "; no EIOPA registration" : "; non-EEA country"); }
+    else if (live && c === ent.home) { level = "Likely"; reason = "Home country"; }
+    else if (live) { level = "Possible"; reason = checked ? "Active passport; no premium shown in SFCR" : "Active passport; SFCR not checked"; }
+    if (level) out.push({ country: c, level, reason, basis, premium: p > 0 ? p : null });
+  }
+  return out.sort((a, b) => (a.level !== b.level ? (a.level === "Likely" ? -1 : 1) : 0) || (b.premium || 0) - (a.premium || 0) || cname(a.country).localeCompare(cname(b.country)));
+}
+function clientReport(c) {
+  const insurers = clientTotals(c).map(x => ({ ...x, obligations: obligations(x.ent, x.r),
+    lines: x.r && x.r.sfcr ? (x.r.directNonLife?.lines || []) : null }));
+  const countries = new Map();
+  for (const ins of insurers) for (const o of ins.obligations) {
+    const m = countries.get(o.country) || { country: o.country, level: "Possible", insurers: [], premium: 0, hasPremium: false };
+    if (o.level === "Likely") m.level = "Likely";
+    if (o.premium) { m.premium += o.premium; m.hasPremium = true; }
+    m.insurers.push({ name: ins.ent.name, key: ins.ent.key, level: o.level, reason: o.reason, premium: o.premium });
+    countries.set(o.country, m);
+  }
+  const list = [...countries.values()].sort((a, b) => cname(a.country).localeCompare(cname(b.country)));
+  const programmes = new Map();
+  for (const ins of insurers) for (const l of ins.lines || []) {
+    const m = programmes.get(l.code) || { code: l.code, line: l.line, classes: l.classes, gwp: 0, insurers: [] };
+    m.gwp += l.gwp; m.insurers.push(ins.ent.name); programmes.set(l.code, m);
+  }
+  return { insurers, countries: list, programmes: [...programmes.values()].sort((a, b) => b.gwp - a.gwp),
+    checked: insurers.filter(i => i.lines).length, likely: list.filter(x => x.level === "Likely").length,
+    totalGwp: insurers.reduce((s2, i) => s2 + (i.dnl || 0), 0) };
+}
+const shortName = n => n.replace(/\b(designated activity company|public limited company|limited|ltd|plc|dac|s\.?a\.?|se|ag|n\.?v\.?)\b\.?/gi, "").replace(/\s+/g, " ").trim() || n;
+
+function renderReport(c) {
+  const rep = clientReport(c);
+  const ins = rep.insurers;
+  let html = `<div style="display:grid;gap:6px"><div class="crumbs"><a href="#clients">Clients</a><span class="muted">/</span><a href="#client-${esc(c.id)}">${esc(c.name)}</a><span class="muted">/</span><span>Report</span></div>
+    <div class="eyebrow">Client report · premium tax scoping · ${esc(today())}</div><h1>${esc(c.name)}</h1></div>
+    <div class="actions"><button class="btn" id="reportXlsx" type="button" ${ins.length ? "" : "disabled"}>Download report (Excel)</button>
+    <span class="status" id="xlsxStatus" aria-live="polite"></span></div>
+    <section class="panel"><div class="report-stats">
+      <div><b>${ins.length}</b><span>Insurers</span></div>
+      <div><b>${rep.checked} of ${ins.length}</b><span>SFCRs checked</span></div>
+      <div><b>${rep.countries.length}</b><span>Countries in scope</span></div>
+      <div><b>${rep.likely}</b><span>Countries with likely obligations</span></div>
+      <div><b>${fmt(rep.totalGwp)}</b><span>Direct non-life GWP (€’000, checked SFCRs)</span></div></div>
+      ${rep.checked < ins.length ? `<p class="small muted" style="margin:0">${ins.length - rep.checked} insurer${ins.length - rep.checked === 1 ? " has" : "s have"} no SFCR checked yet, so programmes and premium for ${ins.length - rep.checked === 1 ? "it" : "them"} are missing and countries come from the EIOPA register only.</p>` : ""}</section>`;
+
+  html += `<section class="panel"><div class="panel-head"><h2>Countries for the client</h2><span class="status">${rep.countries.length} countries across all insurers</span></div>
+    <p class="small muted" style="margin:0;max-width:80ch"><span class="lk lk-Likely">Likely</span> the insurer is authorised there or its SFCR shows direct premium there.
+    <span class="lk lk-Possible">Possible</span> the insurer holds an active passport but no premium is shown; premium tax registration or nil returns may still be needed.</p>
+    ${rep.countries.length ? `<div class="table-box"><table><thead><tr><th>Country</th><th>Likelihood</th><th>Insurers</th><th class="num">Direct GWP shown (€’000)</th></tr></thead><tbody>
+    ${rep.countries.map(x => `<tr><td><span class="cc">${esc(x.country)}</span>${esc(cname(x.country))}</td><td><span class="lk lk-${x.level}">${x.level}</span></td>
+      <td>${x.insurers.map(i => `<div><a href="#${esc(i.key)}">${esc(i.name)}</a> <span class="small muted">· ${esc(i.reason)}</span></div>`).join("")}</td>
+      <td class="num">${x.hasPremium ? fmt(x.premium) : '<span class="muted">Not shown</span>'}</td></tr>`).join("")}
+    </tbody></table></div>` : '<p class="muted">No countries yet. Add insurers to this client.</p>'}</section>`;
+
+  if (ins.length > 1 && rep.countries.length) html += `<section class="panel"><div class="panel-head"><h2>Country by insurer</h2>
+    <span class="status"><span class="mark-L">●</span> likely &nbsp; <span class="mark-P">○</span> possible</span></div>
+    <div class="table-box"><table class="matrix"><thead><tr><th>Country</th>${ins.map(i => `<th class="ins">${esc(shortName(i.ent.name))}</th>`).join("")}</tr></thead><tbody>
+    ${rep.countries.map(x => `<tr><td><span class="cc">${esc(x.country)}</span>${esc(cname(x.country))}</td>${ins.map(i => {
+      const o = i.obligations.find(o => o.country === x.country);
+      return `<td class="mark">${o ? (o.level === "Likely" ? '<span class="mark-L" title="Likely">●</span>' : '<span class="mark-P" title="Possible">○</span>') : ""}</td>`; }).join("")}</tr>`).join("")}
+    </tbody></table></div></section>`;
+
+  if (rep.programmes.length) html += `<section class="panel"><div class="panel-head"><h2>Direct non-life programmes across the client</h2><span class="status">From checked SFCRs</span></div>
+    <div class="table-box"><table><thead><tr><th>Solvency II line of business</th><th>Annex I classes</th><th>Written by</th><th class="num">Direct GWP (€’000)</th></tr></thead><tbody>
+    ${rep.programmes.map(p => `<tr><td>${esc(p.line)}</td><td>${esc(p.classes)}</td><td>${p.insurers.map(esc).join(", ")}</td><td class="num">${fmt(p.gwp)}</td></tr>`).join("")}
+    </tbody></table></div></section>`;
+
+  html += `<section class="panel"><div class="panel-head"><h2>Insurers</h2></div>
+    ${ins.map(i => `<div class="insurer"><div class="panel-head"><h2 style="font-size:16px"><a href="#${esc(i.ent.key)}">${esc(i.ent.name)}</a></h2>
+      ${i.lines ? '<span class="pill p-checked">SFCR checked</span>' : '<span class="pill p-none">SFCR not checked</span>'}</div>
+      <div class="small muted">${esc(cname(i.ent.home))} · ${esc(i.ent.nca)} · <span class="mono">${esc(i.ent.code)}</span> · LEI <span class="mono">${esc(i.ent.lei || "not recorded")}</span>${i.lines ? ` · SFCR reporting date ${esc(i.r.sfcr.reportingDate || i.r.sfcr.date)}` : ""}</div>
+      <div class="eyebrow">Direct non-life programmes</div>
+      ${i.lines == null ? '<p class="muted" style="margin:0">Upload the SFCR on the insurer’s page to list its programmes.</p>'
+        : i.lines.length ? `<div class="table-box"><table><thead><tr><th>Solvency II line of business</th><th>Annex I classes</th><th class="num">Direct GWP (€’000)</th><th class="num">Share</th></tr></thead><tbody>
+          ${i.lines.map(l => `<tr><td>${esc(l.line)}</td><td>${esc(l.classes)}</td><td class="num">${fmt(l.gwp)}</td><td class="num">${l.share.toFixed(1)}%</td></tr>`).join("")}</tbody></table></div>`
+        : '<p class="muted" style="margin:0">No direct non-life premium in the SFCR.</p>'}
+      <div class="eyebrow">Countries with likely or possible obligations (${i.obligations.length})</div>
+      <div class="chips">${i.obligations.map(o => `<span class="chip ${o.level[0]}" title="${esc(o.reason)}">${esc(cname(o.country))}${o.premium ? " · " + fmt(o.premium) : ""}</span>`).join("") || '<span class="muted">None</span>'}</div>
+    </div>`).join("")}</section>
+    <section class="panel"><h2>Basis of this report</h2><ul class="small muted" style="margin:0;padding-left:18px;display:grid;gap:4px">
+      <li>Registrations come from the EIOPA Register of Insurance Undertakings export. Registrations with an end date in the past are excluded.</li>
+      <li>Premium and programmes come from each insurer’s SFCR: S.05.01 (gross written premium, direct business) and S.04.05 or S.05.02 (premium by country).</li>
+      <li>SFCR country tables show only the home country and the top 5 countries, so a passport without premium shown may still have business.</li>
+      <li>Annex I classes are an indicative mapping. Premium tax rules for each country and class still need to be confirmed.</li></ul></section>`;
+
+  const scrollY = window.scrollY, same = view.dataset.key === "report-" + c.id;
+  view.innerHTML = html; view.dataset.key = "report-" + c.id;
+  window.scrollTo(0, same ? scrollY : 0);
+  wireDownload("reportXlsx", () => ({ filename: `${safeName(c.name)} - client premium tax report.xlsx`, data: clientWorkbook(c) }));
+}
+
 function scopeRows(ent, r) {
   if (r && r.scope) return r.scope;
   const map = new Map();
@@ -791,6 +926,23 @@ function clientWorkbook(c) {
     ...rows.map(x => [x.ent.name, x.ent.official, x.ent.home, x.ent.nca, x.ent.code, x.ent.lei, x.active,
       x.r && x.r.sfcr ? x.r.sfcr.name : "Not checked", x.r && x.r.sfcr ? (x.r.sfcr.reportingDate || x.r.sfcr.date) : "",
       x.dnl == null ? "" : { v: x.dnl, t: "n", z: "#,##0" }])], [36, 36, 12, 34, 18, 24, 15, 34, 20, 26]), "Companies");
+  const rep = clientReport(c);
+  XLSX.utils.book_append_sheet(wb, sheet([["Country", "Code", "Likelihood", "Number of insurers", "Insurers", "Direct GWP shown (EUR 000)", ...TAX_COLS],
+    ...rep.countries.map(x => [cname(x.country), x.country, x.level, x.insurers.length,
+      x.insurers.map(i => `${i.name} (${i.level.toLowerCase()}: ${i.reason})`).join("; "),
+      x.hasPremium ? { v: x.premium, t: "n", z: "#,##0" } : "", "", "", "", ""])],
+    [18, 7, 11, 10, 80, 22, 30, 18, 22, 40]), "Client countries");
+  const prog = [["Insurer", "SFCR", "Solvency II line of business", "Annex I classes", "Direct GWP (EUR 000)", "Countries (likely)", "Countries (possible)"]];
+  rep.insurers.forEach(i => {
+    const likely = i.obligations.filter(o => o.level === "Likely").map(o => o.country).join(", ");
+    const possible = i.obligations.filter(o => o.level === "Possible").map(o => o.country).join(", ");
+    if (!i.lines || !i.lines.length) prog.push([i.ent.name, i.lines ? "Checked" : "Not checked", i.lines ? "No direct non-life premium" : "", "", "", likely, possible]);
+    else i.lines.forEach((l, n) => prog.push([i.ent.name, "Checked", l.line, l.classes, { v: l.gwp, t: "n", z: "#,##0" }, n ? "" : likely, n ? "" : possible]));
+  });
+  XLSX.utils.book_append_sheet(wb, sheet(prog, [34, 12, 44, 18, 20, 40, 40]), "Insurer programmes");
+  const mx = [["Country", "Code", ...rep.insurers.map(i => i.ent.name)]];
+  rep.countries.forEach(x => mx.push([cname(x.country), x.country, ...rep.insurers.map(i => (i.obligations.find(o => o.country === x.country) || {}).level || "")]));
+  XLSX.utils.book_append_sheet(wb, sheet(mx, [18, 7, ...rep.insurers.map(() => 20)]), "Country by insurer");
   const scope = [["Company", "Country", "Code", "Basis (EIOPA)", "Active passport", "Direct GWP (SFCR, EUR 000)", ...TAX_COLS]];
   rows.forEach(x => scopeRows(x.ent, x.r).forEach(s => scope.push([x.ent.name, cname(s.country), s.country, s.basis, s.active ? "Yes" : "No",
     s.premium == null ? "" : { v: s.premium, t: "n", z: "#,##0" }, "", "", "", ""])));
