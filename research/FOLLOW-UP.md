@@ -7,6 +7,22 @@ Validated tax information only, not tax advice. Newest country first within each
 - [ ] Upload the seed workbook: Jurisdiction-Research-Seed-EU-Direct-NonLife v1.58 or later (Scopes, Taxes, Legislation, Sources, Forms tabs).
 - [ ] Supply the shared run library from the earlier runs' workspace: work/lib/run_lib.py, classes.py, translit.py, and the run data files (e.g. as a zip or a repository). Needed for the formal run pages, PDFs, client templates and model scoring.
 
+## EU_RO Romania (RO-1, statute reading v0.01, 2026-11-13)
+Notes: research/EU_RO/EU_RO_RO-1_working-notes_v0.01.md
+
+### Documents to supply
+- [ ] The ASF norm setting the FGA contribution rates for 2026 (adopted around December 2025; the draft was 3% plus 2% general, 0.4% life). Save from asfromania.ro and upload to desk item DL-169 (replacing the Norma 3/2024 file, which set 2024 rates only).
+- [ ] ASF regulation on how and when FGA contributions are paid and reported each month (Law 213/2015 arts 7-8).
+- [ ] Current consolidated text of Law 213/2015 from legislatie.just.ro (not reachable from Claude's workspace), to check for amendments after 15 May 2023.
+- [ ] Seed rows for EU_RO: Taxes tab and Legislation L001 and L002 (e.g. motor TPL law 132/2017 contributions, if listed).
+
+### Decisions needed
+- [ ] Correct DL-169 / EU_RO-L009 to Norma ASF 27/2024 (2025) plus the 2026 norm (as the desk note proposed).
+- [ ] FOE scope: EU branches contribute only for business not covered by the home state's guarantee scheme. Record as a conditional rule needing client data (home-state scheme coverage)?
+
+### Research still to do (Claude)
+- [ ] Nil-return position (rule 18) for the monthly FGA report; provider filing (P4).
+
 ## EU_PL Poland (PL-1, statute reading v0.01, 2026-11-13)
 Notes: research/EU_PL/EU_PL_PL-1_working-notes_v0.01.md
 
