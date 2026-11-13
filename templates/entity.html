@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+{% block title %}{{ e.international_name }} – Premium Tax Scoping{% endblock %}
+{% block body %}
+<p class="small"><a href="/">← New search</a></p>
+<h1>{{ e.international_name }}</h1>
+<p class="muted">{{ e.official_name }}</p>
+
+<div class="card">
+  <h2>1. EIOPA register</h2>
+  <div class="kv">
+    <div>International name</div><div>{{ e.international_name }}</div>
+    <div>Name of NCA</div><div>{{ e.nca }}</div>
+    <div>Home country</div><div>{{ countries.get(e.home_country, e.home_country) }} ({{ e.home_country }})</div>
+    <div>Identification code</div><div>{{ e.identification_code }}</div>
+    <div>LEI</div><div>{{ e.lei or "Not recorded" }}</div>
+  </div>
+  <h2 style="margin-top:18px">EU countries where the entity operates ({{ e.countries|length }})</h2>
+  <div class="wrap"><table>
+    <tr><th>Country</th><th>Cross-border status</th><th>Registration start</th><th>Registration end</th><th>Operation start</th><th>Operation end</th></tr>
+    {% for c in e.countries %}
+    <tr class="{{ 'ended' if c.registration_end or c.operation_end }}">
+      <td>{{ countries.get(c.country, c.country) }} ({{ c.country }})</td><td>{{ c.status }}</td>
+      <td>{{ c.registration_start }}</td><td>{{ c.registration_end }}</td><td>{{ c.operation_start }}</td><td>{{ c.operation_end }}</td>
+    </tr>
+    {% endfor %}
+  </table></div>
+</div>
+
+<div class="card">
+  <h2>2. Latest SFCR</h2>
+  {% if error %}<p class="error">{{ error }}</p>{% endif %}
+  {% if source %}
+    <p>
+      {% if source.uploaded %}Uploaded file: <strong>{{ source.name }}</strong>
+      {% else %}<strong>{{ source.name }}</strong> · reporting date {{ source.date }} ·
+        <a href="{{ source.url }}" target="_blank" rel="noopener">open PDF</a> · {{ repo }}{% endif %}
+    </p>
+    {% if candidates|length > 1 %}
+    <form method="get" class="small">Not the right document?
+      <select name="sfcr">{% for c in candidates %}<option value="{{ c.url }}" {{ 'selected' if c.url == source.url }}>{{ c.name }} ({{ c.date }}, match {{ c.score }}%)</option>{% endfor %}</select>
+      <button type="submit" style="padding:4px 10px;font-size:13px">Use this</button></form>
+    {% endif %}
+  {% elif repo %}
+    <p>No SFCR for this company was found in the {{ repo }} (searched the last four years).</p>
+  {% else %}
+    <p>No SFCR repository is connected for {{ countries.get(e.home_country, e.home_country) }} yet. Most regulators outside Ireland do not publish SFCRs centrally; download the SFCR from the company’s website and upload it here.</p>
+  {% endif %}
+  <form method="post" enctype="multipart/form-data" class="small" style="margin-top:10px">
+    Upload an SFCR PDF instead: <input type="file" name="pdf" accept="application/pdf"> <button type="submit" style="padding:4px 10px;font-size:13px">Read PDF</button>
+  </form>
+</div>
+
+{% if report %}
+<div class="card">
+  <h2>3. SFCR vs EIOPA: potential inconsistencies</h2>
+  <div class="wrap"><table>
+    <tr><th>Check</th><th>EIOPA register</th><th>SFCR</th><th>Result</th><th>Note</th></tr>
+    {% for c in report.checks %}
+    <tr><td>{{ c.check }}</td><td>{{ c.eiopa }}</td><td>{{ c.sfcr }}</td>
+        <td><span class="tag {{ c.result.split()[0] }}">{{ c.result }}</span></td><td class="small">{{ c.note }}</td></tr>
+    {% endfor %}
+  </table></div>
+</div>
+
+<div class="card">
+  <h2>4. Direct non-life insurance programmes</h2>
+  {% if report.dnl.lines %}
+  <p class="muted small">Gross written premium, direct business (S.05.01, row R0110), in the SFCR’s reporting units (usually €’000). Annex I classes are indicative.</p>
+  <div class="wrap"><table>
+    <tr><th>Solvency II line of business</th><th>Annex I classes</th><th class="num">Direct GWP</th><th class="num">Share</th></tr>
+    {% for l in report.dnl.lines %}
+    <tr><td>{{ l.line }}</td><td>{{ l.classes }}</td><td class="num">{{ "{:,.0f}".format(l.gwp) }}</td><td class="num">{{ "%.1f"|format(l.share) }}%</td></tr>
+    {% endfor %}
+    <tr><th>Total direct non-life</th><th></th><th class="num">{{ "{:,.0f}".format(report.dnl.total) }}</th><th class="num">100%</th></tr>
+  </table></div>
+  {% else %}
+  <p>No direct non-life premium was found in the SFCR’s S.05.01 template. The company may write only life or reinsurance business, or the table could not be read from this PDF.</p>
+  {% endif %}
+  {% if report.sfcr.narrative %}
+  <h2 style="margin-top:18px">What the SFCR says about its business</h2>
+  <pre>{{ report.sfcr.narrative }}</pre>
+  {% endif %}
+</div>
+{% endif %}
+
+<div class="card">
+  <h2>5. Countries to scope for premium tax</h2>
+  <p class="muted small">Every country with an EIOPA registration or SFCR premium. Countries with active passports may need premium tax registration or nil returns even where no premium is shown.</p>
+  <div class="wrap"><table>
+    <tr><th>Country</th><th>Basis (EIOPA)</th><th>Active</th><th class="num">Direct GWP (SFCR)</th></tr>
+    {% for s in scope %}
+    <tr><td>{{ s.name }} ({{ s.country }})</td><td>{{ s.basis }}</td><td>{{ "Yes" if s.active else "No" }}</td>
+        <td class="num">{{ "{:,.0f}".format(s.premium) if s.premium is not none else "Not shown" }}</td></tr>
+    {% endfor %}
+  </table></div>
+</div>
+{% endblock %}

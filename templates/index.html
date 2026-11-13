@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block body %}
+<h1>Find an insurance company</h1>
+<p class="muted">Searches the EIOPA Register of Insurance Undertakings export ({{ "{:,}".format(register_size) }} undertakings). Enter a name, LEI or identification code.</p>
+<form class="search" action="/" method="get">
+  <input name="q" value="{{ q }}" placeholder="e.g. Kingfisher Insurance DAC" autofocus>
+  <button type="submit">Search</button>
+</form>
+{% if q %}
+<div class="card">
+  {% if results %}
+  <h2>Matches for “{{ q }}”</h2>
+  <div class="wrap"><table>
+    <tr><th>International name</th><th>Home country</th><th>Identification code</th><th>LEI</th><th class="num">Match</th></tr>
+    {% for e in results %}
+    <tr>
+      <td><a href="{{ url_for('entity', hc=e.home_country, code=e.identification_code) }}">{{ e.international_name }}</a></td>
+      <td>{{ countries.get(e.home_country, e.home_country) }}</td>
+      <td>{{ e.identification_code }}</td><td>{{ e.lei }}</td>
+      <td class="num">{{ e.score if e.score is defined else "Exact" }}{% if e.score is defined %}%{% endif %}</td>
+    </tr>
+    {% endfor %}
+  </table></div>
+  {% else %}
+  <p>No undertakings in the EIOPA register match “{{ q }}”.</p>
+  {% endif %}
+</div>
+{% endif %}
+{% endblock %}

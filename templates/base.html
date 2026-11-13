@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}Premium Tax Scoping{% endblock %}</title>
+<style>
+  :root { --ink:#1b2430; --muted:#5d6b7a; --line:#dde3ea; --bg:#f6f8fa; --card:#fff; --accent:#1f5c99;
+          --ok:#1e7a46; --ok-bg:#e6f4ec; --bad:#b42318; --bad-bg:#fdecea; --rev:#9a6200; --rev-bg:#fff4dc; --na-bg:#eef1f4; }
+  * { box-sizing:border-box; }
+  body { margin:0; font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif; color:var(--ink); background:var(--bg); }
+  header { background:var(--accent); color:#fff; padding:14px 24px; }
+  header a { color:#fff; text-decoration:none; font-weight:600; font-size:17px; }
+  main { max-width:1150px; margin:0 auto; padding:24px 16px 60px; }
+  h1 { font-size:24px; margin:0 0 4px; } h2 { font-size:18px; margin:0 0 12px; }
+  .muted { color:var(--muted); } .small { font-size:13px; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:8px; padding:18px 20px; margin:16px 0; }
+  form.search { display:flex; gap:8px; } form.search input { flex:1; padding:10px 12px; font-size:16px; border:1px solid var(--line); border-radius:6px; }
+  button { padding:10px 18px; font-size:15px; border:0; border-radius:6px; background:var(--accent); color:#fff; cursor:pointer; }
+  table { width:100%; border-collapse:collapse; } th, td { text-align:left; padding:7px 10px; border-bottom:1px solid var(--line); vertical-align:top; }
+  th { font-size:12px; text-transform:uppercase; letter-spacing:.03em; color:var(--muted); font-weight:600; }
+  td.num, th.num { text-align:right; font-variant-numeric:tabular-nums; }
+  .kv { display:grid; grid-template-columns:200px 1fr; gap:6px 16px; } .kv div:nth-child(odd) { color:var(--muted); }
+  .tag { display:inline-block; padding:1px 8px; border-radius:10px; font-size:12px; font-weight:600; white-space:nowrap; }
+  .Consistent { background:var(--ok-bg); color:var(--ok); } .Inconsistent { background:var(--bad-bg); color:var(--bad); }
+  .Review { background:var(--rev-bg); color:var(--rev); } .Not { background:var(--na-bg); color:var(--muted); }
+  .ended { color:var(--muted); text-decoration:line-through; }
+  .error { background:var(--bad-bg); color:var(--bad); padding:10px 14px; border-radius:6px; }
+  pre { white-space:pre-wrap; font:13px/1.45 ui-monospace,Menlo,monospace; background:var(--bg); padding:12px; border-radius:6px; margin:0; }
+  a { color:var(--accent); } .wrap { overflow-x:auto; }
+  @media (max-width:640px) { .kv { grid-template-columns:1fr; } .kv div:nth-child(odd) { margin-top:6px; } }
+</style>
+</head>
+<body>
+<header><a href="/">Premium Tax Scoping</a></header>
+<main>{% block body %}{% endblock %}</main>
+</body>
+</html>
