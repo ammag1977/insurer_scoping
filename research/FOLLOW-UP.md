@@ -7,6 +7,22 @@ Validated tax information only, not tax advice. Newest country first within each
 - [ ] Upload the seed workbook: Jurisdiction-Research-Seed-EU-Direct-NonLife v1.58 or later (Scopes, Taxes, Legislation, Sources, Forms tabs).
 - [ ] Supply the shared run library from the earlier runs' workspace: work/lib/run_lib.py, classes.py, translit.py, and the run data files (e.g. as a zip or a repository). Needed for the formal run pages, PDFs, client templates and model scoring.
 
+## EU_SE Sweden (SE-1, statute reading v0.01, 2026-11-13)
+Notes: research/EU_SE/EU_SE_SE-1_working-notes_v0.01.md
+
+### Documents to supply
+- [ ] Seed rows for EU_SE: Taxes tab and Legislation L001 (not on the desk).
+- [ ] Skatteverket guidance on the motor TPL premium tax: registration as an excise taxpayer, tax representative approval for FOS insurers, the punktskattedeklaration e-service.
+- [ ] Confirm whether Sweden has any other insurance levy in scope (e.g. fire-service or guarantee scheme contributions) per the seed's Taxes tab.
+
+### Decisions needed
+- [ ] File the official SFL copy (Riksdagen, amended up to SFS 2026:1305) for desk DL-172.
+- [ ] Due date varies with the insurer's VAT position: record all three timetables and take the VAT position as client data at onboarding (recommended).
+
+### Research still to do (Claude)
+- [ ] SFL payment chapter (tax account) and nil-return position (rule 18); provider filing (P4).
+- [ ] Check S1 definitions against the current trafikskadelag and forsakringsrorelselag for consequential amendments.
+
 ## EEA_NO Norway (NO-1, statute reading v0.01, 2026-11-13)
 Notes: research/EEA_NO/EEA_NO_NO-1_working-notes_v0.01.md
 
