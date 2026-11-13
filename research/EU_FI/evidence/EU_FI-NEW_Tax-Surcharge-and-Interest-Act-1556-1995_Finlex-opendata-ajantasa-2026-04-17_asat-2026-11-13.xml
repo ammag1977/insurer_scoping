@@ -1,0 +1,1023 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:finlex="http://data.finlex.fi/schema/finlex" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <act contains="multipleVersions" name="main">
+        <meta>
+            <identification source="#organization_fi.finlex">
+                <FRBRWork>
+                    <FRBRthis value="/akn/fi/act/statute-consolidated/1995/1556/!main"/>
+                    <FRBRuri value="/akn/fi/act/statute-consolidated/1995/1556"/>
+                    <FRBRalias name="eli" value="http://data.finlex.fi/eli/sd/1995/1556/ajantasa"/>
+                    <FRBRdate date="1995-01-01" name="dateIssuedGenerated"/>
+                    <FRBRdate date="1995-12-22" name="datePublished"/>
+                    <FRBRauthor as="#role_author" href="#organization_fi.finlex"/>
+                    <FRBRcountry value="fi"/>
+                    <FRBRsubtype value="statute-consolidated"/>
+                    <FRBRnumber value="1556"/>
+                    <FRBRprescriptive value="false"/>
+                    <FRBRauthoritative value="false"/>
+                </FRBRWork>
+                <FRBRExpression>
+                    <FRBRthis value="/akn/fi/act/statute-consolidated/1995/1556/fin@20260291/!main"/>
+                    <FRBRuri value="/akn/fi/act/statute-consolidated/1995/1556/fin@20260291"/>
+                    <FRBRalias name="eli" value="http://data.finlex.fi/eli/sd/1995/1556/ajantasa/2026-04-17/fin"/>
+                    <FRBRdate date="1995-01-01" name="dateIssuedGenerated"/>
+                    <FRBRdate date="2026-04-17" name="dateConsolidated"/>
+                    <FRBRauthor as="#role_author" href="#organization_fi.finlex"/>
+                    <FRBRversionNumber value="20260291"/>
+                    <FRBRlanguage language="fin"/>
+                </FRBRExpression>
+                <FRBRManifestation>
+                    <FRBRthis value="/akn/fi/act/statute-consolidated/1995/1556/fin@20260291/!main.xml"/>
+                    <FRBRuri value="/akn/fi/act/statute-consolidated/1995/1556/fin@20260291.akn"/>
+                    <FRBRalias name="eli" value="http://data.finlex.fi/eli/sd/1995/1556/ajantasa/2026-04-17/fin/xml"/>
+                    <FRBRdate date="2026-10-16" name="dateProduced"/>
+                    <FRBRdate date="1995-12-22" name="datePublished"/>
+                    <FRBRauthor as="#role_editor" href="#organization_fi.finlex"/>
+                    <FRBRformat value="xml"/>
+                </FRBRManifestation>
+            </identification>
+            <classification source="#organization_fi.finlex">
+                <keyword dictionary="/akn/ontology/concept/statute-keyword" showAs="Korko" value="/akn/ontology/concept/statute-keyword.2103"/>
+                <keyword dictionary="/akn/ontology/concept/statute-keyword" showAs="Veronlisäys" value="/akn/ontology/concept/statute-keyword.4387"/>
+                <keyword dictionary="/akn/ontology/concept/statute-keyword" showAs="Viivekorko" value="/akn/ontology/concept/statute-keyword.4464"/>
+            </classification>
+            <references source="#organization_fi.finlex">
+                <TLCOrganization eId="organization_fi.finlex" href="/akn/ontology/organization/fi.finlex" showAs="Finlex"/>
+                <TLCRole eId="role_author" href="/akn/ontology/role/author" showAs="Tekijä"/>
+                <TLCRole eId="role_editor" href="/akn/ontology/role/editor" showAs="Toimittaja"/>
+                <TLCOrganization eId="fi.ministry-of-finance" href="/akn/ontology/organization/fi.ministry-of-finance" showAs="Valtiovarainministeriö"/>
+                <TLCConcept eId="act" href="/akn/ontology/concept/statute/type-statute.act" showAs="Laki"/>
+            </references>
+            <proprietary source="#organization_fi.finlex">
+                <finlex:documentYear>1995</finlex:documentYear>
+                <finlex:administrativeBranch refersTo="#fi.ministry-of-finance"/>
+                <finlex:typeStatute refersTo="#act"/>
+                <finlex:isInForce value="true"/>
+                <finlex:inForce>
+                    <finlex:dateEntryIntoForce date="1996-01-01"/>
+                </finlex:inForce>
+                <finlex:repeals>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute-consolidated/1976/145">145/1976</finlex:ref>
+                    </finlex:statuteReference>
+                </finlex:repeals>
+                <finlex:amendedBy>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute/2010/535">535/2010</finlex:ref>
+                        <finlex:inForce>
+                            <finlex:dateEntryIntoForce date="2010-09-01">1.9.2010</finlex:dateEntryIntoForce>
+                        </finlex:inForce>
+                        <finlex:noteEditorial>muutt. 2 §:ää</finlex:noteEditorial>
+                    </finlex:statuteReference>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute/2021/512">512/2021</finlex:ref>
+                        <finlex:inForce>
+                            <finlex:dateEntryIntoForce date="2021-06-21">21.6.2021</finlex:dateEntryIntoForce>
+                            <finlex:dateInForceEnd date="2021-08-31">31.8.2021</finlex:dateInForceEnd>
+                        </finlex:inForce>
+                        <finlex:noteEditorial>lis. 5 e §</finlex:noteEditorial>
+                    </finlex:statuteReference>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute/1997/1030">1030/1997</finlex:ref>
+                        <finlex:inForce>
+                            <finlex:dateEntryIntoForce date="1998-01-01">1.1.1998</finlex:dateEntryIntoForce>
+                        </finlex:inForce>
+                        <finlex:noteEditorial>muutt. 2 §:ää ja 4 §; ks. voim.tulosäännös</finlex:noteEditorial>
+                    </finlex:statuteReference>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute/2005/1081">1081/2005</finlex:ref>
+                        <finlex:inForce>
+                            <finlex:dateEntryIntoForce date="2006-01-01">1.1.2006</finlex:dateEntryIntoForce>
+                        </finlex:inForce>
+                        <finlex:noteEditorial>muutt. 5 §:ää</finlex:noteEditorial>
+                    </finlex:statuteReference>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute/2025/389">389/2025</finlex:ref>
+                        <finlex:inForce>
+                            <finlex:dateEntryIntoForce date="2025-11-15">15.11.2025</finlex:dateEntryIntoForce>
+                        </finlex:inForce>
+                        <finlex:noteEditorial>muutt. 5 b §:ää</finlex:noteEditorial>
+                    </finlex:statuteReference>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute/2008/255">255/2008</finlex:ref>
+                        <finlex:inForce>
+                            <finlex:dateEntryIntoForce date="2008-05-01">1.5.2008</finlex:dateEntryIntoForce>
+                        </finlex:inForce>
+                        <finlex:noteEditorial>muutt. 7 §:ää sekä 11 ja 12 §</finlex:noteEditorial>
+                    </finlex:statuteReference>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute/2017/51">51/2017</finlex:ref>
+                        <finlex:inForce>
+                            <finlex:dateEntryIntoForce date="2017-11-01">1.11.2017</finlex:dateEntryIntoForce>
+                        </finlex:inForce>
+                        <finlex:noteEditorial>muutt. 2, 3, 4, 5 ja 7 §:ää sekä 5 a, 5 b, 6, 7 a, 8–11 ja 12 §, lis. 5 c §</finlex:noteEditorial>
+                    </finlex:statuteReference>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute/2020/294">294/2020</finlex:ref>
+                        <finlex:inForce>
+                            <finlex:dateEntryIntoForce date="2020-05-01">1.5.2020</finlex:dateEntryIntoForce>
+                            <finlex:dateInForceEnd date="2020-08-31">31.8.2020</finlex:dateInForceEnd>
+                        </finlex:inForce>
+                        <finlex:noteEditorial>muutt. 4 §:ää; lis. 5 e §</finlex:noteEditorial>
+                    </finlex:statuteReference>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute/2009/614">614/2009</finlex:ref>
+                        <finlex:inForce>
+                            <finlex:dateEntryIntoForce date="2009-08-14">14.8.2009</finlex:dateEntryIntoForce>
+                        </finlex:inForce>
+                        <finlex:noteEditorial>muutt. 1 §:ää</finlex:noteEditorial>
+                    </finlex:statuteReference>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute/2020/485">485/2020</finlex:ref>
+                        <finlex:inForce>
+                            <finlex:dateEntryIntoForce date="2020-06-26">26.6.2020</finlex:dateEntryIntoForce>
+                        </finlex:inForce>
+                        <finlex:noteEditorial>muutt. 4 ja 5 e §:ää</finlex:noteEditorial>
+                    </finlex:statuteReference>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute/2018/20">20/2018</finlex:ref>
+                        <finlex:inForce>
+                            <finlex:dateEntryIntoForce date="2019-11-01">1.11.2019</finlex:dateEntryIntoForce>
+                            <finlex:noteEditorial/>
+                        </finlex:inForce>
+                    </finlex:statuteReference>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute/2020/786">786/2020</finlex:ref>
+                        <finlex:inForce>
+                            <finlex:dateEntryIntoForce date="2021-01-01">1.1.2021</finlex:dateEntryIntoForce>
+                        </finlex:inForce>
+                        <finlex:noteEditorial>muutt. 5 a, 5 b ja 7 §:ää</finlex:noteEditorial>
+                    </finlex:statuteReference>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute/2009/760">760/2009</finlex:ref>
+                        <finlex:inForce>
+                            <finlex:dateEntryIntoForce date="2009-10-21">21.10.2009</finlex:dateEntryIntoForce>
+                        </finlex:inForce>
+                        <finlex:noteEditorial>muutt. L:n 614/2009 voimaantulosäännöstä</finlex:noteEditorial>
+                    </finlex:statuteReference>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute/2025/1350">1350/2025</finlex:ref>
+                        <finlex:inForce>
+                            <finlex:dateEntryIntoForce date="2026-01-01">1.1.2026</finlex:dateEntryIntoForce>
+                        </finlex:inForce>
+                        <finlex:noteEditorial>muutt. 5 d §</finlex:noteEditorial>
+                    </finlex:statuteReference>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute/2016/787">787/2016</finlex:ref>
+                        <finlex:inForce>
+                            <finlex:dateEntryIntoForce date="2017-01-01">1.1.2017</finlex:dateEntryIntoForce>
+                        </finlex:inForce>
+                        <finlex:noteEditorial>muutt. 1, 2, 3, 4 ja 7 §:ää sekä 6 ja 8–12 §, lis. 5 a, 5 b, 7 a ja 11 a §</finlex:noteEditorial>
+                    </finlex:statuteReference>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute/2001/930">930/2001</finlex:ref>
+                        <finlex:inForce>
+                            <finlex:dateEntryIntoForce date="2001-01-01">1.1.2001</finlex:dateEntryIntoForce>
+                        </finlex:inForce>
+                        <finlex:noteEditorial>muutt. 2 §:ää ja 4 §</finlex:noteEditorial>
+                    </finlex:statuteReference>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute/2026/291">291/2026</finlex:ref>
+                        <finlex:inForce>
+                            <finlex:dateEntryIntoForce date="2026-05-01">1.5.2026</finlex:dateEntryIntoForce>
+                        </finlex:inForce>
+                        <finlex:noteEditorial>lis. 11 b §</finlex:noteEditorial>
+                    </finlex:statuteReference>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute/2022/439">439/2022</finlex:ref>
+                        <finlex:inForce>
+                            <finlex:dateEntryIntoForce date="2022-06-16">16.6.2022</finlex:dateEntryIntoForce>
+                        </finlex:inForce>
+                        <finlex:noteEditorial>muutt. 11 a §:ää</finlex:noteEditorial>
+                    </finlex:statuteReference>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute/2019/344">344/2019</finlex:ref>
+                        <finlex:inForce>
+                            <finlex:dateEntryIntoForce date="2019-11-01">1.11.2019</finlex:dateEntryIntoForce>
+                        </finlex:inForce>
+                        <finlex:noteEditorial>kum. 5 d §; muutt. 5 b §:ää</finlex:noteEditorial>
+                    </finlex:statuteReference>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute/2002/346">346/2002</finlex:ref>
+                        <finlex:inForce>
+                            <finlex:dateEntryIntoForce date="2002-07-01">1.7.2002</finlex:dateEntryIntoForce>
+                        </finlex:inForce>
+                        <finlex:noteEditorial>muutt. 2 §:ää ja 4 §</finlex:noteEditorial>
+                    </finlex:statuteReference>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute/2009/1261">1261/2009</finlex:ref>
+                        <finlex:inForce>
+                            <finlex:dateEntryIntoForce date="2010-01-01">1.1.2010</finlex:dateEntryIntoForce>
+                            <finlex:dateInForceEnd date="2010-12-31">31.12.2010</finlex:dateInForceEnd>
+                        </finlex:inForce>
+                        <finlex:noteEditorial>muutt. 2 §:ää ja 4 §</finlex:noteEditorial>
+                    </finlex:statuteReference>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute/2019/1581">1581/2019</finlex:ref>
+                        <finlex:inForce>
+                            <finlex:dateEntryIntoForce date="2020-01-01">1.1.2020</finlex:dateEntryIntoForce>
+                        </finlex:inForce>
+                        <finlex:noteEditorial>muutt. 5 a ja 5 c §:ää</finlex:noteEditorial>
+                    </finlex:statuteReference>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute/2023/1197">1197/2023</finlex:ref>
+                        <finlex:inForce>
+                            <finlex:dateEntryIntoForce date="2024-01-01">1.1.2024</finlex:dateEntryIntoForce>
+                        </finlex:inForce>
+                        <finlex:noteEditorial>lis. 5 d §</finlex:noteEditorial>
+                    </finlex:statuteReference>
+                </finlex:amendedBy>
+                <finlex:issuedUnderThisAct>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute-consolidated/2021/3">3/2021</finlex:ref>
+                    </finlex:statuteReference>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute-consolidated/2017/711">711/2017</finlex:ref>
+                    </finlex:statuteReference>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute-consolidated/2023/1143">1143/2023</finlex:ref>
+                    </finlex:statuteReference>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute-consolidated/2016/1">1/2016</finlex:ref>
+                    </finlex:statuteReference>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute-consolidated/2019/1011">1011/2019</finlex:ref>
+                    </finlex:statuteReference>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute-consolidated/2016/1097">1097/2016</finlex:ref>
+                    </finlex:statuteReference>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute-consolidated/2020/310">310/2020</finlex:ref>
+                    </finlex:statuteReference>
+                </finlex:issuedUnderThisAct>
+            </proprietary>
+        </meta>
+        <preface>
+            <p>
+                <docNumber>1556/1995</docNumber>
+                <docTitle>Laki veronlisäyksestä ja viivekorosta</docTitle>
+            </p>
+        </preface>
+        <preamble>
+            <formula eId="enactingClause" name="enactingClause">
+                <p>Eduskunnan päätöksen mukaisesti säädetään:</p>
+            </formula>
+        </preamble>
+        <body>
+            <hcontainer finlex:outline="Säädöksen teksti" name="statuteProvisionsWrapper">
+                <section eId="sec_1">
+                    <num>1 §</num>
+                    <heading eId="sec_1__heading">Soveltamisala</heading>
+                    <subsection eId="sec_1__subsec_1v20180020" finlex:originalVersion="@20180020" finlex:originalVersionLabel="12.1.2018/20">
+                        <content>
+                            <p>
+                                Jos veronkantolain 
+                                <ref href="/akn/fi/act/statute-consolidated/2018/11#sec_1">(11/2018) 1 §:ssä</ref>
+                                 tarkoitetun veron maksaminen määräaikana laiminlyödään, lasketaan verolle viivästysseuraamukset sen mukaan kuin tässä laissa säädetään. Tätä lakia sovelletaan myös muuhun valtiolle tai kunnalle suoritettavaan veroon ja veroon rinnastettavaan suoritukseen, jollei maksamisen laiminlyönnin tai viivästymisen seuraamuksista muussa laissa säädetä toisin.
+                            </p>
+                        </content>
+                    </subsection>
+                    <subsection eId="sec_1__subsec_2">
+                        <content>
+                            <p>Tätä lakia sovelletaan, jollei veronmaksun laiminlyönnin tai viivästymisen seuraamuksista muussa laissa säädetä toisin.</p>
+                        </content>
+                    </subsection>
+                </section>
+                <section eId="sec_2">
+                    <num>2 §</num>
+                    <heading eId="sec_2__heading">Veronlisäys</heading>
+                    <subsection eId="sec_2__subsec_1v20180020" finlex:originalVersion="@20180020" finlex:originalVersionLabel="12.1.2018/20">
+                        <content>
+                            <p>
+                                Muun kuin veronkantolain soveltamisalaan kuuluvan oma-aloitteisesti suoritettavan veron maksamatta jättämisen tai maksun viivästymisen vuoksi sekä jälkiverotuksen toimittamisen yhteydessä lasketaan verolle veronlisäys. Se on määrältään kutakin kalenterivuotta edeltävän puolivuotiskauden korkolain 
+                                <ref href="/akn/fi/act/statute-consolidated/1982/633#sec_12">(633/1982) 12 §:ssä</ref>
+                                 tarkoitettu viitekorko lisättynä seitsemällä prosenttiyksiköllä, yhteensä kuitenkin vähintään kolme euroa.
+                            </p>
+                        </content>
+                    </subsection>
+                    <subsection eId="sec_2__subsec_2v20100535" finlex:originalVersion="@20100535" finlex:originalVersionLabel="11.6.2010/535">
+                        <content>
+                            <p>Oma-aloitteisesti suoritettavalla verolla tarkoitetaan veroa tai maksua, jonka verovelvollinen tai verosta vastuussa oleva on velvollinen itse laskemaan ja suorittamaan laissa säädettynä maksupäivänä Verohallinnolle tai muulle veroa kantavalle viranomaiselle.</p>
+                        </content>
+                    </subsection>
+                </section>
+                <section eId="sec_3">
+                    <num>3 §</num>
+                    <heading eId="sec_3__heading">Veronlisäyksen laskeminen</heading>
+                    <subsection eId="sec_3__subsec_1">
+                        <content>
+                            <p>Veronlisäys lasketaan veron laissa säädettyä viimeistä maksupäivää seuraavasta päivästä maksupäivään, viimeksi mainittu päivä mukaan lukien.</p>
+                        </content>
+                    </subsection>
+                    <subsection eId="sec_3__subsec_2">
+                        <content>
+                            <p>Jos maksamatta jätetty vero maksuunpannaan, veronlisäys lasketaan kuitenkin verolle määrättävään eräpäivään, viimeksi mainittu päivä mukaan lukien.</p>
+                        </content>
+                    </subsection>
+                    <subsection eId="sec_3__subsec_3v20170051" finlex:originalVersion="@20170051" finlex:originalVersionLabel="27.1.2017/51">
+                        <content>
+                            <p>Muiden kuin oma-aloitteisesti suoritettavien verojen jälkiverotuksen toimittamisen yhteydessä veronlisäys lasketaan verotuksen päättymiskuukautta seuraavan kolmannen kuukauden alusta verolle määrättävään eräpäivään.</p>
+                        </content>
+                    </subsection>
+                </section>
+                <section eId="sec_4v20020346" finlex:originalVersion="@20020346" finlex:originalVersionLabel="3.5.2002/346">
+                    <num>4 §</num>
+                    <heading eId="sec_4v20020346__headingv20020346">Viivekorko</heading>
+                    <subsection eId="sec_4v20020346__subsec_1v20020346">
+                        <content>
+                            <p>
+                                Maksuunpannulle ja maksettavaksi erääntyneelle maksamattomalle verolle lasketaan viivekorko, joka on määrältään kutakin kalenterivuotta edeltävän puolivuotiskauden 
+                                <ref href="/akn/fi/act/statute-consolidated/1982/633#sec_12">korkolain 12 §:ssä</ref>
+                                 tarkoitettu viitekorko lisättynä seitsemällä prosenttiyksiköllä, yhteensä kuitenkin vähintään kolme euroa.
+                            </p>
+                        </content>
+                    </subsection>
+                    <subsection eId="sec_4v20020346__subsec_2v20180020" finlex:originalVersion="@20180020" finlex:originalVersionLabel="12.1.2018/20">
+                        <content>
+                            <p>Edellä 1 momentissa säädettyä ei sovelleta veronkantolain soveltamisalaan kuuluvaan veroon.</p>
+                        </content>
+                    </subsection>
+                    <subsection eId="sec_4v20020346__subsec_3v20200485" finlex:originalVersion="@20200485" finlex:originalVersionLabel="26.6.2020/485">
+                        <content>
+                            <p>3 momentti oli väliaikaisesti voimassa 1.5.2020–31.8.2020 L:lla 294/2020.</p>
+                        </content>
+                    </subsection>
+                    <subsection eId="sec_4v20020346__subsec_4v20200294" finlex:originalVersion="@20200294" finlex:originalVersionLabel="30.4.2020/294">
+                        <content>
+                            <p>4 momentti oli väliaikaisesti voimassa 1.5.2020–31.8.2020 L:lla 294/2020.</p>
+                        </content>
+                    </subsection>
+                </section>
+                <section eId="sec_5">
+                    <num>5 §</num>
+                    <heading eId="sec_5__heading">Viivekoron laskeminen</heading>
+                    <subsection eId="sec_5__subsec_1">
+                        <content>
+                            <p>Viivekorko lasketaan verolle määrättyä eräpäivää seuraavasta päivästä maksupäivään, viimeksi mainittu päivä mukaan lukien.</p>
+                        </content>
+                    </subsection>
+                    <subsection eId="sec_5__subsec_2v20170051" finlex:originalVersion="@20170051" finlex:originalVersionLabel="27.1.2017/51">
+                        <content>
+                            <p>
+                                <i>
+                                    2 momentti on kumottu L:lla 
+                                    <ref href="#entryIntoForce_20170051">27.1.2017/51</ref>.
+                                </i>
+                            </p>
+                        </content>
+                    </subsection>
+                    <subsection eId="sec_5__subsec_3">
+                        <content>
+                            <p>Jos maksamatta jätettyä veroa maksetaan osasuorituksin, viivekorko lasketaan erikseen kulloinkin maksamatta olevalle määrälle.</p>
+                        </content>
+                    </subsection>
+                </section>
+                <section eId="sec_5av20170051" finlex:originalVersion="@20170051" finlex:originalVersionLabel="27.1.2017/51">
+                    <num>5 a §</num>
+                    <heading eId="sec_5av20170051__headingv20170051">Viivästyskorko ja huojennettu viivästyskorko</heading>
+                    <subsection eId="sec_5av20170051__subsec_1v20200786" finlex:originalVersion="@20200786" finlex:originalVersionLabel="13.11.2020/786">
+                        <content>
+                            <p>
+                                Viivästyskorkoa lasketaan maksamatta jätetylle veronkantolain soveltamisalaan kuuluvalle verolle, verotusmenettelystä annetun lain 
+                                <ref href="/akn/fi/act/statute-consolidated/1995/1558#sec_57">(1558/1995) 57 §:ssä</ref>
+                                 tarkoitetun verotuksen oikaisun yhteydessä määrättävälle verolle, valmisteverotuslain 11 a §:n 1 momentissa ja 82 a §:n 1 momentissa tarkoitetussa tilanteessa määrättävälle valmisteverolle ja autoverolain 
+                                <ref href="/akn/fi/act/statute-consolidated/2020/777#sec_89">(777/2020) 89 §:ssä</ref>
+                                 tarkoitetun verotuksen toimittamisen tai oikaisun yhteydessä määrättävälle autoverolle. Viivästyskorko on kutakin kalenterivuotta edeltävän puolivuotiskauden 
+                                <ref href="/akn/fi/act/statute-consolidated/1982/633#sec_12">korkolain 12 §:ssä</ref>
+                                 tarkoitettu viitekorko lisättynä seitsemällä prosenttiyksiköllä.
+                            </p>
+                        </content>
+                    </subsection>
+                    <subsection eId="sec_5av20170051__subsec_2v20191581" finlex:originalVersion="@20191581" finlex:originalVersionLabel="30.12.2019/1581">
+                        <content>
+                            <p>
+                                Verotusmenettelystä annetussa laissa tarkoitetulle jäännösverolle ja verotuksen muutoksesta johtuvalle verolle sekä ennakkoperintälaissa tarkoitetulle ennakolle, joka erääntyy verovuoden päättymistä seuraavan kuukauden jälkeen, lasketaan korkoa, joka on kutakin kalenterivuotta edeltävänä puolivuotiskautena voimassa oleva 
+                                <ref href="/akn/fi/act/statute-consolidated/1982/633#sec_12">korkolain 12 §:ssä</ref>
+                                 tarkoitettu viitekorko lisättynä kahdella prosenttiyksiköllä, kuitenkin vähintään 0,5 prosenttia (<i>huojennettu viivästyskorko</i>). Huojennettua viivästyskorkoa lasketaan myös verotusmenettelystä annetun lain 50 a §:n mukaisille maksuerille.
+                            </p>
+                        </content>
+                    </subsection>
+                    <subsection eId="sec_5av20170051__subsec_3v20170051">
+                        <content>
+                            <p>Viivästyskorkoa ei lasketa veronlisäykselle, viivästyskorolle eikä huojennetulle viivästyskorolle.</p>
+                        </content>
+                    </subsection>
+                </section>
+                <section eId="sec_5bv20170051" finlex:originalVersion="@20170051" finlex:originalVersionLabel="27.1.2017/51">
+                    <num>5 b §</num>
+                    <heading eId="sec_5bv20170051__headingv20170051">Viivästyskoron laskeminen</heading>
+                    <subsection eId="sec_5bv20170051__subsec_1v20170051">
+                        <content>
+                            <p>Viivästyskorko lasketaan maksamatta olevalle verolle eräpäivää seuraavasta päivästä veron suorittamispäivään.</p>
+                        </content>
+                    </subsection>
+                    <subsection eId="sec_5bv20170051__subsec_2v20190344" finlex:originalVersion="@20190344" finlex:originalVersionLabel="15.3.2019/344">
+                        <content>
+                            <p>
+                                Veronkantolain 7 §:ssä tarkoitetulle ja arvonlisäverolain 
+                                <ref href="/akn/fi/act/statute-consolidated/1993/1501#chp_12a">(1501/1993) 12 a luvussa</ref>
+                                 tarkoitetun erityisjärjestelmän kautta suoritettavalle verolle lasketaan viivästyskorkoa veron laissa säädettyä viimeistä maksupäivää seuraavasta päivästä veron suorittamispäivään. Verohallinnon määräämälle veronkantolain 7 §:ssä tarkoitettua veroa tai muuta veronkantolain soveltamisalaan kuuluvaa oma-aloitteista veroa koskevalle myöhästymismaksulle, veronkorotukselle, laiminlyöntimaksulle ja mainitun lain 34 §:n nojalla takaisin perittävälle palautukselle viivästyskorko lasketaan kuitenkin verotuspäätöksellä määrättyä eräpäivää seuraavasta päivästä veron tai maksun suorittamispäivään.
+                            </p>
+                        </content>
+                    </subsection>
+                    <subsection eId="sec_5bv20170051__subsec_3v20180020" finlex:originalVersion="@20180020" finlex:originalVersionLabel="12.1.2018/20">
+                        <content>
+                            <p>Varainsiirtoverolle lasketaan viivästyskorkoa veron maksamiselle säädettyä määräpäivää seuraavasta päivästä veron suorittamispäivään. Verohallinnon määräämälle varainsiirtoveroa koskevalle myöhästymismaksulle ja veronkorotukselle lasketaan viivästyskorkoa kuitenkin verotuspäätöksellä määrättyä eräpäivää seuraavasta päivästä veron tai maksun suorittamispäivään.</p>
+                        </content>
+                    </subsection>
+                    <subsection eId="sec_5bv20170051__subsec_4v20180020" finlex:originalVersion="@20180020" finlex:originalVersionLabel="12.1.2018/20">
+                        <content>
+                            <p>Verotusmenettelystä annetun lain 57 §:ssä tarkoitettu viivästyskorko lasketaan jäännösveron tai kiinteistöveron ensimmäistä eräpäivää seuraavasta päivästä verotuksen muutoksen johdosta määrättävän veron eräpäivään.</p>
+                        </content>
+                    </subsection>
+                    <subsection eId="sec_5bv20170051__subsec_5v20200786" finlex:originalVersion="@20200786" finlex:originalVersionLabel="13.11.2020/786">
+                        <content>
+                            <p>Valmisteverotuslain 11 a §:n 1 momentissa ja 82 a §:n 1 momentissa tarkoitetussa tilanteessa määrätylle valmisteverolle lasketaan viivästyskorkoa veron suorittamisvelvollisuuden syntypäivää seuraavasta päivästä veron suorittamispäivään.</p>
+                        </content>
+                    </subsection>
+                    <subsection eId="sec_5bv20170051__subsec_6v20200786" finlex:originalVersion="@20200786" finlex:originalVersionLabel="13.11.2020/786">
+                        <content>
+                            <p>Autoverolain 89 §:ssä tarkoitettu viivästyskorko lasketaan jaksokohtaisessa verotuksessa laissa säädettyä eräpäivää seuraavasta päivästä määrättävän veron eräpäivään.</p>
+                        </content>
+                    </subsection>
+                    <subsection eId="sec_5bv20170051__subsec_7v20200786" finlex:originalVersion="@20200786" finlex:originalVersionLabel="13.11.2020/786">
+                        <content>
+                            <p>Autoverolain 89 §:ssä tarkoitettu viivästyskorko lasketaan ajoneuvokohtaisessa verotuksessa veron suorittamisvelvollisuuden syntypäivää seuraavan kolmannen kalenterikuukauden 25. päivästä määrättävän veron eräpäivään. Jos ajoneuvon verotus toimitetaan ajoneuvokohtaisessa verotuksessa viranomaisaloitteisesti sillä perusteella, että ajoneuvo on otettu käyttöön veroilmoitusta antamatta, autoverolle lasketaan kuitenkin viivästyskorkoa sitä päivää seuraavasta päivästä, jona veron suorittamisvelvollisuus on syntynyt, määrättävän veron eräpäivään.</p>
+                        </content>
+                    </subsection>
+                    <subsection eId="sec_5bv20170051__subsec_8v20200786" finlex:originalVersion="@20200786" finlex:originalVersionLabel="13.11.2020/786">
+                        <content>
+                            <p>Autoverolain 89 §:ssä tarkoitetulle liikaa palautetulle määrälle lasketaan 6 ja 7 momentista poiketen viivästyskorkoa sitä päivää seuraavasta päivästä, jona liikaa palautettu määrä on käytetty veron suoritukseksi tai veloitettu Verohallinnon tililtä, verotuksen oikaisun johdosta määrätyn veron eräpäivään.</p>
+                        </content>
+                    </subsection>
+                    <subsection eId="sec_5bv20170051__subsec_9v20250389" finlex:originalVersion="@20250389" finlex:originalVersionLabel="27.6.2025/389">
+                        <content>
+                            <p>Jos maksu käytetään veron suoritukseksi myöhemmin kuin maksupäivänä, viivästyskorko lasketaan maksun maksupäivään.</p>
+                        </content>
+                    </subsection>
+                    <hcontainer eId="note_1" finlex:outline="huomautus" name="noteAuthorial">
+                        <content>
+                            <p>
+                                L:lla 
+                                <ref href="/akn/fi/act/statute/2025/389">389/2025</ref>
+                                  lisätty 9 momentti tuli voimaan 15.11.2025
+                            </p>
+                        </content>
+                    </hcontainer>
+                    <subsection eId="sec_5bv20170051__subsec_10v20250389" finlex:originalVersion="@20250389" finlex:originalVersionLabel="27.6.2025/389">
+                        <content>
+                            <p>Jos veron suoritukseksi käytetään veronkantolain 24 §:n 3 momentissa tarkoitettua palautusta, viivästyskorko lasketaan palautuksen perusteena olevan vero- tai oikaisuilmoituksen antopäivään.</p>
+                        </content>
+                    </subsection>
+                    <hcontainer eId="note_2" finlex:outline="huomautus" name="noteAuthorial">
+                        <content>
+                            <p>
+                                L:lla 
+                                <ref href="/akn/fi/act/statute/2025/389">389/2025</ref>
+                                  lisätty 10 momentti tuli voimaan 15.11.2025
+                            </p>
+                        </content>
+                    </hcontainer>
+                </section>
+                <section eId="sec_5cv20170051" finlex:originalVersion="@20170051" finlex:originalVersionLabel="27.1.2017/51">
+                    <num>5 c §</num>
+                    <heading eId="sec_5cv20170051__headingv20170051">Huojennetun viivästyskoron laskeminen</heading>
+                    <subsection eId="sec_5cv20170051__subsec_1v20170051">
+                        <content>
+                            <p>Jäännösverolle lasketaan huojennettua viivästyskorkoa verovuoden päättymistä seuraavan toisen kuukauden ensimmäisestä päivästä jäännösveron ensimmäisen erän eräpäivään.</p>
+                        </content>
+                    </subsection>
+                    <subsection eId="sec_5cv20170051__subsec_2v20170051">
+                        <content>
+                            <p>Verovuoden päättymistä seuraavan kuukauden jälkeen erääntyvälle ennakolle lasketaan huojennettua viivästyskorkoa verovuoden päättymistä seuraavan toisen kuukauden ensimmäisestä päivästä ennakon eräpäivään.</p>
+                        </content>
+                    </subsection>
+                    <subsection eId="sec_5cv20170051__subsec_3v20191581" finlex:originalVersion="@20191581" finlex:originalVersionLabel="30.12.2019/1581">
+                        <content>
+                            <p>Verotusmenettelystä annetun lain 50 a §:n mukaisille maksuerille huojennettu viivästyskorko lasketaan verovuoden päättymistä seuraavan toisen kuukauden ensimmäisestä päivästä kunkin maksuerän eräpäivään. Jos maksunlykkäys keskeytetään, huojennettua viivästyskorkoa lasketaan keskeyttämisen perusteella määrättyyn uuteen eräpäivään.</p>
+                        </content>
+                    </subsection>
+                    <subsection eId="sec_5cv20170051__subsec_4v20170051">
+                        <content>
+                            <p>Verotuksen muutoksesta johtuvalle verolle lasketaan huojennettua viivästyskorkoa verovuoden päättymistä seuraavan toisen kuukauden ensimmäisestä päivästä verolle määrättävään eräpäivään. Huojennettua viivästyskorkoa ei kuitenkaan lasketa ajalta, jolta verolle lasketaan viivästyskorkoa.</p>
+                        </content>
+                    </subsection>
+                    <subsection eId="sec_5cv20170051__subsec_5v20170051">
+                        <content>
+                            <p>Jos verotuksen muutoksen johdosta maksettavaa veroa on palautettu verovelvolliselle veronpalautuksena, huojennettu viivästyskorko lasketaan tältä osin veronpalautuksen palautuspäivää seuraavasta päivästä verolle määrättävään eräpäivään.</p>
+                        </content>
+                    </subsection>
+                    <subsection eId="sec_5cv20170051__subsec_6v20170051">
+                        <content>
+                            <p>Verovuoden verotuksen päättyessä määrättävälle jäännösverolle laskettavasta huojennetusta viivästyskorosta vähennetään 20 euroa, kuitenkin enintään koron määrä. </p>
+                        </content>
+                    </subsection>
+                    <subsection eId="sec_5cv20170051__subsec_7v20180020" finlex:originalVersion="@20180020" finlex:originalVersionLabel="12.1.2018/20">
+                        <content>
+                            <p>Huojennettua viivästyskorkoa ei lasketa veronkorotukselle eikä myöhästymismaksulle.</p>
+                        </content>
+                    </subsection>
+                </section>
+                <section eId="sec_5dv20251350" finlex:originalVersion="@20251350" finlex:originalVersionLabel="22.12.2025/1350">
+                    <num>5 d §</num>
+                    <heading eId="sec_5dv20251350__headingv20251350">Maksamatta olevalle perintöverolle laskettava viivästyskorko</heading>
+                    <subsection eId="sec_5dv20251350__subsec_1v20251350">
+                        <content>
+                            <p>
+                                Maksamatta olevalle perintöverolle laskettava viivästyskorko on 5 a §:stä poiketen kutakin kalenterivuotta edeltävän puolivuotiskauden 
+                                <ref href="/akn/fi/act/statute-consolidated/1982/633#sec_12">korkolain 12 §:ssä</ref>
+                                 tarkoitettu viitekorko lisättynä kahdella prosenttiyksiköllä.
+                            </p>
+                        </content>
+                    </subsection>
+                </section>
+                <hcontainer eId="note_3" finlex:outline="huomautus" name="noteAuthorial">
+                    <content>
+                        <p>
+                            L:lla 
+                            <ref href="/akn/fi/act/statute/2025/1350">1350/2025</ref>
+                             muutettu 5 d § tuli voimaan 1.1.2026. Aiempi sanamuoto kuuluu:
+                        </p>
+                    </content>
+                </hcontainer>
+                <section eId="sec_5dv20231197" finlex:originalVersion="@20231197" finlex:originalVersionLabel="21.12.2023/1197">
+                    <num>5 d §</num>
+                    <heading eId="sec_5dv20231197__headingv20231197">Maksamatta olevalle perintöverolle laskettava viivästyskorko</heading>
+                    <subsection eId="sec_5dv20231197__subsec_1v20231197">
+                        <content>
+                            <p>
+                                Maksamatta olevalle perintöverolle laskettava viivästyskorko on 5 a §:stä poiketen kutakin kalenterivuotta edeltävän puolivuotiskauden 
+                                <ref href="/akn/fi/act/statute-consolidated/1982/633#sec_12">korkolain 12 §:ssä</ref>
+                                 tarkoitettu viitekorko lisättynä 3,5 prosenttiyksiköllä.
+                            </p>
+                        </content>
+                    </subsection>
+                </section>
+                <section eId="sec_5ev20210512" finlex:originalVersion="@20210512" finlex:originalVersionLabel="18.6.2021/512">
+                    <num>5 e §</num>
+                    <subsection eId="sec_5ev20210512__subsec_1v20210512">
+                        <content>
+                            <p>5 e § oli väliaikaisesti voimassa 21.6.2021–31.8.2021 L:lla 512/2021.</p>
+                        </content>
+                    </subsection>
+                </section>
+                <section eId="sec_6v20170051" finlex:originalVersion="@20170051" finlex:originalVersionLabel="27.1.2017/51">
+                    <num>6 §</num>
+                    <heading eId="sec_6v20170051__headingv20170051">Viivekoron ja viivästyskorkojen palauttaminen</heading>
+                    <subsection eId="sec_6v20170051__subsec_1v20170051">
+                        <content>
+                            <p>Jos veroa on viranomaisen muulla kuin verosta vapauttamista koskevalla päätöksellä alennettu tai se on poistettu, alennetulle tai poistetulle määrälle kertynyt viivekorko, viivästyskorko tai huojennettu viivästyskorko on palautettava.</p>
+                        </content>
+                    </subsection>
+                </section>
+                <section eId="sec_7">
+                    <num>7 §</num>
+                    <heading eId="sec_7__headingv20170051" finlex:originalVersion="@20170051" finlex:originalVersionLabel="27.1.2017/51">
+                        Veronlisäyksen, viivekoron ja viivästyskorkojen perimättä jättäminen 
+                        <ref href="#entryIntoForce_20170051">(27.1.2017/51)</ref>
+                    </heading>
+                    <subsection eId="sec_7__subsec_1">
+                        <content>
+                            <p>Veronkorotukselle tai muulle veroa maksuunpantaessa sen pääomaan liitettävälle erälle ei peritä veronlisäystä. Veronlisäykselle ei peritä viivekorkoa.</p>
+                        </content>
+                    </subsection>
+                    <subsection eId="sec_7__subsec_2v20170051" finlex:originalVersion="@20170051" finlex:originalVersionLabel="27.1.2017/51">
+                        <content>
+                            <p>Verohallinnon ja muun veroa kantavan viranomaisen on jätettävä veronlisäys, viivekorko, viivästyskorko ja huojennettu viivästyskorko kokonaan tai osittain perimättä, jos veron maksaminen on viivästynyt viranomaisen menettelyn vuoksi.</p>
+                        </content>
+                    </subsection>
+                    <subsection eId="sec_7__subsec_3v20200786" finlex:originalVersion="@20200786" finlex:originalVersionLabel="13.11.2020/786">
+                        <content>
+                            <p>Verohallinto voi jättää viivästyskoron ja huojennetun viivästyskoron kokonaan tai osittain perimättä, jos maksaminen on viivästynyt verovelvollisesta riippumattomasta syystä, pätevästä syystä tai muusta erityisestä syystä.</p>
+                        </content>
+                    </subsection>
+                </section>
+                <section eId="sec_7av20170051" finlex:originalVersion="@20170051" finlex:originalVersionLabel="27.1.2017/51">
+                    <num>7 a §</num>
+                    <heading eId="sec_7av20170051__headingv20170051">Tarkemmat säännökset veronlisäyksen, viivekoron ja viivästyskorkojen perimättä jättämisestä</heading>
+                    <subsection eId="sec_7av20170051__subsec_1v20170051">
+                        <content>
+                            <p>Valtiovarainministeriön asetuksella voidaan säätää, että veronlisäystä, viivekorkoa, viivästyskorkoa tai huojennettua viivästyskorkoa ei peritä ajalta, jolta maksaminen on viivästynyt verovelvollisista riippumattomien esteiden vuoksi.</p>
+                        </content>
+                    </subsection>
+                </section>
+                <section eId="sec_8v20170051" finlex:originalVersion="@20170051" finlex:originalVersionLabel="27.1.2017/51">
+                    <num>8 §</num>
+                    <heading eId="sec_8v20170051__headingv20170051">Veronlisäyksen, viivekoron ja viivästyskorkojen periminen ulosottotoimin</heading>
+                    <subsection eId="sec_8v20170051__subsec_1v20170051">
+                        <content>
+                            <p>
+                                Veronlisäyksen, viivekoron, viivästyskoron ja huojennetun viivästyskoron perimisestä ulosottotoimin säädetään verojen ja maksujen täytäntöönpanosta annetussa laissa 
+                                <ref href="/akn/fi/act/statute-consolidated/2007/706">(706/2007)</ref>. 
+                            </p>
+                        </content>
+                    </subsection>
+                </section>
+                <section eId="sec_9v20170051" finlex:originalVersion="@20170051" finlex:originalVersionLabel="27.1.2017/51">
+                    <num>9 §</num>
+                    <heading eId="sec_9v20170051__headingv20170051">Veronlisäyksen, viivekoron ja viivästyskorkojen tilittäminen veronsaajille</heading>
+                    <subsection eId="sec_9v20170051__subsec_1v20170051">
+                        <content>
+                            <p>Veronlisäys, viivekorko, viivästyskorko ja huojennettu viivästyskorko tilitetään veronsaajille samassa suhteessa kuin se vero, jonka maksamatta jättämisen tai maksun viivästymisen vuoksi veronlisäys, viivekorko, viivästyskorko ja huojennettu viivästyskorko peritään.</p>
+                        </content>
+                    </subsection>
+                </section>
+                <section eId="sec_10v20170051" finlex:originalVersion="@20170051" finlex:originalVersionLabel="27.1.2017/51">
+                    <num>10 §</num>
+                    <heading eId="sec_10v20170051__headingv20170051">Veronlisäys, viivekorko ja viivästyskorot tuloverotuksessa</heading>
+                    <subsection eId="sec_10v20170051__subsec_1v20170051">
+                        <content>
+                            <p>Veronlisäys, viivekorko, viivästyskorko ja huojennettu viivästyskorko eivät ole tuloverotuksessa veronalaista tuloa eivätkä vähennyskelpoista menoa.</p>
+                        </content>
+                    </subsection>
+                </section>
+                <section eId="sec_11v20170051" finlex:originalVersion="@20170051" finlex:originalVersionLabel="27.1.2017/51">
+                    <num>11 §</num>
+                    <heading eId="sec_11v20170051__headingv20170051">Palauttaminen</heading>
+                    <subsection eId="sec_11v20170051__subsec_1v20170051">
+                        <content>
+                            <p>Verohallinto tai muu veron kantanut viranomainen palauttaa vaatimuksesta virheellisesti perityn veronlisäyksen, viivekoron, viivästyskoron ja huojennetun viivästyskoron. Muutoin toteamansa aiheettoman veronlisäyksen, viivekoron, viivästyskoron tai huojennetun viivästyskoron viranomainen palauttaa vaatimuksetta, jollei sitä ole käytettävä veronkantolain säännösten mukaisesti verovelan lyhennykseksi.</p>
+                        </content>
+                    </subsection>
+                </section>
+                <section eId="sec_11av20160787" finlex:originalVersion="@20160787" finlex:originalVersionLabel="9.9.2016/787">
+                    <num>11 a § </num>
+                    <heading eId="sec_11av20160787__headingv20160787">Muutoksenhaku</heading>
+                    <subsection eId="sec_11av20160787__subsec_1v20160787">
+                        <content>
+                            <p>Verovelvollinen, muu verosta vastuussa oleva ja Veronsaajien oikeudenvalvontayksikkö saavat hakea muutosta Verohallinnon tämän lain nojalla antamaan päätökseen. Muutosta haetaan verotuksen oikaisulautakunnalta kirjallisella oikaisuvaatimuksella. Oikaisuvaatimus on tehtävä 60 päivän kuluessa siitä, kun muutoksenhakija on saanut tiedon Verohallinnon päätöksestä. Päätös voidaan antaa tiedoksi verovelvolliselle tai verosta vastuussa olevalle siten kuin verotusmenettelystä annetun lain 26 c §:ssä säädetään. Veronsaajien oikeudenvalvontayksikön määräaika lasketaan kuitenkin päätöksen tekemisestä. Menettelyyn sovelletaan muutoin, mitä oikaisuvaatimusta koskevasta menettelystä verotusmenettelystä annetussa laissa säädetään.</p>
+                        </content>
+                    </subsection>
+                    <subsection eId="sec_11av20160787__subsec_2v20160787">
+                        <content>
+                            <p>Verovelvollinen ja Veronsaajien oikeudenvalvontayksikkö saavat hakea oikaisuvaatimukseen annettuun päätökseen muutosta valittamalla siihen hallinto-oikeuteen, jonka tuomiopiiriin verovelvollisen kotikunta Verohallinnon päätöstä tehtäessä kuului. Valitusaika on 60 päivää oikaisuvaatimukseen annetun päätöksen tiedoksisaannista. Veronsaajien oikeudenvalvontayksikön valitusaika lasketaan oikaisuvaatimuksen johdosta annetun päätöksen tekemisestä. Menettelyyn sovelletaan muutoin, mitä valitusta koskevasta menettelystä verotusmenettelystä annetussa laissa säädetään. </p>
+                        </content>
+                    </subsection>
+                    <subsection eId="sec_11av20160787__subsec_3v20220439" finlex:originalVersion="@20220439" finlex:originalVersionLabel="10.6.2022/439">
+                        <content>
+                            <p>Muun viranomaisen kuin Verohallinnon tämän lain nojalla antamaan päätökseen haetaan muutosta valittamalla siihen hallinto-oikeuteen, jonka tuomiopiiriin vero- tai maksuvelvollisen kotikunta päätöstä tehtäessä kuului. </p>
+                        </content>
+                    </subsection>
+                    <subsection eId="sec_11av20160787__subsec_4v20220439" finlex:originalVersion="@20220439" finlex:originalVersionLabel="10.6.2022/439">
+                        <content>
+                            <p> Valitus korkeimpaan hallinto-oikeuteen on tehtävä 60 päivän kuluessa hallinto-oikeuden päätöksen tiedoksisaannista. </p>
+                        </content>
+                    </subsection>
+                    <subsection eId="sec_11av20160787__subsec_5v20220439" finlex:originalVersion="@20220439" finlex:originalVersionLabel="10.6.2022/439">
+                        <content>
+                            <p>
+                                Muutoksenhaussa sovelletaan muutoin, mitä oikeudenkäynnistä hallintoasioissa annetussa laissa 
+                                <ref href="/akn/fi/act/statute-consolidated/2019/808">(808/2019)</ref>
+                                 säädetään.
+                            </p>
+                        </content>
+                    </subsection>
+                    <subsection eId="sec_11av20160787__subsec_6v20220439" finlex:originalVersion="@20220439" finlex:originalVersionLabel="10.6.2022/439">
+                        <content>
+                            <p>Verovelvollinen ja Veronsaajien oikeudenvalvontayksikkö saavat hakea muutosta 2 momentissa tarkoitettuun verotuksen oikaisulautakunnan päätökseen ennakkopäätösvalituksella. Ennakkopäätösvalituksesta säädetään verotusmenettelystä annetun lain 71 a–71 d §:ssä.</p>
+                        </content>
+                    </subsection>
+                </section>
+                <section eId="sec_11bv20260291" finlex:originalVersion="@20260291" finlex:originalVersionLabel="17.4.2026/291">
+                    <num>11 b §</num>
+                    <heading eId="sec_11bv20260291__headingv20260291">Määräajoista poikkeaminen vakavassa häiriötilanteessa</heading>
+                    <subsection eId="sec_11bv20260291__subsec_1v20260291">
+                        <content>
+                            <p>Jos mahdollisuus noudattaa tässä laissa tai tämän lain nojalla säädettyjä määräaikoja on estynyt tai merkittävästi vaikeutunut sähkönjakelun, tietoliikenteen, tietojärjestelmän tai pankkien maksuliikenteen vakavasta häiriötilanteesta tai muusta vastaavasta syystä johtuen, valtioneuvoston asetuksella voidaan säätää mainittuihin määräaikoihin tilapäisiä ja välttämättömiä pidennyksiä. Asetuksella ei kuitenkaan voida pidentää valituksia koskevia määräaikoja.</p>
+                        </content>
+                    </subsection>
+                </section>
+                <hcontainer eId="note_4" finlex:outline="huomautus" name="noteAuthorial">
+                    <content>
+                        <p>
+                            L:lla 
+                            <ref href="/akn/fi/act/statute/2026/291">291/2026</ref>
+                             lisätty 11 b § tuli voimaan 1.5.2026.
+                        </p>
+                    </content>
+                </hcontainer>
+                <section eId="sec_12v20170051" finlex:originalVersion="@20170051" finlex:originalVersionLabel="27.1.2017/51">
+                    <num>12 §</num>
+                    <heading eId="sec_12v20170051__headingv20170051">Tarkemmat määräykset</heading>
+                    <subsection eId="sec_12v20170051__subsec_1v20170051">
+                        <content>
+                            <p>Verohallinto voi antaa tarkempia määräyksiä veronlisäyksen, viivekoron, viivästyskoron ja huojennetun viivästyskoron määräämisessä noudatettavasta menettelystä sekä niiden laskemisesta.</p>
+                        </content>
+                    </subsection>
+                </section>
+                <section eId="sec_13" finlex:entryIntoForce="true" finlex:vsId="1556/1995">
+                    <num>13 §</num>
+                    <heading eId="sec_13__heading">Voimaantulo ja soveltaminen</heading>
+                    <subsection eId="sec_13__subsec_1">
+                        <content>
+                            <p>Tämä laki tulee voimaan 1 päivänä tammikuuta 1996.</p>
+                        </content>
+                    </subsection>
+                    <subsection eId="sec_13__subsec_2">
+                        <content>
+                            <p>
+                                Tällä lailla kumotaan veron viivästyskorosta ja jäämämaksusta 13 päivänä helmikuuta 1976 annettu laki 
+                                <ref href="/akn/fi/act/statute-consolidated/1976/145">(145/76)</ref>
+                                 siihen myöhemmin tehtyine muutoksineen sekä valmisteverotuslain 
+                                <ref href="/akn/fi/act/statute-consolidated/1994/1469#sec_37">(1469/94) 37 §</ref>.
+                            </p>
+                        </content>
+                    </subsection>
+                    <subsection eId="sec_13__subsec_3">
+                        <content>
+                            <p>Tämän lain veronlisäystä koskevia säännöksiä sovelletaan, jos veron viimeinen maksupäivä on lain voimaantulopäivänä tai sen jälkeen. Jos veron viimeinen maksupäivä on ollut ennen lain voimaantuloa, sovelletaan ennen tämän lain voimaantuloa voimassa olleen lain säännöksiä.</p>
+                        </content>
+                    </subsection>
+                    <subsection eId="sec_13__subsec_4">
+                        <content>
+                            <p>Tämän lain viivekorkoa koskevia säännöksiä sovelletaan lain voimaan tullessa maksamatta olevaan verovelkaan. Verovuodelta 1995 maksamatta jääneen ennakon viivekorko lasketaan kuitenkin verotuksen päättymistä edeltävän kuukauden loppuun. Lain voimaantuloa edeltävältä ajalta peritään veron viivästyskorosta ja jäämämaksusta annetussa laissa tarkoitetut viivästysseuraamukset.</p>
+                        </content>
+                    </subsection>
+                    <subsection eId="sec_13__subsec_5">
+                        <content>
+                            <p>
+                                Jälkiveroille, jotka maksuunpannaan verotuslain 
+                                <ref href="/akn/fi/act/statute/1958/482">(482/58)</ref>
+                                 tai korkotulon lähdeverosta annetun lain 
+                                <ref href="/akn/fi/act/statute-consolidated/1990/1341">(1341/90)</ref>
+                                 tai kiinteistöverolain 
+                                <ref href="/akn/fi/act/statute-consolidated/1992/654">(654/92)</ref>
+                                 säännösten mukaan ja jotka kohdistuvat verovuoteen 1995 tai sitä aikaisempiin verovuosiin, peritään viivästyskorkoa vastaavaa korkoa noudattaen tämän lain voimaan tullessa voimassa olleita säännöksiä.
+                            </p>
+                        </content>
+                    </subsection>
+                </section>
+            </hcontainer>
+            <hcontainer finlex:outline="Esityöt ja allekirjoitukset" name="conclusions">
+                <hcontainer finlex:outline="Esityöt" name="preliminaryWork">
+                    <content>
+                        <p>
+                            <ref href="/akn/fi/doc/government-proposal/1995/112">HE 112/95</ref>
+                        </p>
+                        <p>VaVM 31/95</p>
+                        <p>
+                            <a href="https://www.eduskunta.fi/valtiopaivaasiakirjat/EV+104/1995">EV 104/95</a>
+                        </p>
+                    </content>
+                </hcontainer>
+            </hcontainer>
+            <hcontainer name="amendmentEntryIntoForceAndApplianceProvisions">
+                <heading>Muutossäädösten voimaantulo ja soveltaminen</heading>
+                <hcontainer eId="entryIntoForce_19971030" name="entryIntoForce">
+                    <heading>21.11.1997/1030:</heading>
+                    <content>
+                        <p>Tämä laki tulee voimaan 1 päivänä tammikuuta 1998.</p>
+                        <p>Lakia sovelletaan 1 päivästä tammikuuta 1998 lukien. Lain voimaantuloa edeltävältä ajalta veronlisäys ja viivekorko lasketaan ennen lain voimaantuloa voimassa olleiden säännösten mukaan.</p>
+                        <p>
+                            <ref href="/akn/fi/doc/government-proposal/1997/104">HE 104/1997</ref>, VaVM 17/1997, 
+                            <a href="https://www.eduskunta.fi/valtiopaivaasiakirjat/EV+133/1997">EV 133/1997</a>
+                        </p>
+                    </content>
+                </hcontainer>
+                <hcontainer eId="entryIntoForce_20010930" name="entryIntoForce">
+                    <heading>26.10.2001/930:</heading>
+                    <content>
+                        <p>Tämä laki tulee voimaan 1 päivänä tammikuuta 2002.</p>
+                        <p>Lain voimaantuloa edeltäviltä vuosilta muutoin kuin oma-aloitteisesti suoritettavien verojen jälkiverotuksen yhteydessä 2 §:ssä tarkoitettu veronlisäys lasketaan lain voimaan tullessa voimassa olleiden säännösten mukaisesti.</p>
+                        <p>
+                            <ref href="/akn/fi/doc/government-proposal/2001/91">HE 91/2001</ref>, VaVM 12/2001, 
+                            <a href="https://www.eduskunta.fi/valtiopaivaasiakirjat/EV+101/2001">EV 101/2001</a>
+                        </p>
+                    </content>
+                </hcontainer>
+                <hcontainer eId="entryIntoForce_20020346" name="entryIntoForce">
+                    <heading>3.5.2002/346:</heading>
+                    <content>
+                        <p>Tämä laki tulee voimaan 1 päivänä heinäkuuta 2002.</p>
+                        <p>Lakia sovelletaan ensimmäisen kerran veronlisäykseen ja viivekorkoon kalenterivuonna 2003.</p>
+                        <p>
+                            <ref href="/akn/fi/doc/government-proposal/2001/232">HE 232/2001</ref>, TaVM 3/2002, 
+                            <a href="https://www.eduskunta.fi/valtiopaivaasiakirjat/EV+36/2002">EV 36/2002</a>, Euroopan parlamentin ja neuvoston direktiivi 2000/35/EY (300L0035); EYVL N:o L 200, 8.8.2000, s. 35
+                        </p>
+                    </content>
+                </hcontainer>
+                <hcontainer eId="entryIntoForce_20051081" name="entryIntoForce">
+                    <heading>22.12.2005/1081:</heading>
+                    <content>
+                        <p>Tämä laki tulee voimaan 1 päivänä tammikuuta 2006.</p>
+                        <p>Lakia sovelletaan ensimmäisen kerran vuodelta 2005 toimitettavassa verotuksessa.</p>
+                        <p>
+                            <ref href="/akn/fi/doc/government-proposal/2005/91">HE 91/2005</ref>, VaVM 22/2005, 
+                            <a href="https://www.eduskunta.fi/valtiopaivaasiakirjat/EV+141/2005">EV 141/2005</a>
+                        </p>
+                    </content>
+                </hcontainer>
+                <hcontainer eId="entryIntoForce_20080255" name="entryIntoForce">
+                    <heading>18.4.2008/255:</heading>
+                    <content>
+                        <p>Tämä laki tulee voimaan 1 päivänä toukokuuta 2008.</p>
+                        <p>
+                            <ref href="/akn/fi/doc/government-proposal/2007/148">HE 148/2007</ref>, VaVM 5/2008, 
+                            <a href="https://www.eduskunta.fi/valtiopaivaasiakirjat/EV+25/2008">EV 25/2008</a>
+                        </p>
+                    </content>
+                </hcontainer>
+                <hcontainer eId="entryIntoForce_20090614" name="entryIntoForce">
+                    <heading>7.8.2009/614:</heading>
+                    <content>
+                        <p>Tämä laki tulee voimaan 14 päivänä elokuuta 2009.</p>
+                        <p>
+                            Lain voimaan tullessa voimassa ollutta 1 §:n 1 momenttia sovelletaan 31 päivään joulukuuta 2009. 
+                            <ref href="#entryIntoForce_20090760">(16.10.2009/760)</ref>
+                        </p>
+                        <p>
+                            <ref href="/akn/fi/doc/government-proposal/2008/221">HE 221/2008</ref>, VaVM 7/2009, 
+                            <a href="https://www.eduskunta.fi/valtiopaivaasiakirjat/EV+66/2009">EV 66/2009</a>
+                        </p>
+                    </content>
+                </hcontainer>
+                <hcontainer eId="entryIntoForce_20090760" name="entryIntoForce">
+                    <heading>16.10.2009/760:</heading>
+                    <content>
+                        <p>Tämä laki tulee voimaan 21 päivänä lokakuuta 2009.</p>
+                        <p>Lakia sovelletaan jo 14 päivästä elokuuta 2009.</p>
+                        <p>
+                            <ref href="/akn/fi/doc/government-proposal/2009/129">HE 129/2009</ref>, VaVM 12/2009, 
+                            <a href="https://www.eduskunta.fi/valtiopaivaasiakirjat/EV+115/2009">EV 115/2009</a>
+                        </p>
+                    </content>
+                </hcontainer>
+                <hcontainer eId="entryIntoForce_20091261" name="entryIntoForce">
+                    <heading>22.12.2009/1261:</heading>
+                    <content>
+                        <p>Tämä laki tulee voimaan 1 päivänä tammikuuta 2010 ja on voimassa 31 päivään joulukuuta 2010.</p>
+                        <p>Lakia sovelletaan veronlisäykseen ja viivekorkoon, jotka lasketaan 1 päivältä tammikuuta 2010 joulukuun 31 päivään 2010.</p>
+                        <p>
+                            <ref href="/akn/fi/doc/government-proposal/2009/133">HE 133/2009</ref>, VaVM 39/2009, 
+                            <a href="https://www.eduskunta.fi/valtiopaivaasiakirjat/EV+208/2009">EV 208/2009</a>
+                        </p>
+                    </content>
+                </hcontainer>
+                <hcontainer eId="entryIntoForce_20100535" name="entryIntoForce">
+                    <heading>11.6.2010/535:</heading>
+                    <content>
+                        <p>Tämä laki tulee voimaan 1 päivänä syyskuuta 2010.</p>
+                        <p>
+                            <ref href="/akn/fi/doc/government-proposal/2009/288">HE 288/2009</ref>, VaVM 12/2010, 
+                            <a href="https://www.eduskunta.fi/valtiopaivaasiakirjat/EV+37/2010">EV 37/2010</a>
+                        </p>
+                    </content>
+                </hcontainer>
+                <hcontainer eId="entryIntoForce_20160787" name="entryIntoForce">
+                    <heading>9.9.2016/787:</heading>
+                    <content>
+                        <p>Tämä laki tulee voimaan 1 päivänä tammikuuta 2017.</p>
+                        <p>Muutoksenhaussa ennen tämän lain voimaantuloa annettuun Verohallinnon päätökseen sovelletaan tämän lain voimaan tullessa voimassa olleita säännöksiä.</p>
+                        <p>
+                            <ref href="/akn/fi/doc/government-proposal/2016/29">HE 29/2016</ref>, VaVM 9/2016, 
+                            <a href="https://www.eduskunta.fi/valtiopaivaasiakirjat/EV+104/2016">EV 104/2016</a>
+                        </p>
+                    </content>
+                </hcontainer>
+                <hcontainer eId="entryIntoForce_20170051" name="entryIntoForce">
+                    <heading>27.1.2017/51:</heading>
+                    <content>
+                        <p>Tämä laki tulee voimaan 1 päivänä marraskuuta 2017.</p>
+                        <p>Lakia sovelletaan ensimmäisen kerran vuodelta 2017 toimitettavassa yhteisön ja yhteisetuuden verotuksessa ja vuodelta 2018 toimitettavassa muun verovelvollisen verotuksessa. Aiempien vuosien verotuksessa sovelletaan lain voimaan tullessa voimassa olleita säännöksiä.</p>
+                        <p>Viivästyskorkoa koskevia säännöksiä sovelletaan ensimmäisen  kerran  yhteisöjen ja yhteisetuuksien maksamatta olevaan veroon lain voimaantulopäivästä ja muiden velallisten maksamatta olevaan veroon 1 päivästä marraskuuta 2018. Tätä edeltävältä ajalta korko lasketaan lain voimaan tullessa voimassa olleiden säännösten mukaisesti. Lain voimaan tullessa maksamatta olevalle verolle lain voimaan tullessa voimassa olleiden säännösten mukaisesti laskettuun viivekorkoon ei kuitenkaan sovelleta viivekoron kolmen euron vähimmäismäärää.</p>
+                        <p>Lain 5 b §:n 2 momenttia ja 6, 7, 7 a, 8–11 ja 12 §:ää sovelletaan kuitenkin lain voimaantulosta. </p>
+                        <p>Huojennettua viivästyskorkoa koskevia säännöksiä sovelletaan yhteisölle ja yhteisetuudelle lain voimaantulopäivänä ja sen jälkeen määrättävään ennakkoon ja muulle verovelvolliselle 1 päivänä marraskuuta 2018 ja sen jälkeen määrättävään ennakkoon. </p>
+                        <p>Yhteisön ja yhteisetuuden, jonka verovuosi 2017 päättyy viimeistään 30 päivänä syyskuuta 2017, huojennettu viivästyskorko lasketaan veroilmoituksen viimeistä antopäivää seuraavasta päivästä, kuitenkin viimeistään lain voimaantulopäivästä alkaen.</p>
+                        <p>
+                            <ref href="/akn/fi/doc/government-proposal/2016/237">HE 237/2016</ref>, VaVM 34/2016, 
+                            <a href="https://www.eduskunta.fi/valtiopaivaasiakirjat/EV+255/2016">EV 255/2016</a>
+                        </p>
+                    </content>
+                </hcontainer>
+                <hcontainer eId="entryIntoForce_20180020" name="entryIntoForce">
+                    <heading>12.1.2018/20:</heading>
+                    <content>
+                        <p>Tämä laki tulee voimaan 1 päivänä marraskuuta 2019. Lain 7 §:n 3 momentti tulee kuitenkin voimaan 1 päivänä toukokuuta 2018.</p>
+                        <p>Lain voimaantuloa edeltävältä ajalta korko ja veronlisäys lasketaan lain voimaan tullessa voimassa olleiden säännösten mukaisesti. Lain voimaan tullessa maksamatta olevalle verolle lain voimaan tullessa voimassa olleiden säännösten mukaisesti laskettuun viivekorkoon ei kuitenkaan sovelleta viivekoron kolmen euron vähimmäismäärää.</p>
+                        <p>
+                            <ref href="/akn/fi/doc/government-proposal/2017/97">HE 97/2017</ref>, VaVM 26/2017, 
+                            <a href="https://www.eduskunta.fi/valtiopaivaasiakirjat/EV+182/2017">EV 182/2017</a>
+                        </p>
+                    </content>
+                </hcontainer>
+                <hcontainer eId="entryIntoForce_20190344" name="entryIntoForce">
+                    <heading>15.3.2019/344:</heading>
+                    <content>
+                        <p>Tämä laki tulee voimaan 1 päivänä marraskuuta 2019.</p>
+                        <p>
+                            <ref href="/akn/fi/doc/government-proposal/2018/283">HE 283/2018</ref>, VaVM 30/2018, 
+                            <a href="https://www.eduskunta.fi/valtiopaivaasiakirjat/EV+39/2018">EV 39/2018</a>
+                        </p>
+                    </content>
+                </hcontainer>
+                <hcontainer eId="entryIntoForce_20191581" name="entryIntoForce">
+                    <heading>30.12.2019/1581:</heading>
+                    <content>
+                        <p>Tämä laki tulee voimaan 1 päivänä tammikuuta 2020.</p>
+                        <p>Tätä lakia sovelletaan ensimmäisen kerran vuodelta 2020 toimitettavassa verotuksessa.</p>
+                        <p>
+                            <ref href="/akn/fi/doc/government-proposal/2019/76">HE 76/2019</ref>, VaVM 18/2019, 
+                            <a href="https://www.eduskunta.fi/valtiopaivaasiakirjat/EV+77/2019">EV 77/2019</a>, Neuvoston direktiivi (EU) 2016/1164 (32016L1164); EUVL L 193, 19.7.2016, s. 1
+                        </p>
+                    </content>
+                </hcontainer>
+                <hcontainer eId="entryIntoForce_20200294" name="entryIntoForce">
+                    <heading>30.4.2020/294:</heading>
+                    <content>
+                        <p>Tämä laki tulee voimaan 1 päivänä toukokuuta 2020 ja on voimassa 31 päivään elokuuta 2020.</p>
+                        <p>Lakia sovelletaan lain voimassaoloaikana tehtyihin maksujärjestelyihin ja maksunlykkäyksiin. Lakia sovelletaan myös maksujärjestelyihin ja maksunlykkäyksiin, joita on haettu lain voimassaoloaikana.</p>
+                        <p>
+                            <ref href="/akn/fi/doc/government-proposal/2020/33">HE 33/2020</ref>, VaVM 4/2020, 
+                            <a href="https://www.eduskunta.fi/valtiopaivaasiakirjat/EV+35/2020">EV 35/2020</a>
+                        </p>
+                    </content>
+                </hcontainer>
+                <hcontainer eId="entryIntoForce_20200485" name="entryIntoForce">
+                    <heading>26.6.2020/485:</heading>
+                    <content>
+                        <p>Tämä laki tulee voimaan 26 päivänä kesäkuuta 2020.</p>
+                        <p>
+                            <ref href="/akn/fi/doc/government-proposal/2020/74">HE 74/2020</ref>, VaVM 8/2020, 
+                            <a href="https://www.eduskunta.fi/valtiopaivaasiakirjat/EV+71/2020">EV 71/2020</a>
+                        </p>
+                    </content>
+                </hcontainer>
+                <hcontainer eId="entryIntoForce_20200786" name="entryIntoForce">
+                    <heading>13.11.2020/786:</heading>
+                    <content>
+                        <p>Tämä laki tulee voimaan 1 päivänä helmikuuta 2021.</p>
+                        <p>Lain voimaantuloa edeltävältä ajalta autoverolle ja valmisteverolle maksettava korko lasketaan lain voimaan tullessa voimassa olleiden säännösten mukaisesti. Lain voimaan tullessa maksamatta olevalle autoverolle ja valmisteverolle lain voimaan tullessa voimassa olleiden säännösten mukaisesti laskettuun korkoon ei kuitenkaan sovelleta veronlisäyksen ja viivekoron kolmen euron vähimmäismäärää.</p>
+                        <p>
+                            <ref href="/akn/fi/doc/government-proposal/2020/54">HE 54/2020</ref>, 
+                            <a href="https://www.eduskunta.fi/valtiopaivaasiakirjat/PeVL+21/2020">PeVL 21/2020</a>, VaVM 16/2020, 
+                            <a href="https://www.eduskunta.fi/valtiopaivaasiakirjat/EV+112/2020">EV 112/2020</a>
+                        </p>
+                    </content>
+                </hcontainer>
+                <hcontainer eId="entryIntoForce_20210512" name="entryIntoForce">
+                    <heading>18.6.2021/512:</heading>
+                    <content>
+                        <p>Tämä laki tulee voimaan 21 päivänä kesäkuuta 2021 ja on voimassa 31 päivään elokuuta 2021.</p>
+                        <p>Tätä lakia sovelletaan tämän lain voimassaoloaikana tehtyihin maksujärjestelyihin. Tätä lakia sovelletaan myös maksujärjestelyihin, joita on haettu tämän lain voimassaoloaikana.</p>
+                        <p>
+                            <ref href="/akn/fi/doc/government-proposal/2021/75">HE 75/2021</ref>, VaVM 8/2021, 
+                            <a href="https://www.eduskunta.fi/valtiopaivaasiakirjat/EV+85/2021">EV 85/2021</a>
+                        </p>
+                    </content>
+                </hcontainer>
+                <hcontainer eId="entryIntoForce_20220439" name="entryIntoForce">
+                    <heading>10.6.2022/439:</heading>
+                    <content>
+                        <p>Tämä laki tulee voimaan 16 päivänä kesäkuuta 2022.</p>
+                        <p>
+                            <ref href="/akn/fi/doc/government-proposal/2021/90">HE 90/2021</ref>, LaVM 7/2022, 
+                            <a href="https://www.eduskunta.fi/valtiopaivaasiakirjat/EV+55/2022">EV 55/2022</a>
+                        </p>
+                    </content>
+                </hcontainer>
+                <hcontainer eId="entryIntoForce_20231197" name="entryIntoForce">
+                    <heading>21.12.2023/1197:</heading>
+                    <content>
+                        <p>Tämä laki tulee voimaan 1 päivänä tammikuuta 2024.</p>
+                        <p>Lakia sovelletaan ensimmäisen kerran maksamatta olevaan perintöveroon lain voimaantulopäivästä alkaen. Tätä edeltävältä ajalta viivästyskorko lasketaan lain voimaan tullessa voimassa olleiden säännösten mukaisesti.</p>
+                        <p>
+                            <ref href="/akn/fi/doc/government-proposal/2023/34">HE 34/2023</ref>, VaVM 8/2023, 
+                            <a href="https://www.eduskunta.fi/valtiopaivaasiakirjat/EV+46/2023">EV 46/2023</a>
+                        </p>
+                    </content>
+                </hcontainer>
+                <hcontainer eId="entryIntoForce_20250389" name="entryIntoForce">
+                    <heading>27.6.2025/389:</heading>
+                    <content>
+                        <p>Tämä laki tulee voimaan 15 päivänä marraskuuta 2025.</p>
+                        <p>Viivästyskoron laskemiseen sovelletaan tämän lain voimaan tullessa voimassa olleita säännöksiä, jos veron suoritukseksi käytetään ennen tämän lain voimaantuloa maksettua muuta kuin varainsiirtoveron maksua.</p>
+                        <p>
+                            <ref href="/akn/fi/doc/government-proposal/2025/39">HE 39/2025</ref>, VaVM 5/2025, 
+                            <a href="https://www.eduskunta.fi/valtiopaivaasiakirjat/EV+61/2025">EV 61/2025</a>
+                        </p>
+                    </content>
+                </hcontainer>
+                <hcontainer eId="entryIntoForce_20251350" name="entryIntoForce">
+                    <heading>22.12.2025/1350:</heading>
+                    <content>
+                        <p>Tämä laki tulee voimaan 1 päivänä tammikuuta 2026.</p>
+                        <p>Lakia sovelletaan ensimmäisen kerran maksamatta olevaan perintöveroon lain voimaantulopäivästä alkaen. Tätä edeltävältä ajalta viivästyskorko lasketaan lain voimaan tullessa voimassa olleiden säännösten mukaisesti.</p>
+                        <p>
+                            <ref href="/akn/fi/doc/government-proposal/2025/94">HE 94/2025</ref>, VaVM 21/2025, 
+                            <a href="https://www.eduskunta.fi/valtiopaivaasiakirjat/EV+146/2025">EV 146/2025</a>
+                        </p>
+                    </content>
+                </hcontainer>
+                <hcontainer eId="entryIntoForce_20260291" name="entryIntoForce">
+                    <heading>17.4.2026/291:</heading>
+                    <content>
+                        <p>Tämä laki tulee voimaan 1 päivänä toukokuuta 2026.</p>
+                        <p>
+                            <ref href="/akn/fi/doc/government-proposal/2025/176">HE 176/2025</ref>, VAVM 5/2026, 
+                            <a href="https://www.eduskunta.fi/valtiopaivaasiakirjat/EV+20/2026">EV 20/2026</a>
+                        </p>
+                    </content>
+                </hcontainer>
+            </hcontainer>
+        </body>
+    </act>
+</akomaNtoso>

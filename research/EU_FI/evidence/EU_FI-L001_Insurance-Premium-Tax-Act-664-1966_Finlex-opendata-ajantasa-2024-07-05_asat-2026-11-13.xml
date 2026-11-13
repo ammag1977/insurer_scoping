@@ -1,0 +1,690 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:finlex="http://data.finlex.fi/schema/finlex" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <act contains="multipleVersions" name="main">
+        <meta>
+            <identification source="#organization_fi.finlex">
+                <FRBRWork>
+                    <FRBRthis value="/akn/fi/act/statute-consolidated/1966/664/!main"/>
+                    <FRBRuri value="/akn/fi/act/statute-consolidated/1966/664"/>
+                    <FRBRalias name="eli" value="http://data.finlex.fi/eli/sd/1966/664/ajantasa"/>
+                    <FRBRdate date="1966-01-01" name="dateIssuedGenerated"/>
+                    <FRBRauthor as="#role_author" href="#organization_fi.finlex"/>
+                    <FRBRcountry value="fi"/>
+                    <FRBRsubtype value="statute-consolidated"/>
+                    <FRBRnumber value="664"/>
+                    <FRBRprescriptive value="false"/>
+                    <FRBRauthoritative value="false"/>
+                </FRBRWork>
+                <FRBRExpression>
+                    <FRBRthis value="/akn/fi/act/statute-consolidated/1966/664/fin@20240463/!main"/>
+                    <FRBRuri value="/akn/fi/act/statute-consolidated/1966/664/fin@20240463"/>
+                    <FRBRalias name="eli" value="http://data.finlex.fi/eli/sd/1966/664/ajantasa/2024-07-05/fin"/>
+                    <FRBRdate date="1966-01-01" name="dateIssuedGenerated"/>
+                    <FRBRdate date="2024-07-05" name="dateConsolidated"/>
+                    <FRBRauthor as="#role_author" href="#organization_fi.finlex"/>
+                    <FRBRversionNumber value="20240463"/>
+                    <FRBRlanguage language="fin"/>
+                </FRBRExpression>
+                <FRBRManifestation>
+                    <FRBRthis value="/akn/fi/act/statute-consolidated/1966/664/fin@20240463/!main.xml"/>
+                    <FRBRuri value="/akn/fi/act/statute-consolidated/1966/664/fin@20240463.akn"/>
+                    <FRBRalias name="eli" value="http://data.finlex.fi/eli/sd/1966/664/ajantasa/2024-07-05/fin/xml"/>
+                    <FRBRdate date="2026-10-15" name="dateProduced"/>
+                    <FRBRauthor as="#role_editor" href="#organization_fi.finlex"/>
+                    <FRBRformat value="xml"/>
+                </FRBRManifestation>
+            </identification>
+            <classification source="#organization_fi.finlex">
+                <keyword dictionary="/akn/ontology/concept/statute-keyword" showAs="Maksu" value="/akn/ontology/concept/statute-keyword.2627"/>
+                <keyword dictionary="/akn/ontology/concept/statute-keyword" showAs="Vakuutusmaksu" value="/akn/ontology/concept/statute-keyword.4184"/>
+                <keyword dictionary="/akn/ontology/concept/statute-keyword" showAs="Vakuutusmaksuvero" value="/akn/ontology/concept/statute-keyword.4185"/>
+                <keyword dictionary="/akn/ontology/concept/statute-keyword" showAs="Vero" value="/akn/ontology/concept/statute-keyword.4376"/>
+            </classification>
+            <references source="#organization_fi.finlex">
+                <TLCOrganization eId="organization_fi.finlex" href="/akn/ontology/organization/fi.finlex" showAs="Finlex"/>
+                <TLCRole eId="role_author" href="/akn/ontology/role/author" showAs="Tekijä"/>
+                <TLCRole eId="role_editor" href="/akn/ontology/role/editor" showAs="Toimittaja"/>
+                <TLCOrganization eId="fi.ministry-of-finance" href="/akn/ontology/organization/fi.ministry-of-finance" showAs="Valtiovarainministeriö"/>
+                <TLCConcept eId="act" href="/akn/ontology/concept/statute/type-statute.act" showAs="Laki"/>
+            </references>
+            <proprietary source="#organization_fi.finlex">
+                <finlex:documentYear>1966</finlex:documentYear>
+                <finlex:administrativeBranch refersTo="#fi.ministry-of-finance"/>
+                <finlex:typeStatute refersTo="#act"/>
+                <finlex:isInForce value="true"/>
+                <finlex:amendedBy>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute/2024/463">463/2024</finlex:ref>
+                        <finlex:inForce>
+                            <finlex:dateEntryIntoForce date="2024-09-01">1.9.2024</finlex:dateEntryIntoForce>
+                        </finlex:inForce>
+                        <finlex:noteEditorial>muutt. 3 §</finlex:noteEditorial>
+                    </finlex:statuteReference>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute/1992/928">928/1992</finlex:ref>
+                        <finlex:inForce>
+                            <finlex:dateEntryIntoForce date="1993-01-01">1.1.1993</finlex:dateEntryIntoForce>
+                        </finlex:inForce>
+                    </finlex:statuteReference>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute/2016/774">774/2016</finlex:ref>
+                        <finlex:inForce>
+                            <finlex:dateEntryIntoForce date="2017-01-01">1.1.2017</finlex:dateEntryIntoForce>
+                        </finlex:inForce>
+                        <finlex:noteEditorial>kum. 5, 6, 7 a ja 8 §, muutt. 7 §</finlex:noteEditorial>
+                    </finlex:statuteReference>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute/1990/781">781/1990</finlex:ref>
+                        <finlex:inForce>
+                            <finlex:dateEntryIntoForce date="1991-01-01">1.1.1991</finlex:dateEntryIntoForce>
+                        </finlex:inForce>
+                    </finlex:statuteReference>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute/2012/708">708/2012</finlex:ref>
+                        <finlex:inForce>
+                            <finlex:dateEntryIntoForce date="2013-01-01">1.1.2013</finlex:dateEntryIntoForce>
+                        </finlex:inForce>
+                        <finlex:noteEditorial>muutt. 3 §</finlex:noteEditorial>
+                    </finlex:statuteReference>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute/1992/1489">1489/1992</finlex:ref>
+                        <finlex:inForce>
+                            <finlex:dateEntryIntoForce date="1994-01-01">1.1.1994</finlex:dateEntryIntoForce>
+                        </finlex:inForce>
+                        <finlex:noteEditorial>ks. A 1645/93; muutt. 2 §:n</finlex:noteEditorial>
+                    </finlex:statuteReference>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute/1996/543">543/1996</finlex:ref>
+                        <finlex:inForce>
+                            <finlex:dateEntryIntoForce date="1997-01-01">1.1.1997</finlex:dateEntryIntoForce>
+                        </finlex:inForce>
+                        <finlex:noteEditorial>muutt. 6 §</finlex:noteEditorial>
+                    </finlex:statuteReference>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute/1977/815">815/1977</finlex:ref>
+                    </finlex:statuteReference>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute/1995/399">399/1995</finlex:ref>
+                        <finlex:inForce>
+                            <finlex:dateEntryIntoForce date="1995-04-01">1.4.1995</finlex:dateEntryIntoForce>
+                        </finlex:inForce>
+                        <finlex:noteEditorial>muutt. 2 §:ää</finlex:noteEditorial>
+                    </finlex:statuteReference>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute/1982/537">537/1982</finlex:ref>
+                    </finlex:statuteReference>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute/1988/1108">1108/1988</finlex:ref>
+                    </finlex:statuteReference>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute/2009/1782">1782/2009</finlex:ref>
+                        <finlex:inForce>
+                            <finlex:dateEntryIntoForce date="2010-07-01">1.7.2010</finlex:dateEntryIntoForce>
+                        </finlex:inForce>
+                        <finlex:noteEditorial>muutt. 3 §</finlex:noteEditorial>
+                    </finlex:statuteReference>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute/1990/1100">1100/1990</finlex:ref>
+                    </finlex:statuteReference>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute/2009/749">749/2009</finlex:ref>
+                        <finlex:inForce>
+                            <finlex:dateEntryIntoForce date="2009-10-21">21.10.2009</finlex:dateEntryIntoForce>
+                        </finlex:inForce>
+                        <finlex:noteEditorial>muutt. L:n 606/2009 voimaantulosäännöstä</finlex:noteEditorial>
+                    </finlex:statuteReference>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute/2009/606">606/2009</finlex:ref>
+                        <finlex:inForce>
+                            <finlex:dateEntryIntoForce date="2009-08-14">14.8.2009</finlex:dateEntryIntoForce>
+                        </finlex:inForce>
+                        <finlex:noteEditorial>muutt. 5 ja 6 §</finlex:noteEditorial>
+                    </finlex:statuteReference>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute/2018/36">36/2018</finlex:ref>
+                        <finlex:inForce>
+                            <finlex:dateEntryIntoForce date="2019-11-01">1.11.2019</finlex:dateEntryIntoForce>
+                        </finlex:inForce>
+                        <finlex:noteEditorial>muutt. 7 §:ää</finlex:noteEditorial>
+                    </finlex:statuteReference>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute/2023/313">313/2023</finlex:ref>
+                        <finlex:inForce>
+                            <finlex:dateEntryIntoForce date="2023-05-01">1.5.2023</finlex:dateEntryIntoForce>
+                        </finlex:inForce>
+                        <finlex:noteEditorial>muutt. 1 §:ää</finlex:noteEditorial>
+                    </finlex:statuteReference>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute/2019/293">293/2019</finlex:ref>
+                        <finlex:inForce>
+                            <finlex:dateEntryIntoForce date="2019-03-20">20.3.2019</finlex:dateEntryIntoForce>
+                            <finlex:dateInForceEnd date="2027-12-31">31.12.2027</finlex:dateInForceEnd>
+                            <finlex:noteEditorial/>
+                        </finlex:inForce>
+                        <finlex:noteEditorial>lis. 5 ja 6 §</finlex:noteEditorial>
+                    </finlex:statuteReference>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute/2010/531">531/2010</finlex:ref>
+                        <finlex:inForce>
+                            <finlex:dateEntryIntoForce date="2010-09-01">1.9.2010</finlex:dateEntryIntoForce>
+                        </finlex:inForce>
+                        <finlex:noteEditorial>muutt. 2 §:ää</finlex:noteEditorial>
+                    </finlex:statuteReference>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute/1991/1427">1427/1991</finlex:ref>
+                    </finlex:statuteReference>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute/1978/823">823/1978</finlex:ref>
+                    </finlex:statuteReference>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute/1989/970">970/1989</finlex:ref>
+                    </finlex:statuteReference>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute/1976/1090">1090/1976</finlex:ref>
+                    </finlex:statuteReference>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute/1986/588">588/1986</finlex:ref>
+                    </finlex:statuteReference>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute/1982/1036">1036/1982</finlex:ref>
+                    </finlex:statuteReference>
+                </finlex:amendedBy>
+                <finlex:issuedUnderAmendmentsOfThisAct>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute-consolidated/2019/990">990/2019</finlex:ref>
+                    </finlex:statuteReference>
+                </finlex:issuedUnderAmendmentsOfThisAct>
+                <finlex:issuedUnderThisAct>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute-consolidated/1994/1102">1102/1994</finlex:ref>
+                    </finlex:statuteReference>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute-consolidated/1983/6">6/1983</finlex:ref>
+                    </finlex:statuteReference>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute-consolidated/2003/1285">1285/2003</finlex:ref>
+                    </finlex:statuteReference>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute-consolidated/1997/1130">1130/1997</finlex:ref>
+                    </finlex:statuteReference>
+                </finlex:issuedUnderThisAct>
+            </proprietary>
+        </meta>
+        <preface>
+            <p>
+                <docNumber>664/1966</docNumber>
+                <docTitle>Laki eräistä vakuutusmaksuista suoritettavasta verosta</docTitle>
+            </p>
+        </preface>
+        <preamble>
+            <formula eId="enactingClause" name="enactingClause">
+                <p>Eduskunnan päätöksen mukaisesti säädetään:</p>
+            </formula>
+        </preamble>
+        <body>
+            <hcontainer finlex:outline="Säädöksen teksti" name="statuteProvisionsWrapper">
+                <section eId="sec_1">
+                    <num>1 §</num>
+                    <subsection eId="sec_1__subsec_1">
+                        <content>
+                            <p>Vakuutussopimuksen nojalla kannettavasta vakuutusmaksusta on, milloin on vakuutettu Suomessa oleva omaisuus taikka täällä harjoitettuun toimintaan liittyvä tai täällä oleva muu etuus, suoritettava valtiolle veroa sen mukaan kuin tässä laissa säädetään.</p>
+                        </content>
+                    </subsection>
+                    <subsection eId="sec_1__subsec_2v20230313" finlex:originalVersion="@20230313" finlex:originalVersionLabel="3.3.2023/313">
+                        <content>
+                            <p>
+                                Verosta vapaa on vakuutusmaksu, joka perustuu yksinomaan henkilö-, luotto- tai jälleenvakuutussopimukseen tai potilasvakuutuslain 
+                                <ref href="/akn/fi/act/statute-consolidated/2019/948">(948/2019)</ref>
+                                 mukaiseen vakuutussopimukseen taikka maasta vietävän, maahan tuotavan tai maan kautta kuljetettavan tavaran kuljetusvakuutussopimukseen tai ulkomaanliikenteeseen pääasiallisesti käytettävän meri- tai ilma-aluksen tai muun liikkuvan kuljetuskaluston vakuutussopimukseen.
+                            </p>
+                        </content>
+                    </subsection>
+                </section>
+                <section eId="sec_2v19921489" finlex:originalVersion="@19921489" finlex:originalVersionLabel="23.12.1992/1489">
+                    <num>2 §</num>
+                    <subsection eId="sec_2v19921489__subsec_1v19950399" finlex:originalVersion="@19950399" finlex:originalVersionLabel="17.3.1995/399">
+                        <content>
+                            <p>Jokaisen, joka harjoittaa Suomessa vakuutusliikettä, on suoritettava veroa 1 §:n 1 momentissa tarkoitetusta vakuutusmaksusta.</p>
+                        </content>
+                    </subsection>
+                    <subsection eId="sec_2v19921489__subsec_2v19921489">
+                        <content>
+                            <p>Jos vakuutusmaksu suoritetaan muulle kuin 1 momentissa tarkoitetulle vakuutuksenantajalle, verovelvollinen on vakuutuksenottaja.</p>
+                        </content>
+                    </subsection>
+                    <subsection eId="sec_2v19921489__subsec_3v20100531" finlex:originalVersion="@20100531" finlex:originalVersionLabel="11.6.2010/531">
+                        <content>
+                            <p>
+                                Ulkomaisella ETA-vakuutusyhtiöllä, joka harjoittaa täällä vakuutuspalvelujen vapaata tarjontaa siten kuin siitä erikseen säädetään, on oltava veron suorittamista varten Suomessa kotipaikan omaava, Verohallinnon hyväksymä edustaja. Verohallinto voi edustajan hyväksymisen edellytyksenä vaatia vakuuden asettamista veron suorittamisen varmistamiseksi. Edustajaan sovelletaan, mitä arvonlisäverolain 
+                                <ref href="/akn/fi/act/statute-consolidated/1993/1501#sec_173a">(1501/1993) 173 a §:ssä</ref>
+                                 säädetään.
+                            </p>
+                        </content>
+                    </subsection>
+                </section>
+                <section eId="sec_3v20240463" finlex:originalVersion="@20240463" finlex:originalVersionLabel="5.7.2024/463">
+                    <num>3 §</num>
+                    <subsection eId="sec_3v20240463__subsec_1v20240463">
+                        <content>
+                            <p>Veron määrä on 25,5 prosenttia vakuutusmaksuista, joihin vero ei sisälly.</p>
+                        </content>
+                    </subsection>
+                </section>
+                <section eId="sec_4">
+                    <num>4 §</num>
+                    <subsection eId="sec_4__subsec_1">
+                        <intro eId="sec_4__subsec_1__intro">
+                            <p>Vero lasketaan kalenterikuukausittain:</p>
+                        </intro>
+                        <paragraph eId="sec_4__subsec_1__para_a">
+                            <num>a)</num>
+                            <content>
+                                <p>vakuutuksenantajalle niiden vakuutusmaksujen perusteella, jotka kuukauden aikana ovat sille kertyneet, sekä</p>
+                            </content>
+                        </paragraph>
+                        <paragraph eId="sec_4__subsec_1__para_b">
+                            <num>b)</num>
+                            <content>
+                                <p>vakuutuksenottajalle niiden vakuutusmaksujen perusteella, jotka hän on kuukauden aikana maksanut.</p>
+                            </content>
+                        </paragraph>
+                    </subsection>
+                </section>
+                <section eId="sec_5v20190293" finlex:originalVersion="@20190293" finlex:originalVersionLabel="15.3.2019/293">
+                    <num>5 §</num>
+                    <subsection eId="sec_5v20190293__subsec_1v20190293">
+                        <content>
+                            <p>Verosta vapaa on vakuutusmaksu, joka perustuu satovahinkovakuutussopimukseen tai maatalouden alkutuotannon kasvintuhoojavakuutussopimukseen.</p>
+                        </content>
+                    </subsection>
+                    <subsection eId="sec_5v20190293__subsec_2v20190293">
+                        <content>
+                            <p>Verosta vapaa on myös vakuutusmaksu, joka perustuu eläintautivakuutussopimukseen.</p>
+                        </content>
+                    </subsection>
+                    <hcontainer eId="note_1" finlex:outline="huomautus" name="noteAuthorial">
+                        <content>
+                            <p>2 momentti on väliaikaisesti voimassa 1.11.2019–31.12.2027.</p>
+                        </content>
+                    </hcontainer>
+                    <subsection eId="sec_5v20190293__subsec_3v20190293">
+                        <content>
+                            <p>Verovapauden edellytyksenä on, että maatalouden harjoittajan palveluksessa on vähemmän kuin 250 työntekijää ja maatalouden harjoittajan vuosiliikevaihto on enintään 50 miljoonaa euroa tai taseen loppusumma on enintään 43 miljoonaa euroa.</p>
+                        </content>
+                    </subsection>
+                    <subsection eId="sec_5v20190293__subsec_4v20190293">
+                        <content>
+                            <p>Verovapaus ei koske vakuutusmaksua, jos maatalouden harjoittaja on tiettyjen tukimuotojen toteamisesta sisämarkkinoille soveltuviksi perussopimuksen 107 ja 108 artiklan mukaisesti annetun komission asetuksen (EU) N:o 651/2014 1 artiklan 4 kohdan c alakohdassa tarkoitetulla tavalla taloudellisesti vaikeuksissa tai maatalouden harjoittajaa koskee mainitun artiklan 4 kohdan a alakohdassa tarkoitettu Euroopan komission aikaisempaan päätökseen perustuva maksamaton perintämääräys, jossa tuki on julistettu sääntöjenvastaiseksi ja sisämarkkinoille soveltumattomaksi.</p>
+                        </content>
+                    </subsection>
+                    <subsection eId="sec_5v20190293__subsec_5v20190293">
+                        <content>
+                            <p>Maatalouden alkutuotannolla tarkoitetaan tiettyjen maa- ja metsätalousalan ja maaseutualueiden tukimuotojen toteamisesta sisämarkkinoille soveltuviksi Euroopan unionin toiminnasta tehdyn sopimuksen 107 ja 108 artiklan mukaisesti annetussa komission asetuksessa (EU) N:o 702/2014 määriteltyä tuotantoa.</p>
+                        </content>
+                    </subsection>
+                    <subsection eId="sec_5v20190293__subsec_6v20190293">
+                        <content>
+                            <p>
+                                Tässä pykälässä tarkoitettuun tukeen sovelletaan eräiden valtion tukea koskevien Euroopan unionin säännösten soveltamisesta annettua lakia 
+                                <ref href="/akn/fi/act/statute-consolidated/2001/300">(300/2001)</ref>.
+                            </p>
+                        </content>
+                    </subsection>
+                </section>
+                <hcontainer eId="note_2" finlex:outline="huomautus" name="noteAuthorial">
+                    <content>
+                        <p>
+                            L:lla 
+                            <ref href="/akn/fi/act/statute/2019/293">293/2019</ref>
+                             lisätty 5 § on väliaikaisesti voimassa 20.3.2019–31.12.2027. Aiempi sanamuoto kuuluu:
+                        </p>
+                    </content>
+                </hcontainer>
+                <section eId="sec_5v20160774" finlex:originalVersion="@20160774" finlex:originalVersionLabel="9.9.2016/774">
+                    <num>5 §</num>
+                    <content>
+                        <p>
+                            5 § on kumottu L:lla 
+                            <ref href="#entryIntoForce_20160774">9.9.2016/774</ref>.
+                        </p>
+                    </content>
+                </section>
+                <section eId="sec_6v20190293" finlex:originalVersion="@20190293" finlex:originalVersionLabel="15.3.2019/293">
+                    <num>6 §</num>
+                    <subsection eId="sec_6v20190293__subsec_1v20190293">
+                        <intro eId="sec_6v20190293__subsec_1v20190293__introv20190293">
+                            <p>Verovelvollisen tulee vuosittain ilmoittaa Verohallinnolle 5 §:n mukaisista vakuutussopimuksista seuraavat tiedot:</p>
+                        </intro>
+                        <paragraph eId="sec_6v20190293__subsec_1v20190293__para_1v20190293">
+                            <num>1)</num>
+                            <content>
+                                <p>vakuutuksenantajan nimi ja tunniste;</p>
+                            </content>
+                        </paragraph>
+                        <paragraph eId="sec_6v20190293__subsec_1v20190293__para_2v20190293">
+                            <num>2)</num>
+                            <content>
+                                <p>vakuutuksenottajan nimi ja tunniste;</p>
+                            </content>
+                        </paragraph>
+                        <paragraph eId="sec_6v20190293__subsec_1v20190293__para_3v20190293">
+                            <num>3)</num>
+                            <content>
+                                <p>vakuutuksenottajan yritystyyppi;</p>
+                            </content>
+                        </paragraph>
+                        <paragraph eId="sec_6v20190293__subsec_1v20190293__para_4v20190293">
+                            <num>4)</num>
+                            <content>
+                                <p>alue, jolle vakuutuksenottaja on sijoittautunut;</p>
+                            </content>
+                        </paragraph>
+                        <paragraph eId="sec_6v20190293__subsec_1v20190293__para_5v20190293">
+                            <num>5)</num>
+                            <content>
+                                <p>vakuutuksenottajan toimiala;</p>
+                            </content>
+                        </paragraph>
+                        <paragraph eId="sec_6v20190293__subsec_1v20190293__para_6v20190293">
+                            <num>6)</num>
+                            <content>
+                                <p>vakuutusmaksun määrä;</p>
+                            </content>
+                        </paragraph>
+                        <paragraph eId="sec_6v20190293__subsec_1v20190293__para_7v20190293">
+                            <num>7)</num>
+                            <content>
+                                <p>vero, joka olisi ollut suoritettava, jos vakuutusmaksu olisi verollinen.</p>
+                            </content>
+                        </paragraph>
+                    </subsection>
+                    <subsection eId="sec_6v20190293__subsec_2v20190293">
+                        <content>
+                            <p>Tiedot on ilmoitettava 5 §:n 5 momentissa tarkoitetun komission asetuksen (EU) N:o 702/2014 9 artiklan mukaisen julkaisuvelvollisuuden toteuttamiseksi.</p>
+                        </content>
+                    </subsection>
+                    <subsection eId="sec_6v20190293__subsec_3v20190293">
+                        <content>
+                            <p>Verovelvollisen on ilmoitettava viipymättä 1 momentissa tarkoitettujen tietojen muuttumisesta Verohallinnolle.</p>
+                        </content>
+                    </subsection>
+                    <subsection eId="sec_6v20190293__subsec_4v20190293">
+                        <content>
+                            <p>Tiedot merkitään Verohallinnon ylläpitämään rekisteriin. Rekisteriin voidaan tehdä merkintä myös muusta tukeen vaikuttavasta seikasta.</p>
+                        </content>
+                    </subsection>
+                    <subsection eId="sec_6v20190293__subsec_5v20190293">
+                        <content>
+                            <p>Verohallinto voi antaa tarkempia määräyksiä annettavista tiedoista tuen myöntämistä, valvomista ja tietojen julkaisemista varten sekä tietojen ilmoittamismenettelystä.</p>
+                        </content>
+                    </subsection>
+                </section>
+                <hcontainer eId="note_3" finlex:outline="huomautus" name="noteAuthorial">
+                    <content>
+                        <p>
+                            L:lla 
+                            <ref href="/akn/fi/act/statute/2019/293">293/2019</ref>
+                             lisätty 6 § on väliaikaisesti voimassa 20.3.2019–31.12.2027. Aiempi sanamuoto kuuluu:
+                        </p>
+                    </content>
+                </hcontainer>
+                <section eId="sec_6v20160774" finlex:originalVersion="@20160774" finlex:originalVersionLabel="9.9.2016/774">
+                    <num>6 §</num>
+                    <content>
+                        <p>
+                            6 § on kumottu L:lla 
+                            <ref href="#entryIntoForce_20160774">9.9.2016/774</ref>.
+                        </p>
+                    </content>
+                </section>
+                <section eId="sec_7v20180036" finlex:originalVersion="@20180036" finlex:originalVersionLabel="12.1.2018/36">
+                    <num>7 §</num>
+                    <subsection eId="sec_7v20180036__subsec_1v20180036">
+                        <content>
+                            <p>
+                                Vakuutusmaksuista suoritettavasta verosta on muutoin voimassa, mitä arvonlisäverosta arvonlisäverolain II osassa, oma-aloitteisten verojen verotusmenettelystä annetussa laissa 
+                                <ref href="/akn/fi/act/statute-consolidated/2016/768">(768/2016)</ref>
+                                 ja veronkantolaissa 
+                                <ref href="/akn/fi/act/statute-consolidated/2018/11">(11/2018)</ref>
+                                 tai muussa laissa säädetään.
+                            </p>
+                        </content>
+                    </subsection>
+                </section>
+                <section eId="sec_7av20160774" finlex:originalVersion="@20160774" finlex:originalVersionLabel="9.9.2016/774">
+                    <num>7 a §</num>
+                    <content>
+                        <p>
+                            7 a § on kumottu L:lla 
+                            <ref href="#entryIntoForce_20160774">9.9.2016/774</ref>.
+                        </p>
+                    </content>
+                </section>
+                <section eId="sec_8v20160774" finlex:originalVersion="@20160774" finlex:originalVersionLabel="9.9.2016/774">
+                    <num>8 §</num>
+                    <content>
+                        <p>
+                            8 § on kumottu L:lla 
+                            <ref href="#entryIntoForce_20160774">9.9.2016/774</ref>.
+                        </p>
+                    </content>
+                </section>
+                <section eId="sec_9" finlex:entryIntoForce="true" finlex:vsId="664/1966">
+                    <num>9 §</num>
+                    <subsection eId="sec_9__subsec_1">
+                        <content>
+                            <p>Tämä laki tulee voimaan 1 päivänä tammikuuta 1967 ja sitä sovelletaan sellaiseen lain voimassaollessa suoritettavaan ja kertyneeseen tai maksettuun vakuutusmaksuun, joka perustuu lain voimassaollessa tehtyyn tai uudistettuna jatkuvaan taikka voimaan tulleeseen vakuutussopimukseen, sekä myös sellaiseen lain voimassaollessa kertyneeseen tai maksettuun vakuutusmaksuun, jota koskevissa viranomaisen vahvistamissa maksuperusteissa on otettu huomioon tässä laissa tarkoitettu vero.</p>
+                        </content>
+                    </subsection>
+                </section>
+            </hcontainer>
+            <hcontainer name="amendmentEntryIntoForceAndApplianceProvisions">
+                <heading>Muutossäädösten voimaantulo ja soveltaminen</heading>
+                <hcontainer eId="entryIntoForce_19820537" name="entryIntoForce">
+                    <heading>9.7.1982/537:</heading>
+                    <content>
+                        <p>Tämä laki tulee voimaan 1 päivänä elokuuta 1982. Sitä sovelletaan ensimmäisen kerran syyskuulta 1982 suoritettavaan vakuutusmaksuveroon.</p>
+                        <p>
+                            <ref href="/akn/fi/doc/government-proposal/1982/70">HE 70/82</ref>, vvvk.miet. 22/82, svk.miet. 62/82
+                        </p>
+                    </content>
+                </hcontainer>
+                <hcontainer eId="entryIntoForce_19821036" name="entryIntoForce">
+                    <heading>23.12.1982/1036:</heading>
+                    <content>
+                        <p>Tämä laki tulee voimaan 1 päivänä kesäkuuta 1983. Tätä lakia sovelletaan sellaiseen vakuutusmaksuun, joka perustuu mainittuna päivänä tai sen jälkeen tehtyyn, uudistettuna jatkuvaan taikka voimaan tulleeseen vakuutussopimukseen niin myös sellaiseen mainitun päivän jälkeen kertyneeseen tai maksettuun vakuutusmaksuun, jota koskevissa viranomaisen vahvistamissa maksuperusteissa on otettu huomioon tässä laissa tarkoitettu vero.</p>
+                        <p>
+                            <ref href="/akn/fi/doc/government-proposal/1982/199">HE 199/82</ref>, vvvk.miet. 77/82, svk.miet. 207/82
+                        </p>
+                    </content>
+                </hcontainer>
+                <hcontainer eId="entryIntoForce_19860588" name="entryIntoForce">
+                    <heading>25.7.1986/588:</heading>
+                    <content>
+                        <p>Tämä laki tulee voimaan 1 päivänä toukokuuta 1987.</p>
+                        <p>
+                            <ref href="/akn/fi/doc/government-proposal/1986/54">HE 54/86</ref>, tvk.miet. 5/86, svk.miet. 73/86
+                        </p>
+                    </content>
+                </hcontainer>
+                <hcontainer eId="entryIntoForce_19881108" name="entryIntoForce">
+                    <heading>23.12.1988/1108:</heading>
+                    <content>
+                        <p>Tämä laki tulee voimaan 1 päivänä tammikuuta 1989. Lain 6 §:n 2 momentissa tarkoitettu tilikausi-ilmoitus annetaan ensimmäisen kerran lain voimaantulon jälkeiseltä tilikauden osalta. Ennen lain voimaantuloa päättyvältä verokaudelta annetaan veroilmoitus lääninverovirastolle noudattaen ennen tämän lain voimaantuloa voimassa olleita säännöksiä.</p>
+                        <p>Lääninverovirasto toimittaa verotuksen ennen vuotta 1989 päättyneeltä verokaudelta jokaisen verovelvollisen kohdalta, jollei liikevaihtoverotoimisto ole sitä toimittanut, ja vahvistaa sen verollisen määrän, mistä verovelvollisen on veroa suoritettava. Verotuksen toimittamisen määräaikaan ei sovelleta liikevaihtoverolain 46 §:n 1 momentissa olevaa tilikauteen kohdistuvan maksuunpanon määräaikaa.</p>
+                        <p>Ennen vuotta 1989 päättyneeltä verokaudelta muutosta haettaessa on noudatettava ennen tämän lain voimaantuloa voimassa olleita määräaikoja sekä liikevaihtoverolain 62 §:n 2 momenttia sellaisena, kuin se oli voimassa ennen tämän lain voimaantuloa.</p>
+                        <p>
+                            <ref href="/akn/fi/doc/government-proposal/1988/199">HE 199/88</ref>, vvvk.miet. 89/88, svk.miet. 209/88
+                        </p>
+                    </content>
+                </hcontainer>
+                <hcontainer eId="entryIntoForce_19900781" name="entryIntoForce">
+                    <heading>24.8.1990/781:</heading>
+                    <content>
+                        <p>Tämä laki tulee voimaan 1 päivänä tammikuuta 1991.</p>
+                        <p>
+                            <ref href="/akn/fi/doc/government-proposal/1988/66">HE 66/88</ref>, lvk.miet. 6/90, svk.miet. 56/90
+                        </p>
+                    </content>
+                </hcontainer>
+                <hcontainer eId="entryIntoForce_19920928" name="entryIntoForce">
+                    <heading>23.10.1992/928:</heading>
+                    <content>
+                        <p>Tämä laki tulee voimaan 1 päivänä tammikuuta 1993.</p>
+                        <p>Tilikaudelta, joka on päättynyt ennen lain voimaantuloa, tilikausi-ilmoitus on kuitenkin annettava kumotun 6 §:n 2 momentin säännöksiä soveltaen.</p>
+                        <p>Lain 3 §:ää sovelletaan vakuutusmaksuun, joka kertyy tai maksetaan lain voimaantulopäivänä tai sen jälkeen.</p>
+                        <p>
+                            <ref href="/akn/fi/doc/government-proposal/1992/141">HE 141/92</ref>, VaVM 40/92
+                        </p>
+                    </content>
+                </hcontainer>
+                <hcontainer eId="entryIntoForce_19921489" name="entryIntoForce">
+                    <heading>23.12.1992/1489:</heading>
+                    <content>
+                        <p>Tämä laki tulee voimaan asetuksella säädettävänä ajankohtana. (L 1489/92 tuli A:n 1645/93 mukaisesti voimaan 1.1.1994.)</p>
+                        <p>
+                            <ref href="/akn/fi/doc/government-proposal/1992/286">HE 286/92</ref>, TaVM 54/92, ETA-sopimuksen liite IX: neuvoston direktiivi (88/357/ETY), (90/618/ETY), ja (90/619/ETY)
+                        </p>
+                    </content>
+                </hcontainer>
+                <hcontainer eId="entryIntoForce_19950399" name="entryIntoForce">
+                    <heading>17.3.1995/399:</heading>
+                    <content>
+                        <p>Tämä laki tulee voimaan 1 päivänä huhtikuuta 1995.</p>
+                        <p>
+                            <ref href="/akn/fi/doc/government-proposal/1994/348">HE 348/94</ref>, TaVM 60/94, Neuvoston direktiivi 92/49/ETY; EYVL N:o L 228, 11.8.1992, s. 1, neuvoston direktiivi 92/96/ETY; EYVL N:o L 360, 9.12.1992, s. 1
+                        </p>
+                    </content>
+                </hcontainer>
+                <hcontainer eId="entryIntoForce_19960543" name="entryIntoForce">
+                    <heading>26.7.1996/543:</heading>
+                    <content>
+                        <p>Tämä laki tulee voimaan 1 päivänä tammikuuta 1997.</p>
+                        <p>
+                            <ref href="/akn/fi/doc/government-proposal/1996/46">HE 46/96</ref>, VaVM 20/96, 
+                            <a href="https://www.eduskunta.fi/valtiopaivaasiakirjat/EV+105/1996">EV 105/96</a>
+                        </p>
+                    </content>
+                </hcontainer>
+                <hcontainer eId="entryIntoForce_20090606" name="entryIntoForce">
+                    <heading>7.8.2009/606:</heading>
+                    <content>
+                        <p>Tämä laki tulee voimaan 14 päivänä elokuuta 2009.</p>
+                        <p>
+                            Lakia sovelletaan 1 päivänä tammikuuta 2010 tai sen jälkeen alkavalta kalenterikuukaudelta ilmoitettavaan ja suoritettavaan veroon. 
+                            <ref href="#entryIntoForce_20090749">(16.10.2009/749)</ref>
+                        </p>
+                        <p>Ennen 1 päivää tammikuuta 2010 päättyneeltä kalenterikuukaudelta ilmoitettavaan ja suoritettavaan veroon sovelletaan tämän lain voimaan tullessa voimassa olleita säännöksiä, jollei muussa laissa toisin säädetä.(16.10.2009/749)</p>
+                        <p>
+                            <ref href="/akn/fi/doc/government-proposal/2008/221">HE 221/2008</ref>, VaVM 7/2009, 
+                            <a href="https://www.eduskunta.fi/valtiopaivaasiakirjat/EV+66/2009">EV 66/2009</a>
+                        </p>
+                    </content>
+                </hcontainer>
+                <hcontainer eId="entryIntoForce_20090749" name="entryIntoForce">
+                    <heading>16.10.2009/749:</heading>
+                    <content>
+                        <p>Tämä laki tulee voimaan 21 päivänä lokakuuta 2009.</p>
+                        <p>Lakia sovelletaan jo 14 päivästä elokuuta 2009.</p>
+                        <p>
+                            <ref href="/akn/fi/doc/government-proposal/2009/129">HE 129/2009</ref>, VaVM 12/2009, 
+                            <a href="https://www.eduskunta.fi/valtiopaivaasiakirjat/EV+115/2009">EV 115/2009</a>
+                        </p>
+                    </content>
+                </hcontainer>
+                <hcontainer eId="entryIntoForce_20091782" name="entryIntoForce">
+                    <heading>29.12.2009/1782:</heading>
+                    <content>
+                        <p>Tämä laki tulee voimaan 1 päivänä heinäkuuta 2010.</p>
+                        <p>Lakia sovelletaan sellaiseen vakuutusmaksuun, joka maksetaan lain voimaantulopäivänä tai sen jälkeen alkavalta vakuutuskaudelta.</p>
+                        <p>
+                            <ref href="/akn/fi/doc/government-proposal/2009/137">HE 137/2009</ref>, VaVM 32/2009, 
+                            <a href="https://www.eduskunta.fi/valtiopaivaasiakirjat/EV+180/2009">EV 180/2009</a>
+                        </p>
+                    </content>
+                </hcontainer>
+                <hcontainer eId="entryIntoForce_20100531" name="entryIntoForce">
+                    <heading>11.6.2010/531:</heading>
+                    <content>
+                        <p>Tämä laki tulee voimaan 1 päivänä syyskuuta 2010.</p>
+                        <p>
+                            <ref href="/akn/fi/doc/government-proposal/2009/288">HE 288/2009</ref>, VaVM 12/2010, 
+                            <a href="https://www.eduskunta.fi/valtiopaivaasiakirjat/EV+37/2010">EV 37/2010</a>
+                        </p>
+                    </content>
+                </hcontainer>
+                <hcontainer eId="entryIntoForce_20120708" name="entryIntoForce">
+                    <heading>30.11.2012/708:</heading>
+                    <content>
+                        <p>Tämä laki tulee voimaan 1 päivänä tammikuuta 2013.</p>
+                        <p>Lakia sovelletaan sellaiseen vakuutusmaksuun, joka maksetaan lain voimaantulopäivänä tai sen jälkeen alkavalta vakuutuskaudelta.</p>
+                        <p>
+                            <ref href="/akn/fi/doc/government-proposal/2012/89">HE 89/2012</ref>, VaVM 24/2012, 
+                            <a href="https://www.eduskunta.fi/valtiopaivaasiakirjat/EK+112/2012">EK 112/2012</a>
+                        </p>
+                    </content>
+                </hcontainer>
+                <hcontainer eId="entryIntoForce_20160774" name="entryIntoForce">
+                    <heading>9.9.2016/774:</heading>
+                    <content>
+                        <p>Tämä laki tulee voimaan 1 päivänä tammikuuta 2017.</p>
+                        <p>Lakia sovelletaan ensimmäisen kerran lain voimaantulopäivänä ja sen jälkeen alkavalta verokaudelta ilmoitettavaan ja suoritettavaan veroon. </p>
+                        <p>Ennen lain voimaantuloa päättyvältä verokaudelta ilmoitettavaan ja suoritettavaan veroon sovelletaan tämän lain voimaan tullessa voimassa olleita säännöksiä, ellei muualla laissa toisin säädetä.</p>
+                        <p>Muutoksenhaussa lain voimaantulon jälkeen annettuun ennen lain voimaantuloa päättynyttä verokautta koskevaan päätökseen sovelletaan tämän lain säännöksiä.</p>
+                        <p>
+                            <ref href="/akn/fi/doc/government-proposal/2016/29">HE 29/2016</ref>, VaVM 9/2016, 
+                            <a href="https://www.eduskunta.fi/valtiopaivaasiakirjat/EV+104/2016">EV 104/2016</a>
+                        </p>
+                    </content>
+                </hcontainer>
+                <hcontainer eId="entryIntoForce_20180036" name="entryIntoForce">
+                    <heading>12.1.2018/36:</heading>
+                    <content>
+                        <p>Tämä laki tulee voimaan 1 päivänä marraskuuta 2019.</p>
+                        <p>
+                            <ref href="/akn/fi/doc/government-proposal/2017/97">HE 97/2017</ref>, VaVM 26/2017, 
+                            <a href="https://www.eduskunta.fi/valtiopaivaasiakirjat/EV+182/2017">EV 182/2017</a>
+                        </p>
+                    </content>
+                </hcontainer>
+                <hcontainer eId="entryIntoForce_20190293" name="entryIntoForce">
+                    <heading>15.3.2019/293:</heading>
+                    <content>
+                        <p>Tämä laki tulee voimaan 20 päivänä maaliskuuta 2019 ja on voimassa vuoden 2027 loppuun.</p>
+                        <p>Lain 5 §:n 2 momentti tulee voimaan valtioneuvoston asetuksella säädettävänä ajankohtana ja on voimassa vuoden 2027 loppuun.</p>
+                        <block eId="note_4" finlex:outline="huomautus" name="noteAuthorial">
+                            5 §:n 2 momentti tulee voimaan 1.11.2019 A:n 
+                            <ref href="/akn/fi/act/statute/2019/990">990/2019</ref>
+                             mukaisesti.
+                        </block>
+                        <p>Lakia sovelletaan sellaiseen vakuutusmaksuun, joka maksetaan lain voimassaoloaikana alkavalta vakuutuskaudelta.</p>
+                        <p>
+                            <ref href="/akn/fi/doc/government-proposal/2018/317">HE 317/2018</ref>, VaVM 36/2018, 
+                            <a href="https://www.eduskunta.fi/valtiopaivaasiakirjat/EV+279/2018">EV 279/2018</a>
+                        </p>
+                    </content>
+                </hcontainer>
+                <hcontainer eId="entryIntoForce_20230313" name="entryIntoForce">
+                    <heading>3.3.2023/313:</heading>
+                    <content>
+                        <p>Tämä laki tulee voimaan 1 päivänä toukokuuta 2023.</p>
+                        <p>
+                            <ref href="/akn/fi/doc/government-proposal/2022/310">HE 310/2022</ref>, VaVM 40/2022, 
+                            <a href="https://www.eduskunta.fi/valtiopaivaasiakirjat/EV+281/2022">EV 281/2022</a>
+                        </p>
+                    </content>
+                </hcontainer>
+                <hcontainer eId="entryIntoForce_20240463" name="entryIntoForce">
+                    <heading>5.7.2024/463:</heading>
+                    <content>
+                        <p>Tämä laki tulee voimaan 1 päivänä syyskuuta 2024.</p>
+                        <p>Lakia sovelletaan sellaiseen vakuutusmaksuun, joka maksetaan lain voimaantulopäivänä tai sen jälkeen alkavalta vakuutuskaudelta.</p>
+                        <p>
+                            <ref href="/akn/fi/doc/government-proposal/2024/61">HE 61/2024</ref>, VaVM 11/2024, 
+                            <a href="https://www.eduskunta.fi/valtiopaivaasiakirjat/EV+61/2024">EV 61/2024</a>
+                        </p>
+                    </content>
+                </hcontainer>
+            </hcontainer>
+        </body>
+    </act>
+</akomaNtoso>

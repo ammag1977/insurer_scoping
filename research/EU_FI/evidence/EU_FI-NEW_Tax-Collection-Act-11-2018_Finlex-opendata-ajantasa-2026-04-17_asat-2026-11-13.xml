@@ -1,0 +1,2156 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:finlex="http://data.finlex.fi/schema/finlex" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <act contains="multipleVersions" name="main">
+        <meta>
+            <identification source="#organization_fi.finlex">
+                <FRBRWork>
+                    <FRBRthis value="/akn/fi/act/statute-consolidated/2018/11/!main"/>
+                    <FRBRuri value="/akn/fi/act/statute-consolidated/2018/11"/>
+                    <FRBRalias name="eli" value="http://data.finlex.fi/eli/sd/2018/11/ajantasa"/>
+                    <FRBRdate date="2018-01-12" name="dateIssued"/>
+                    <FRBRdate date="2018-01-15" name="datePublished"/>
+                    <FRBRauthor as="#role_author" href="#organization_fi.finlex"/>
+                    <FRBRcountry value="fi"/>
+                    <FRBRsubtype value="statute-consolidated"/>
+                    <FRBRnumber value="11"/>
+                    <FRBRprescriptive value="false"/>
+                    <FRBRauthoritative value="false"/>
+                </FRBRWork>
+                <FRBRExpression>
+                    <FRBRthis value="/akn/fi/act/statute-consolidated/2018/11/fin@/!main"/>
+                    <FRBRuri value="/akn/fi/act/statute-consolidated/2018/11/fin@"/>
+                    <FRBRalias name="eli" value="http://data.finlex.fi/eli/sd/2018/11/ajantasa/2018-01-12/fin"/>
+                    <FRBRdate date="2018-01-12" name="dateIssued"/>
+                    <FRBRdate date="2026-04-17" name="dateConsolidated"/>
+                    <FRBRauthor as="#role_author" href="#organization_fi.finlex"/>
+                    <FRBRversionNumber value="20180011"/>
+                    <FRBRlanguage language="fin"/>
+                </FRBRExpression>
+                <FRBRManifestation>
+                    <FRBRthis value="/akn/fi/act/statute-consolidated/2018/11/fin@/!main.xml"/>
+                    <FRBRuri value="/akn/fi/act/statute-consolidated/2018/11/fin@.akn"/>
+                    <FRBRalias name="eli" value="http://data.finlex.fi/eli/sd/2018/11/ajantasa/2018-01-12/fin/xml"/>
+                    <FRBRdate date="2026-10-17" name="dateProduced"/>
+                    <FRBRdate date="2018-01-15" name="datePublished"/>
+                    <FRBRauthor as="#role_editor" href="#organization_fi.finlex"/>
+                    <FRBRformat value="xml"/>
+                </FRBRManifestation>
+            </identification>
+            <classification source="#organization_fi.finlex">
+                <keyword dictionary="/akn/ontology/concept/statute-keyword" showAs="Veronkanto" value="/akn/ontology/concept/statute-keyword.4386"/>
+                <keyword dictionary="/akn/ontology/concept/statute-keyword" showAs="Verotus" value="/akn/ontology/concept/statute-keyword.4391"/>
+            </classification>
+            <references source="#organization_fi.finlex">
+                <TLCOrganization eId="organization_fi.finlex" href="/akn/ontology/organization/fi.finlex" showAs="Finlex"/>
+                <TLCRole eId="role_author" href="/akn/ontology/role/author" showAs="Tekijä"/>
+                <TLCRole eId="role_editor" href="/akn/ontology/role/editor" showAs="Toimittaja"/>
+                <TLCOrganization eId="fi.ministry-of-finance" href="/akn/ontology/organization/fi.ministry-of-finance" showAs="Valtiovarainministeriö"/>
+                <TLCConcept eId="act" href="/akn/ontology/concept/statute/type-statute.act" showAs="Laki"/>
+            </references>
+            <proprietary source="#organization_fi.finlex">
+                <finlex:documentYear>2018</finlex:documentYear>
+                <finlex:administrativeBranch refersTo="#fi.ministry-of-finance"/>
+                <finlex:typeStatute refersTo="#act"/>
+                <finlex:isInForce value="true"/>
+                <finlex:inForce>
+                    <finlex:dateEntryIntoForce date="2019-11-01"/>
+                </finlex:inForce>
+                <finlex:amendedBy>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute/2026/231">231/2026</finlex:ref>
+                        <finlex:inForce>
+                            <finlex:dateEntryIntoForce date="2026-04-14">14.4.2026</finlex:dateEntryIntoForce>
+                        </finlex:inForce>
+                        <finlex:noteEditorial>muutt. 71 §</finlex:noteEditorial>
+                    </finlex:statuteReference>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute/2023/1309">1309/2023</finlex:ref>
+                        <finlex:inForce>
+                            <finlex:dateEntryIntoForce date="2024-01-01">1.1.2024</finlex:dateEntryIntoForce>
+                        </finlex:inForce>
+                        <finlex:noteEditorial>muutt. 1 ja 45 §:ää</finlex:noteEditorial>
+                    </finlex:statuteReference>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute/2025/384">384/2025</finlex:ref>
+                        <finlex:inForce>
+                            <finlex:dateEntryIntoForce date="2025-08-19">19.8.2025</finlex:dateEntryIntoForce>
+                        </finlex:inForce>
+                        <finlex:noteEditorial>kum. 28 §; muutt. 20 ja 32 §:ää sekä 4 luvun otsikko</finlex:noteEditorial>
+                    </finlex:statuteReference>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute/2019/859">859/2019</finlex:ref>
+                        <finlex:inForce>
+                            <finlex:dateEntryIntoForce date="2020-01-01">1.1.2020</finlex:dateEntryIntoForce>
+                        </finlex:inForce>
+                        <finlex:noteEditorial>muutt. 35 §:ää</finlex:noteEditorial>
+                    </finlex:statuteReference>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute/2019/1583">1583/2019</finlex:ref>
+                        <finlex:inForce>
+                            <finlex:dateEntryIntoForce date="2020-01-01">1.1.2020</finlex:dateEntryIntoForce>
+                        </finlex:inForce>
+                        <finlex:noteEditorial>muutt. 50 §:ää</finlex:noteEditorial>
+                    </finlex:statuteReference>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute/2020/785">785/2020</finlex:ref>
+                        <finlex:inForce>
+                            <finlex:dateEntryIntoForce date="2021-02-01">1.2.2021</finlex:dateEntryIntoForce>
+                        </finlex:inForce>
+                    </finlex:statuteReference>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute/2025/388">388/2025</finlex:ref>
+                        <finlex:inForce>
+                            <finlex:dateEntryIntoForce date="2025-11-15">15.11.2025</finlex:dateEntryIntoForce>
+                            <finlex:noteEditorial/>
+                        </finlex:inForce>
+                        <finlex:noteEditorial>muutt. 6, 16, 18, 24–26, 37, 38, 52, 60 ja 71–73 §:ää sekä 13, 20, 61 ja 63 §</finlex:noteEditorial>
+                    </finlex:statuteReference>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute/2023/662">662/2023</finlex:ref>
+                        <finlex:inForce>
+                            <finlex:dateEntryIntoForce date="2024-01-01">1.1.2024</finlex:dateEntryIntoForce>
+                        </finlex:inForce>
+                        <finlex:noteEditorial>muutt. 68 § sekä 43 ja 69 §:ää; lis. 67 a §</finlex:noteEditorial>
+                    </finlex:statuteReference>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute/2026/284">284/2026</finlex:ref>
+                        <finlex:inForce>
+                            <finlex:dateEntryIntoForce date="2026-05-01">1.5.2026</finlex:dateEntryIntoForce>
+                        </finlex:inForce>
+                        <finlex:noteEditorial>lis. 75 a §</finlex:noteEditorial>
+                    </finlex:statuteReference>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute/2021/513">513/2021</finlex:ref>
+                        <finlex:inForce>
+                            <finlex:dateEntryIntoForce date="2021-06-21">21.6.2021</finlex:dateEntryIntoForce>
+                            <finlex:dateInForceEnd date="2021-08-31">31.8.2021</finlex:dateInForceEnd>
+                        </finlex:inForce>
+                        <finlex:noteEditorial>muutt. 25, 26 ja 43 §:ää</finlex:noteEditorial>
+                    </finlex:statuteReference>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute/2019/343">343/2019</finlex:ref>
+                        <finlex:inForce>
+                            <finlex:dateEntryIntoForce date="2019-11-01">1.11.2019</finlex:dateEntryIntoForce>
+                        </finlex:inForce>
+                        <finlex:noteEditorial>muutt. 38 ja 71 §:ää</finlex:noteEditorial>
+                    </finlex:statuteReference>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute/2020/484">484/2020</finlex:ref>
+                        <finlex:inForce>
+                            <finlex:dateEntryIntoForce date="2020-06-26">26.6.2020</finlex:dateEntryIntoForce>
+                            <finlex:dateInForceEnd date="2020-08-31">31.8.2020</finlex:dateInForceEnd>
+                            <finlex:noteEditorial/>
+                        </finlex:inForce>
+                        <finlex:noteEditorial>muutt. 25, 26 ja 43 §:ää; lis. 25 a ja 43 a §</finlex:noteEditorial>
+                    </finlex:statuteReference>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute/2022/448">448/2022</finlex:ref>
+                        <finlex:inForce>
+                            <finlex:dateEntryIntoForce date="2022-06-16">16.6.2022</finlex:dateEntryIntoForce>
+                        </finlex:inForce>
+                        <finlex:noteEditorial>muutt. 62 §</finlex:noteEditorial>
+                    </finlex:statuteReference>
+                </finlex:amendedBy>
+                <finlex:issuedUnderThisAct>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute-consolidated/2019/1011">1011/2019</finlex:ref>
+                    </finlex:statuteReference>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute-consolidated/2019/1018">1018/2019</finlex:ref>
+                    </finlex:statuteReference>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute-consolidated/2022/919">919/2022</finlex:ref>
+                    </finlex:statuteReference>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute-consolidated/2023/1143">1143/2023</finlex:ref>
+                    </finlex:statuteReference>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute-consolidated/2019/1032">1032/2019</finlex:ref>
+                    </finlex:statuteReference>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute-consolidated/2023/1055">1055/2023</finlex:ref>
+                    </finlex:statuteReference>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute-consolidated/2023/1033">1033/2023</finlex:ref>
+                    </finlex:statuteReference>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute-consolidated/2019/1010">1010/2019</finlex:ref>
+                    </finlex:statuteReference>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute-consolidated/2020/824">824/2020</finlex:ref>
+                    </finlex:statuteReference>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute-consolidated/2025/1011">1011/2025</finlex:ref>
+                    </finlex:statuteReference>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute-consolidated/2021/4">4/2021</finlex:ref>
+                    </finlex:statuteReference>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute-consolidated/2021/3">3/2021</finlex:ref>
+                    </finlex:statuteReference>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute-consolidated/2021/449">449/2021</finlex:ref>
+                    </finlex:statuteReference>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute-consolidated/2021/1120">1120/2021</finlex:ref>
+                    </finlex:statuteReference>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute-consolidated/2020/310">310/2020</finlex:ref>
+                    </finlex:statuteReference>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute-consolidated/2019/1017">1017/2019</finlex:ref>
+                    </finlex:statuteReference>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute-consolidated/2021/2">2/2021</finlex:ref>
+                    </finlex:statuteReference>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute-consolidated/2019/1012">1012/2019</finlex:ref>
+                    </finlex:statuteReference>
+                </finlex:issuedUnderThisAct>
+                <finlex:repeals>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute-consolidated/2016/769">769/2016</finlex:ref>
+                    </finlex:statuteReference>
+                </finlex:repeals>
+            </proprietary>
+        </meta>
+        <preface>
+            <p>
+                <docNumber>11/2018</docNumber>
+                <docTitle>Veronkantolaki</docTitle>
+            </p>
+        </preface>
+        <preamble>
+            <formula eId="enactingClause" name="enactingClause">
+                <p>Eduskunnan päätöksen mukaisesti säädetään:</p>
+            </formula>
+        </preamble>
+        <body>
+            <hcontainer finlex:outline="Säädöksen teksti" name="statuteProvisionsWrapper">
+                <chapter eId="chp_1">
+                    <num>1 luku</num>
+                    <heading eId="chp_1__heading">Yleiset säännökset</heading>
+                    <section eId="chp_1__sec_1">
+                        <num>1 §</num>
+                        <heading eId="chp_1__sec_1__heading">Soveltamisala</heading>
+                        <subsection eId="chp_1__sec_1__subsec_1">
+                            <content>
+                                <p>
+                                    Tätä lakia sovelletaan verotusmenettelystä annetussa laissa 
+                                    <ref href="/akn/fi/act/statute/1995/1558">(1558/1995)</ref>
+                                     ja oma-aloitteisten verojen verotusmenettelystä annetussa laissa 
+                                    <ref href="/akn/fi/act/statute/2016/768">(768/2016)</ref>
+                                     tarkoitettujen verojen ja maksujen maksamisessa, palauttamisessa ja perimisessä noudatettavaan menettelyyn. Lakia sovelletaan ennakkoperintälaissa 
+                                    <ref href="/akn/fi/act/statute/1996/1118">(1118/1996)</ref>
+                                     ja arvonlisäverolaissa 
+                                    <ref href="/akn/fi/act/statute/1993/1501">(1501/1993)</ref>
+                                     tarkoitettuihin veroihin myös siltä osin kuin niihin ei sovelleta oma-aloitteisten verojen verotusmenettelystä annettua lakia, jollei asianomaisessa laissa toisin säädetä.
+                                </p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_1__sec_1__subsec_2">
+                            <content>
+                                <p>Lakia sovelletaan lisäksi muiden verojen ja maksujen kannossa, jos niin erikseen säädetään.</p>
+                            </content>
+                        </subsection>
+                    </section>
+                    <section eId="chp_1__sec_2">
+                        <num>2 §</num>
+                        <heading eId="chp_1__sec_2__heading">Määritelmät</heading>
+                        <subsection eId="chp_1__sec_2__subsec_1">
+                            <intro eId="chp_1__sec_2__subsec_1__intro">
+                                <p>Tässä laissa tarkoitetaan:</p>
+                            </intro>
+                            <paragraph eId="chp_1__sec_2__subsec_1__para_1">
+                                <num>1)</num>
+                                <content>
+                                    <p>
+                                        <i>verolla</i>
+                                         1 §:ssä tarkoitettuja veroja, maksuja ja muita suorituksia, jotka Verohallinto kantaa ja tilittää, sekä sellaista ulkomaan veroa, joka voidaan periä Suomessa joko vieraan valtion kanssa virka-avusta veroasioissa tehdyn sopimuksen (<i>virka-apusopimus</i>) tai keskinäisestä avunannosta veroihin, maksuihin ja muihin toimenpiteisiin liittyvien saatavien perinnässä annetun neuvoston direktiivin lainsäädännön alaan kuuluvien säännösten kansallisesta täytäntöönpanosta ja direktiivin soveltamisesta annetun lain 
+                                        <ref href="/akn/fi/act/statute/2011/1526">(1526/2011)</ref>
+                                         nojalla;
+                                    </p>
+                                </content>
+                            </paragraph>
+                            <paragraph eId="chp_1__sec_2__subsec_1__para_2">
+                                <num>2)</num>
+                                <content>
+                                    <p>
+                                        <i>verovelvollisella</i>
+                                         1 §:ssä mainittujen lakien mukaisessa verotuksessa verovelvollisia ja 1 §:ssä tarkoitetun veron suorittamiseen velvollisia;
+                                    </p>
+                                </content>
+                            </paragraph>
+                            <paragraph eId="chp_1__sec_2__subsec_1__para_3">
+                                <num>3)</num>
+                                <content>
+                                    <p>
+                                        <i>veronkannolla</i>
+                                         verovarojen kantamiseen ja palauttamiseen kuuluvia toimenpiteitä sekä verovaroista pidettävää kirjanpitoa;
+                                    </p>
+                                </content>
+                            </paragraph>
+                            <paragraph eId="chp_1__sec_2__subsec_1__para_4">
+                                <num>4)</num>
+                                <content>
+                                    <p>
+                                        <i>veron perinnällä</i>
+                                         Verohallinnon perintätoimia sekä muuta verovelkojen perintää tässä ja muussa laissa säädettyjä perintäkeinoja käyttäen;
+                                    </p>
+                                </content>
+                            </paragraph>
+                            <paragraph eId="chp_1__sec_2__subsec_1__para_5">
+                                <num>5)</num>
+                                <content>
+                                    <p>
+                                        <i>palautuksella</i>
+                                         verovelvolliselle palautettavaa veroa, vieraasta valtiosta Suomeen siirrettyä veroa tai veron ennakkoa sekä niille laskettuja korkoja;
+                                    </p>
+                                </content>
+                            </paragraph>
+                            <paragraph eId="chp_1__sec_2__subsec_1__para_6">
+                                <num>6)</num>
+                                <content>
+                                    <p>
+                                        <i>palautuksen käyttämisellä</i>
+                                         palautuksen käyttämistä verojen ja Verohallinnon muiden saatavien sekä muun viranomaisen saatavien suoritukseksi ennen palautettavan määrän maksamista verovelvolliselle;
+                                    </p>
+                                </content>
+                            </paragraph>
+                            <paragraph eId="chp_1__sec_2__subsec_1__para_7">
+                                <num>7)</num>
+                                <content>
+                                    <p>
+                                        <i>suoritusjärjestyksellä</i>
+                                         sitä järjestystä, jossa maksu ja palautus käytetään veron maksuerän osien suoritukseksi;
+                                    </p>
+                                </content>
+                            </paragraph>
+                            <paragraph eId="chp_1__sec_2__subsec_1__para_8">
+                                <num>8)</num>
+                                <content>
+                                    <p>
+                                        <i>käyttöjärjestyksellä</i>
+                                         sitä järjestystä, jossa maksu ja palautus käytetään veron maksuerien suoritukseksi;
+                                    </p>
+                                </content>
+                            </paragraph>
+                            <paragraph eId="chp_1__sec_2__subsec_1__para_9">
+                                <num>9)</num>
+                                <content>
+                                    <p>
+                                        <i>eräpäivällä</i>
+                                         sitä veron määräämistä koskevaan päätökseen merkittyä taikka lain tai asetuksen mukaan määräytyvää päivää, jona vero on viimeistään maksettava.
+                                    </p>
+                                </content>
+                            </paragraph>
+                        </subsection>
+                    </section>
+                    <section eId="chp_1__sec_3">
+                        <num>3 §</num>
+                        <heading eId="chp_1__sec_3__heading">Toimivaltainen viranomainen</heading>
+                        <subsection eId="chp_1__sec_3__subsec_1">
+                            <content>
+                                <p>Toimivaltainen viranomainen on Verohallinto.</p>
+                            </content>
+                        </subsection>
+                    </section>
+                    <section eId="chp_1__sec_4">
+                        <num>4 §</num>
+                        <heading eId="chp_1__sec_4__heading">Yhdessä kannettavat verot</heading>
+                        <subsection eId="chp_1__sec_4__subsec_1">
+                            <content>
+                                <p>Verotusmenettelystä annetussa laissa tarkoitetuista veroista valtionvero, kunnallisvero, kirkollisvero, vakuutetun sairausvakuutusmaksu ja henkilön yleisradiovero kannetaan yhdessä yhtenä verovuoteen kohdistuvana verona. Yhteisön tulovero ja yhteisön yleisradiovero kannetaan samoin yhdessä yhtenä verovuoteen kohdistuvana verona.</p>
+                            </content>
+                        </subsection>
+                    </section>
+                    <section eId="chp_1__sec_5">
+                        <num>5 §</num>
+                        <heading eId="chp_1__sec_5__heading">Veron suoritusjärjestys</heading>
+                        <subsection eId="chp_1__sec_5__subsec_1">
+                            <intro eId="chp_1__sec_5__subsec_1__intro">
+                                <p>Vero suoritetaan seuraavassa järjestyksessä:</p>
+                            </intro>
+                            <paragraph eId="chp_1__sec_5__subsec_1__para_1">
+                                <num>1)</num>
+                                <content>
+                                    <p>verolle lasketut ja kertyneet viivästysseuraamukset;</p>
+                                </content>
+                            </paragraph>
+                            <paragraph eId="chp_1__sec_5__subsec_1__para_2">
+                                <num>2)</num>
+                                <content>
+                                    <p>veron pääoma;</p>
+                                </content>
+                            </paragraph>
+                            <paragraph eId="chp_1__sec_5__subsec_1__para_3">
+                                <num>3)</num>
+                                <content>
+                                    <p>huojennettu viivästyskorko;</p>
+                                </content>
+                            </paragraph>
+                            <paragraph eId="chp_1__sec_5__subsec_1__para_4">
+                                <num>4)</num>
+                                <content>
+                                    <p>veronkorotus.</p>
+                                </content>
+                            </paragraph>
+                        </subsection>
+                        <subsection eId="chp_1__sec_5__subsec_2">
+                            <content>
+                                <p>Jos verovelan perintään sovellettavan muun lain säännökset poikkeavat 1 momentista, näin perityn määrän käsittelyssä noudatetaan asianomaista lakia. Jos perittävä määrä maksetaan Verohallinnolle tai perittävän määrän suoritukseksi käytetään palautusta, sovelletaan kuitenkin 1 momentissa säädettyä suoritusjärjestystä.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_1__sec_5__subsec_3">
+                            <content>
+                                <p>Verohallinto voi antaa tarkempia määräyksiä veron suoritusjärjestyksestä.</p>
+                            </content>
+                        </subsection>
+                    </section>
+                    <section eId="chp_1__sec_6">
+                        <num>6 §</num>
+                        <heading eId="chp_1__sec_6__heading">Maksun ja palautuksen yleinen käyttöjärjestys</heading>
+                        <subsection eId="chp_1__sec_6__subsec_1">
+                            <intro eId="chp_1__sec_6__subsec_1__intro">
+                                <p>Maksua ja palautusta käytetään verojen suoritukseksi verojen vanhentumispäivän mukaisessa järjestyksessä vanhimmasta uusimpaan. Samana päivänä vanhentuvien verojen suoritukseksi maksu ja palautus käytetään eräpäivien mukaisessa järjestyksessä vanhimmasta uusimpaan. Myöhässä ilmoitetun oma-aloitteisen veron eräpäivänä pidetään tällöin päivää, jolloin veroilmoitus on annettu. Jos verot erääntyvät samana päivänä, maksu ja palautus käytetään verojen suoritukseksi seuraavassa järjestyksessä:</p>
+                            </intro>
+                            <paragraph eId="chp_1__sec_6__subsec_1__para_1">
+                                <num>1)</num>
+                                <content>
+                                    <p>
+                                        4 §:ssä tarkoitetut verot ja maksut sekä ennakkoperintälain ja sairausvakuutuslain 
+                                        <ref href="/akn/fi/act/statute/2004/1224">(1224/2004)</ref>
+                                         nojalla maksuunpantu ennakko tai muu määrä;
+                                    </p>
+                                </content>
+                            </paragraph>
+                            <paragraph eId="chp_1__sec_6__subsec_1__para_2">
+                                <num>2)</num>
+                                <content>
+                                    <p>ennakkoperintälaissa tarkoitetut ennakonpidätykset ja muut oma-aloitteisesti maksettavat verot, joilla on useita veronsaajia;</p>
+                                </content>
+                            </paragraph>
+                            <paragraph eId="chp_1__sec_6__subsec_1__para_3">
+                                <num>3)</num>
+                                <content>
+                                    <p>
+                                        työnantajan sairausvakuutusmaksusta annetun lain 
+                                        <ref href="/akn/fi/act/statute/2016/771">(771/2016)</ref>
+                                         mukaiset maksut;
+                                    </p>
+                                </content>
+                            </paragraph>
+                            <paragraph eId="chp_1__sec_6__subsec_1__para_4">
+                                <num>4)</num>
+                                <content>
+                                    <p>kiinteistövero;</p>
+                                </content>
+                            </paragraph>
+                            <paragraph eId="chp_1__sec_6__subsec_1__para_5">
+                                <num>5)</num>
+                                <content>
+                                    <p>arvonlisäverot ja muut yksin valtiolle tulevat verot;</p>
+                                </content>
+                            </paragraph>
+                            <paragraph eId="chp_1__sec_6__subsec_1__para_6">
+                                <num>6)</num>
+                                <content>
+                                    <p>verotusmenettelystä annetun lain 22 a §:ssä ja oma-aloitteisten verojen verotusmenettelystä annetun lain 39 §:ssä tarkoitetut laiminlyöntimaksut;</p>
+                                </content>
+                            </paragraph>
+                            <paragraph eId="chp_1__sec_6__subsec_1__para_7">
+                                <num>7)</num>
+                                <content>
+                                    <p>tämän lain 34 §:n nojalla takaisin perittävä palautus;</p>
+                                </content>
+                            </paragraph>
+                            <paragraph eId="chp_1__sec_6__subsec_1__para_8">
+                                <num>8)</num>
+                                <content>
+                                    <p>suhdannetalletus;</p>
+                                </content>
+                            </paragraph>
+                            <paragraph eId="chp_1__sec_6__subsec_1__para_9">
+                                <num>9)</num>
+                                <content>
+                                    <p>muut Verohallinnon saatavat.</p>
+                                </content>
+                            </paragraph>
+                        </subsection>
+                        <subsection eId="chp_1__sec_6__subsec_2">
+                            <content>
+                                <p>Jos käytettävissä on useita maksuja tai palautuksia, niitä käytetään siinä järjestyksessä, jossa maksut on suoritettu tai palautukset ovat käytettävissä veron suoritukseksi. Jos maksu on suoritettu samana päivänä, jona palautus olisi 24 §:n 1 momentissa tarkoitetulla tavalla käytettävissä veron suoritukseksi, maksu käytetään ensin.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_1__sec_6__subsec_3">
+                            <content>
+                                <p>Verohallinto voi antaa tarkempia määräyksiä maksun ja palautuksen yleisestä käyttöjärjestyksestä.</p>
+                            </content>
+                        </subsection>
+                    </section>
+                    <section eId="chp_1__sec_7">
+                        <num>7 §</num>
+                        <heading eId="chp_1__sec_7__heading">Eräät yhdessä käsiteltävät verot</heading>
+                        <subsection eId="chp_1__sec_7__subsec_1">
+                            <intro eId="chp_1__sec_7__subsec_1__intro">
+                                <p>Oma-aloitteisten verojen verotusmenettelystä annetussa laissa tarkoitettuja veroja sekä verotusmenettelystä annetun lain 22 a §:ssä tarkoitettua laiminlyöntimaksua käsitellään veronkannossa yhtenä verolajina tässä laissa säädetyllä tavalla lukuun ottamatta:</p>
+                            </intro>
+                            <paragraph eId="chp_1__sec_7__subsec_1__para_1">
+                                <num>1)</num>
+                                <content>
+                                    <p>ennakkoperintälain 23 §:ssä tarkoitettua ennakonkantoa;</p>
+                                </content>
+                            </paragraph>
+                            <paragraph eId="chp_1__sec_7__subsec_1__para_2">
+                                <num>2)</num>
+                                <content>
+                                    <p>
+                                        korkotulon lähdeverosta annetun lain 
+                                        <ref href="/akn/fi/act/statute/1990/1341">(1341/1990) 12 §:ssä</ref>
+                                         tarkoitettua koronsaajalle määrättävää lähdeveroa;
+                                    </p>
+                                </content>
+                            </paragraph>
+                            <paragraph eId="chp_1__sec_7__subsec_1__para_3">
+                                <num>3)</num>
+                                <content>
+                                    <p>
+                                        rajoitetusti verovelvollisen tulon verottamisesta annetun lain 
+                                        <ref href="/akn/fi/act/statute/1978/627">(627/1978) 11 §:n</ref>
+                                         2 momentissa tarkoitettua tulonsaajalle maksettavaa lähdeveron palautusta ja mainitun lain 3 luvussa säädetyistä tuloista suoritettavia veroja ja maksuja, jotka määrätään verotusmenettelystä annetun lain mukaisessa järjestyksessä;
+                                    </p>
+                                </content>
+                            </paragraph>
+                            <paragraph eId="chp_1__sec_7__subsec_1__para_4">
+                                <num>4)</num>
+                                <content>
+                                    <p>arvonlisäveroa, johon sovelletaan arvonlisäverolain 12 a luvussa tarkoitettua erityisjärjestelmää;</p>
+                                </content>
+                            </paragraph>
+                            <paragraph eId="chp_1__sec_7__subsec_1__para_5">
+                                <num>5)</num>
+                                <content>
+                                    <p>
+                                        Pohjoismaiden Investointipankin, Pohjoismaiden kehitysrahaston ja Pohjoismaiden ympäristörahoitusyhtiön palveluksessa olevien henkilöiden verottamisesta annetun lain 
+                                        <ref href="/akn/fi/act/statute/1976/562">(562/1976) 6 §:ssä</ref>
+                                         tarkoitettua lopullisen palkkaveron palauttamista.
+                                    </p>
+                                </content>
+                            </paragraph>
+                        </subsection>
+                    </section>
+                    <section eId="chp_1__sec_8">
+                        <num>8 §</num>
+                        <heading eId="chp_1__sec_8__heading">Verovarojen maksuliike</heading>
+                        <subsection eId="chp_1__sec_8__subsec_1">
+                            <content>
+                                <p>Verot kannetaan sekä palautukset ja muut suoritukset maksetaan käyttäen valtion maksuliikepankeissa tätä tarkoitusta varten olevia Verohallinnon tilejä.</p>
+                            </content>
+                        </subsection>
+                    </section>
+                    <section eId="chp_1__sec_9">
+                        <num>9 §</num>
+                        <heading eId="chp_1__sec_9__heading">Verovarojen siirtoajankohta</heading>
+                        <subsection eId="chp_1__sec_9__subsec_1">
+                            <content>
+                                <p>Valtion maksuliikepankit siirtävät kunakin päivänä vastaanottamansa verovarat Verohallinnon tilille siten kuin valtion maksuliikkeen hoitamisesta tehdyssä sopimuksessa on sovittu.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_1__sec_9__subsec_2">
+                            <content>
+                                <p>Muut kuin 1 momentissa tarkoitetut rahalaitokset siirtävät kunakin päivänä vastaanottamansa verovarat päivittäin Verohallinnon tilille ensimmäisenä sellaisena maksupäivän jälkeisenä arkipäivänä, jona rahalaitos on yleisölle avoinna. Jos rahalaitos ei ole yleisölle avoinna maksupäivänä, varat on siirrettävä asianomaiselle tilille viimeistään toisena sellaisena maksupäivän jälkeisenä päivänä, jona rahalaitos on yleisölle avoinna.</p>
+                            </content>
+                        </subsection>
+                    </section>
+                    <section eId="chp_1__sec_10">
+                        <num>10 §</num>
+                        <heading eId="chp_1__sec_10__heading">Kirjanpito verovaroista</heading>
+                        <subsection eId="chp_1__sec_10__subsec_1">
+                            <content>
+                                <p>
+                                    Verohallinto pitää verovarojen kirjanpitoa, jonka tulee sisältää tiedot kertyneistä ja palautetuista veroista sekä muista suorituksista. Verovarojen kirjanpidosta on käytävä ilmi valtion talousarviosta annetun lain 
+                                    <ref href="/akn/fi/act/statute/1988/423">(423/1988)</ref>
+                                     ja sen nojalla annettujen säännösten edellyttämät tiedot samoin kuin veronsaajille tehtävien tilitysten edellyttämät tiedot.
+                                </p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_1__sec_10__subsec_2">
+                            <content>
+                                <p>Verohallinto voi antaa tarkempia määräyksiä verovarojen kirjanpito- ja kirjaamismenettelystä.</p>
+                            </content>
+                        </subsection>
+                    </section>
+                </chapter>
+                <chapter eId="chp_2">
+                    <num>2 luku</num>
+                    <heading eId="chp_2__heading">Veron maksaminen</heading>
+                    <section eId="chp_2__sec_11">
+                        <num>11 §</num>
+                        <heading eId="chp_2__sec_11__heading">Maksupaikat ja maksun yhteydessä ilmoitettavat tiedot</heading>
+                        <subsection eId="chp_2__sec_11__subsec_1">
+                            <content>
+                                <p>Verot maksetaan rahalaitoksiin. Maksaja vastaa maksamisesta aiheutuvista kuluista. Valtiovarainministeriön asetuksella säädetään, mitkä maksupaikat ottavat maksuja vastaan perimättä siitä maksajalta kuluja.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_2__sec_11__subsec_2">
+                            <content>
+                                <p>Maksun yhteydessä on ilmoitettava maksun yksilöinnissä tarvittavat tiedot. Verohallinto voi antaa tarkempia määräyksiä maksun yhteydessä ilmoitettavista tiedoista.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_2__sec_11__subsec_3">
+                            <content>
+                                <p>Verojen maksamisesta ulosottoviranomaiselle säädetään erikseen.</p>
+                            </content>
+                        </subsection>
+                    </section>
+                    <section eId="chp_2__sec_12">
+                        <num>12 §</num>
+                        <heading eId="chp_2__sec_12__heading">Veron eräpäivä</heading>
+                        <subsection eId="chp_2__sec_12__subsec_1">
+                            <content>
+                                <p>Vero on maksettava viimeistään veron määräämistä koskevaan päätökseen merkittynä eräpäivänä.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_2__sec_12__subsec_2">
+                            <content>
+                                <p>Edellä 7 §:ssä tarkoitettujen oma-aloitteisten verojen eräpäivästä säädetään oma-aloitteisten verojen verotusmenettelystä annetun lain 6 luvussa. Muu oma-aloitteinen vero kuin 7 §:ssä tarkoitettu vero on maksettava viimeistään laissa tai asetuksessa säädettynä eräpäivänä.</p>
+                            </content>
+                        </subsection>
+                    </section>
+                    <section eId="chp_2__sec_13">
+                        <num>13 §</num>
+                        <heading eId="chp_2__sec_13__heading">Veron maksupäivä</heading>
+                        <subsection eId="chp_2__sec_13__subsec_1">
+                            <intro eId="chp_2__sec_13__subsec_1__intro">
+                                <p>Vero katsotaan maksetuksi Verohallinnolle sinä päivänä, jona:</p>
+                            </intro>
+                            <paragraph eId="chp_2__sec_13__subsec_1__para_1">
+                                <num>1)</num>
+                                <content>
+                                    <p>maksu on veloitettu maksajan tililtä; tai</p>
+                                </content>
+                            </paragraph>
+                            <paragraph eId="chp_2__sec_13__subsec_1__para_2">
+                                <num>2)</num>
+                                <content>
+                                    <p>maksu on maksettu käteisenä rahalaitokseen tai erikseen säädettyyn verojen maksupaikkaan.</p>
+                                </content>
+                            </paragraph>
+                        </subsection>
+                        <subsection eId="chp_2__sec_13__subsec_2">
+                            <content>
+                                <p>Jos tietoa maksu- tai veloituspäivästä ei ole välitetty maksun mukana, vero katsotaan maksetuksi sinä päivänä, jona maksu on kirjattu Verohallinnon tilille.</p>
+                            </content>
+                        </subsection>
+                    </section>
+                    <section eId="chp_2__sec_14">
+                        <num>14 §</num>
+                        <heading eId="chp_2__sec_14__heading">Viivästysseuraamukset</heading>
+                        <subsection eId="chp_2__sec_14__subsec_1">
+                            <content>
+                                <p>
+                                    Eräpäivän jälkeen suoritetulle verolle on maksettava viivästyskorkoa. Viivästyskoron laskemisesta säädetään veronlisäyksestä ja viivekorosta annetussa laissa 
+                                    <ref href="/akn/fi/act/statute/1995/1556">(1556/1995)</ref>.
+                                </p>
+                            </content>
+                        </subsection>
+                    </section>
+                    <section eId="chp_2__sec_15">
+                        <num>15 §</num>
+                        <heading eId="chp_2__sec_15__heading">Tarkemmat säännökset ja määräykset veron maksamisesta</heading>
+                        <subsection eId="chp_2__sec_15__subsec_1">
+                            <content>
+                                <p>Valtiovarainministeriön asetuksella säädetään verojen kanto- ja maksuajat tai eräpäivät sekä kantoerien lukumäärän ja eräjaon perusteet, jollei muussa laissa tai sen nojalla muuta säädetä.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_2__sec_15__subsec_2">
+                            <content>
+                                <p>Verohallinto voi antaa tarkempia määräyksiä maksamisessa noudatettavasta menettelystä.</p>
+                            </content>
+                        </subsection>
+                    </section>
+                </chapter>
+                <chapter eId="chp_3">
+                    <num>3 luku</num>
+                    <heading eId="chp_3__heading">Maksun kohdistaminen ja käyttäminen</heading>
+                    <section eId="chp_3__sec_16">
+                        <num>16 §</num>
+                        <heading eId="chp_3__sec_16__heading">Maksun kohdistaminen</heading>
+                        <subsection eId="chp_3__sec_16__subsec_1">
+                            <content>
+                                <p>
+                                    Maksaja voi kohdistaa maksun verovelvollisen kaikkien verojen suoritukseksi (<i>yleismaksu</i>). Maksu käytetään verovelvollisen erääntyneiden verojen ja Verohallinnon muiden saatavien suoritukseksi noudattaen, mitä 6 §:ssä säädetään.
+                                </p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_3__sec_16__subsec_2">
+                            <content>
+                                <p>
+                                    Maksaja voi kohdistaa maksun yhden verolajin verojen suoritukseksi (<i>verolajimaksu</i>).
+                                </p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_3__sec_16__subsec_3">
+                            <content>
+                                <p>Jos maksaja kohdistaa maksun 7 §:ssä tarkoitettujen verojen suoritukseksi, maksu käytetään näiden verojen suoritukseksi noudattaen, mitä 6 §:ssä säädetään. Maksu käytetään 7 §:ssä tarkoitettujen verojen suoritukseksi kuitenkin aikaisintaan oma-aloitteisten verojen verotusmenettelystä annetun lain 32 ja 34 §:ssä tarkoitettuna eräpäivänä.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_3__sec_16__subsec_4">
+                            <content>
+                                <p>Jos maksaja kohdistaa maksun muun verolajin kuin 7 §:ssä tarkoitettujen verojen suoritukseksi, maksu käytetään kyseisen verolajin verojen erääntyneiden ja erääntymättömien saatavien suoritukseksi eräpäivien mukaisessa järjestyksessä vanhimmasta uusimpaan noudattaen muutoin, mitä 6 §:ssä säädetään. Edellä 4 §:ssä tarkoitettuja veroja sekä ennakkoperintälain tai sairausvakuutuslain nojalla määrättyä ennakkoa ja muuta määrää sekä tonnistoveroa pidetään verolajimaksua kohdistettaessa yhtenä verolajina.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_3__sec_16__subsec_5">
+                            <content>
+                                <p>Jos 3 tai 4 momentissa tarkoitetun maksun kohteena olevia veroja ei ole suorittamatta, maksu käytetään muiden erääntyneiden verojen ja Verohallinnon muiden saatavien suoritukseksi noudattaen, mitä 6 §:ssä säädetään.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_3__sec_16__subsec_6">
+                            <content>
+                                <p>Jos maksu on kohdistettu 7 §:ssä tarkoitettujen verojen suoritukseksi, maksu käytetään muiden verojen suoritukseksi aikaisintaan sen kalenterikuukauden viimeisenä päivänä, jonka aikana maksu on suoritettu. Jos maksu palautetaan tätä aikaisemmin, se palautetaan kuitenkin noudattaen, mitä 5 luvussa säädetään.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_3__sec_16__subsec_7">
+                            <content>
+                                <p>Jos maksu on kohdistettu varainsiirtoveron suoritukseksi, maksua ei käytetä muiden verojen suoritukseksi ennen kuin maksu palautetaan. Maksu palautetaan noudattaen, mitä 5 luvussa säädetään.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_3__sec_16__subsec_8">
+                            <content>
+                                <p>Edellä 2 momentissa tarkoitetun maksun käyttöjärjestyksestä voidaan poiketa verovelvollisen esittämän perustellun pyynnön vuoksi.</p>
+                            </content>
+                        </subsection>
+                    </section>
+                    <section eId="chp_3__sec_17">
+                        <num>17 §</num>
+                        <heading eId="chp_3__sec_17__heading">Maksun erityinen kohdistaminen</heading>
+                        <subsection eId="chp_3__sec_17__subsec_1">
+                            <content>
+                                <p>Maksaja voi kohdistaa maksun Verohallinnon yksilöimien saatavien suoritukseksi. Maksu käytetään näiden verojen suoritukseksi noudattaen, mitä 6 §:ssä säädetään.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_3__sec_17__subsec_2">
+                            <content>
+                                <p>Jos 1 momentissa tarkoitettuja yksilöityjä saatavia ei ole suorittamatta, maksu käytetään noudattaen, mitä 6 §:ssä säädetään.</p>
+                            </content>
+                        </subsection>
+                    </section>
+                    <section eId="chp_3__sec_18">
+                        <num>18 §</num>
+                        <heading eId="chp_3__sec_18__heading">Maksun käyttöjärjestyksestä poikkeaminen</heading>
+                        <subsection eId="chp_3__sec_18__subsec_1">
+                            <content>
+                                <p>Verohallinto voi käyttää maksun 16 §:ssä säädetystä poiketen viimeiseksi niiden saatavien suoritukseksi, joista on tehty maksujärjestely tai jotka on lähetetty perittäväksi ulosottotoimin sekä muissa vastaavissa tilanteissa, joissa käyttöjärjestyksestä poikkeamisesta on sovittu maksajan kanssa tai joissa maksua tulisi käytetyksi perintätoimen kohteena olevalle saatavalle maksajan edun vastaisesti.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_3__sec_18__subsec_2">
+                            <content>
+                                <p>Verohallinto voi käyttää maksun ensisijaisesti verovelvollisen omien verojen suoritukseksi ja sen jälkeen niiden verojen suoritukseksi, joista verovelvollinen on vastuussa.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_3__sec_18__subsec_3">
+                            <content>
+                                <p>Maksua ei ilman verovelvollisen pyyntöä käytetä sellaisen veron tai sen osan suoritukseksi, jonka täytäntöönpano on kokonaan kielletty tai keskeytetty.</p>
+                            </content>
+                        </subsection>
+                    </section>
+                    <section eId="chp_3__sec_19">
+                        <num>19 §</num>
+                        <heading eId="chp_3__sec_19__heading">Kohdistamaton tai tunnistamaton maksu</heading>
+                        <subsection eId="chp_3__sec_19__subsec_1">
+                            <content>
+                                <p>Maksu, jota ei ole kohdistettu 16 tai 17 §:ssä tarkoitetulla tavalla, käytetään maksajan verojen suoritukseksi noudattaen, mitä 6 §:ssä säädetään.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_3__sec_19__subsec_2">
+                            <content>
+                                <p>Maksu, jota puutteellisten tunnistetietojen vuoksi ei ole voitu käyttää verojen suoritukseksi eikä palauttaa maksajalle, tuloutetaan valtiolle. Jos tarvittavat tiedot saadaan tuloutuksen jälkeen, maksu käytetään verojen suoritukseksi tunnistetietojen mukaisesti tai palautetaan maksajalle.</p>
+                            </content>
+                        </subsection>
+                    </section>
+                    <section eId="chp_3__sec_20">
+                        <num>20 §</num>
+                        <heading eId="chp_3__sec_20__heading">Aiheettoman maksun palauttaminen</heading>
+                        <subsection eId="chp_3__sec_20__subsec_1">
+                            <content>
+                                <p>Verohallinto palauttaa sille maksetun määrän verovelvollisen vaatimuksesta, jos se on maksettu erehdyksessä tai aiheettomasti. Jos maksun palauttamista koskevaa vaatimusta ei hyväksytä, Verohallinto antaa asiasta päätöksen. Verohallinto voi palauttaa aiheettomasti maksetun määrän myös omasta aloitteestaan varattuaan tarvittaessa verovelvolliselle tilaisuuden selvityksen antamiseen.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_3__sec_20__subsec_2">
+                            <content>
+                                <p>Palautettavaan määrään sovelletaan, mitä palauttamisesta 28 §:ssä ja 32 §:n 1 momentissa säädetään.</p>
+                            </content>
+                        </subsection>
+                    </section>
+                    <section eId="chp_3__sec_21">
+                        <num>21 §</num>
+                        <heading eId="chp_3__sec_21__heading">Tarkemmat määräykset maksun käyttämisestä</heading>
+                        <subsection eId="chp_3__sec_21__subsec_1">
+                            <content>
+                                <p>Verohallinto voi antaa tarkempia määräyksiä maksun käyttöjärjestyksestä, käyttöjärjestyksestä poikkeamisesta ja maksun käyttämisessä noudatettavasta menettelystä.</p>
+                            </content>
+                        </subsection>
+                    </section>
+                </chapter>
+                <chapter eId="chp_4">
+                    <num>4 luku</num>
+                    <heading eId="chp_4__heading">Palautuksen käyttäminen ja säilyttäminen</heading>
+                    <section eId="chp_4__sec_22">
+                        <num>22 §</num>
+                        <heading eId="chp_4__sec_22__heading">Palautuksen käyttäminen Verohallinnon saatavan suoritukseksi</heading>
+                        <subsection eId="chp_4__sec_22__subsec_1">
+                            <content>
+                                <p>Verohallinto käyttää palautuksen verovelvollisen erääntyneiden verojen tai muiden Verohallinnon saatavien suoritukseksi.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_4__sec_22__subsec_2">
+                            <content>
+                                <p>Palautus voidaan käyttää myös sellaisten verojen suoritukseksi, joista palautuksen saaja on vastuussa.</p>
+                            </content>
+                        </subsection>
+                    </section>
+                    <section eId="chp_4__sec_23">
+                        <num>23 §</num>
+                        <heading eId="chp_4__sec_23__heading">Palautuksen käyttäminen muun viranomaisen saatavan suoritukseksi</heading>
+                        <subsection eId="chp_4__sec_23__subsec_1">
+                            <content>
+                                <p>Jos palautusta ei käytetä Verohallinnon saatavien suoritukseksi ja se muutoin maksettaisiin verovelvolliselle, se voidaan käyttää palautuksen saajan muiden erääntyneiden ja maksamattomien valtion verojen, julkisoikeudellisten maksujen sekä niiden viivästysseuraamusten ja lykkäyskorkojen suoritukseksi, jos asianomainen viranomainen on pyytänyt sitä Verohallinnolta ennen palautuksen maksamista. Tämän lain 8 luvussa tarkoitetun verosta vapauttamista koskevan päätöksen perusteella syntynyttä palautusta ei kuitenkaan voida käyttää toisen viranomaisen saatavien suoritukseksi. Jos maksuvelvollinen on saamassa toiselta viranomaiselta palautuksen, se voidaan vastaavasti Verohallinnon pyynnöstä käyttää Verohallinnon saatavien suoritukseksi soveltaen tämän luvun säännöksiä.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_4__sec_23__subsec_2">
+                            <content>
+                                <p>Jos palautusta ei käytetä Suomen viranomaisten saatavien suoritukseksi, palautus voidaan käyttää sellaisen Suomessa perittävänä olevan veron suoritukseksi, jonka periminen  perustuu virka-apusopimukseen tai 2 §:n 1 kohdassa mainittuun lakiin.</p>
+                            </content>
+                        </subsection>
+                    </section>
+                    <section eId="chp_4__sec_24">
+                        <num>24 §</num>
+                        <heading eId="chp_4__sec_24__heading">Palautuksen käyttämisen ajankohta</heading>
+                        <subsection eId="chp_4__sec_24__subsec_1">
+                            <content>
+                                <p>Palautus on käytettävissä erääntyneen veron suoritukseksi sinä päivänä, jona veron palauttamista koskeva päätös on tehty. Veronkantomenettelyssä tapahtuneen virheen korjaamiseen perustuva palautus on käytettävissä sinä päivänä, jona korjaus on tehty.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_4__sec_24__subsec_2">
+                            <intro eId="chp_4__sec_24__subsec_2__intro">
+                                <p>Poiketen siitä, mitä 1 momentissa säädetään, 7 §:ssä tarkoitetun veron palautus on käytettävissä erääntyneen veron suoritukseksi seuraavasti:</p>
+                            </intro>
+                            <paragraph eId="chp_4__sec_24__subsec_2__para_1">
+                                <num>1)</num>
+                                <content>
+                                    <p>arvonlisäverolain 147 a §:ssä ja 149 b §:n 3 momentissa tarkoitettu palautukseen oikeuttava arvonlisävero sinä päivänä, jona veroilmoitus tai sen oikaisuilmoitus on annettu, kuitenkin aikaisintaan palautukseen oikeuttavan arvonlisäveron verokautta seuraavan kuukauden yleisenä eräpäivänä;</p>
+                                </content>
+                            </paragraph>
+                            <paragraph eId="chp_4__sec_24__subsec_2__para_2">
+                                <num>2)</num>
+                                <content>
+                                    <p>muu kuin 1 kohdassa tarkoitettu oikaisuilmoitukseen perustuva palautus sinä päivänä, jona oikaisuilmoitus on annettu, kuitenkin aikaisintaan verokauden veron eräpäivänä;</p>
+                                </content>
+                            </paragraph>
+                            <paragraph eId="chp_4__sec_24__subsec_2__para_3">
+                                <num>3)</num>
+                                <content>
+                                    <p>veron määräämistä tai päätöksen oikaisua verovelvollisen hyväksi koskevaan päätökseen tai muutoksenhakuun perustuva palautus sinä päivänä, jona päätös tehdään tai muutosverotus toimitetaan, kuitenkin aikaisintaan alkuperäisessä päätöksessä määrättynä eräpäivänä.</p>
+                                </content>
+                            </paragraph>
+                        </subsection>
+                    </section>
+                    <section eId="chp_4__sec_25">
+                        <num>25 §</num>
+                        <heading eId="chp_4__sec_25__heading">Palautuksen käyttämisen esteet</heading>
+                        <subsection eId="chp_4__sec_25__subsec_1">
+                            <intro eId="chp_4__sec_25__subsec_1__intro">
+                                <p>Palautusta ei käytetä:</p>
+                            </intro>
+                            <paragraph eId="chp_4__sec_25__subsec_1__para_1">
+                                <num>1)</num>
+                                <content>
+                                    <p>vanhentuneen velan suoritukseksi;</p>
+                                </content>
+                            </paragraph>
+                            <paragraph eId="chp_4__sec_25__subsec_1__para_2">
+                                <num>2)</num>
+                                <content>
+                                    <p>ilman verovelvollisen pyyntöä sellaisen velan tai sen osan suoritukseksi, jonka täytäntöönpano on kokonaan kielletty tai keskeytetty.</p>
+                                </content>
+                            </paragraph>
+                        </subsection>
+                        <subsection eId="chp_4__sec_25__subsec_2">
+                            <intro eId="chp_4__sec_25__subsec_2__intro">
+                                <p>Saatavan suoritukseksi ei käytetä:</p>
+                            </intro>
+                            <paragraph eId="chp_4__sec_25__subsec_2__para_1">
+                                <num>1)</num>
+                                <content>
+                                    <p>erehdyksessä suoritetun veron palautusta;</p>
+                                </content>
+                            </paragraph>
+                            <paragraph eId="chp_4__sec_25__subsec_2__para_2">
+                                <num>2)</num>
+                                <content>
+                                    <p>palautusta, jota vastaavat varat on suoritettu jako-osuutena konkurssipesästä;</p>
+                                </content>
+                            </paragraph>
+                            <paragraph eId="chp_4__sec_25__subsec_2__para_3">
+                                <num>3)</num>
+                                <content>
+                                    <p>veronpalautusta, joka siirretään vieraalle valtiolle;</p>
+                                </content>
+                            </paragraph>
+                            <paragraph eId="chp_4__sec_25__subsec_2__para_4">
+                                <num>4)</num>
+                                <content>
+                                    <p>verotusmenettelystä annetun lain 22 a §:ssä tai oma-aloitteisten verojen verotusmenettelystä annetun lain 39 §:ssä tarkoitetun laiminlyöntimaksun palautusta.</p>
+                                </content>
+                            </paragraph>
+                        </subsection>
+                        <subsection eId="chp_4__sec_25__subsec_3">
+                            <content>
+                                <p>Palautuksen saajan konkurssi tai palautuksen ulosmittaus eivät estä palautuksen käyttämistä Verohallinnon saatavan suoritukseksi.</p>
+                            </content>
+                        </subsection>
+                    </section>
+                    <section eId="chp_4__sec_26">
+                        <num>26 §</num>
+                        <heading eId="chp_4__sec_26__heading">Palautuksen käyttöjärjestys</heading>
+                        <subsection eId="chp_4__sec_26__subsec_1">
+                            <content>
+                                <p>Palautus käytetään verovelvollisen erääntyneiden verojen ja muiden Verohallinnon saatavien suoritukseksi noudattaen, mitä 6 §:ssä säädetään.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_4__sec_26__subsec_2">
+                            <content>
+                                <p>Edellä 7 §:ssä tarkoitetun veron palautus käytetään ensisijaisesti 7 §:ssä tarkoitettujen verojen suoritukseksi noudattaen, mitä 6 §:ssä säädetään.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_4__sec_26__subsec_3">
+                            <content>
+                                <p>Verohallinto voi käyttää palautuksen 1 ja 2 momentissa säädetystä poiketen viimeiseksi niiden saatavien suoritukseksi, joista on tehty maksujärjestely tai jotka on lähetetty perittäväksi ulosottotoimin sekä muissa vastaavissa tilanteissa, joissa käyttöjärjestyksestä poikkeamisesta on sovittu palautuksen saajan kanssa tai joissa palautusta tulisi käytetyksi perintätoimen kohteena olevan saatavan suoritukseksi palautuksen saajan edun vastaisesti.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_4__sec_26__subsec_4">
+                            <content>
+                                <p>Verohallinto voi käyttää palautuksen ensisijaisesti verovelvollisen omien verojen suoritukseksi ja sen jälkeen niiden verojen suoritukseksi, joista verovelvollinen on vastuussa.</p>
+                            </content>
+                        </subsection>
+                    </section>
+                    <section eId="chp_4__sec_27">
+                        <num>27 §</num>
+                        <heading eId="chp_4__sec_27__heading">Ilmoitus palautuksen käyttämisestä</heading>
+                        <subsection eId="chp_4__sec_27__subsec_1">
+                            <content>
+                                <p>Tieto palautuksen käyttämisestä merkitään 70 §:ssä tarkoitettuun yhteenvetoon. Tieto merkitään sen verovelvollisen tai verosta vastuussa olevan yhteenvetoon, jonka palautus on käytetty verojen suoritukseksi.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_4__sec_27__subsec_2">
+                            <content>
+                                <p>Asianosaiselle on varattava tilaisuus selvityksen antamiseen ennen palautuksen käyttämistä, jos se on erityisestä syystä tarpeen.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_4__sec_27__subsec_3">
+                            <content>
+                                <p>Verohallinto korjaa palautuksen käyttämisessä tapahtuneen virheen noudattaen, mitä 72 §:ssä säädetään.</p>
+                            </content>
+                        </subsection>
+                    </section>
+                    <section eId="chp_4__sec_28">
+                        <num>28 §</num>
+                        <heading eId="chp_4__sec_28__heading">Palautuksen säilyttäminen</heading>
+                        <subsection eId="chp_4__sec_28__subsec_1">
+                            <content>
+                                <p>Jos veroja ei ole suorittamatta eikä palautusta ole käytettävä muiden saatavien suoritukseksi, Verohallinto voi verovelvollisen pyynnöstä säilyttää palautuksen tulevien maksuvelvoitteiden suoritukseksi.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_4__sec_28__subsec_2">
+                            <content>
+                                <p>Verohallinto voi antaa tarkempia määräyksiä palautuksen säilyttämiseen liittyvistä verovelvollisia ja verolajia koskevista rajoituksista, aikarajoituksista ja euromääräisistä rajoituksista sekä muusta palautuksen säilyttämiseen liittyvästä menettelystä.</p>
+                            </content>
+                        </subsection>
+                    </section>
+                    <section eId="chp_4__sec_29">
+                        <num>29 §</num>
+                        <heading eId="chp_4__sec_29__heading">Tarkemmat määräykset palautuksen käyttämisestä</heading>
+                        <subsection eId="chp_4__sec_29__subsec_1">
+                            <content>
+                                <p>Verohallinto voi antaa tarkempia määräyksiä palautuksen käyttöjärjestyksestä, käyttöjärjestyksestä poikkeamisesta ja palautuksen käyttämisessä noudatettavasta menettelystä.</p>
+                            </content>
+                        </subsection>
+                    </section>
+                </chapter>
+                <chapter eId="chp_5">
+                    <num>5 luku</num>
+                    <heading eId="chp_5__heading">Palauttaminen</heading>
+                    <section eId="chp_5__sec_30">
+                        <num>30 §</num>
+                        <heading eId="chp_5__sec_30__heading">Palautettavan määrän maksaminen</heading>
+                        <subsection eId="chp_5__sec_30__subsec_1">
+                            <content>
+                                <p>Verohallinto maksaa verovelvolliselle palautettavan määrän viivytyksettä sen jälkeen, kun oikeus palautukseen on selvitetty, ellei palautusta ole käytettävä veron tai muun saatavan suoritukseksi.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_5__sec_30__subsec_2">
+                            <content>
+                                <p>Palautettava määrä maksetaan euromääräisenä verovelvollisen ilmoittamalle pankkitilille. Jos verovelvollinen on ilmoittanut palautuksen maksamista varten ulkomailla sijaitsevan pankin tilin, verovelvollinen vastaa kuluista, jotka ulkomailla sijaitseva pankki perii palautuksen maksamisesta.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_5__sec_30__subsec_3">
+                            <content>
+                                <p>Palautettava määrä voidaan erityisestä syystä maksaa muulla tavoin kuin pankkitilille.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_5__sec_30__subsec_4">
+                            <content>
+                                <p>Yhteisön ja yhteisetuuden sekä muun verovelvollisen, joka on merkitty arvonlisäverolain 172 §:ssä tarkoitettuun arvonlisäverovelvollisten rekisteriin, on ilmoitettava tilinumero sähköisesti. Verohallinto voi erityisestä syystä hyväksyä tilinumeron ilmoittamisen paperilla.</p>
+                            </content>
+                        </subsection>
+                    </section>
+                    <section eId="chp_5__sec_31">
+                        <num>31 §</num>
+                        <heading eId="chp_5__sec_31__heading">Ilmoittamisvelvollisuuden laiminlyönti palautuksen maksamisen esteenä</heading>
+                        <subsection eId="chp_5__sec_31__subsec_1">
+                            <content>
+                                <p>Jos verovelvollinen on laiminlyönyt 1 §:ssä tarkoitettuun lakiin perustuvan ilmoittamisvelvollisuuden taikka antanut ilmoituksen tai muun selvityksen olennaisesti puutteellisena, palautettava määrä maksetaan sen jälkeen, kun veron määrä on selvitetty. Verohallinto voi kuitenkin maksaa palautettavan määrän tai osan siitä ennen veron määrän selvittämistä, jos puute on vähäinen ja on todennäköistä, että palautusta tai sen osaa ei tarvita selvitettävänä olevan veron suoritukseksi.</p>
+                            </content>
+                        </subsection>
+                    </section>
+                    <section eId="chp_5__sec_32">
+                        <num>32 §</num>
+                        <heading eId="chp_5__sec_32__heading">Palautettavan määrän maksamista koskevat rajoitukset</heading>
+                        <subsection eId="chp_5__sec_32__subsec_1">
+                            <content>
+                                <p>Verohallinto maksaa palautettavat määrät verovelvolliselle, jos niiden palautusten ja maksujen yhteismäärä, joita ei ole käytetty verojen suoritukseksi, on vähintään 10 euroa. Palautettava määrä voidaan jättää maksamatta, jos sitä säilytetään tulevien maksuvelvoitteiden suoritukseksi 28 §:n nojalla.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_5__sec_32__subsec_2">
+                            <content>
+                                <p>Verohallinto ei maksa verovelvolliselle sellaista palautusta, joka on siirrettävä vieraalle valtiolle kansainvälisen verojen siirtämistä koskevan sopimuksen nojalla.</p>
+                            </content>
+                        </subsection>
+                    </section>
+                    <section eId="chp_5__sec_33">
+                        <num>33 §</num>
+                        <heading eId="chp_5__sec_33__heading">Palautuksen siirtäminen</heading>
+                        <subsection eId="chp_5__sec_33__subsec_1">
+                            <content>
+                                <p>Verovelvollinen ei voi Verohallintoa sitovasti siirtää toiselle oikeuttaan palautukseen.</p>
+                            </content>
+                        </subsection>
+                    </section>
+                    <section eId="chp_5__sec_34">
+                        <num>34 §</num>
+                        <heading eId="chp_5__sec_34__heading">Virheellisesti palautetun määrän periminen takaisin</heading>
+                        <subsection eId="chp_5__sec_34__subsec_1">
+                            <content>
+                                <p>Jos palautettu määrä on maksettu virheellisesti, Verohallinto määrää palautetun määrän perittäväksi takaisin. Päätös takaisin perimisestä on tehtävä kolmen vuoden kuluessa sen kalenterivuoden päättymisestä, jona palautettu määrä on maksettu. Asianosaiselle varataan tilaisuus selvityksen antamiseen ennen päätöksen tekemistä, jollei se ole ilmeisen tarpeetonta.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_5__sec_34__subsec_2">
+                            <intro eId="chp_5__sec_34__subsec_2__intro">
+                                <p>Palautettu määrä voidaan jättää perimättä takaisin, jos:</p>
+                            </intro>
+                            <paragraph eId="chp_5__sec_34__subsec_2__para_1">
+                                <num>1)</num>
+                                <content>
+                                    <p>palautettu määrä on vähäinen, eikä verovelvollisten tasapuolinen kohtelu tai muu syy edellytä takaisin perimistä; tai</p>
+                                </content>
+                            </paragraph>
+                            <paragraph eId="chp_5__sec_34__subsec_2__para_2">
+                                <num>2)</num>
+                                <content>
+                                    <p>takaisin periminen olisi ilmeisen kohtuutonta.</p>
+                                </content>
+                            </paragraph>
+                        </subsection>
+                        <subsection eId="chp_5__sec_34__subsec_3">
+                            <content>
+                                <p>Takaisin perittävän määrän erääntymisajankohdasta säädetään valtiovarainministeriön asetuksella.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_5__sec_34__subsec_4">
+                            <content>
+                                <p>Takaisin perittävä määrä on maksettava muutoksenhausta huolimatta, jollei Verohallinto tai muutoksenhakuviranomainen toisin määrää. Maksamisessa ja perimisessä noudatetaan, mitä tässä laissa säädetään verosta.</p>
+                            </content>
+                        </subsection>
+                    </section>
+                    <section eId="chp_5__sec_35">
+                        <num>35 §</num>
+                        <heading eId="chp_5__sec_35__heading">Veronsaajien oikeudenvalvontayksikön pyyntö täytäntöönpanon kieltämiseksi tai keskeyttämiseksi </heading>
+                        <subsection eId="chp_5__sec_35__subsec_1">
+                            <content>
+                                <p>
+                                    Hakiessaan muutosta Verohallinnon, verotuksen oikaisulautakunnan tai hallinto-oikeuden päätökseen Veronsaajien oikeudenvalvontayksikkö voi pyytää muutoksenhakuviranomaiselta hallintolain 
+                                    <ref href="/akn/fi/act/statute/2003/434">(434/2003) 49 f §:ssä</ref>
+                                     tai hallintolainkäyttölain 
+                                    <ref href="/akn/fi/act/statute/1996/586">(586/1996) 32 §:ssä</ref>
+                                     tarkoitettua päätöksen täytäntöönpanon kieltoa tai keskeyttämistä.
+                                </p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_5__sec_35__subsec_2">
+                            <content>
+                                <p>Veronsaajien oikeudenvalvontayksikön on seitsemän päivän kuluessa 1 momentissa tarkoitetun päätöksen tekemisestä ilmoitettava Verohallinnolle ja verovelvolliselle aikomuksestaan tehdä 1 momentissa tarkoitettu pyyntö.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_5__sec_35__subsec_3">
+                            <content>
+                                <p>Kun Verohallinto on saanut tiedon Veronsaajien oikeudenvalvontayksikön 2 momentissa tarkoitetusta ilmoituksesta, Verohallinto ei palauta veroa ennen kuin muutoksenhakuviranomainen on ratkaissut oikeudenvalvontayksikön pyynnön täytäntöönpanon kiellosta tai keskeyttämisestä. Verohallinto palauttaa veron siltä osin kuin muutoksenhakuviranomainen hylkää oikeudenvalvontayksikön täytäntöönpanon kieltoa tai keskeyttämistä koskevan pyynnön, oikaisuvaatimuksen, valituksen tai valituslupahakemuksen.</p>
+                            </content>
+                        </subsection>
+                    </section>
+                    <section eId="chp_5__sec_36">
+                        <num>36 §</num>
+                        <heading eId="chp_5__sec_36__heading">Tarkemmat säännökset ja määräykset palauttamisesta</heading>
+                        <subsection eId="chp_5__sec_36__subsec_1">
+                            <content>
+                                <p>Veronpalautusten maksuajankohdista säädetään valtiovarainministeriön asetuksella.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_5__sec_36__subsec_2">
+                            <content>
+                                <p>Verohallinto voi antaa tarkempia määräyksiä palauttamisessa noudatettavasta menettelystä.</p>
+                            </content>
+                        </subsection>
+                    </section>
+                </chapter>
+                <chapter eId="chp_6">
+                    <num>6 luku</num>
+                    <heading eId="chp_6__heading">Hyvityskorko ja palautukseen oikeuttavan arvonlisäveron korko</heading>
+                    <section eId="chp_6__sec_37">
+                        <num>37 §</num>
+                        <heading eId="chp_6__sec_37__heading">Hyvityskorko</heading>
+                        <subsection eId="chp_6__sec_37__subsec_1">
+                            <intro eId="chp_6__sec_37__subsec_1__intro">
+                                <p>Hyvityskorkoa maksetaan:</p>
+                            </intro>
+                            <paragraph eId="chp_6__sec_37__subsec_1__para_1">
+                                <num>1)</num>
+                                <content>
+                                    <p>oma-aloitteisten verojen verotusmenettelystä annetussa laissa tarkoitetulle palautettavalle verolle;</p>
+                                </content>
+                            </paragraph>
+                            <paragraph eId="chp_6__sec_37__subsec_1__para_2">
+                                <num>2)</num>
+                                <content>
+                                    <p>muulle palautettavalle verolle, jota palautettaessa on lain mukaan maksettava korkoa tai jota Verohallinto säilyttää tulevien maksuvelvoitteiden suoritukseksi;</p>
+                                </content>
+                            </paragraph>
+                            <paragraph eId="chp_6__sec_37__subsec_1__para_3">
+                                <num>3)</num>
+                                <content>
+                                    <p>maksulle, jota käytetään veron suoritukseksi myöhemmin kuin maksupäivänä sekä veron suoritukseksi tarkoitetulle maksulle, joka palautetaan 20 §:n nojalla; varainsiirtoverolle kohdistetulle maksulle ei kuitenkaan makseta hyvityskorkoa.</p>
+                                </content>
+                            </paragraph>
+                        </subsection>
+                        <subsection eId="chp_6__sec_37__subsec_2">
+                            <content>
+                                <p>Jos palautettavalle verolle on 1 momentin 1 tai 2 kohdan mukaan maksettava hyvityskorkoa, maksetaan hyvityskorkoa vastaavasti myös veron pääomaan liittyville viivästysseuraamuksille.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_6__sec_37__subsec_3">
+                            <content>
+                                <p>
+                                    Jos asianomaisessa verolaissa ei toisin säädetä, korko lasketaan vuotuisena korkona, joka on kutakin kalenterivuotta edeltävänä puolivuotiskautena voimassa oleva korkolain 
+                                    <ref href="/akn/fi/act/statute/1982/633">(633/1982) 12 §:ssä</ref>
+                                     tarkoitettu viitekorko vähennettynä kahdella prosenttiyksiköllä. Korko on kuitenkin vähintään 0,5 prosenttia.
+                                </p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_6__sec_37__subsec_4">
+                            <content>
+                                <p>
+                                    Korko lasketaan tässä pykälässä säädetyn mukaisesti myös, jos palautettava vero on peritty verojen ja maksujen täytäntöönpanosta annetun lain 
+                                    <ref href="/akn/fi/act/statute/2007/706">(706/2007)</ref>
+                                     perusteella ulosottotoimin.
+                                </p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_6__sec_37__subsec_5">
+                            <content>
+                                <p>Hyvityskorosta vastaa valtio. Verovelvolliselta takaisin peritty hyvityskorko tuloutetaan valtiolle.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_6__sec_37__subsec_6">
+                            <content>
+                                <p>Hyvityskorko ei ole tuloverotuksessa veronalaista tuloa.</p>
+                            </content>
+                        </subsection>
+                    </section>
+                    <section eId="chp_6__sec_38">
+                        <num>38 §</num>
+                        <heading eId="chp_6__sec_38__heading">Hyvityskoron laskeminen</heading>
+                        <subsection eId="chp_6__sec_38__subsec_1">
+                            <content>
+                                <p>Palautettavalle verolle lasketaan hyvityskorkoa veron suorittamispäivää seuraavasta päivästä siihen päivään, jona palautettava määrä veloitetaan Verohallinnon tililtä tai käytetään veron suoritukseksi. Palautettavalle verolle, jota Verohallinto säilyttää myöhempien verojen suoritukseksi ja jolle ei ole muussa laissa säädetty maksettavaksi korkoa, lasketaan hyvityskorkoa kuitenkin sitä päivää seuraavasta päivästä alkaen, jona palautukseen oikeuttava päätös on tehty.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_6__sec_38__subsec_2">
+                            <content>
+                                <p>Verotusmenettelystä annetun lain 50 §:ssä tarkoitetulle veronpalautukselle lasketaan hyvityskorkoa verovuoden päättymistä seuraavan toisen kuukauden ensimmäisestä päivästä. Jos vero on suoritettu verovuoden päättymistä seuraavan kuukauden jälkeen, hyvityskorkoa lasketaan maksupäivää seuraavasta päivästä. Korkoa lasketaan siihen päivään, jona palautettava määrä veloitetaan Verohallinnon tililtä tai käytetään veron suoritukseksi.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_6__sec_38__subsec_3">
+                            <content>
+                                <p>Verotusmenettelystä annetun lain mukaan määrätylle verolle ja veronkorotukselle, jota palautetaan verotuksen muutoksen johdosta, lasketaan hyvityskorkoa 2 momentissa tarkoitetusta päivästä. Korkoa lasketaan siihen päivään, jona palautettava määrä veloitetaan Verohallinnon tililtä tai käytetään veron suoritukseksi.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_6__sec_38__subsec_4">
+                            <intro eId="chp_6__sec_38__subsec_4__intro">
+                                <p>Jos 7 §:ssä tarkoitetun maksettavan veron määrä alenee, palautukselle lasketaan hyvityskorkoa 1 momentissa tarkoitettuun päivään. Koron laskeminen alkaa seuraavasti:</p>
+                            </intro>
+                            <paragraph eId="chp_6__sec_38__subsec_4__para_1">
+                                <num>1)</num>
+                                <content>
+                                    <p>oma-aloitteisten verojen verotusmenettelystä annetun lain 32 §:ssä tarkoitettua eräpäivää seuraavasta päivästä;</p>
+                                </content>
+                            </paragraph>
+                            <paragraph eId="chp_6__sec_38__subsec_4__para_2">
+                                <num>2)</num>
+                                <content>
+                                    <p>veronkorotusta, laiminlyöntimaksua tai myöhästymismaksua palautettaessa oma-aloitteisten verojen verotusmenettelystä annetun lain 34 §:ssä tarkoitettua eräpäivää seuraavasta päivästä;</p>
+                                </content>
+                            </paragraph>
+                            <paragraph eId="chp_6__sec_38__subsec_4__para_3">
+                                <num>3)</num>
+                                <content>
+                                    <p>jos vero on suoritettu 1 tai 2 kohdassa tarkoitetun eräpäivän jälkeen, veron suorittamispäivää seuraavasta päivästä;</p>
+                                </content>
+                            </paragraph>
+                            <paragraph eId="chp_6__sec_38__subsec_4__para_4">
+                                <num>4)</num>
+                                <content>
+                                    <p>jos veron suoritukseksi on käytetty 24 §:n 2 momentin 1 kohdassa tarkoitettua palautukseen oikeuttavaa arvonlisäveroa, aikaisintaan kyseisen palautukseen oikeuttavan arvonlisäveron verokauden eräpäivää seuraavasta päivästä.</p>
+                                </content>
+                            </paragraph>
+                        </subsection>
+                        <subsection eId="chp_6__sec_38__subsec_5">
+                            <content>
+                                <p>Jos palautus johtuu verosta vapauttamista tai veron perimättä jättämistä koskevasta päätöksestä, palautukselle lasketaan hyvityskorkoa päätöspäivästä 1 momentissa tarkoitettuun päivään.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_6__sec_38__subsec_6">
+                            <content>
+                                <p>Kun palautusta käytetään Verohallinnon saatavan suoritukseksi, hyvityskorko ja viivästysseuraamukset lasketaan saatavan suorittamispäivään.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_6__sec_38__subsec_7">
+                            <content>
+                                <p>Maksulle, joka käytetään veron suoritukseksi myöhemmin kuin maksupäivänä, lasketaan hyvityskorkoa maksupäivää seuraavasta päivästä siihen päivään, jona se käytetään veron suoritukseksi. Maksulle, joka palautetaan 20 §:n nojalla tai käytetään 23 §:n 1 momentissa tarkoitetulla tavalla, lasketaan hyvityskorkoa maksupäivää seuraavasta päivästä siihen päivään, jona palautettava määrä veloitetaan Verohallinnon tililtä.</p>
+                            </content>
+                        </subsection>
+                    </section>
+                    <section eId="chp_6__sec_39">
+                        <num>39 §</num>
+                        <heading eId="chp_6__sec_39__heading">Palautukseen oikeuttavan arvonlisäveron korko</heading>
+                        <subsection eId="chp_6__sec_39__subsec_1">
+                            <content>
+                                <p>Edellä 24 §:n 2 momentin 1 kohdassa tarkoitetulle palautukseen oikeuttavalle arvonlisäverolle lasketaan hyvityskorkoa palautukseen oikeuttavan arvonlisäveron verokauden eräpäivää seuraavasta päivästä 38 §:n 1 momentissa säädettyyn päivään.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_6__sec_39__subsec_2">
+                            <content>
+                                <p>Jos palautukseen oikeuttavan arvonlisäveron määrä suurenee, lisämäärälle lasketaan hyvityskorkoa siten kuin 1 momentissa säädetään.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_6__sec_39__subsec_3">
+                            <content>
+                                <p>Jos palautukseen oikeuttavan arvonlisäveron määrä pienenee, liikaa palautettavaksi ilmoitetulle määrälle on maksettava veronlisäyksestä ja viivekorosta annetun lain 5 a §:n mukaista viivästyskorkoa sitä päivää seuraavasta päivästä, jona liikaa palautettavaksi ilmoitettu määrä on käytetty veron suoritukseksi tai veloitettu Verohallinnon tililtä. Viivästyskorko lasketaan siihen päivään, jona liikaa palautettavaksi ilmoitettu määrä on tullut suoritetuksi. Hyvityskorko oikaistaan vastaamaan muuttunutta tilannetta.</p>
+                            </content>
+                        </subsection>
+                    </section>
+                    <section eId="chp_6__sec_40">
+                        <num>40 §</num>
+                        <heading eId="chp_6__sec_40__heading">Tarkemmat määräykset koron laskemisesta</heading>
+                        <subsection eId="chp_6__sec_40__subsec_1">
+                            <content>
+                                <p>Verohallinto voi antaa tarkempia määräyksiä hyvityskoron ja palautukseen oikeuttavan arvonlisäveron koron laskemisesta.</p>
+                            </content>
+                        </subsection>
+                    </section>
+                </chapter>
+                <chapter eId="chp_7">
+                    <num>7 luku</num>
+                    <heading eId="chp_7__heading">Verojen perintä</heading>
+                    <section eId="chp_7__sec_41">
+                        <num>41 §</num>
+                        <heading eId="chp_7__sec_41__heading">Perintäkeinot</heading>
+                        <subsection eId="chp_7__sec_41__subsec_1">
+                            <intro eId="chp_7__sec_41__subsec_1__intro">
+                                <p>Selvitettyään verovelvollisen maksukykyä ja tarkoituksenmukaista perintäkeinoa Verohallinto voi verojen perimiseksi:</p>
+                            </intro>
+                            <paragraph eId="chp_7__sec_41__subsec_1__para_1">
+                                <num>1)</num>
+                                <content>
+                                    <p>lähettää maksamatta jätetyn veron ulosottotoimin perittäväksi;</p>
+                                </content>
+                            </paragraph>
+                            <paragraph eId="chp_7__sec_41__subsec_1__para_2">
+                                <num>2)</num>
+                                <content>
+                                    <p>ryhtyä verojen maksujärjestelyyn;</p>
+                                </content>
+                            </paragraph>
+                            <paragraph eId="chp_7__sec_41__subsec_1__para_3">
+                                <num>3)</num>
+                                <content>
+                                    <p>hakea verovelvollisen konkurssiin;</p>
+                                </content>
+                            </paragraph>
+                            <paragraph eId="chp_7__sec_41__subsec_1__para_4">
+                                <num>4)</num>
+                                <content>
+                                    <p>käyttää puhevaltaa konkurssissa, sulautumisessa, jakautumisessa, kiinteistön pakkohuutokaupassa, julkisessa haasteessa, yrityksen saneerausmenettelyssä ja yksityishenkilön velkajärjestelyssä sekä muissa näihin rinnastettavissa tilanteissa;</p>
+                                </content>
+                            </paragraph>
+                            <paragraph eId="chp_7__sec_41__subsec_1__para_5">
+                                <num>5)</num>
+                                <content>
+                                    <p>ryhtyä tarvittaviin oikeudenkäynteihin;</p>
+                                </content>
+                            </paragraph>
+                            <paragraph eId="chp_7__sec_41__subsec_1__para_6">
+                                <num>6)</num>
+                                <content>
+                                    <p>ryhtyä turvaamistoimiin;</p>
+                                </content>
+                            </paragraph>
+                            <paragraph eId="chp_7__sec_41__subsec_1__para_7">
+                                <num>7)</num>
+                                <content>
+                                    <p>pyytää ja antaa kansainvälistä virka-apua siitä erikseen säädetyllä tavalla;</p>
+                                </content>
+                            </paragraph>
+                            <paragraph eId="chp_7__sec_41__subsec_1__para_8">
+                                <num>8)</num>
+                                <content>
+                                    <p>
+                                        ilmoittaa verotustietojen julkisuudesta ja salassapidosta annetun lain 
+                                        <ref href="/akn/fi/act/statute/1999/1346">(1346/1999) 21 §:n</ref>
+                                         mukaisesti julkaistaviksi tietoja maksamatta jätetyistä veroista.
+                                    </p>
+                                </content>
+                            </paragraph>
+                        </subsection>
+                        <subsection eId="chp_7__sec_41__subsec_2">
+                            <content>
+                                <p>
+                                    Jollei tässä laissa toisin säädetä, verojen perimiseen ulosottotoimin ja perimisen turvaamiseen sovelletaan, mitä verojen ja maksujen täytäntöönpanosta annetussa laissa sekä verojen ja maksujen perimisen turvaamisesta annetussa laissa 
+                                    <ref href="/akn/fi/act/statute/1973/395">(395/1973)</ref>
+                                     säädetään.
+                                </p>
+                            </content>
+                        </subsection>
+                    </section>
+                    <section eId="chp_7__sec_42">
+                        <num>42 §</num>
+                        <heading eId="chp_7__sec_42__heading">Maksukehotus</heading>
+                        <subsection eId="chp_7__sec_42__subsec_1">
+                            <content>
+                                <p>Verohallinto toimittaa ennen perintätoimiin ryhtymistä maksamatta jätetystä verosta verovelvolliselle maksukehotuksen.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_7__sec_42__subsec_2">
+                            <content>
+                                <p>Vero voidaan lähettää ulosottotoimin perittäväksi tai tieto verovelasta voidaan merkitä verotustietojen julkisuudesta ja salassapidosta annetun lain 20 a §:ssä tarkoitettuun verovelkarekisteriin tai mainitun lain 21 §:ssä tarkoitetulla tavalla julkaista vasta sen jälkeen, kun verovelvolliselle on lähetetty maksukehotus. Maksukehotuksessa on ilmaistava veron ulosottoa ja verovelan julkaisemista koskeva uhka ja asetettava määräaika, jonka kuluessa verovelvollisen tulee suorittaa vero näiden toimenpiteiden välttämiseksi.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_7__sec_42__subsec_3">
+                            <content>
+                                <p>Jos veroa peritään siitä vastuuseen määrätyltä, hänelle toimitetaan maksukehotus ennen kuin vero lähetetään ulosottotoimin perittäväksi.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_7__sec_42__subsec_4">
+                            <content>
+                                <p>Erityisestä syystä Verohallinto voi käyttää 41 §:ssä tarkoitettuja perintäkeinoja ilman, että maksamatta jätetystä verosta toimitetaan maksukehotus.</p>
+                            </content>
+                        </subsection>
+                    </section>
+                    <section eId="chp_7__sec_43">
+                        <num>43 §</num>
+                        <heading eId="chp_7__sec_43__heading">Maksujärjestelyn edellytykset</heading>
+                        <subsection eId="chp_7__sec_43__subsec_1">
+                            <content>
+                                <p>Verohallinto voi ryhtyä 41 §:ssä tarkoitettuun maksujärjestelyyn, jos verovelvollisen veronmaksukyky on tilapäisesti alentunut elatusvelvollisuuden, työttömyyden, sairauden tai heikentyneen maksuvalmiuden taikka muun erityisen syyn vuoksi.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_7__sec_43__subsec_2">
+                            <content>
+                                <p>Maksujärjestely tehdään sillä ehdolla, että se ei estä palautusten käyttämistä maksujärjestelyn kohteena olevan määrän sekä sille mahdollisesti perittävän koron suoritukseksi.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_7__sec_43__subsec_3">
+                            <content>
+                                <p>Maksujärjestely on erittäin painavista kohtuussyistä mahdollista tehdä myös siten, että korkoa ei peritä.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_7__sec_43__subsec_4">
+                            <content>
+                                <p>Verohallinto voi antaa tarkempia määräyksiä maksujärjestelyyn ryhtymisestä, maksuajasta, maksujärjestelyn turvaavasta vakuudesta sekä muusta maksujärjestelyssä noudatettavasta menettelystä.</p>
+                            </content>
+                        </subsection>
+                    </section>
+                    <section eId="chp_7__sec_44">
+                        <num>44 §</num>
+                        <heading eId="chp_7__sec_44__heading">Suostumuksen antaminen ulkomailla toimeenpantavaan velkajärjestelyyn tai yrityssaneeraukseen </heading>
+                        <subsection eId="chp_7__sec_44__subsec_1">
+                            <content>
+                                <p>Verohallinnolla on oikeus muun säännöksen estämättä suostua ulkomailla toimeenpantavaan, toimeenpanovaltion säännösten mukaiseen tai vapaaehtoiseen velkajärjestely- tai yrityssaneerausmenettelyyn.</p>
+                            </content>
+                        </subsection>
+                    </section>
+                    <section eId="chp_7__sec_45">
+                        <num>45 §</num>
+                        <heading eId="chp_7__sec_45__heading">Perintätoimenpiteistä luopuminen</heading>
+                        <subsection eId="chp_7__sec_45__subsec_1">
+                            <content>
+                                <p>Verohallinto voi olla ryhtymättä verojen perintään tai keskeyttää perinnän, jos perinnän ei arvioida johtavan tulokseen tai jos saavutettava tulos arvioidaan vähäiseksi. Perintä kuitenkin aloitetaan tai keskeytettyä perintää jatketaan silloin, kun sen voidaan olettaa johtavan tulokseen, joka ei ole vähäinen.</p>
+                            </content>
+                        </subsection>
+                    </section>
+                    <section eId="chp_7__sec_46">
+                        <num>46 §</num>
+                        <heading eId="chp_7__sec_46__heading">Tarkemmat määräykset verojen perinnästä</heading>
+                        <subsection eId="chp_7__sec_46__subsec_1">
+                            <content>
+                                <p>Verohallinto voi antaa tarkempia määräyksiä verojen perintään liittyvästä menettelystä ja perintätoimenpiteiden täytäntöönpanosta.</p>
+                            </content>
+                        </subsection>
+                    </section>
+                </chapter>
+                <chapter eId="chp_8">
+                    <num>8 luku</num>
+                    <heading eId="chp_8__heading">Verosta vapauttaminen</heading>
+                    <section eId="chp_8__sec_47">
+                        <num>47 §</num>
+                        <heading eId="chp_8__sec_47__heading">Verosta vapauttaminen</heading>
+                        <subsection eId="chp_8__sec_47__subsec_1">
+                            <content>
+                                <p>Verohallinto voi hakemuksesta myöntää vapautuksen tämän lain nojalla kannettavasta verosta tai maksusta sekä niiden viivästysseuraamuksista ja muista seuraamuksista. Vapautusta ei kuitenkaan voida myöntää tuloveron ennakosta ennen verovuodelta toimitettavan verotuksen päättymistä eikä korkotulon lähdeverosta. Vapautus voidaan myöntää osittain tai kokonaan.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_8__sec_47__subsec_2">
+                            <intro eId="chp_8__sec_47__subsec_2__intro">
+                                <p>Vapautus voidaan myöntää, jos:</p>
+                            </intro>
+                            <paragraph eId="chp_8__sec_47__subsec_2__para_1">
+                                <num>1)</num>
+                                <content>
+                                    <p>vero- tai maksuvelvollisen veronmaksukyky on sairauden, työttömyyden, elatusvelvollisuuden tai muun vastaavan syyn vuoksi olennaisesti alentunut;</p>
+                                </content>
+                            </paragraph>
+                            <paragraph eId="chp_8__sec_47__subsec_2__para_2">
+                                <num>2)</num>
+                                <content>
+                                    <p>vapautuksen myöntämiseen on verovelvollisen velkajärjestelyn vuoksi erityisiä syitä; tai</p>
+                                </content>
+                            </paragraph>
+                            <paragraph eId="chp_8__sec_47__subsec_2__para_3">
+                                <num>3)</num>
+                                <content>
+                                    <p>veron periminen on muusta erityisestä syystä ilmeisesti kohtuutonta.</p>
+                                </content>
+                            </paragraph>
+                        </subsection>
+                        <subsection eId="chp_8__sec_47__subsec_3">
+                            <intro eId="chp_8__sec_47__subsec_3__intro">
+                                <p>Sen lisäksi, mitä 2 momentissa säädetään, vapautus perintöverosta ja lahjaverosta voidaan myöntää, jos:</p>
+                            </intro>
+                            <paragraph eId="chp_8__sec_47__subsec_3__para_1">
+                                <num>1)</num>
+                                <content>
+                                    <p>veron periminen ilmeisesti vaarantaisi maa- tai metsätalouden tai muun yritystoiminnan jatkuvuuden tai työpaikkojen säilyvyyden; tai</p>
+                                </content>
+                            </paragraph>
+                            <paragraph eId="chp_8__sec_47__subsec_3__para_2">
+                                <num>2)</num>
+                                <content>
+                                    <p>pesäosuuden tai lahjan arvo on verovelvollisuuden alkamisen jälkeen olennaisesti vähentynyt ja vapautuksen myöntämiseen on siihen liittyviä erityisiä syitä.</p>
+                                </content>
+                            </paragraph>
+                        </subsection>
+                        <subsection eId="chp_8__sec_47__subsec_4">
+                            <content>
+                                <p>
+                                    Sen lisäksi, mitä 2 momentissa säädetään, vapautus kiinteistöverolain 
+                                    <ref href="/akn/fi/act/statute/1992/654">(654/1992) 12 a §:n</ref>
+                                     mukaan määrätystä kiinteistöverosta voidaan myöntää, jos rakennushanke on viivästynyt muusta syystä kuin rakennuspaikan omistajan omasta menettelystä.
+                                </p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_8__sec_47__subsec_5">
+                            <content>
+                                <p>Verosta myönnetty vapautus koskee myös viivästysseuraamuksia ja muita seuraamuksia. Verohallinto voi erikseen myöntää vapautuksen viivästysseuraamuksista ja muista seuraamuksista silloinkin, kun ne on tilitettävä muulle veronsaajalle kuin valtiolle, sekä silloin, kun kunta on 48 §:n mukaisesti ilmoittanut ratkaisevansa kunnallisveron tai kiinteistöveron vapauttamista koskevat asiat.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_8__sec_47__subsec_6">
+                            <content>
+                                <p>Valtiovarainministeriö voi ottaa Verohallinnossa käsiteltävän periaatteellisesti tärkeän verosta vapauttamista koskevan asian ratkaistavakseen.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_8__sec_47__subsec_7">
+                            <content>
+                                <p>Mitä tässä pykälässä säädetään verovelvollisesta, sovelletaan vastaavasti verosta vastuussa olevaan.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_8__sec_47__subsec_8">
+                            <content>
+                                <p>Tämän pykälän nojalla annettuun päätökseen ei saa hakea muutosta.</p>
+                            </content>
+                        </subsection>
+                    </section>
+                    <section eId="chp_8__sec_48">
+                        <num>48 §</num>
+                        <heading eId="chp_8__sec_48__heading">Kunnan ratkaisuvalta</heading>
+                        <subsection eId="chp_8__sec_48__subsec_1">
+                            <content>
+                                <p>Kunta voi tehdä Verohallinnolle kunnallisveron ja kiinteistöveron ratkaisuvaltaa koskevan ilmoituksen, jolloin ilmoituksensa mukaisesti kunta ratkaisee kunnallisverosta tai kiinteistöverosta vapauttamista koskevat asiat noudattaen, mitä 47 §:ssä säädetään.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_8__sec_48__subsec_2">
+                            <content>
+                                <p>Kunnan ratkaisuvalta on voimassa kolme kalenterivuotta. Kunnan on tehtävä ilmoitus Verohallinnolle ennen kolmen vuoden ajanjakson alkua. Ilmoituksen antamisen ajankohdasta määrätään Verohallinnon päätöksellä. Kunnan ratkaisuvalta koskee niitä kunnallisveroa tai kiinteistöveroa koskevia hakemuksia, jotka ovat tulleet vireille ajanjakson aikana.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_8__sec_48__subsec_3">
+                            <content>
+                                <p>
+                                    Jos valtioneuvosto on kuntarakennelain 
+                                    <ref href="/akn/fi/act/statute/2009/1698">(1698/2009) 21 §:n</ref>
+                                     nojalla päättänyt 2 momentissa tarkoitetun kolmen vuoden ajanjakson aikana tapahtuvasta kuntajaon muuttamisesta, jossa kunnat yhdistetään perustamalla uusi kunta, Verohallinto varaa tarvittaessa uudelle kunnalle tilaisuuden tehdä ratkaisuvaltaa koskeva ilmoitus jäljellä olevaksi ajanjaksoksi.
+                                </p>
+                            </content>
+                        </subsection>
+                    </section>
+                    <section eId="chp_8__sec_49">
+                        <num>49 §</num>
+                        <heading eId="chp_8__sec_49__heading">Erityinen verosta vapauttaminen</heading>
+                        <subsection eId="chp_8__sec_49__subsec_1">
+                            <intro eId="chp_8__sec_49__subsec_1__intro">
+                                <p>Verohallinto voi vero- tai maksuvelvollisen hakemuksesta tai omasta aloitteestaan myöntää verosta tai maksusta sekä veronkorotuksesta ja viivästysseuraamuksesta tai muusta seuraamuksesta vapautuksen osittain tai kokonaan, jos:</p>
+                            </intro>
+                            <paragraph eId="chp_8__sec_49__subsec_1__para_1">
+                                <num>1)</num>
+                                <content>
+                                    <p>Veronsaajien oikeudenvalvontayksikkö on hakenut muutosta vero- tai maksuvelvollisen verotukseen tai muutoksenhakuelimen päätökseen tulkinnanvaraisessa asiassa, josta ei ole vakiintunutta oikeuskäytäntöä;</p>
+                                </content>
+                            </paragraph>
+                            <paragraph eId="chp_8__sec_49__subsec_1__para_2">
+                                <num>2)</num>
+                                <content>
+                                    <p>muutoksenhaun johdosta kyseiselle vero- tai maksuvelvolliselle on määrätty veroa tai maksua;</p>
+                                </content>
+                            </paragraph>
+                            <paragraph eId="chp_8__sec_49__subsec_1__para_3">
+                                <num>3)</num>
+                                <content>
+                                    <p>asiassa on saatu korkeimman hallinto-oikeuden päätös; ja</p>
+                                </content>
+                            </paragraph>
+                            <paragraph eId="chp_8__sec_49__subsec_1__para_4">
+                                <num>4)</num>
+                                <content>
+                                    <p>verosta vapauttaminen on vero- tai maksuvelvollisten yhdenvertaisen kohtelun turvaamiseksi tärkeää.</p>
+                                </content>
+                            </paragraph>
+                        </subsection>
+                        <subsection eId="chp_8__sec_49__subsec_2">
+                            <content>
+                                <p>Jos kunta ratkaisee kunnallisveroa koskevat asiat 48 §:n nojalla, Verohallinto ratkaisee kuitenkin tässä pykälässä tarkoitetut asiat kuultuaan asianomaista kuntaa ja seurakuntaa.</p>
+                            </content>
+                        </subsection>
+                    </section>
+                </chapter>
+                <chapter eId="chp_9">
+                    <num>9 luku</num>
+                    <heading eId="chp_9__heading">Vanhentuminen</heading>
+                    <section eId="chp_9__sec_50">
+                        <num>50 §</num>
+                        <heading eId="chp_9__sec_50__heading">Veron vanhentuminen</heading>
+                        <subsection eId="chp_9__sec_50__subsec_1">
+                            <content>
+                                <p>Verojen ja niiden liitännäiskustannusten vanhentumiseen sovelletaan verojen ja maksujen täytäntöönpanosta annetun lain 20 ja 20 a §:ää sekä 21 §:n 1 ja 2 momenttia, jollei jäljempänä toisin säädetä.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_9__sec_50__subsec_2">
+                            <content>
+                                <p>Jos oma-aloitteisia veroja koskeva veroilmoitus annetaan myöhässä, se osa verokauden verosta, jota ilmoitus koskee, vanhentuu viiden vuoden kuluttua ilmoituksen antamista seuraavaa yleistä eräpäivää seuraavan kalenterivuoden alusta.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_9__sec_50__subsec_3">
+                            <content>
+                                <p>Ennakkoperintälain nojalla määrätty ennakko vanhentuu viiden vuoden kuluttua sitä seuranneen kalenterivuoden alusta, jona päättyy sen verovuoden verotus, jonka veron suoritukseksi ennakko on määrätty.</p>
+                            </content>
+                        </subsection>
+                    </section>
+                    <section eId="chp_9__sec_51">
+                        <num>51 §</num>
+                        <heading eId="chp_9__sec_51__heading">Takaisin perittävän määrän vanhentuminen</heading>
+                        <subsection eId="chp_9__sec_51__subsec_1">
+                            <content>
+                                <p>Edellä 34 §:n nojalla takaisin perittäväksi määrätty määrä vanhentuu viiden vuoden kuluttua eräpäivää seuraavan kalenterivuoden alusta.</p>
+                            </content>
+                        </subsection>
+                    </section>
+                    <section eId="chp_9__sec_52">
+                        <num>52 §</num>
+                        <heading eId="chp_9__sec_52__heading">Palautuksen ja maksun sekä niille maksettavan koron vanhentuminen</heading>
+                        <subsection eId="chp_9__sec_52__subsec_1">
+                            <content>
+                                <p>Palautus ja sille maksettava korko vanhentuvat viiden vuoden kuluttua sitä seuranneen kalenterivuoden alusta, jona palautusta koskeva päätös on tehty.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_9__sec_52__subsec_2">
+                            <content>
+                                <p>Jos 20 §:ssä tarkoitettua aiheetonta maksua ei ole puutteellisten maksutietojen vuoksi voitu palauttaa verovelvolliselle, maksu ja sille maksettava korko vanhentuvat viiden vuoden kuluttua sen kalenterivuoden päättymisestä, jolloin maksu on suoritettu.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_9__sec_52__subsec_3">
+                            <content>
+                                <p>Verohallinto voi erityisestä syystä asianosaisen vaatimuksesta palauttaa vanhentuneen palautuksen tai maksun.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_9__sec_52__subsec_4">
+                            <content>
+                                <p>Vanhentuneet palautukset ja maksut tuloutetaan korkoineen valtiolle.</p>
+                            </content>
+                        </subsection>
+                    </section>
+                </chapter>
+                <chapter eId="chp_10">
+                    <num>10 luku</num>
+                    <heading eId="chp_10__heading">Vastuu verosta</heading>
+                    <section eId="chp_10__sec_53">
+                        <num>53 §</num>
+                        <heading eId="chp_10__sec_53__heading">Verosta vastuussa oleva</heading>
+                        <subsection eId="chp_10__sec_53__subsec_1">
+                            <intro eId="chp_10__sec_53__subsec_1__intro">
+                                <p>Verovelvolliselta tämän lain nojalla kannettavasta verosta ovat kuin omasta verostaan vastuussa:</p>
+                            </intro>
+                            <paragraph eId="chp_10__sec_53__subsec_1__para_1">
+                                <num>1)</num>
+                                <content>
+                                    <p>avoimen yhtiön yhtiömies;</p>
+                                </content>
+                            </paragraph>
+                            <paragraph eId="chp_10__sec_53__subsec_1__para_2">
+                                <num>2)</num>
+                                <content>
+                                    <p>kommandiittiyhtiön vastuunalainen yhtiömies;</p>
+                                </content>
+                            </paragraph>
+                            <paragraph eId="chp_10__sec_53__subsec_1__para_3">
+                                <num>3)</num>
+                                <content>
+                                    <p>kuolinpesän osakas;</p>
+                                </content>
+                            </paragraph>
+                            <paragraph eId="chp_10__sec_53__subsec_1__para_4">
+                                <num>4)</num>
+                                <content>
+                                    <p>yhteisetuuden osakas osuuttaan vastaavalta osalta.</p>
+                                </content>
+                            </paragraph>
+                        </subsection>
+                        <subsection eId="chp_10__sec_53__subsec_2">
+                            <content>
+                                <p>Kuolinpesä vastaa kuolinpesään kuuluvilla varoilla vainajan verosta. Jos kuolinpesä on jaettu, osakas on vastuussa osuuttaan vastaavasta osasta vainajan veroa pesäosuutensa määrällä.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_10__sec_53__subsec_3">
+                            <content>
+                                <p>Konkurssipesä vastaa kiinteistöverosta, joka määrätään konkurssipesän varallisuuteen kuuluvasta kiinteistöstä konkurssin alkamisvuotta seuraavilta vuosilta.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_10__sec_53__subsec_4">
+                            <content>
+                                <p>Jos kiinteistö on hankittu yhtiön tai muun perustettavan yhteisön lukuun, yhtiö tai muu yhteisö vastaa kiinteistöstä määrätystä kiinteistöverosta siltä vuodelta, jona yhteisö on merkitty kaupparekisteriin, yhdistysrekisteriin tai muuhun vastaavaan rekisteriin.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_10__sec_53__subsec_5">
+                            <content>
+                                <p>Osakeyhtiö tai osuuskunta vastaa verosta, joka on määrätty osakeyhtiön tai osuuskunnan puolesta toimineelle sellaisesta toiminnasta, jota tämä on harjoittanut osakeyhtiön tai osuuskunnan lukuun ennen sen perustamista. Osakeyhtiö tai osuuskunta vastaa tällaisesta verosta kuin omasta verostaan.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_10__sec_53__subsec_6">
+                            <content>
+                                <p>Jos muussa verotusta koskevassa laissa säädetään 1–5 momentissa säädetystä poikkeavasti, noudatetaan kyseisen lain säännöksiä.</p>
+                            </content>
+                        </subsection>
+                    </section>
+                    <section eId="chp_10__sec_54">
+                        <num>54 §</num>
+                        <heading eId="chp_10__sec_54__heading">Vastuuseen määrääminen</heading>
+                        <subsection eId="chp_10__sec_54__subsec_1">
+                            <content>
+                                <p>Verohallinto määrää veron verovelvollisen ja verosta vastuussa olevien yhteisvastuullisesti maksettavaksi. Vastuussa olevat merkitään Verohallinnon verotuspäätökseen, 70 §:ssä tarkoitettuun yhteenvetoon tai suorittamatta jääneistä veroista verovelvolliselle toimitettuun muuhun ilmoitukseen.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_10__sec_54__subsec_2">
+                            <content>
+                                <p>Jollei 1 momentissa tarkoitettua merkintää vastuusta ole tehty, Verohallinnon on varattava vastuuseen määrättävälle tilaisuus selvityksen antamiseen ja tehtävä erillinen päätös siitä, että tämä määrätään yhteisvastuullisesti verovelvollisen kanssa vastuuseen veron maksamisesta. Päätös vastuuseen määräämisestä on annettava tiedoksi vastuuseen määrätylle viimeistään 60 päivää ennen kuin verotusmenettelystä annetun lain 64 §:n 1 momentissa tai oma-aloitteisten verojen verotusmenettelystä annetun lain 61 §:n 1 momentissa säädetty muutoksenhakuaika päättyy.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_10__sec_54__subsec_3">
+                            <content>
+                                <p>Jos muussa verotusta koskevassa laissa säädetään 1 ja 2 momentissa säädetystä poikkeavasti, noudatetaan kyseisen lain säännöksiä.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_10__sec_54__subsec_4">
+                            <content>
+                                <p>Verohallinto voi antaa tarkempia määräyksiä vastuuseen määräämistä koskevasta menettelystä.</p>
+                            </content>
+                        </subsection>
+                    </section>
+                </chapter>
+                <chapter eId="chp_11">
+                    <num>11 luku</num>
+                    <heading eId="chp_11__heading">Kansainvälinen verovarojen siirtäminen</heading>
+                    <section eId="chp_11__sec_55">
+                        <num>55 §</num>
+                        <heading eId="chp_11__sec_55__heading">Toimivalta kansainväliseen verovarojen siirtämiseen</heading>
+                        <subsection eId="chp_11__sec_55__subsec_1">
+                            <content>
+                                <p>
+                                    Verohallinto voi siirtää ennakkoja tai muita verovaroja vieraalle valtiolle sellaisen kansainvälisen sopimuksen määräysten nojalla, jonka tarkoituksena on välttää veron ennakon periminen useammassa kuin yhdessä valtiossa tai säännellä verovarojen siirtämistä valtioiden kesken (<i>veronkantosopimus</i>).
+                                </p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_11__sec_55__subsec_2">
+                            <content>
+                                <p>Verohallinto voi antaa tarkempia määräyksiä verovarojen siirtämistä koskevasta menettelystä.</p>
+                            </content>
+                        </subsection>
+                    </section>
+                    <section eId="chp_11__sec_56">
+                        <num>56 §</num>
+                        <heading eId="chp_11__sec_56__heading">Siirrettävät verovarat</heading>
+                        <subsection eId="chp_11__sec_56__subsec_1">
+                            <intro eId="chp_11__sec_56__subsec_1__intro">
+                                <p>Seuraavia verovaroja voidaan siirtää vieraaseen valtioon:</p>
+                            </intro>
+                            <paragraph eId="chp_11__sec_56__subsec_1__para_1">
+                                <num>1)</num>
+                                <content>
+                                    <p>ennakkoperintälain nojalla ennakonpidätyksinä kertyneet varat;</p>
+                                </content>
+                            </paragraph>
+                            <paragraph eId="chp_11__sec_56__subsec_1__para_2">
+                                <num>2)</num>
+                                <content>
+                                    <p>verotusmenettelystä annetun lain 50 §:ssä tarkoitettu veronpalautus ja 76 §:ssä tarkoitettu verotuksen muutoksen johdosta palautettava määrä;</p>
+                                </content>
+                            </paragraph>
+                            <paragraph eId="chp_11__sec_56__subsec_1__para_3">
+                                <num>3)</num>
+                                <content>
+                                    <p>rajoitetusti verovelvollisen tulon verottamisesta annetun lain mukainen lähdeveron palautus;</p>
+                                </content>
+                            </paragraph>
+                            <paragraph eId="chp_11__sec_56__subsec_1__para_4">
+                                <num>4)</num>
+                                <content>
+                                    <p>veron määrä silloin, kun Suomi luopuu tulon verottamisesta Suomen ja vieraan valtion välillä kaksinkertaisen verotuksen välttämiseksi tehdyn kansainvälisen sopimuksen nojalla.</p>
+                                </content>
+                            </paragraph>
+                        </subsection>
+                    </section>
+                    <section eId="chp_11__sec_57">
+                        <num>57 §</num>
+                        <heading eId="chp_11__sec_57__heading">Palautusilmoitus ja maksamisen lykkääminen</heading>
+                        <subsection eId="chp_11__sec_57__subsec_1">
+                            <content>
+                                <p>Jos 56 §:n 1–3 kohdassa tarkoitettu palautus ilmeisesti aiheutuu veronkantosopimuksen tai verosopimuksen soveltamisesta, palautuksesta on ilmoitettava asianomaisen vieraan valtion viranomaiselle. Sen maksamista on lykättävä siten kuin veronkantosopimuksessa määrätään.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_11__sec_57__subsec_2">
+                            <content>
+                                <p>Jos tulon verottamisesta Suomessa luovutaan verosopimuksen nojalla, palautuksen maksamista on lykättävä siten kuin veronkantosopimuksessa määrätään.</p>
+                            </content>
+                        </subsection>
+                    </section>
+                    <section eId="chp_11__sec_58">
+                        <num>58 §</num>
+                        <heading eId="chp_11__sec_58__heading">Verovarojen siirtämisen edellytykset</heading>
+                        <subsection eId="chp_11__sec_58__subsec_1">
+                            <content>
+                                <p>Varojen siirtämisen edellytyksenä on, ettei siirrettäviä varoja ole verosopimuksen nojalla käytetty Suomessa toimitetussa verotuksessa verovelvollisen verojen suoritukseksi ja että siirrettävä varat voidaan käyttää verovelvollisen verojen suoritukseksi toisessa sopimusvaltiossa.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_11__sec_58__subsec_2">
+                            <content>
+                                <p>Ennakonpidätyksinä kertyneet varat voidaan siirtää toisen sopimusvaltion viranomaisen pyynnöstä ennen verotusmenettelystä annetun lain 49 §:ssä tarkoitettua verotuksen päättymistä silloin, kun on ilmeistä, että veronkantosopimuksessa ja verosopimuksessa määrätyt edellytykset varojen siirtämiselle ovat olemassa ja ennakonpidätykset voitaisiin verotusmenettelystä annetussa laissa tarkoitetuin tavoin lukea verovelvollisen hyväksi Suomessa.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_11__sec_58__subsec_3">
+                            <content>
+                                <p>Jos 1 momentissa säädetyt edellytykset täyttyvät, on vieraan valtion viranomaisen pyynnöstä asianomaiselle viranomaiselle siirrettävä 56 §:ssä tarkoitetut verovarat.</p>
+                            </content>
+                        </subsection>
+                    </section>
+                    <section eId="chp_11__sec_59">
+                        <num>59 §</num>
+                        <heading eId="chp_11__sec_59__heading">Suomeen siirretyn veron palauttaminen verovelvolliselle</heading>
+                        <subsection eId="chp_11__sec_59__subsec_1">
+                            <content>
+                                <p>Verovelvolliselle palautetaan vieraasta valtiosta Suomeen siirretty vero tai veron ennakko, jota ei ole käytetty verovelvollisen verojen tai maksamatta jätettyjen määrien suoritukseksi.</p>
+                            </content>
+                        </subsection>
+                    </section>
+                </chapter>
+                <chapter eId="chp_12">
+                    <num>12 luku</num>
+                    <heading eId="chp_12__heading">Muutoksenhaku</heading>
+                    <section eId="chp_12__sec_60">
+                        <num>60 §</num>
+                        <heading eId="chp_12__sec_60__heading">Oikaisuvaatimus verotuksen oikaisulautakunnalle</heading>
+                        <subsection eId="chp_12__sec_60__subsec_1">
+                            <content>
+                                <p>Verovelvollinen, verosta vastuussa oleva ja Veronsaajien oikeudenvalvontayksikkö saavat hakea muutosta tämän lain nojalla annettuun päätökseen. Verosta vastuussa oleva saa hakea muutosta palautuksen käyttämistä koskevaan päätökseen vain, jos hänelle tulevaa palautusta on käytetty niiden verojen suoritukseksi, joista hän on vastuussa.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_12__sec_60__subsec_2">
+                            <content>
+                                <p>Muutosta haetaan verotuksen oikaisulautakunnalta kirjallisella oikaisuvaatimuksella. Oikaisuvaatimus on tehtävä 60 päivän kuluessa siitä, kun muutoksenhakija on saanut tiedon Verohallinnon päätöksestä. Veronsaajien oikeudenvalvontayksikön määräaika lasketaan päätöksen tekemisestä.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_12__sec_60__subsec_3">
+                            <content>
+                                <p>Muutoin sovelletaan, mitä oikaisuvaatimusta koskevasta menettelystä verotusmenettelystä annetussa laissa säädetään.</p>
+                            </content>
+                        </subsection>
+                    </section>
+                    <section eId="chp_12__sec_61">
+                        <num>61 §</num>
+                        <heading eId="chp_12__sec_61__heading">Valitus hallinto-oikeuteen</heading>
+                        <subsection eId="chp_12__sec_61__subsec_1">
+                            <content>
+                                <p>Verovelvollinen, verosta vastuussa oleva ja Veronsaajien oikeudenvalvontayksikkö saavat hakea oikaisuvaatimukseen annettuun päätökseen muutosta valittamalla siihen hallinto-oikeuteen, jonka tuomiopiiriin verovelvollisen tai verosta vastuussa olevan kotikunta Verohallinnon päätöstä tehtäessä kuului. Muutoksenhakuun sovelletaan, mitä verotusmenettelystä annetussa laissa säädetään.</p>
+                            </content>
+                        </subsection>
+                    </section>
+                    <section eId="chp_12__sec_62">
+                        <num>62 §</num>
+                        <heading eId="chp_12__sec_62__heading">Valitus korkeimpaan hallinto-oikeuteen</heading>
+                        <subsection eId="chp_12__sec_62__subsec_1">
+                            <content>
+                                <p>Hallinto-oikeuden päätökseen saa hakea muutosta valittamalla korkeimpaan hallinto-oikeuteen vain, jos korkein hallinto-oikeus myöntää valitusluvan. Muutoksenhakuun sovelletaan, mitä verotusmenettelystä annetussa laissa säädetään.</p>
+                            </content>
+                        </subsection>
+                    </section>
+                    <section eId="chp_12__sec_63">
+                        <num>63 §</num>
+                        <heading eId="chp_12__sec_63__heading">Ennakkopäätösvalitus korkeimpaan hallinto-oikeuteen</heading>
+                        <subsection eId="chp_12__sec_63__subsec_1">
+                            <content>
+                                <p>Verovelvollinen, verosta vastuussa oleva ja Veronsaajien oikeudenvalvontayksikkö saavat hakea muutosta verotuksen oikaisulautakunnan päätökseen hallinto-oikeuden asemesta korkeimmalta hallinto-oikeudelta, jos korkein hallinto-oikeus myöntää ennakkopäätösvalitusta koskevan valitusluvan. Muutoksenhakuun sovelletaan, mitä verotusmenettelystä annetun lain 71 a–71 d §:ssä säädetään.</p>
+                            </content>
+                        </subsection>
+                    </section>
+                    <section eId="chp_12__sec_64">
+                        <num>64 §</num>
+                        <heading eId="chp_12__sec_64__heading">Muutoksenhaku vastuumääräykseen ja vastuumääräyksen oikaiseminen</heading>
+                        <subsection eId="chp_12__sec_64__subsec_1">
+                            <content>
+                                <p>Vastuumääräyksen oikaisemiseen ja muutoksenhakuun sovelletaan, mitä verotusta koskevasta oikaisusta ja muutoksenhausta säädetään. Edellä 54 §:n 2 momentissa tarkoitettuun vastuuseen määräämistä koskevaan Verohallinnon päätökseen haetaan kuitenkin muutosta noudattaen, mitä 60–62 §:ssä säädetään.</p>
+                            </content>
+                        </subsection>
+                    </section>
+                    <section eId="chp_12__sec_65">
+                        <num>65 §</num>
+                        <heading eId="chp_12__sec_65__heading">Päätöksen muuttaminen muutoksenhaun johdosta</heading>
+                        <subsection eId="chp_12__sec_65__subsec_1">
+                            <content>
+                                <p>Jos muutoksenhaun johdosta annetun päätöksen perusteella vero on poistettava tai sitä on alennettava, Verohallinto palauttaa liikaa maksetun veron korkoineen.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_12__sec_65__subsec_2">
+                            <content>
+                                <p>Jos muutoksenhaun johdosta annetun päätöksen perusteella veroa on korotettava, Verohallinto perii maksamattoman veron korkoineen.</p>
+                            </content>
+                        </subsection>
+                    </section>
+                    <section eId="chp_12__sec_66">
+                        <num>66 §</num>
+                        <heading eId="chp_12__sec_66__heading">Perustevalitus</heading>
+                        <subsection eId="chp_12__sec_66__subsec_1">
+                            <content>
+                                <p>Tässä laissa tarkoitettuihin Verohallinnon tehtäväalaan kuuluviin asioihin ei sovelleta verojen ja maksujen täytäntöönpanosta annetun lain perustevalitusta koskevia säännöksiä.</p>
+                            </content>
+                        </subsection>
+                    </section>
+                    <section eId="chp_12__sec_67">
+                        <num>67 §</num>
+                        <heading eId="chp_12__sec_67__heading">Muut muutoksenhakua koskevat säännökset</heading>
+                        <subsection eId="chp_12__sec_67__subsec_1">
+                            <content>
+                                <p>Tässä laissa tarkoitettu vero on maksettava muutoksenhausta huolimatta.</p>
+                            </content>
+                        </subsection>
+                    </section>
+                </chapter>
+                <chapter eId="chp_13">
+                    <num>13 luku</num>
+                    <heading eId="chp_13__heading">Erinäiset säännökset</heading>
+                    <section eId="chp_13__sec_68">
+                        <num>68 §</num>
+                        <heading eId="chp_13__sec_68__heading">Myöhästymismaksun perimättä jättäminen</heading>
+                        <subsection eId="chp_13__sec_68__subsec_1">
+                            <content>
+                                <p>Verohallinto voi jättää oma-aloitteisten verojen verotusmenettelystä annetun lain 35 §:ssä tarkoitetun myöhästymismaksun osaksi tai kokonaan perimättä, jos mainitun lain 16 §:ssä tarkoitetun veroilmoituksen antaminen on viivästynyt verovelvollisesta riippumattomasta syystä, pätevästä syystä tai muusta erityisestä syystä.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_13__sec_68__subsec_2">
+                            <content>
+                                <p>Valtiovarainministeriön asetuksella voidaan säätää, että myöhästymismaksuja ei peritä ajalta, jolta veroilmoituksen antaminen on viivästynyt verovelvollisista riippumattomien esteiden vuoksi.</p>
+                            </content>
+                        </subsection>
+                    </section>
+                    <section eId="chp_13__sec_69">
+                        <num>69 §</num>
+                        <heading eId="chp_13__sec_69__heading">Päätöksen sisältö</heading>
+                        <subsection eId="chp_13__sec_69__subsec_1">
+                            <content>
+                                <p>Tämän lain nojalla annetusta päätöksestä on käytävä ilmi päätöksen tehnyt viranomainen yhteystietoineen, verovelvollisen yksilöintitiedot, päätöksen perustelut ja tieto siitä, miten asia on ratkaistu.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_13__sec_69__subsec_2">
+                            <content>
+                                <p>Päätös voidaan jättää perustelematta silloin, kun perusteleminen on ilmeisen tarpeetonta.</p>
+                            </content>
+                        </subsection>
+                    </section>
+                    <section eId="chp_13__sec_70">
+                        <num>70 §</num>
+                        <heading eId="chp_13__sec_70__heading">Yhteenveto</heading>
+                        <subsection eId="chp_13__sec_70__subsec_1">
+                            <intro eId="chp_13__sec_70__subsec_1__intro">
+                                <p>Verohallinto muodostaa verovelvolliselle kalenterikuukauden jaksolta yhteenvedon. Yhteenvetoon merkitään:</p>
+                            </intro>
+                            <paragraph eId="chp_13__sec_70__subsec_1__para_1">
+                                <num>1)</num>
+                                <content>
+                                    <p>tiedot siitä, minkä verojen suoritukseksi maksut ja palautukset on käytetty;</p>
+                                </content>
+                            </paragraph>
+                            <paragraph eId="chp_13__sec_70__subsec_1__para_2">
+                                <num>2)</num>
+                                <content>
+                                    <p>tiedot suorittamatta olevista veroista;</p>
+                                </content>
+                            </paragraph>
+                            <paragraph eId="chp_13__sec_70__subsec_1__para_3">
+                                <num>3)</num>
+                                <content>
+                                    <p>42 §:ssä tarkoitettu maksukehotus;</p>
+                                </content>
+                            </paragraph>
+                            <paragraph eId="chp_13__sec_70__subsec_1__para_4">
+                                <num>4)</num>
+                                <content>
+                                    <p>oma-aloitteisten verojen verotusmenettelystä annetun lain 35 §:ssä tarkoitettua myöhästymismaksua koskeva päätös ja mainitun lain 43 §:n 3 momentissa tarkoitettua arvioverotuksen poistamista koskeva päätös.</p>
+                                </content>
+                            </paragraph>
+                        </subsection>
+                        <subsection eId="chp_13__sec_70__subsec_2">
+                            <content>
+                                <p>Yhteenvetoon voidaan merkitä myös muita kuin 1 momentissa tarkoitettuja tietoja.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_13__sec_70__subsec_3">
+                            <content>
+                                <p>Yhteenveto muodostetaan viimeistään viidentenä päivänä kalenterikuukauden päättymisestä.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_13__sec_70__subsec_4">
+                            <content>
+                                <p>Yhteenveto voidaan erityisestä syystä muodostaa verovelvolliselle harvemmin kuin kerran kuukaudessa.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_13__sec_70__subsec_5">
+                            <content>
+                                <p>Verohallinto voi antaa tarkempia määräyksiä yhteenvetoon merkittävistä tiedoista ja yhteenvedon muodostamisesta.</p>
+                            </content>
+                        </subsection>
+                    </section>
+                    <section eId="chp_13__sec_71">
+                        <num>71 §</num>
+                        <heading eId="chp_13__sec_71__heading">Tiedoksianto</heading>
+                        <subsection eId="chp_13__sec_71__subsec_1">
+                            <content>
+                                <p>Tämän lain nojalla annettava päätös tai muu asiakirja on annettava tiedoksi verovelvolliselle. Jos asia koskee 53 §:ssä tarkoitettua verosta vastuussa olevaa, tiedoksianto on toimitettava verosta vastuussa olevalle.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_13__sec_71__subsec_2">
+                            <content>
+                                <p>Tiedoksiantoon sovelletaan, mitä verotusmenettelystä annetun lain 26 c ja 26 d §:ssä säädetään.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_13__sec_71__subsec_3">
+                            <content>
+                                <p>Edellä 70 §:ssä tarkoitettuun yhteenvetoon sisältyvät tiedot sekä tämän lain nojalla annettu päätös annetaan verovelvolliselle tiedoksi sähköisesti. Verovelvollisen katsotaan saaneen yhteenvetoon sisältyvät tiedot seitsemäntenä päivänä sen kalenterikuukauden päättymisestä, jolta yhteenveto on muodostettu. Verovelvollisen katsotaan saaneen tiedon tämän lain nojalla annetusta päätöksestä seitsemäntenä päivänä päätöksen tekemisestä. Verovelvollisen pyynnöstä yhteenveto ja päätökset voidaan lisäksi lähettää postitse.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_13__sec_71__subsec_4">
+                            <intro eId="chp_13__sec_71__subsec_4__intro">
+                                <p>Yhteenveto ja tämän lain nojalla annetut päätökset annetaan kuitenkin tiedoksi hallintolain 59 §:ssä tarkoitettuna tavallisena tiedoksiantona sellaiselle luonnolliselle henkilölle tai kuolinpesälle, joka ei ole antanut suostumustaan sähköiseen tiedoksiantoon ja jota:</p>
+                            </intro>
+                            <paragraph eId="chp_13__sec_71__subsec_4__para_1">
+                                <num>1)</num>
+                                <content>
+                                    <p>ei ole merkitty ennakkoperintälain 31 §:ssä tarkoitettuun työnantajarekisteriin; ja</p>
+                                </content>
+                            </paragraph>
+                            <paragraph eId="chp_13__sec_71__subsec_4__para_2">
+                                <num>2)</num>
+                                <content>
+                                    <p>ei ole merkitty arvonlisäverolain 172 §:ssä tarkoitettuun arvonlisäverovelvollisten rekisteriin tai joka ei harjoita muuta arvonlisäverollista toimintaa kuin metsätaloutta.</p>
+                                </content>
+                            </paragraph>
+                        </subsection>
+                        <subsection eId="chp_13__sec_71__subsec_5">
+                            <content>
+                                <p>Edellä 4 momentissa tarkoitettu yhteenveto annetaan kuitenkin tiedoksi sähköisesti, jos yhteenvetoon ei merkitä muita 70 §:n 1 momentissa tarkoitettuja tietoja kuin tieto maksujen tai alle 10 euron suuruisen palautuksen käyttämisestä verojen suoritukseksi taikka tieto suorittamatta olevista veroista.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_13__sec_71__subsec_6">
+                            <content>
+                                <p>Jos yhteenvetoa tai päätöstä ei voida tietoliikennehäiriön tai muun vastaavan teknisen häiriön vuoksi antaa tiedoksi sähköisen asiointipalvelun välityksellä, se annetaan tiedoksi hallintolain 59 §:ssä tarkoitettuna tavallisena tiedoksiantona.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_13__sec_71__subsec_7">
+                            <content>
+                                <p>Verohallinto voi antaa tarkempia määräyksiä verovelvolliselle toimitettavan yhteenvedon tiedoksi antamisesta.</p>
+                            </content>
+                        </subsection>
+                    </section>
+                    <section eId="chp_13__sec_72">
+                        <num>72 §</num>
+                        <heading eId="chp_13__sec_72__heading">Virheen korjaaminen</heading>
+                        <subsection eId="chp_13__sec_72__subsec_1">
+                            <content>
+                                <p>Jos asiaa ei ole ratkaistu valitukseen annetulla päätöksellä eikä 34 §:stä muuta johdu, Verohallinto korjaa kantomenettelyssä tapahtuneen virheen omasta aloitteestaan taikka verovelvollisen tai verosta vastuussa olevan vaatimuksesta viipymättä virheen havaitsemisen jälkeen.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_13__sec_72__subsec_2">
+                            <content>
+                                <p>Verovelvolliselle varataan tilaisuus selvityksen antamiseen ennen virheen korjaamista, jos se on erityisestä syystä tarpeen.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_13__sec_72__subsec_3">
+                            <content>
+                                <p>Virhe voidaan jättää korjaamatta, jos se on vähäinen eikä siitä aiheudu verovelvolliselle vahinkoa tai jos verovelvollisen perusteetta hyväkseen saama määrä on vähäinen, eikä verovelvollisten tasapuolinen kohtelu tai muu syy edellytä korjaamista.</p>
+                            </content>
+                        </subsection>
+                    </section>
+                    <section eId="chp_13__sec_73">
+                        <num>73 §</num>
+                        <heading eId="chp_13__sec_73__heading">Määräaika virheen korjaamiselle</heading>
+                        <subsection eId="chp_13__sec_73__subsec_1">
+                            <content>
+                                <p>Edellä 72 §:ssä tarkoitettu virhe voidaan korjata kolmen vuoden kuluessa sen kalenterivuoden päättymisestä, jolloin on muodostettu se yhteenveto, johon korjattavaksi vaadittu toimenpide tai tieto on merkitty tai olisi pitänyt merkitä.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_13__sec_73__subsec_2">
+                            <content>
+                                <p>Korjaaminen voidaan tehdä 1 momentissa tarkoitetun määräajan jälkeenkin, jos korjaamista koskeva vaatimus on saapunut Verohallinnolle määräajan kuluessa.</p>
+                            </content>
+                        </subsection>
+                    </section>
+                    <section eId="chp_13__sec_74">
+                        <num>74 §</num>
+                        <heading eId="chp_13__sec_74__heading">Eräpäivän siirtyminen</heading>
+                        <subsection eId="chp_13__sec_74__subsec_1">
+                            <content>
+                                <p>
+                                    Määräpäivän siirtymisestä säädetään säädettyjen määräaikain laskemisesta annetun lain 
+                                    <ref href="/akn/fi/act/statute/1930/150">(150/1930) 5 §:ssä</ref>. Maksettavan tai palautettavan määrän voi suorittaa seuraavana ensimmäisenä arkipäivänä myös, jos eräpäivä tai maksupäivä on päivä, jona pankkien keskinäisissä maksuissaan yleisesti käyttämät maksujärjestelmät eivät ole Suomen säädöskokoelmassa julkaistavan Suomen Pankin ilmoituksen mukaan käytössä.
+                                </p>
+                            </content>
+                        </subsection>
+                    </section>
+                    <section eId="chp_13__sec_75">
+                        <num>75 §</num>
+                        <heading eId="chp_13__sec_75__heading">Asiakirjojen toimittaminen sähköisesti</heading>
+                        <subsection eId="chp_13__sec_75__subsec_1">
+                            <content>
+                                <p>Verohallinnon asiakirjat, jotka annetaan tiedoksi sähköisesti, annetaan tiedoksi yleisessä tietoverkossa olevan sähköisen asiointipalvelun välityksellä.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_13__sec_75__subsec_2">
+                            <content>
+                                <p>
+                                    Tässä laissa tarkoitettujen ilmoitusten ja asiakirjojen antamisesta sähköisesti säädetään sähköisestä asioinnista viranomaistoiminnassa annetussa laissa 
+                                    <ref href="/akn/fi/act/statute/2003/13">(13/2003)</ref>. Sähköisesti Verohallinnolle annettu asiakirja on varmennettava sähköisellä allekirjoituksella tai muulla hyväksyttävällä tavalla.
+                                </p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_13__sec_75__subsec_3">
+                            <content>
+                                <p>Verohallinto antaa tarkemmat määräykset siitä, mitä sähköistä menettelyä käyttäen ja millä tavoin varmennettuina ilmoituksia ja asiakirjoja voidaan toimittaa Verohallinnolle sähköisesti.</p>
+                            </content>
+                        </subsection>
+                    </section>
+                </chapter>
+                <chapter eId="chp_14" finlex:entryIntoForce="true" finlex:vsId="11/2018">
+                    <num>14 luku</num>
+                    <heading eId="chp_14__heading">Voimaantulo</heading>
+                    <section eId="chp_14__sec_76">
+                        <num>76 §</num>
+                        <heading eId="chp_14__sec_76__heading">Voimaantulo</heading>
+                        <subsection eId="chp_14__sec_76__subsec_1">
+                            <content>
+                                <p>Tämä laki tulee voimaan 1 päivänä marraskuuta 2019.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_14__sec_76__subsec_2">
+                            <content>
+                                <p>
+                                    Tällä lailla kumotaan veronkantolaki 
+                                    <ref href="/akn/fi/act/statute/2016/769">(769/2016)</ref>.
+                                </p>
+                            </content>
+                        </subsection>
+                    </section>
+                    <section eId="chp_14__sec_77">
+                        <num>77 §</num>
+                        <heading eId="chp_14__sec_77__heading">Siirtymäsäännökset</heading>
+                        <subsection eId="chp_14__sec_77__subsec_1">
+                            <content>
+                                <p>Muutoksenhaussa ennen lain voimaantuloa annettuun Verohallinnon päätökseen sovelletaan tämän lain voimaan tullessa voimassa olleita säännöksiä.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_14__sec_77__subsec_2">
+                            <content>
+                                <p>Ennen lain voimaantuloa kantomenettelyssä tapahtuneen virheen korjaamista ja virheellisesti maksetun palautuksen takaisinperimistä koskevaan menettelyyn sovelletaan tämän lain voimaan tullessa voimassa olleita säännöksiä.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_14__sec_77__subsec_3">
+                            <content>
+                                <p>Lain voimaantuloa edeltävältä ajalta palautukselle maksettavaan hyvityskorkoon sovelletaan lain voimaan tullessa voimassa olleita palautuskorkoa koskevia säännöksiä. Hyvityskorkoa koskevia säännöksiä sovelletaan 4 §:ssä tarkoitetun veron palautukselle maksettavaan korkoon ensimmäisen kerran yhteisön ja yhteisetuuden verotuksessa verovuonna 2020 ja muun verovelvollisen verotuksessa verovuodesta 2019 alkaen. Tätä aiemmilta verovuosilta veronpalautukselle maksettavaan korkoon sovelletaan lain voimaan tullessa voimassa olleita säännöksiä.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_14__sec_77__subsec_4">
+                            <content>
+                                <p>Ennen lain voimaantuloa määrätyn tuloveron ennakon vanhentumiseen sovelletaan lain voimaan tullessa voimassa olleita säännöksiä.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_14__sec_77__subsec_5">
+                            <content>
+                                <p>Jos muualla lainsäädännössä viitataan kumottuun veronkantolakiin, sillä tarkoitetaan viittausta tämän lain säännöksiin.</p>
+                            </content>
+                        </subsection>
+                    </section>
+                </chapter>
+            </hcontainer>
+            <hcontainer finlex:outline="Esityöt ja allekirjoitukset" name="conclusions">
+                <hcontainer finlex:outline="Esityöt" name="preliminaryWork">
+                    <content>
+                        <p>
+                            <ref href="/akn/fi/doc/government-proposal/2017/97">HE 97/2017</ref>
+                        </p>
+                        <p>VaVM 26/2017</p>
+                        <p>EV 182/2017</p>
+                    </content>
+                </hcontainer>
+            </hcontainer>
+        </body>
+    </act>
+</akomaNtoso>

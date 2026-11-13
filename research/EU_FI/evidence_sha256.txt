@@ -1,0 +1,13 @@
+9666acafedebe1593815b58e6fc074e2035d8a7143896ef51b90a9ed30bc00c7  EU_FI-L001_Insurance-Premium-Tax-Act-664-1966_Finlex-opendata-ajantasa-2024-07-05_asat-2026-11-13.xml
+dbbe56d14afbca6dbb59c17c12a6758655ce836534f3e7f41f731de3c4b8d9ae  EU_FI-L003_Motor-Liability-Insurance-Act-460-2016_Finlex-opendata-ajantasa-2026-01-16_asat-2026-11-13.xml
+468af8ee933606765a9559fcf94d504e29bbea8f0ef683ba37c0ff8abdd5790c  EU_FI-L004_Fire-Protection-Fund-Act-306-2003_Finlex-opendata-ajantasa-2025-06-27_asat-2026-11-13.xml
+64811c27f9ac4c86b46743fdd26808446cdae0535031888442424d97fd73df69  EU_FI-L005_Road-Safety-Fee-Act-471-2016_Finlex-opendata-ajantasa-2022-08-26_asat-2026-11-13.xml
+5a69de3bb61d8487e6b3b96c25eccb7c7b7c5fd8f2f7835da629f489d2911457  EU_FI-L006_Self-Assessed-Taxes-Procedure-Act-768-2016_Finlex-ajantasa-2026-04-17_asat-2026-11-13.pdf
+32e3eb003e1732b9560aaa58d074032877f575207defe2c460b2dcefca219c79  EU_FI-L006_Self-Assessed-Taxes-Procedure-Act-768-2016_Finlex-opendata-ajantasa-2026-04-17_asat-2026-11-13.xml
+707c6418bed4d661c4adbffca10fe0a9e25f5d24c526a0fb6e593879f4f36d75  EU_FI-NEW_Foreign-Insurers-Act-398-1995_Finlex-ajantasa-2026-06-26_asat-2026-11-13.pdf
+005bd6029ad417e5bbe9cb0bbf0f81700ef05d79eb08924eca57246100a3730c  EU_FI-NEW_Tax-Collection-Act-11-2018_Finlex-opendata-ajantasa-2026-04-17_asat-2026-11-13.xml
+2123f9ee186ca3202014731c07ec26db799d3d4538d828e261ce4c70587eed68  EU_FI-NEW_Tax-Surcharge-and-Interest-Act-1556-1995_Finlex-opendata-ajantasa-2026-04-17_asat-2026-11-13.xml
+9f664857061f872c0b87f3c150d593b75a749aebe036aae41003cba30f55eb2b  EU_FI-NEW_Time-Limits-Act-150-1930_Finlex-ajantasa-2005-03-04_asat-2026-11-13.pdf
+83bf6154328f738d85d2292c811edcc9ab4fb3d767b4d7508634265e9582c022  EU_FI-NEW_VAT-Act-1501-1993_Finlex-opendata-ajantasa-2026-11-06_asat-2026-11-13.xml
+c1f57c5cf10c3333bc3ca635f7bfee6fae182a97c3389bc1c9d8d8d159d6811d  EU_FI-NEW_Verohallinto-Insurance-premium-taxation-page_asat-2026-11-13.pdf
+5ee215e2766df9df2145baaa4fbb4f224a838432e2042e8ef21314df77de93f8  EU_FI-NEW_Verohallinto-guidance-Vakuutusmaksuverotus-Suomessa-VH-2783-2020_asat-2026-11-13.pdf

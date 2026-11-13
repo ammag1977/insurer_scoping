@@ -1,0 +1,347 @@
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0" xmlns:finlex="http://data.finlex.fi/schema/finlex" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <act contains="multipleVersions" name="main">
+        <meta>
+            <identification source="#organization_fi.finlex">
+                <FRBRWork>
+                    <FRBRthis value="/akn/fi/act/statute-consolidated/2016/471/!main"/>
+                    <FRBRuri value="/akn/fi/act/statute-consolidated/2016/471"/>
+                    <FRBRalias name="eli" value="http://data.finlex.fi/eli/sd/2016/471/ajantasa"/>
+                    <FRBRdate date="2016-06-17" name="dateIssued"/>
+                    <FRBRdate date="2016-06-21" name="datePublished"/>
+                    <FRBRauthor as="#role_author" href="#organization_fi.finlex"/>
+                    <FRBRcountry value="fi"/>
+                    <FRBRsubtype value="statute-consolidated"/>
+                    <FRBRnumber value="471"/>
+                    <FRBRprescriptive value="false"/>
+                    <FRBRauthoritative value="false"/>
+                </FRBRWork>
+                <FRBRExpression>
+                    <FRBRthis value="/akn/fi/act/statute-consolidated/2016/471/fin@/!main"/>
+                    <FRBRuri value="/akn/fi/act/statute-consolidated/2016/471/fin@"/>
+                    <FRBRalias name="eli" value="http://data.finlex.fi/eli/sd/2016/471/ajantasa/2016-06-17/fin"/>
+                    <FRBRdate date="2016-06-17" name="dateIssued"/>
+                    <FRBRdate date="2022-08-26" name="dateConsolidated"/>
+                    <FRBRauthor as="#role_author" href="#organization_fi.finlex"/>
+                    <FRBRversionNumber value="20160471"/>
+                    <FRBRlanguage language="fin"/>
+                </FRBRExpression>
+                <FRBRManifestation>
+                    <FRBRthis value="/akn/fi/act/statute-consolidated/2016/471/fin@/!main.xml"/>
+                    <FRBRuri value="/akn/fi/act/statute-consolidated/2016/471/fin@.akn"/>
+                    <FRBRalias name="eli" value="http://data.finlex.fi/eli/sd/2016/471/ajantasa/2016-06-17/fin/xml"/>
+                    <FRBRdate date="2026-10-17" name="dateProduced"/>
+                    <FRBRdate date="2016-06-21" name="datePublished"/>
+                    <FRBRauthor as="#role_editor" href="#organization_fi.finlex"/>
+                    <FRBRformat value="xml"/>
+                </FRBRManifestation>
+            </identification>
+            <classification source="#organization_fi.finlex">
+                <keyword dictionary="/akn/ontology/concept/statute-keyword" showAs="Liikenneturvallisuusmaksu" value="/akn/ontology/concept/statute-keyword.2412"/>
+                <keyword dictionary="/akn/ontology/concept/statute-keyword" showAs="Maksu" value="/akn/ontology/concept/statute-keyword.2627"/>
+            </classification>
+            <references source="#organization_fi.finlex">
+                <TLCOrganization eId="organization_fi.finlex" href="/akn/ontology/organization/fi.finlex" showAs="Finlex"/>
+                <TLCRole eId="role_author" href="/akn/ontology/role/author" showAs="Tekijä"/>
+                <TLCRole eId="role_editor" href="/akn/ontology/role/editor" showAs="Toimittaja"/>
+                <TLCOrganization eId="fi.ministry-of-social-affairs-and-health" href="/akn/ontology/organization/fi.ministry-of-social-affairs-and-health" showAs="Sosiaali- ja terveysministeriö"/>
+                <TLCConcept eId="act" href="/akn/ontology/concept/statute/type-statute.act" showAs="Laki"/>
+            </references>
+            <proprietary source="#organization_fi.finlex">
+                <finlex:documentYear>2016</finlex:documentYear>
+                <finlex:administrativeBranch refersTo="#fi.ministry-of-social-affairs-and-health"/>
+                <finlex:typeStatute refersTo="#act"/>
+                <finlex:isInForce value="true"/>
+                <finlex:inForce>
+                    <finlex:dateEntryIntoForce date="2017-01-01"/>
+                </finlex:inForce>
+                <finlex:amendedBy>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute/2022/793">793/2022</finlex:ref>
+                        <finlex:inForce>
+                            <finlex:dateEntryIntoForce date="2023-01-01">1.1.2023</finlex:dateEntryIntoForce>
+                        </finlex:inForce>
+                        <finlex:noteEditorial>muutt. 4 §</finlex:noteEditorial>
+                    </finlex:statuteReference>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute/2019/1532">1532/2019</finlex:ref>
+                        <finlex:inForce>
+                            <finlex:dateEntryIntoForce date="2020-01-01">1.1.2020</finlex:dateEntryIntoForce>
+                        </finlex:inForce>
+                        <finlex:noteEditorial>muutt. 15 §</finlex:noteEditorial>
+                    </finlex:statuteReference>
+                    <finlex:statuteReference>
+                        <finlex:ref href="/akn/fi/act/statute/2018/981">981/2018</finlex:ref>
+                        <finlex:inForce>
+                            <finlex:dateEntryIntoForce date="2019-01-01">1.1.2019</finlex:dateEntryIntoForce>
+                            <finlex:noteEditorial/>
+                        </finlex:inForce>
+                    </finlex:statuteReference>
+                </finlex:amendedBy>
+            </proprietary>
+        </meta>
+        <preface>
+            <p>
+                <docNumber>471/2016</docNumber>
+                <docTitle>Laki liikenneturvallisuusmaksusta</docTitle>
+            </p>
+        </preface>
+        <preamble>
+            <formula eId="enactingClause" name="enactingClause">
+                <p>Eduskunnan päätöksen mukaisesti säädetään:</p>
+            </formula>
+        </preamble>
+        <body>
+            <hcontainer finlex:outline="Säädöksen teksti" name="statuteProvisionsWrapper">
+                <chapter eId="chp_1">
+                    <num>1 luku</num>
+                    <heading eId="chp_1__heading">Yleiset säännökset</heading>
+                    <section eId="chp_1__sec_1">
+                        <num>1 §</num>
+                        <heading eId="chp_1__sec_1__heading">Lain tarkoitus</heading>
+                        <subsection eId="chp_1__sec_1__subsec_1">
+                            <content>
+                                <p>Liikenneturvallisuuden edistämiseksi on valtiolle suoritettava liikenneturvallisuusmaksua siten kuin tässä laissa säädetään.</p>
+                            </content>
+                        </subsection>
+                    </section>
+                    <section eId="chp_1__sec_2">
+                        <num>2 §</num>
+                        <heading eId="chp_1__sec_2__heading">Määritelmät</heading>
+                        <subsection eId="chp_1__sec_2__subsec_1">
+                            <intro eId="chp_1__sec_2__subsec_1__intro">
+                                <p>Tässä laissa tarkoitetaan:</p>
+                            </intro>
+                            <paragraph eId="chp_1__sec_2__subsec_1__para_1">
+                                <num>1)</num>
+                                <content>
+                                    <p>
+                                        <i>maksuvelvollisella</i>
+                                         vakuutusyhtiötä, joka harjoittaa liikennevakuutuslaissa 
+                                        <ref href="/akn/fi/act/statute/2016/460">(460/2016)</ref>
+                                         tarkoitettua liikennevakuutustoimintaa Suomessa;
+                                    </p>
+                                </content>
+                            </paragraph>
+                            <paragraph eId="chp_1__sec_2__subsec_1__para_2">
+                                <num>2)</num>
+                                <content>
+                                    <p>
+                                        <i>maksukaudella</i>
+                                         tammikuun, huhtikuun, heinäkuun ja lokakuun 1 päivänä alkavaa kolmen kalenterikuukauden jaksoa.
+                                    </p>
+                                </content>
+                            </paragraph>
+                        </subsection>
+                    </section>
+                    <section eId="chp_1__sec_3">
+                        <num>3 §</num>
+                        <heading eId="chp_1__sec_3__heading">Toimivaltainen viranomainen</heading>
+                        <subsection eId="chp_1__sec_3__subsec_1">
+                            <content>
+                                <p>Liikenneturvallisuusmaksun kannon toimittaa Liikenteen turvallisuusvirasto. Virasto voi tarvittaessa antaa yksityiskohtaisempia määräyksiä maksumenettelystä ja sille maksun määräämistä varten toimitettavista selvityksistä.</p>
+                            </content>
+                        </subsection>
+                    </section>
+                </chapter>
+                <chapter eId="chp_2">
+                    <num>2 luku</num>
+                    <heading eId="chp_2__heading">Maksun määrääminen ja kanto</heading>
+                    <section eId="chp_2__sec_4">
+                        <num>4 §</num>
+                        <heading eId="chp_2__sec_4__heading">Liikenneturvallisuusmaksun määräytymisen perusteet</heading>
+                        <subsection eId="chp_2__sec_4__subsec_1">
+                            <content>
+                                <p>Liikenneturvallisuusmaksun määrä on yksi prosentti maksuvelvollisen liikennevakuutuksen maksukauden kokonaisvakuutusmaksutulosta, joka määräytyy samoin perustein kuin vakuutusyhtiön tilinpäätöksen tuloslaskelman mukainen vakuutusmaksutulo.</p>
+                            </content>
+                        </subsection>
+                    </section>
+                    <section eId="chp_2__sec_5">
+                        <num>5 §</num>
+                        <heading eId="chp_2__sec_5__heading">Liikenteen turvallisuusvirastolle toimitettavat tiedot</heading>
+                        <subsection eId="chp_2__sec_5__subsec_1">
+                            <content>
+                                <p>Maksuvelvollisen on annettava Liikenteen turvallisuusvirastolle kirjallinen ilmoitus kultakin maksukaudelta viimeistään maksukautta seuraavan kalenterikuukauden 15 päivänä. Ilmoituksessa on oltava maksun määräämistä varten tarvittavat tiedot.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_2__sec_5__subsec_2">
+                            <content>
+                                <p>Lisäksi maksuvelvollisen on toimitettava Liikenteen turvallisuusvirastolle vuosittain tilinpäätös ja toimintakertomus.</p>
+                            </content>
+                        </subsection>
+                    </section>
+                    <section eId="chp_2__sec_6">
+                        <num>6 §</num>
+                        <heading eId="chp_2__sec_6__heading">Maksun määrääminen</heading>
+                        <subsection eId="chp_2__sec_6__subsec_1">
+                            <content>
+                                <p>Liikenteen turvallisuusviraston on saamansa selvityksen perusteella viivytyksettä vahvistettava liikenneturvallisuusmaksun määrä.</p>
+                            </content>
+                        </subsection>
+                    </section>
+                    <section eId="chp_2__sec_7">
+                        <num>7 §</num>
+                        <heading eId="chp_2__sec_7__heading">Maksun suorittaminen</heading>
+                        <subsection eId="chp_2__sec_7__subsec_1">
+                            <content>
+                                <p>Liikenneturvallisuusmaksu on maksettava viimeistään maksukautta seuraavan kalenterikuukauden 30 päivänä.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_2__sec_7__subsec_2">
+                            <content>
+                                <p>Jos maksuvelvollinen ei ole saanut maksupäätöstä tiedoksi ennen 1 momentissa tarkoitetun määräajan päättymistä, maksu on suoritettava maksuvelvollisen kirjanpidon mukaisena.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_2__sec_7__subsec_3">
+                            <content>
+                                <p>Jos maksuvelvollinen ei ole maksanut liikenneturvallisuusmaksua määräaikana tai on maksanut sitä vähemmän kuin maksupäätöksessä on vahvistettu, Liikenteen turvallisuusviraston on viipymättä pantava suoritettava maksu maksuvelvollisen maksettavaksi.</p>
+                            </content>
+                        </subsection>
+                    </section>
+                    <section eId="chp_2__sec_8">
+                        <num>8 §</num>
+                        <heading eId="chp_2__sec_8__heading">Maksupaikat</heading>
+                        <subsection eId="chp_2__sec_8__subsec_1">
+                            <content>
+                                <p>Liikenneturvallisuusmaksu maksetaan rahalaitokseen. Maksamisesta aiheutuneista kuluista vastaa maksaja.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_2__sec_8__subsec_2">
+                            <content>
+                                <p>Rahalaitoksen on suoritettava vastaanottamansa liikenneturvallisuusmaksut Liikenteen turvallisuusviraston tilille viimeistään maksupäivää seuraavana arkipäivänä.</p>
+                            </content>
+                        </subsection>
+                    </section>
+                    <section eId="chp_2__sec_9">
+                        <num>9 §</num>
+                        <heading eId="chp_2__sec_9__heading">Viivästymisseuraamukset</heading>
+                        <subsection eId="chp_2__sec_9__subsec_1">
+                            <content>
+                                <p>
+                                    Jos maksuvelvollinen ei ole suorittanut liikenneturvallisuusmaksua säädetyssä määräajassa, suorittamatta jääneelle maksulle lasketaan viivästymisseuraamukset. Viivästysseuraamusten laskemisesta säädetään veronlisäyksestä ja viivekorosta annetussa laissa 
+                                    <ref href="/akn/fi/act/statute/1995/1556">(1556/1995)</ref>.
+                                </p>
+                            </content>
+                        </subsection>
+                    </section>
+                    <section eId="chp_2__sec_10">
+                        <num>10 §</num>
+                        <heading eId="chp_2__sec_10__heading">Korotettu maksu</heading>
+                        <subsection eId="chp_2__sec_10__subsec_1">
+                            <content>
+                                <p>Jos maksuvelvollinen on ilman pätevää syytä antanut ilmoituksen, muun asiakirjan tai tiedon virheellisenä tai olennaisesti vaillinaisena taikka jos hän on laiminlyönyt ilmoitusvelvollisuutensa kokonaan tai osittain, liikenneturvallisuusmaksua voidaan korottaa enintään 30 prosentilla.</p>
+                            </content>
+                        </subsection>
+                        <subsection eId="chp_2__sec_10__subsec_2">
+                            <content>
+                                <p>Jos maksuvelvollinen on tahallaan tai törkeästä huolimattomuudesta antanut puutteellisen, erehdyttävän tai väärän ilmoituksen, muun asiakirjan tai tiedon tai jättänyt ilmoitusvelvollisuutensa täyttämättä ja mainitunlainen menettely on ollut omiaan aiheuttamaan sen, että maksuvelvolliselle olisi voinut jäädä liikenneturvallisuusmaksua määräämättä, liikenneturvallisuusmaksua voidaan korottaa enintään 50 prosentilla.</p>
+                            </content>
+                        </subsection>
+                    </section>
+                    <section eId="chp_2__sec_11">
+                        <num>11 §</num>
+                        <heading eId="chp_2__sec_11__heading">Maksun jälkikanto</heading>
+                        <subsection eId="chp_2__sec_11__subsec_1">
+                            <content>
+                                <p>Jos maksuvelvollinen on kokonaan tai osittain laiminlyönyt ilmoittamisvelvollisuuden taikka antanut puutteellisen, erehdyttävän tai väärän ilmoituksen, muun asiakirjan tai tiedon ja maksu on sen vuoksi kokonaan tai osittain jäänyt määräämättä, on maksuvelvollisen suoritettavaksi määrättävä kantamatta jäänyt liikenneturvallisuusmaksu sekä säädetty maksunkorotus. Jälkikanto voidaan toimittaa kolmen vuoden kuluessa sitä seuraavan kalenterivuoden alusta, jolloin maksu määrättiin tai olisi pitänyt määrätä.</p>
+                            </content>
+                        </subsection>
+                    </section>
+                </chapter>
+                <chapter eId="chp_3">
+                    <num>3 luku</num>
+                    <heading eId="chp_3__heading">Muutoksenhaku</heading>
+                    <section eId="chp_3__sec_12">
+                        <num>12 §</num>
+                        <heading eId="chp_3__sec_12__heading">Oikaisuvaatimus</heading>
+                        <subsection eId="chp_3__sec_12__subsec_1">
+                            <content>
+                                <p>
+                                    Liikenneturvallisuusmaksun määräämistä koskevaan päätökseen saa vaatia oikaisua siten kuin hallintolaissa 
+                                    <ref href="/akn/fi/act/statute/2003/434">(434/2003)</ref>
+                                     säädetään.
+                                </p>
+                            </content>
+                        </subsection>
+                    </section>
+                    <section eId="chp_3__sec_13">
+                        <num>13 §</num>
+                        <heading eId="chp_3__sec_13__heading">Oikaisu maksuvelvollisen hyväksi</heading>
+                        <subsection eId="chp_3__sec_13__subsec_1">
+                            <content>
+                                <p>Jos liikenneturvallisuusmaksun määräämisessä on tapahtunut virhe, jonka johdosta maksuvelvolliselle on määrätty liikaa maksua, Liikenteen turvallisuusvirasto oikaisee maksua maksuvelvollisen hyväksi, jollei asiaa ole valitukseen tai oikaisuvaatimukseen annetulla päätöksellä ratkaistu. Oikaisu maksuvelvollisen hyväksi voidaan tehdä kolmen vuoden kuluessa maksun määräämistä seuraavan kalenterivuoden alusta.</p>
+                            </content>
+                        </subsection>
+                    </section>
+                    <section eId="chp_3__sec_14">
+                        <num>14 §</num>
+                        <heading eId="chp_3__sec_14__heading">Oikaisu maksunsaajan hyväksi</heading>
+                        <subsection eId="chp_3__sec_14__subsec_1">
+                            <content>
+                                <p>Jos maksuvelvolliselle on laskuvirheen tai siihen verrattavan erehdyksen vuoksi jäänyt määräämättä liikenneturvallisuusmaksu osaksi tai kokonaan, Liikenteen turvallisuusviraston on oikaistava maksupäätös, jollei asiaa ole valitukseen tai oikaisuvaatimukseen annetulla päätöksellä ratkaistu. Oikaisu maksunsaajan hyväksi voidaan tehdä vuoden kuluessa sitä seuraavan kalenterivuoden alusta, jolloin maksu määrättiin tai olisi pitänyt määrätä.</p>
+                            </content>
+                        </subsection>
+                    </section>
+                    <section eId="chp_3__sec_15">
+                        <num>15 §</num>
+                        <heading eId="chp_3__sec_15__heading">Muutoksenhaku hallinto-oikeuteen</heading>
+                        <subsection eId="chp_3__sec_15__subsec_1">
+                            <content>
+                                <p>
+                                    Maksuvelvollinen saa hakea muutosta oikaisuvaatimukseen annettuun päätökseen sekä Liikenteen turvallisuusviraston muutoin tekemään oikaisupäätökseen valittamalla hallinto-oikeuteen siten kuin hallintolainkäyttölaissa 
+                                    <ref href="/akn/fi/act/statute/1996/586">(586/1996)</ref>
+                                     säädetään.
+                                </p>
+                            </content>
+                        </subsection>
+                    </section>
+                    <section eId="chp_3__sec_16">
+                        <num>16 §</num>
+                        <heading eId="chp_3__sec_16__heading">Muutoksenhaku korkeimpaan hallinto-oikeuteen</heading>
+                        <subsection eId="chp_3__sec_16__subsec_1">
+                            <content>
+                                <p>Hallinto-oikeuden päätökseen saa hakea muutosta valittamalla korkeimpaan hallinto-oikeuteen, jos korkein hallinto-oikeus myöntää valitusluvan. Valitusoikeus korkeimpaan hallinto-oikeuteen on maksuvelvollisella. Liikenteen turvallisuusvirastolla on valitusoikeus siinä tapauksessa, että hallinto-oikeus on muuttanut viraston tekemää maksupäätöstä tai kumonnut sen.</p>
+                            </content>
+                        </subsection>
+                    </section>
+                    <section eId="chp_3__sec_17">
+                        <num>17 §</num>
+                        <heading eId="chp_3__sec_17__heading">Palautettavalle määrälle suoritettava korko</heading>
+                        <subsection eId="chp_3__sec_17__subsec_1">
+                            <content>
+                                <p>
+                                    Jos liikenneturvallisuusmaksua palautetaan maksuunpanon oikaisun tai muutoksenhaun johdosta, palautettavalle maksulle maksetaan veronkantolaissa 
+                                    <ref href="/akn/fi/act/statute/2005/609">(609/2005)</ref>
+                                     säädetty korko maksupäivästä takaisinmaksupäivään.
+                                </p>
+                            </content>
+                        </subsection>
+                    </section>
+                </chapter>
+                <chapter eId="chp_4" finlex:entryIntoForce="true" finlex:vsId="471/2016">
+                    <num>4 luku</num>
+                    <heading eId="chp_4__heading">Voimaantulo</heading>
+                    <section eId="chp_4__sec_18">
+                        <num>18 §</num>
+                        <heading eId="chp_4__sec_18__heading">Voimaantulo</heading>
+                        <subsection eId="chp_4__sec_18__subsec_1">
+                            <content>
+                                <p>Tämä laki tulee voimaan 1 päivänä tammikuuta 2017.</p>
+                            </content>
+                        </subsection>
+                    </section>
+                </chapter>
+            </hcontainer>
+            <hcontainer finlex:outline="Esityöt ja allekirjoitukset" name="conclusions">
+                <hcontainer finlex:outline="Esityöt" name="preliminaryWork">
+                    <content>
+                        <p>
+                            <ref href="/akn/fi/doc/government-proposal/2015/125">HE 125/2015</ref>
+                        </p>
+                        <p>LiVM 5/2016</p>
+                        <p>EV 43/2016</p>
+                    </content>
+                </hcontainer>
+            </hcontainer>
+        </body>
+    </act>
+</akomaNtoso>
