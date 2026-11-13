@@ -1,3 +1,6 @@
 .venv/
 __pycache__/
 data/sfcr/
+
+# Seed workbooks and decisions registers: kept off GitHub (local copies only)
+research/seed/*.xlsx
