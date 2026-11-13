@@ -408,3 +408,7 @@ Notes: research/EU_IT/EU_IT_IT-1_working-notes_v0.01.md
 ## Seed v1.70 (2026-11-13): Belgium BE-1 v2.2 decisions applied
 - [x] Motor guarantee fund: information only (out of scope); fire fund collector/terms corrected; annual tax 9.25% to 30.6.2026, 9.6% from 1.7.2026; L017-L019 added (Confirmed).
 - [ ] BE onboarding: request INAMI declaration forms/circulars (rsbi@riziv-inami.fgov.be) and the FSMA fire fund declaration form from each client.
+
+## Seed v1.71 (2026-11-13): Liechtenstein LI-2 decisions applied
+- [x] D1 split (Swiss duty: insurer pays HOME/FOE on Form 11 FL, policyholder pays FOS/UNAUTH on Form 12 FL; LI levy residual, half-yearly); D2 representative Mandatory with possible EU/EEA conflict; D3 both location-of-risk views; D4 P10 kept; L001-L003 fixed; L004-L009 Proposed.
+- [ ] LI: read CJEU C-678/11 (curia/EUR-Lex blocked to us) incl. EEA recovery-assistance point; llv.li Meldeformular, merkblatt, e-filing, nil returns (blocked); accept or reject L004-L009.
