@@ -16,7 +16,8 @@ Validated tax information only, not tax advice. Newest country first within each
 - [ ] Still to save: Norway 2025 road traffic tax resolution; Italy 2026 road victims fund decree and the hunting victims fund decrees 2025-2026; Romania 2026 guarantee fund norm (DL-169).
 - [x] 2026-11-13: Claude fetched the evidence copies itself (Normattiva export, likumi.lv, GU, et.gr store, NJT, Slov-Lex, PISRS, FSC, diariodarepublica.pt, BOE, BOFiP, gesetze-im-internet.de, wetten.overheid.nl, riigiteataja.ee) and filed them in the JDH Europe evidence desk; recorded in **seed v1.55** (50 law rows, 28 To check -> Confirmed).
 - [ ] Save by hand (sites block automated access): DL-192 Lithuania occupational accidents law (e-seimas TAIS.94855, bot check); DL-201 France arrete 24 July 2026 FGTI (Legifrance bot check); DL-204 Belgium loi-programme 30 May 2026 (ejustice CAPTCHA). Not yet available: DL-169 Romania Norma ASF 27/2025 (MO 1196/24.12.2025; ASF has not posted it, portal unreachable); DL-034 Cyprus (no official consolidation).
-- [ ] Decide Register v1.28 (B44 already rejected): E22, B45, B47, B48, E23, E24 and proposed laws EU_GR-L018, EU_PT-L016.
+- [x] Register v1.28: all recommendations accepted (B44 rejected); applied in **seed v1.56**.
+- [ ] Save by hand: DL-217 Portugal DL 143/2026 (Diario da Republica "Descarregar PDF" button does not hand Claude the file).
 - [ ] Supply the shared run library from the earlier runs' workspace: work/lib/run_lib.py, classes.py, translit.py, and the run data files (e.g. as a zip or a repository). Needed for the formal run pages, PDFs, client templates and model scoring.
 
 ## EU_EE Estonia (EE-1, statute reading v0.01, 2026-11-13)
