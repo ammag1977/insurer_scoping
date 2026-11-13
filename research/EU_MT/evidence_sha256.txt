@@ -10,3 +10,4 @@ ef2c700f772bf283457f92d16810ac2e5680b396366b51c197fa241ba5aef802  EU_MT-NEW_LN-6
 a10d0bb5961d91b2ee588e62720711856ab07ec6203dc9d37d817d7af3d9dc45  EU_MT-NEW_SL364-13-Remission-of-Interest-and-Penalties-Rules_asat-2026-11-13.pdf
 dfd9103b93c60a635cef759b22ec739b302ebc6a9b1b8774fd860a508d4767de  EU_MT-NEW_SL364-18-Rate-of-Interest-Regs_asat-2026-11-13.pdf
 3de07a90c0048cf68c016d32a5f7de392271050f4d039ea8ff0581b3976e28e7  EU_MT-NEW_SL364-21-Determination-of-Additional-Penalty-Rules_asat-2026-11-13.pdf
+14029ad10c6de71b4b96986ec3d6855ad57ebe50b5d3ca02ac64930385eb60b0  EU_MT-L010_SL403-25-Protection-and-Compensation-Fund-Regs-LN318-2024_asat-2026-11-13.pdf

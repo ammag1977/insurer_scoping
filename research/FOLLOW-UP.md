@@ -425,4 +425,4 @@ Notes: research/EU_IT/EU_IT_IT-1_working-notes_v0.01.md
 - [x] IE: Revenue NfG (FA 2025) current-law source; UNAUTH TC NA; ICF NA for UNAUTH EEA and ends 1.1.2027; health levy registered insurers only; quarterly s 125C statement; L012-L017 Proposed.
 - [x] IS: building fee to State treasury; HMS 0.0021% monthly (flagged); NTI premium added as related collection; L003 withdrawn; L008-L012 Proposed.
 - [x] MT: Protection and Compensation Fund levy added (Proposed, HOME); class 12 / class 2 notes; compounding Secondary; art 47(3) onboarding question; L003-L010 Proposed.
-- [x] All Proposed law rows accepted (v1.75): 23 Confirmed; To check (no official copy yet): EEA_IS-L010, L011, L012 (althingi.is blocked - request pack A22) and EU_MT-L010 (SL 403.25, to save from legislation.mt).
+- [x] All Proposed law rows accepted (v1.75): 23 Confirmed; To check (no official copy yet): EEA_IS-L010, L011, L012 (althingi.is blocked - request pack A22); EU_MT-L010 now Confirmed (v1.76).
