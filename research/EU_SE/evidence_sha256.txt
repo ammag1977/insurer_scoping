@@ -1,2 +1,9 @@
 62cff25e98a86d2cbbbb25dc28530da1ad8144bd9bcaf75be60afca67daa986a  EU_SE-L002_Lag-2007-460_Riksdagen-t-o-m-SFS-2011-1421_asat-2026-11-13.txt
 5fc9eb46de271e5587e478538eb5889a8438f9c36c73cd012d6b91e91ad3ffcb  EU_SE-L003_Skatteforfarandelag-2011-1244_Riksdagen-t-o-m-SFS-2026-1305_asat-2026-11-13.html
+abcc8475b64ef34f59ab9916008e1ffd3e72fe6a8461b07be3e0383e5107562b  EU_SE-L002_Lag-2007-460_Riksdagen-t-o-m-SFS-2011-1421_asat-2026-11-13.pdf
+ebad5435da121c15eee5ae4e533a473f9b89a3a411e44f5c6693ed2cf0da20be  EU_SE-NEW_Trafikskadelag-1975-1410_Riksdagen-t-o-m-SFS-2026-1208_asat-2026-11-13.pdf
+75e5143c6e21c01398413d54da452e0b81d280f9cc9524df7a131bdf4f7b36ec  EU_SE-NEW_Lag-1930-173-berakning-av-lagstadgad-tid_asat-2026-11-13.pdf
+fd4045ab00fdb4f9c3b2d53a4e4366d6b2776176cd0130f1a3a786b75e834045  EU_SE-SKV_Guidance-Skatt-pa-trafikforsakringspremie_asat-2026-11-13.pdf
+18f422cc4678710cab353791a2c04db8497a09696a7bb35d23b0b14fdccf1942  EU_SE-SKV_SKV5332-Anmalan-trafikforsakringspremie_asat-2026-11-13.pdf
+23171392ffc4a66a0132465e821cce5b2923ed19c1bb0b7af5ff3c33f807c4dd  EU_SE-SKV_SKV408-Skattekontobroschyren-utg13-2026_asat-2026-11-13.pdf
+ba71f30871f50f23c0aee79f866b769d3b8de59141db353bc01c621578cf638a  EU_SE-SKV_Ombudsbehorigheter-for-ett-foretag_asat-2026-11-13.pdf
