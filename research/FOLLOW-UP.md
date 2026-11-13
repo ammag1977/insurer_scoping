@@ -382,3 +382,8 @@ Notes: research/EU_IT/EU_IT_IT-1_working-notes_v0.01.md
 - [x] Single 4% insurance tax; representative Mandatory with conflict (non-EU, and NO/IS/LI under the EU-seat test); class 15 NA; fire tax classes 8-9; FGA called by its board; FIAA added; L009-L018 Confirmed (official copies held).
 - [ ] LU: ask the AED (Bureau d'imposition 3) to confirm class 15, the EEA representative point, payment date and weekend rule; eAssurance specification; FGA call rates 2025-2026; current AO penalty text.
 - [ ] CZ-2 still running.
+
+## Seed v1.67 (2026-11-13): CZ-2 applied - all 19 country runs reported and decided
+- [x] CKP row split: damage-prevention fund 3% quarterly in scope (HOME/FOE/FOS); membership contributions Out of scope; UNAUTH Not applicable; L002 Confirmed (e-Sbirka); L003-L005 added.
+- [ ] CZ: request from CKP - Statut, 2025-2026 membership resolutions, quarterly instalment instructions (account, statement, nil practice), third-party authorised person.
+- [ ] CZ: check parliamentary bills amending Act 30/2024 s 73.
