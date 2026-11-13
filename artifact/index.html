@@ -118,6 +118,11 @@ pre.narrative { white-space: pre-wrap; font: 13px/1.5 var(--mono); background: v
 .prog-form { background: var(--soft); }
 .prog-fields { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: 10px; }
 .prog-fields label { display: grid; gap: 4px; }
+.prog-fields.four { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.prog-fields select, .prog-fields input { font: inherit; font-size: 14px; padding: 7px 9px; border: 1px solid var(--line); border-radius: 6px; background: var(--surface); color: var(--ink); }
+.prog .kv { grid-template-columns: 130px minmax(0, 1fr); }
+.tx-form { background: var(--surface); }
+@media (max-width: 860px) { .prog-fields.four { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 .country-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 4px 12px; }
 @media (max-width: 640px) { .prog-fields { grid-template-columns: minmax(0, 1fr); } }
 .tax-country h3 { margin: 6px 0 0; font-size: 15px; display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
@@ -178,7 +183,7 @@ const PDFJS = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/";
 /* ======================================================================
    State and helpers
    ====================================================================== */
-const state = { programmes: new Map(), progEdit: null, tax: null, taxBy: new Map(), classes: new Map(), data: null, byKey: new Map(), index: [], research: new Map(), clients: new Map(),
+const state = { programmes: new Map(), progEdit: null, txEdit: null, allocMsg: null, tax: null, taxBy: new Map(), classes: new Map(), data: null, byKey: new Map(), index: [], research: new Map(), clients: new Map(),
   dbStatus: "loading", db: null, downloads: undefined, from: null, addQuery: "", uploading: null, armed: null };
 const view = document.getElementById("view");
 const q = document.getElementById("q");
@@ -797,7 +802,7 @@ function renderCompany(ent) {
   view.innerHTML = html; view.dataset.key = ent.key;
   if (!same) window.scrollTo(0, 0); else window.scrollTo(0, scrollY);
 
-  wireProgrammes(ent);
+  wireProgrammes(ent, r);
   const saveCls = document.getElementById("saveClasses");
   if (saveCls) saveCls.addEventListener("click", async () => {
     const list = [...document.querySelectorAll('#classForm input[name="cls"]:checked')].map(i => +i.value);
@@ -915,7 +920,8 @@ function programmeTaxes(ent, r, prog) {
 function programmeRows(ent, r) {
   const rows = [];
   for (const prog of programmesOf(ent.key)) for (const pc of programmeTaxes(ent, r, prog)) {
-    const base = [ent.name, prog.name, (prog.classes || []).join(", "), cname(pc.country), jur(pc.country), pc.level];
+    const net = netByCountry(prog);
+    const base = [ent.name, prog.name, (prog.classes || []).join(", "), cname(pc.country), jur(pc.country), pc.level, net.has(pc.country) ? money(net.get(pc.country)) : "", prog.currency || ""];
     if (pc.status === "out") rows.push([...base, "", "OUT OF SCOPE for this project (non-European country)", "", "", "", "", "", ""]);
     else if (pc.status === "notResearched") rows.push([...base, "", "Not yet researched in the hub", "", "", "", "", "", ""]);
     else if (!pc.taxes.length) rows.push([...base, pc.jdh, "No premium tax for these classes", "", "", "", "", "", ""]);
@@ -924,17 +930,160 @@ function programmeRows(ent, r) {
   }
   return rows;
 }
-const PROG_HEAD = ["Insurer", "Programme", "Programme classes", "Country", "JurCode", "Likelihood", "Tax jurisdiction", "Tax", "Class",
+const PROG_DETAIL_HEAD = ["Insurer", "Programme", "Description", "Status", "Billing currency", "Start date", "Expiry date", "Policy term", "Business type",
+  "Classes", "Countries", "Original premium", "Adjustments", "Net premium"];
+const PROG_DETAIL_WIDTHS = [30, 28, 40, 22, 10, 12, 12, 20, 14, 12, 40, 16, 16, 16];
+const money = v => ({ v, t: "n", z: "#,##0.00" });
+function progDetail(ent, pg) {
+  const orig = pg.allocation ? pg.allocation.total : 0, adj = (pg.transactions || []).reduce((s2, t) => s2 + (t.allocation ? t.allocation.total : 0), 0);
+  return [ent.name, pg.name, pg.description || "", progStatus(pg).label, pg.currency || "", pg.startDate || "", pg.expiryDate || "", pg.term || "", pg.businessType || "New business",
+    (pg.classes || []).join(", "), pg.countries && pg.countries.length ? pg.countries.map(jur).join(", ") : "All countries in scope",
+    pg.allocation ? money(orig) : "", money(Math.round(adj * 100) / 100), money(Math.round((orig + adj) * 100) / 100)];
+}
+const LEDGER_HEAD = ["Insurer", "Programme", "Currency", "Entry", "Effective date", "Description", "Source", "Country", "JurCode", "Class", "Class name", "Premium"];
+const LEDGER_WIDTHS = [30, 28, 9, 22, 13, 40, 36, 16, 10, 6, 28, 16];
+function ledgerRows(ent) {
+  const out = [];
+  for (const pg of programmesOf(ent.key)) {
+    const entries = [...(pg.allocation ? [{ type: pg.businessType === "Renewal" ? "Original (renewal)" : "Original (new business)", effectiveDate: pg.startDate || "", description: "", allocation: pg.allocation }] : []),
+      ...(pg.transactions || []).map(t => ({ ...t, type: t.type === "MTA" ? "Mid-term adjustment" : t.type }))];
+    for (const t of entries) {
+      if (!t.allocation || !t.allocation.rows.length) { out.push([ent.name, pg.name, pg.currency || "", t.type, t.effectiveDate, t.description || "", "No premium change", "", "", "", "", money(0)]); continue; }
+      t.allocation.rows.forEach(x => out.push([ent.name, pg.name, pg.currency || "", t.type, t.effectiveDate, t.description || "", t.allocation.file || "", cname(x.country), jur(x.country), x.cls, CLASS_NAMES[x.cls], money(x.premium)]));
+    }
+  }
+  return out;
+}
+const PROG_HEAD = ["Insurer", "Programme", "Programme classes", "Country", "JurCode", "Likelihood", "Net premium", "Currency", "Tax jurisdiction", "Tax", "Class",
   "Rate or treatment", "Rate citation", "Filing frequency", "Filing and due date", "Filing citation"];
-const PROG_WIDTHS = [30, 26, 14, 16, 10, 12, 12, 34, 6, 34, 22, 22, 50, 26];
+const PROG_WIDTHS = [30, 26, 14, 16, 10, 12, 16, 9, 12, 34, 6, 34, 22, 22, 50, 26];
 const rateByClass = t => t.classes.map(x => `Class ${x.cls}: ${x.rate}`).join("; ");
+
+/* ---------- programme details, premium allocations and the transaction ledger ----------
+   A programme holds its details and an original premium allocation (country x class x premium,
+   in the billing currency). Mid-term adjustments and cancellations are dated transactions with
+   their own allocations (additional premium positive, return premium negative), so each keeps
+   its own effective date. Net premium = original + all transactions. */
+const CURRENCIES = ["EUR", "GBP", "CHF", "USD", "DKK", "SEK", "NOK", "PLN", "CZK", "HUF", "RON", "BGN", "ISK"];
+const DAY = 86400000;
+const parseIsoDate = s => { const m = /^(\d{4})-(\d\d)-(\d\d)$/.exec(s || ""); return m ? Date.UTC(+m[1], m[2] - 1, +m[3]) : null; };
+function termText(start, expiry) {
+  const a = parseIsoDate(start), b = parseIsoDate(expiry);
+  if (a == null || b == null || b <= a) return "";
+  const d1 = new Date(a), d2 = new Date(b);
+  let months = (d2.getUTCFullYear() - d1.getUTCFullYear()) * 12 + d2.getUTCMonth() - d1.getUTCMonth();
+  const days = Math.round((b - a) / DAY);
+  if (d2.getUTCDate() === d1.getUTCDate() && months > 0) return months % 12 === 0 ? `${months / 12} year${months === 12 ? "" : "s"} (${days} days)` : `${months} months (${days} days)`;
+  return `${days} days`;
+}
+const fmtMoney = (n, cur) => (n == null ? "" : (cur ? cur + " " : "") + Number(n).toLocaleString("en-GB", { minimumFractionDigits: 2, maximumFractionDigits: 2 }));
+function progStatus(pg) {
+  const canc = (pg.transactions || []).find(t => t.type === "Cancellation");
+  if (canc) return { label: "Cancelled from " + canc.effectiveDate, cls: "p-Inconsistent", cancelled: true };
+  const exp = parseIsoDate(pg.expiryDate);
+  if (exp != null && exp < Date.now() - DAY) return { label: "Expired " + pg.expiryDate, cls: "p-Not" };
+  if (!pg.startDate) return { label: "Dates not set", cls: "p-none" };
+  return { label: "Active", cls: "p-checked" };
+}
+// Net premium by country and class across the original allocation and every transaction
+function netAllocation(pg, upTo) {
+  const m = new Map();
+  const add = rows => (rows || []).forEach(x => { const k = x.country + "|" + x.cls; m.set(k, (m.get(k) || 0) + x.premium); });
+  add(pg.allocation && pg.allocation.rows);
+  (pg.transactions || []).filter(t => !upTo || t.id !== upTo).forEach(t => add(t.allocation && t.allocation.rows));
+  return [...m.entries()].map(([k, v]) => { const [country, cls] = k.split("|"); return { country, cls: +cls, premium: Math.round(v * 100) / 100 }; });
+}
+function netByCountry(pg) {
+  const m = new Map();
+  netAllocation(pg).forEach(x => m.set(x.country, (m.get(x.country) || 0) + x.premium));
+  return m;
+}
+const allocTotal = rows => Math.round((rows || []).reduce((s2, x) => s2 + x.premium, 0) * 100) / 100;
+
+// Read an allocation file: columns Country (JurCode, ISO code or name), Class (1-18), Premium
+const NAME_TO_ISO = Object.fromEntries(Object.entries(COUNTRY).map(([k, v]) => [v.toLowerCase(), iso(k)]));
+function countryCode(v) {
+  const t = String(v ?? "").trim(); if (!t) return null;
+  const up = t.toUpperCase().replace(/^(EU|EEA|EUR)_/, "");
+  if (/^[A-Z]{2}$/.test(up)) { const c = iso(up); return COUNTRY[c] || inEurope(c) ? c : null; }
+  return NAME_TO_ISO[t.toLowerCase()] || null;
+}
+async function readAllocation(file, pg, inScopeC) {
+  const wb = XLSX.read(await file.arrayBuffer(), { type: "array" });
+  const ws = wb.Sheets[wb.SheetNames.find(n => !/instructions/i.test(n)) || wb.SheetNames[0]];
+  const grid = XLSX.utils.sheet_to_json(ws, { header: 1, raw: true, defval: "" });
+  const hi = grid.findIndex(r => r.some(c => /country|jurcode/i.test(String(c))) && r.some(c => /class/i.test(String(c))) && r.some(c => /premium/i.test(String(c))));
+  if (hi < 0) return { error: "The file needs a header row with Country (or JurCode), Class and Premium columns. Download the template to see the layout." };
+  const head = grid[hi].map(c => String(c).toLowerCase());
+  const ci = head.findIndex(h => /jurcode/.test(h)) >= 0 ? head.findIndex(h => /jurcode/.test(h)) : head.findIndex(h => /country/.test(h));
+  const ki = head.findIndex(h => /^class$|class \(|class no|class number|^class\b/.test(h) && !/name/.test(h));
+  const pi = head.findIndex(h => /premium/.test(h));
+  const rows = [], problems = [], warnings = [];
+  const allowedC = new Set(pg.countries && pg.countries.length ? pg.countries : []), allowedK = new Set(pg.classes || []);
+  grid.slice(hi + 1).forEach((r, n) => {
+    const line = hi + n + 2;
+    if (r.every(c => String(c).trim() === "")) return;
+    const rawP = r[pi], cRaw = r[ci], kRaw = r[ki];
+    if (String(rawP).trim() === "") return; // template rows left blank
+    const c = countryCode(cRaw), k = parseInt(kRaw), p = typeof rawP === "number" ? rawP : parseFloat(String(rawP).replace(/[^\d.\-]/g, ""));
+    if (!c) { problems.push(`Row ${line}: country “${cRaw}” not recognised`); return; }
+    if (!(k >= 1 && k <= 18)) { problems.push(`Row ${line}: class “${kRaw}” is not 1-18`); return; }
+    if (isNaN(p)) { problems.push(`Row ${line}: premium “${rawP}” is not a number`); return; }
+    if (allowedC.size && !allowedC.has(c)) warnings.push(`${jur(c)} is not one of this programme's countries`);
+    else if (!allowedC.size && inScopeC && !inScopeC.has(c)) warnings.push(`${jur(c)} is not a country in scope for this insurer`);
+    if (allowedK.size && !allowedK.has(k)) warnings.push(`Class ${k} is not attached to this programme`);
+    rows.push({ country: c, cls: k, premium: Math.round(p * 100) / 100 });
+  });
+  if (!rows.length && !problems.length) return { error: "No premium amounts were found in the file." };
+  return { rows, problems, warnings: [...new Set(warnings)], file: file.name, uploadedOn: today(), total: allocTotal(rows) };
+}
+function allocationTemplate(ent, r, pg, kind) {
+  const countries = pg.countries && pg.countries.length ? pg.countries : scopeCountries(ent, r).map(o => o.country);
+  const wb = XLSX.utils.book_new();
+  const rows = [["Country", "JurCode", "Class", "Class name", `Premium (${pg.currency || "billing currency"})`]];
+  countries.forEach(c => (pg.classes || []).forEach(k => rows.push([cname(c), jur(c), k, CLASS_NAMES[k], ""])));
+  XLSX.utils.book_append_sheet(wb, sheet(rows, [20, 10, 7, 30, 20]), "Allocation");
+  XLSX.utils.book_append_sheet(wb, sheet([[`${kind} premium allocation: ${pg.name} (${ent.name})`], [],
+    ["Fill in the Premium column, one row per country and class, in the programme's billing currency."],
+    ["Leave a row blank to skip it. You can add rows; Country can be a JurCode (EU_FR), an ISO code (FR) or a country name."],
+    ["For a mid-term adjustment, enter additional premium as a positive amount and return premium as a negative amount."]], [110]), "Instructions");
+  return XLSX.write(wb, { bookType: "xlsx", type: "array" });
+}
+function allocationTable(rows, cur) {
+  if (!rows || !rows.length) return "";
+  const cs = [...new Set(rows.map(x => x.country))], ks = [...new Set(rows.map(x => x.cls))].sort((a, b) => a - b);
+  const v = (c, k) => rows.filter(x => x.country === c && x.cls === k).reduce((s2, x) => s2 + x.premium, 0);
+  return `<div class="table-box"><table><thead><tr><th>Country</th>${ks.map(k => `<th class="num">Class ${k}</th>`).join("")}<th class="num">Total (${esc(cur || "")})</th></tr></thead><tbody>
+    ${cs.map(c => `<tr><td><span class="cc">${esc(jur(c))}</span>${esc(cname(c))}</td>${ks.map(k => `<td class="num">${rows.some(x => x.country === c && x.cls === k) ? fmtMoney(v(c, k)) : ""}</td>`).join("")}
+      <td class="num"><b>${fmtMoney(ks.reduce((s2, k) => s2 + v(c, k), 0))}</b></td></tr>`).join("")}</tbody>
+    <tfoot><tr><td>Total</td>${ks.map(k => `<td class="num">${fmtMoney(cs.reduce((s2, c) => s2 + v(c, k), 0))}</td>`).join("")}<td class="num">${fmtMoney(allocTotal(rows))}</td></tr></tfoot></table></div>`;
+}
+function proRataReturn(pg, effectiveDate) {
+  const a = parseIsoDate(pg.startDate), b = parseIsoDate(pg.expiryDate), e = parseIsoDate(effectiveDate);
+  if (a == null || b == null || e == null || b <= a) return { error: "Set the programme's start and expiry dates to calculate a pro-rata return premium." };
+  if (e < a || e > b) return { error: "The cancellation date must be between the start and expiry dates." };
+  const factor = (b - e) / (b - a);
+  const rows = netAllocation(pg).filter(x => x.premium).map(x => ({ ...x, premium: -Math.round(x.premium * factor * 100) / 100 }));
+  if (!rows.length) return { error: "There is no premium allocation to calculate a return premium from." };
+  return { rows, problems: [], warnings: [], file: `Pro-rata: ${Math.round((b - e) / DAY)} of ${Math.round((b - a) / DAY)} days unexpired`, uploadedOn: today(), total: allocTotal(rows), method: "pro-rata" };
+}
 
 function renderProgrammes(ent, r, step) {
   const list = programmesOf(ent.key), auth = insurerClasses(ent.key).list, inScope = scopeCountries(ent, r);
   const ed = state.progEdit && state.progEdit.key === ent.key ? state.progEdit : null;
+  const tx = state.txEdit && state.txEdit.key === ent.key ? state.txEdit : null;
+  const up = state.allocMsg && state.allocMsg.key === ent.key ? state.allocMsg : null;
   const editor = d => `<form class="prog-form" id="progForm">
       <div class="prog-fields"><label class="small" for="pgName"><b>Programme name</b><input id="pgName" type="text" maxlength="120" required value="${esc(d.name)}" placeholder="e.g. Home insurance, Commercial liability"></label>
       <label class="small" for="pgDesc"><b>Description</b> <span class="muted">(optional)</span><input id="pgDesc" type="text" maxlength="300" value="${esc(d.description)}" placeholder="e.g. Buildings and contents for homeowners, sold through retail partners"></label></div>
+      <div class="prog-fields four">
+        <label class="small" for="pgCur"><b>Billing currency</b><select id="pgCur">${[...new Set([...CURRENCIES, d.currency].filter(Boolean))].map(c => `<option ${c === d.currency ? "selected" : ""}>${c}</option>`).join("")}</select></label>
+        <label class="small" for="pgStart"><b>Start date</b><input id="pgStart" type="date" value="${esc(d.startDate)}"></label>
+        <label class="small" for="pgExpiry"><b>Expiry date</b><input id="pgExpiry" type="date" value="${esc(d.expiryDate)}"></label>
+        <label class="small" for="pgTerm"><b>Policy term</b><input id="pgTerm" type="text" maxlength="40" value="${esc(d.term)}" placeholder="Filled in from the dates"></label></div>
+      <div class="actions small"><b>Business type</b>
+        <label class="cls"><input type="radio" name="pgType" value="New business" ${d.businessType !== "Renewal" ? "checked" : ""}> New business</label>
+        <label class="cls"><input type="radio" name="pgType" value="Renewal" ${d.businessType === "Renewal" ? "checked" : ""}> Renewal</label></div>
       <div class="small"><b>Classes of business covered</b> ${auth.length ? `<span class="muted">· authorised classes are marked</span>` : ""}</div>
       <div class="classes-grid">${Object.entries(CLASS_NAMES).map(([n, name]) => `<label class="cls"><input type="checkbox" name="pgcls" value="${n}" ${d.classes.includes(+n) ? "checked" : ""}>
         <span><b>${n}</b> ${esc(name)}${auth.includes(+n) ? ' <span class="small muted">· authorised</span>' : ""}</span></label>`).join("")}</div>
@@ -945,18 +1094,64 @@ function renderProgrammes(ent, r, step) {
         <span><span class="cc">${esc(jur(o.country))}</span>${esc(cname(o.country))}</span></label>`).join("")}</div>
       <div class="actions"><button class="btn" type="submit" ${state.db ? "" : "disabled"}>Save programme</button><button class="btn ghost" type="button" id="pgCancel">Cancel</button>
         <span class="status" id="pgStatus" aria-live="polite"></span></div></form>`;
-  return `<section class="panel"><div class="panel-head"><h2><span class="step">${step}</span>Insurance programmes</h2>
-      <span class="status">${list.length} programme${list.length === 1 ? "" : "s"}</span></div>
-    <p class="small muted" style="margin:0;max-width:85ch">Add the insurance programmes the insurer writes and attach the classes of business each one covers. The premium taxes for each programme follow below.</p>
-    ${list.length ? `<div class="prog-list">${list.map(pg => {
-      const off = (pg.classes || []).filter(k => auth.length && !auth.includes(k));
-      return ed && ed.id === pg.id ? editor(ed.draft) : `<div class="prog"><div class="panel-head"><h3>${esc(pg.name)}</h3>
+
+  const txForm = (pg, t) => {
+    const d = t.draft, canc = t.type === "Cancellation";
+    return `<form class="prog-form tx-form" id="txForm">
+      <div class="small"><b>${canc ? "Cancel this programme" : "Add a mid-term adjustment"}</b></div>
+      <div class="prog-fields"><label class="small" for="txDate"><b>Effective date</b><input id="txDate" type="date" required value="${esc(d.effectiveDate)}" min="${esc(pg.startDate || "")}" max="${esc(pg.expiryDate || "")}"></label>
+        <label class="small" for="txDesc"><b>Description</b><input id="txDesc" type="text" maxlength="300" value="${esc(d.description)}" placeholder="${canc ? "e.g. Cancelled at insured's request" : "e.g. Added Spanish stores from 1 July"}"></label></div>
+      ${canc ? `<div class="actions small"><b>Return premium</b>
+        <label class="cls"><input type="radio" name="txMethod" value="pro-rata" ${d.method === "pro-rata" ? "checked" : ""}> Pro-rata (calculated)</label>
+        <label class="cls"><input type="radio" name="txMethod" value="upload" ${d.method === "upload" ? "checked" : ""}> Upload an allocation</label>
+        <label class="cls"><input type="radio" name="txMethod" value="none" ${d.method === "none" ? "checked" : ""}> No return premium</label></div>` : ""}
+      ${!canc || d.method === "upload" ? `<div class="actions small"><label class="btn ghost small" for="txFile" tabindex="0">Upload allocation file</label><input id="txFile" type="file" accept=".xlsx,.xls,.csv" hidden>
+        <button class="btn ghost small" type="button" data-tpl="${esc(pg.id)}" data-kind="${canc ? "Return" : "Adjustment"}">Download template</button>
+        <span class="muted">${canc ? "Return premium as negative amounts." : "Additional premium positive, return premium negative."}</span></div>` : ""}
+      ${d.allocation ? `<div class="small">${esc(d.allocation.file)} · total ${fmtMoney(d.allocation.total, pg.currency)}${d.allocation.problems?.length ? ` · <span class="status err">${d.allocation.problems.length} row${d.allocation.problems.length > 1 ? "s" : ""} skipped</span>` : ""}</div>${allocationTable(d.allocation.rows, pg.currency)}` : ""}
+      ${d.error ? `<div class="small status err">${esc(d.error)}</div>` : ""}
+      <div class="actions"><button class="btn${canc ? " danger armed" : ""}" type="submit" ${state.db ? "" : "disabled"}>${canc ? "Record cancellation" : "Save adjustment"}</button><button class="btn ghost" type="button" id="txCancel">Close</button>
+        <span class="status" id="txStatus" aria-live="polite"></span></div></form>`;
+  };
+
+  const card = pg => {
+    const off = (pg.classes || []).filter(k => auth.length && !auth.includes(k)), st = progStatus(pg);
+    const txs = pg.transactions || [], net = netAllocation(pg), cur = pg.currency || "";
+    return `<div class="prog"><div class="panel-head"><h3>${esc(pg.name)} <span class="pill ${st.cls}">${esc(st.label)}</span></h3>
         <div class="actions"><button class="btn ghost small" type="button" data-pedit="${esc(pg.id)}">Edit</button>
         <button class="btn danger small" type="button" data-pdel="${esc(pg.id)}">${state.armed === "pdel-" + pg.id ? "Confirm delete" : "Delete"}</button></div></div>
-        ${pg.description ? `<div class="small muted">${esc(pg.description)}</div>` : ""}
-        <div class="chips">${(pg.classes || []).map(k => `<span class="chip ${off.includes(k) ? "P" : "L"}" title="${esc(CLASS_NAMES[k])}">${k} ${esc(CLASS_NAMES[k])}</span>`).join("") || '<span class="muted small">No classes attached</span>'}</div>
-        ${off.length ? `<div class="small status err">Class${off.length > 1 ? "es" : ""} ${off.join(", ")} not in the insurer’s authorised classes.</div>` : ""}
-        <div class="small muted">Countries: ${pg.countries && pg.countries.length ? pg.countries.map(c => esc(jur(c))).join(", ") : "all countries in scope"}</div></div>`; }).join("")}</div>` : ""}
+      ${pg.description ? `<div class="small muted">${esc(pg.description)}</div>` : ""}
+      <dl class="kv small"><dt>Billing currency</dt><dd>${esc(cur || "Not set")}</dd><dt>Period</dt><dd>${esc(pg.startDate || "?")} to ${esc(pg.expiryDate || "?")}${pg.term ? ` · ${esc(pg.term)}` : ""}</dd>
+        <dt>Business type</dt><dd>${esc(pg.businessType || "New business")}</dd>
+        <dt>Countries</dt><dd>${pg.countries && pg.countries.length ? pg.countries.map(c => esc(jur(c))).join(", ") : "All countries in scope"}</dd></dl>
+      <div class="chips">${(pg.classes || []).map(k => `<span class="chip ${off.includes(k) ? "P" : "L"}" title="${esc(CLASS_NAMES[k])}">${k} ${esc(CLASS_NAMES[k])}</span>`).join("") || '<span class="muted small">No classes attached</span>'}</div>
+      ${off.length ? `<div class="small status err">Class${off.length > 1 ? "es" : ""} ${off.join(", ")} not in the insurer’s authorised classes.</div>` : ""}
+
+      <div class="eyebrow">Premium allocation</div>
+      ${pg.allocation ? `<div class="small">${esc(pg.allocation.file)} · uploaded ${esc(pg.allocation.uploadedOn)} · total <b>${fmtMoney(pg.allocation.total, cur)}</b>${pg.allocation.problems?.length ? ` · <span class="status err">${pg.allocation.problems.length} row(s) skipped on upload</span>` : ""}</div>
+        ${pg.allocation.warnings?.length ? `<div class="small status err">${pg.allocation.warnings.map(esc).join("; ")}</div>` : ""}${allocationTable(pg.allocation.rows, cur)}`
+        : '<div class="small muted">No allocation uploaded yet.</div>'}
+      ${up && up.id === pg.id ? `<div class="small status${up.error ? " err" : ""}">${esc(up.text)}</div>` : ""}
+      <div class="actions small"><label class="btn ghost small" for="alloc-${esc(pg.id)}" tabindex="0">${pg.allocation ? "Replace allocation" : "Upload premium allocation"}</label>
+        <input id="alloc-${esc(pg.id)}" data-alloc="${esc(pg.id)}" type="file" accept=".xlsx,.xls,.csv" hidden ${state.db ? "" : "disabled"}>
+        <button class="btn ghost small" type="button" data-tpl="${esc(pg.id)}" data-kind="Original">Download allocation template</button></div>
+
+      <div class="eyebrow">Mid-term adjustments and cancellations</div>
+      ${txs.length ? `<div class="table-box"><table><thead><tr><th>Effective date</th><th>Type</th><th>Description</th><th>Allocation</th><th class="num">Premium (${esc(cur)})</th><th></th></tr></thead><tbody>
+        ${txs.map(t => `<tr><td class="nowrap">${esc(t.effectiveDate)}</td><td>${esc(t.type)}</td><td>${esc(t.description || "")}</td>
+          <td class="small">${t.allocation ? esc(t.allocation.file) : "No premium change"}</td><td class="num">${t.allocation ? fmtMoney(t.allocation.total) : "0.00"}</td>
+          <td><button class="btn danger small" type="button" data-txdel="${esc(pg.id)}|${esc(t.id)}">${state.armed === "txdel-" + t.id ? "Confirm remove" : "Remove"}</button></td></tr>`).join("")}</tbody></table></div>`
+        : '<div class="small muted">None recorded.</div>'}
+      ${tx && tx.progId === pg.id ? txForm(pg, tx) : st.cancelled ? "" : `<div class="actions"><button class="btn ghost small" type="button" data-tx="${esc(pg.id)}|MTA" ${state.db ? "" : "disabled"}>Add mid-term adjustment</button>
+        <button class="btn danger small" type="button" data-tx="${esc(pg.id)}|Cancellation" ${state.db ? "" : "disabled"}>Cancel programme</button></div>`}
+      ${pg.allocation || txs.some(t => t.allocation) ? `<div class="eyebrow">Net premium after adjustments</div>${allocationTable(net, cur)}` : ""}
+    </div>`;
+  };
+
+  return `<section class="panel"><div class="panel-head"><h2><span class="step">${step}</span>Insurance programmes</h2>
+      <span class="status">${list.length} programme${list.length === 1 ? "" : "s"}</span></div>
+    <p class="small muted" style="margin:0;max-width:85ch">Add the insurance programmes the insurer writes, with their billing currency, period, classes of business and premium allocation. Record mid-term adjustments and cancellations as dated entries; the net premium and the taxes for each programme follow.</p>
+    ${list.length ? `<div class="prog-list">${list.map(pg => ed && ed.id === pg.id ? editor(ed.draft) : card(pg)).join("")}</div>` : ""}
     ${ed && !ed.id ? editor(ed.draft) : !ed ? `<div><button class="btn" type="button" id="pgAdd" ${state.db ? "" : "disabled"}>Add programme</button></div>` : ""}</section>`;
 }
 
@@ -965,56 +1160,141 @@ function renderProgrammeTaxes(ent, r, step) {
   return `<section class="panel"><div class="panel-head"><h2><span class="step">${step}</span>Premium taxes by programme</h2>
       <span class="status">${state.tax ? `${esc(state.tax.source)} · ${esc(state.tax.snapshot)}` : "Tax data loading…"}</span></div>
     ${!list.length ? '<p class="muted" style="margin:0">Add a programme above to see the taxes payable on it.</p>' : list.map(pg => {
-      const res = programmeTaxes(ent, r, pg);
-      return `<div class="tax-country"><h3>${esc(pg.name)} <span class="small muted" style="font-weight:400">· classes ${(pg.classes || []).join(", ") || "none"}</span></h3>
+      const res = programmeTaxes(ent, r, pg), net = netByCountry(pg), st = progStatus(pg);
+      const premCell = c => net.has(c) ? `<div class="small">Net premium ${fmtMoney(net.get(c), pg.currency)}</div>` : "";
+      return `<div class="tax-country"><h3>${esc(pg.name)} <span class="pill ${st.cls}">${esc(st.label)}</span> <span class="small muted" style="font-weight:400">· classes ${(pg.classes || []).join(", ") || "none"}${pg.currency ? " · " + esc(pg.currency) : ""}</span></h3>
         ${!(pg.classes || []).length ? '<p class="small muted" style="margin:0">Attach classes to this programme to see its taxes.</p>' :
         `<div class="table-box"><table><thead><tr><th>Jurisdiction</th><th>Tax</th><th>Rate or treatment by class</th><th>Filing frequency</th><th>Filing and due date</th></tr></thead><tbody>
-        ${res.map(pc => pc.status === "out" ? `<tr class="ended"><td><span class="cc">${esc(jur(pc.country))}</span>${esc(cname(pc.country))}</td><td colspan="4"><span class="lk lk-Out">Out of scope</span> Non-European country: OUT OF SCOPE for this project</td></tr>`
-          : pc.status === "notResearched" ? `<tr><td><span class="cc">${esc(jur(pc.country))}</span>${esc(cname(pc.country))}</td><td colspan="4" class="muted">Not yet researched in the Jurisdictional Data Hub - Europe</td></tr>`
-          : !pc.taxes.length ? `<tr><td><span class="cc">${esc(pc.jdh)}</span>${esc(pc.jurName)}</td><td colspan="4" class="muted">No premium tax for these classes</td></tr>`
-          : pc.taxes.map((t, i) => `<tr class="${t.payable ? "" : "ended"}">${i === 0 ? `<td rowspan="${pc.taxes.length}" class="nowrap"><span class="cc">${esc(pc.jdh)}</span>${esc(pc.jurName)}<div class="small"><span class="lk lk-${lkc(pc.level)}">${esc(pc.level)}</span></div></td>` : ""}
+        ${res.map(pc => pc.status === "out" ? `<tr class="ended"><td><span class="cc">${esc(jur(pc.country))}</span>${esc(cname(pc.country))}${premCell(pc.country)}</td><td colspan="4"><span class="lk lk-Out">Out of scope</span> Non-European country: OUT OF SCOPE for this project</td></tr>`
+          : pc.status === "notResearched" ? `<tr><td><span class="cc">${esc(jur(pc.country))}</span>${esc(cname(pc.country))}${premCell(pc.country)}</td><td colspan="4" class="muted">Not yet researched in the Jurisdictional Data Hub - Europe</td></tr>`
+          : !pc.taxes.length ? `<tr><td><span class="cc">${esc(pc.jdh)}</span>${esc(pc.jurName)}${premCell(pc.country)}</td><td colspan="4" class="muted">No premium tax for these classes</td></tr>`
+          : pc.taxes.map((t, i) => `<tr class="${t.payable ? "" : "ended"}">${i === 0 ? `<td rowspan="${pc.taxes.length}" class="nowrap"><span class="cc">${esc(pc.jdh)}</span>${esc(pc.jurName)}<div class="small"><span class="lk lk-${lkc(pc.level)}">${esc(pc.level)}</span></div>${premCell(pc.country)}</td>` : ""}
               <td>${esc(t.name)}</td><td class="small">${t.classes.map(x => `<div><b>${x.cls}</b> ${esc(x.rate)}${x.cite ? ` <span class="muted">· ${esc(x.cite)}</span>` : ""}</div>`).join("")}</td>
               <td>${t.payable ? `<span class="pill ${freqClass(t.frequency)}">${esc(t.frequency)}</span>` : '<span class="pill p-Not">No return (exempt)</span>'}</td>
               <td class="small">${t.payable ? `${esc(t.filing)}<div class="muted">${esc(t.cite)}</div>` : ""}</td></tr>`).join("")).join("")}
         </tbody></table></div>`}</div>`; }).join("")}</section>`;
 }
 
-function wireProgrammes(ent) {
+async function saveProgrammes(ent, next) {
+  await saveDoc("programmes/" + ent.key, { key: ent.key, list: next, updatedOn: today() });
+}
+
+function wireProgrammes(ent, r) {
   const list = programmesOf(ent.key);
+  const byId = id => list.find(x => x.id === id);
   const add = document.getElementById("pgAdd");
-  if (add) add.addEventListener("click", () => { state.progEdit = { key: ent.key, id: null, draft: { name: "", description: "", classes: [...insurerClasses(ent.key).list], countries: [] } }; render(); document.getElementById("pgName")?.focus(); });
+  if (add) add.addEventListener("click", () => { state.progEdit = { key: ent.key, id: null, draft: { name: "", description: "", classes: [...insurerClasses(ent.key).list], countries: [],
+    currency: "EUR", startDate: "", expiryDate: "", term: "", businessType: "New business" } }; render(); document.getElementById("pgName")?.focus(); });
   view.querySelectorAll("[data-pedit]").forEach(b => b.addEventListener("click", () => {
-    const pg = list.find(x => x.id === b.dataset.pedit); if (!pg) return;
-    state.progEdit = { key: ent.key, id: pg.id, draft: { name: pg.name, description: pg.description || "", classes: [...(pg.classes || [])], countries: [...(pg.countries || [])] } }; render(); }));
+    const pg = byId(b.dataset.pedit); if (!pg) return;
+    state.progEdit = { key: ent.key, id: pg.id, draft: { name: pg.name, description: pg.description || "", classes: [...(pg.classes || [])], countries: [...(pg.countries || [])],
+      currency: pg.currency || "EUR", startDate: pg.startDate || "", expiryDate: pg.expiryDate || "", term: pg.term || "", businessType: pg.businessType || "New business" } }; render(); }));
   view.querySelectorAll("[data-pdel]").forEach(b => b.addEventListener("click", async () => {
     const id = b.dataset.pdel;
     if (state.armed !== "pdel-" + id) { state.armed = "pdel-" + id; render(); return; }
     state.armed = null;
-    try { await saveDoc("programmes/" + ent.key, { key: ent.key, list: list.filter(x => x.id !== id), updatedOn: today() }); } catch { render(); }
+    try { await saveProgrammes(ent, list.filter(x => x.id !== id)); } catch { render(); }
   }));
+  // templates
+  view.querySelectorAll("[data-tpl]").forEach(b => b.addEventListener("click", async () => {
+    const pg = byId(b.dataset.tpl); if (!pg) return;
+    try {
+      const dl = state.downloads ?? await claude.use("downloads");
+      if (!dl) { state.allocMsg = { key: ent.key, id: pg.id, text: "Downloads aren’t available in this view.", error: true }; render(); return; }
+      await dl.save({ filename: `${safeName(pg.name)} - ${b.dataset.kind.toLowerCase()} premium allocation template.xlsx`, data: allocationTemplate(ent, r, pg, b.dataset.kind) });
+    } catch (e) { if (!(e && e.code === "declined")) { state.allocMsg = { key: ent.key, id: pg.id, text: "The template couldn’t be saved. Try again.", error: true }; render(); } }
+  }));
+  // original allocation upload
+  view.querySelectorAll("[data-alloc]").forEach(inp => inp.addEventListener("change", async e => {
+    const f = e.target.files[0], pg = byId(inp.dataset.alloc); if (!f || !pg) return;
+    try {
+      const a = await readAllocation(f, pg, new Set(scopeCountries(ent, r).map(o => o.country)));
+      if (a.error) { state.allocMsg = { key: ent.key, id: pg.id, text: a.error, error: true }; render(); return; }
+      await saveProgrammes(ent, list.map(x => x.id === pg.id ? { ...x, allocation: a } : x));
+      state.allocMsg = { key: ent.key, id: pg.id, text: `Uploaded ${a.rows.length} rows, total ${fmtMoney(a.total, pg.currency)}` + (a.problems.length ? `. ${a.problems.length} row(s) skipped: ${a.problems.slice(0, 3).join("; ")}${a.problems.length > 3 ? "…" : ""}` : ""), error: !!a.problems.length };
+      render();
+    } catch { state.allocMsg = { key: ent.key, id: pg.id, text: "The file couldn’t be read. Upload an Excel or CSV file in the template layout.", error: true }; render(); }
+  }));
+  // transactions
+  view.querySelectorAll("[data-tx]").forEach(b => b.addEventListener("click", () => {
+    const [id, type] = b.dataset.tx.split("|");
+    state.txEdit = { key: ent.key, progId: id, type, draft: { effectiveDate: today(), description: "", method: type === "Cancellation" ? "pro-rata" : "upload", allocation: null, error: "" } };
+    render(); document.getElementById("txDate")?.focus();
+  }));
+  view.querySelectorAll("[data-txdel]").forEach(b => b.addEventListener("click", async () => {
+    const [pid, tid] = b.dataset.txdel.split("|");
+    if (state.armed !== "txdel-" + tid) { state.armed = "txdel-" + tid; render(); return; }
+    state.armed = null;
+    try { await saveProgrammes(ent, list.map(x => x.id === pid ? { ...x, transactions: (x.transactions || []).filter(t => t.id !== tid) } : x)); } catch { render(); }
+  }));
+  const txf = document.getElementById("txForm");
+  if (txf) {
+    const t = state.txEdit, pg = byId(t.progId);
+    const refreshProRata = () => { if (t.type === "Cancellation" && t.draft.method === "pro-rata") { const pr = proRataReturn(pg, t.draft.effectiveDate); t.draft.allocation = pr.error ? null : pr; t.draft.error = pr.error || ""; } };
+    if (t.type === "Cancellation" && t.draft.method === "pro-rata" && !t.draft.allocation && !t.draft.error) { refreshProRata(); render(); return; }
+    txf.addEventListener("input", e => { if (e.target.id === "txDesc") t.draft.description = e.target.value; });
+    txf.addEventListener("change", async e => {
+      if (e.target.id === "txDate") { t.draft.effectiveDate = e.target.value; refreshProRata(); render(); }
+      else if (e.target.name === "txMethod") { t.draft.method = e.target.value; t.draft.allocation = null; t.draft.error = ""; refreshProRata(); render(); }
+      else if (e.target.id === "txFile" && e.target.files[0]) {
+        try { const a = await readAllocation(e.target.files[0], pg, new Set(scopeCountries(ent, r).map(o => o.country))); t.draft.allocation = a.error ? null : a; t.draft.error = a.error || ""; }
+        catch { t.draft.error = "The file couldn’t be read. Upload an Excel or CSV file in the template layout."; }
+        render();
+      }
+    });
+    document.getElementById("txCancel").addEventListener("click", () => { state.txEdit = null; render(); });
+    txf.addEventListener("submit", async e => {
+      e.preventDefault();
+      const st = document.getElementById("txStatus"), d = t.draft;
+      d.description = document.getElementById("txDesc").value.trim();
+      if (!d.effectiveDate) { st.textContent = "Enter the effective date."; st.classList.add("err"); return; }
+      if (pg.startDate && d.effectiveDate < pg.startDate || pg.expiryDate && d.effectiveDate > pg.expiryDate) { st.textContent = "The effective date must be within the programme period."; st.classList.add("err"); return; }
+      if (t.type === "MTA" && !d.allocation) { st.textContent = "Upload the adjustment’s premium allocation."; st.classList.add("err"); return; }
+      if (t.type === "Cancellation" && d.method !== "none" && !d.allocation) { st.textContent = d.error || "Add the return premium allocation."; st.classList.add("err"); return; }
+      const item = { id: "t" + Date.now().toString(36) + Math.random().toString(36).slice(2, 5), type: t.type, effectiveDate: d.effectiveDate, description: d.description,
+        method: t.type === "Cancellation" ? d.method : "upload", allocation: d.method === "none" && t.type === "Cancellation" ? null : d.allocation, recordedOn: today() };
+      const txs = [...(pg.transactions || []), item].sort((a, b) => a.effectiveDate.localeCompare(b.effectiveDate));
+      st.textContent = "Saving…";
+      try { await saveProgrammes(ent, list.map(x => x.id === pg.id ? { ...x, transactions: txs } : x)); state.txEdit = null; render(); }
+      catch { st.textContent = "This couldn’t be saved. Try again."; st.classList.add("err"); }
+    });
+  }
+  // keyboard access for label-buttons
+  view.querySelectorAll("label.btn[for]").forEach(l => l.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); document.getElementById(l.htmlFor)?.click(); } }));
+
   const form = document.getElementById("progForm");
   if (!form) return;
   const ed = state.progEdit;
-  const sync = () => {
-    ed.draft.name = document.getElementById("pgName").value; ed.draft.description = document.getElementById("pgDesc").value;
-    ed.draft.classes = [...form.querySelectorAll('input[name="pgcls"]:checked')].map(i => +i.value);
+  const sync = e => {
+    const d = ed.draft;
+    d.name = document.getElementById("pgName").value; d.description = document.getElementById("pgDesc").value;
+    d.currency = document.getElementById("pgCur").value; d.startDate = document.getElementById("pgStart").value; d.expiryDate = document.getElementById("pgExpiry").value;
+    const termEl = document.getElementById("pgTerm");
+    if (e && (e.target.id === "pgStart" || e.target.id === "pgExpiry")) { const t = termText(d.startDate, d.expiryDate); if (t) termEl.value = t; }
+    d.term = termEl.value;
+    d.businessType = form.querySelector('input[name="pgType"]:checked')?.value || "New business";
+    d.classes = [...form.querySelectorAll('input[name="pgcls"]:checked')].map(i => +i.value);
     const some = form.querySelector('input[name="pgscope"]:checked')?.value === "some";
     document.getElementById("pgCountries").hidden = !some;
-    ed.draft.countries = some ? [...form.querySelectorAll('input[name="pgc"]:checked')].map(i => i.value) : [];
+    d.countries = some ? [...form.querySelectorAll('input[name="pgc"]:checked')].map(i => i.value) : [];
   };
   form.addEventListener("input", sync); form.addEventListener("change", sync);
   document.getElementById("pgCancel").addEventListener("click", () => { state.progEdit = null; render(); });
   form.addEventListener("submit", async e => {
     e.preventDefault(); sync();
     const st = document.getElementById("pgStatus"), d = ed.draft;
-    if (!d.name.trim()) { st.textContent = "Give the programme a name."; st.classList.add("err"); return; }
-    if (form.querySelector('input[name="pgscope"]:checked')?.value === "some" && !d.countries.length) { st.textContent = "Pick at least one country, or choose all countries in scope."; st.classList.add("err"); return; }
-    const item = { id: ed.id || "p" + Date.now().toString(36) + Math.random().toString(36).slice(2, 5), name: d.name.trim(), description: d.description.trim(),
-      classes: [...d.classes].sort((a, b) => a - b), countries: d.countries };
+    const fail = m => { st.textContent = m; st.classList.add("err"); };
+    if (!d.name.trim()) return fail("Give the programme a name.");
+    if (d.startDate && d.expiryDate && d.expiryDate <= d.startDate) return fail("The expiry date must be after the start date.");
+    if (form.querySelector('input[name="pgscope"]:checked')?.value === "some" && !d.countries.length) return fail("Pick at least one country, or choose all countries in scope.");
+    const prev = ed.id ? byId(ed.id) : null;
+    const item = { ...(prev || {}), id: ed.id || "p" + Date.now().toString(36) + Math.random().toString(36).slice(2, 5), name: d.name.trim(), description: d.description.trim(),
+      classes: [...d.classes].sort((a, b) => a - b), countries: d.countries, currency: d.currency, startDate: d.startDate, expiryDate: d.expiryDate,
+      term: d.term.trim() || termText(d.startDate, d.expiryDate), businessType: d.businessType };
     const next = ed.id ? list.map(x => x.id === ed.id ? item : x) : [...list, item];
     st.textContent = "Saving…";
-    try { await saveDoc("programmes/" + ent.key, { key: ent.key, list: next, updatedOn: today() }); state.progEdit = null; render(); }
-    catch { st.textContent = "The programme couldn’t be saved. Try again."; st.classList.add("err"); }
+    try { await saveProgrammes(ent, next); state.progEdit = null; render(); }
+    catch { fail("The programme couldn’t be saved. Try again."); }
   });
 }
 
@@ -1110,16 +1390,16 @@ function renderReport(c) {
       <td class="num">${x.hasPremium ? fmt(x.premium) : '<span class="muted">Not shown</span>'}</td></tr>`).join("")}
     </tbody></table></div>` : '<p class="muted">No countries yet. Add insurers to this client.</p>'}</section>`;
 
-  const progStatus = l => l.pc.status === "out" ? "OUT OF SCOPE for this project" : l.pc.status === "notResearched" ? "Not yet researched in the hub" : "No premium tax for these classes";
+  const progLineStatus = l => l.pc.status === "out" ? "OUT OF SCOPE for this project" : l.pc.status === "notResearched" ? "Not yet researched in the hub" : "No premium tax for these classes";
   html += `<section class="panel"><div class="panel-head"><h2>Insurance programmes and premium taxes</h2>
     <span class="status">${rep.progCount} programme${rep.progCount === 1 ? "" : "s"}</span></div>
     ${rep.progCount ? `<div class="table-box"><table><thead><tr><th>Insurer</th><th>Programme</th><th>Jurisdiction</th><th>Tax</th><th>Rate or treatment by class</th><th>Filing frequency</th></tr></thead><tbody>
       ${rep.progLines.map(l => `<tr class="${l.tax && !l.tax.payable ? "ended" : ""}"><td><a href="#${esc(l.key)}">${esc(l.insurer)}</a></td>
-        <td><b>${esc(l.prog.name)}</b><div class="small muted">Classes ${(l.prog.classes || []).join(", ") || "none"}</div></td>
-        <td class="nowrap"><span class="cc">${esc(l.pc.jdh || jur(l.pc.country))}</span>${esc(l.pc.jurName || cname(l.pc.country))}</td>
+        <td><b>${esc(l.prog.name)}</b><div class="small muted">Classes ${(l.prog.classes || []).join(", ") || "none"} · ${esc(progStatus(l.prog).label)}</div></td>
+        <td class="nowrap"><span class="cc">${esc(l.pc.jdh || jur(l.pc.country))}</span>${esc(l.pc.jurName || cname(l.pc.country))}${netByCountry(l.prog).has(l.pc.country) ? `<div class="small muted">Net premium ${fmtMoney(netByCountry(l.prog).get(l.pc.country), l.prog.currency)}</div>` : ""}</td>
         ${l.tax ? `<td>${esc(l.tax.name)}</td><td class="small">${l.tax.classes.map(x => `<div><b>${x.cls}</b> ${esc(x.rate)}</div>`).join("")}</td>
           <td>${l.tax.payable ? `<span class="pill ${freqClass(l.tax.frequency)}">${esc(l.tax.frequency)}</span>` : '<span class="pill p-Not">No return (exempt)</span>'}</td>`
-          : `<td colspan="3" class="muted">${esc(progStatus(l))}</td>`}</tr>`).join("")}
+          : `<td colspan="3" class="muted">${esc(progLineStatus(l))}</td>`}</tr>`).join("")}
     </tbody></table></div>` : '<p class="muted" style="margin:0">No programmes yet. Add them on each insurer’s page.</p>'}</section>`;
 
   html += `<section class="panel"><div class="panel-head"><h2>Premium taxes and filing frequency</h2>
@@ -1228,7 +1508,8 @@ async function reportPdf(c) {
 
   heading("Insurance programmes and premium taxes");
   if (rep.progCount) table({ head: [["Insurer", "Programme (classes)", "Jurisdiction", "Tax", "Rate or treatment by class", "Filing frequency"]],
-    body: rep.progLines.map(l => [l.insurer, `${l.prog.name} (${(l.prog.classes || []).join(", ") || "no classes"})`, `${l.pc.jurName || cname(l.pc.country)} (${l.pc.jdh || jur(l.pc.country)})`,
+    body: rep.progLines.map(l => [l.insurer, `${l.prog.name} (${(l.prog.classes || []).join(", ") || "no classes"}; ${progStatus(l.prog).label})`,
+      `${l.pc.jurName || cname(l.pc.country)} (${l.pc.jdh || jur(l.pc.country)})` + (netByCountry(l.prog).has(l.pc.country) ? `\nNet premium ${fmtMoney(netByCountry(l.prog).get(l.pc.country), l.prog.currency)}` : ""),
       l.tax ? l.tax.name : (l.pc.status === "out" ? "OUT OF SCOPE for this project" : l.pc.status === "notResearched" ? "Not yet researched in the hub" : "No premium tax for these classes"),
       l.tax ? l.tax.classes.map(x => `${x.cls}: ${x.rate}`).join("\n") : "", l.tax ? (l.tax.payable ? l.tax.frequency : "No return (exempt)") : ""].map(pdfSafe)),
     columnStyles: { 0: { cellWidth: 95 }, 1: { cellWidth: 110 }, 2: { cellWidth: 95 }, 3: { cellWidth: 120 }, 5: { cellWidth: 95, fontStyle: "bold" } } });
@@ -1366,8 +1647,8 @@ function companyWorkbook(ent, r) {
     ...scopeRows(ent, r).map(x => [cname(x.country), jur(x.country), x.basis, x.active ? "Yes" : "No", x.premium == null ? "" : { v: x.premium, t: "n", z: "#,##0" }, "", "", "", ""])],
     [18, 7, 30, 15, 24, 30, 18, 22, 40]), "Scope countries");
   XLSX.utils.book_append_sheet(wb, sheet([TAX_HEAD, ...taxSheetRows(ent, r)], TAX_WIDTHS), "Premium taxes");
-  XLSX.utils.book_append_sheet(wb, sheet([["Programme", "Description", "Classes", "Countries"], ...programmesOf(ent.key).map(pg => [pg.name, pg.description || "",
-    (pg.classes || []).join(", "), pg.countries && pg.countries.length ? pg.countries.map(jur).join(", ") : "All countries in scope"])], [30, 50, 14, 50]), "Programmes");
+  XLSX.utils.book_append_sheet(wb, sheet([PROG_DETAIL_HEAD.slice(1), ...programmesOf(ent.key).map(pg => progDetail(ent, pg).slice(1))], PROG_DETAIL_WIDTHS.slice(1)), "Programmes");
+  XLSX.utils.book_append_sheet(wb, sheet([LEDGER_HEAD, ...ledgerRows(ent)], LEDGER_WIDTHS), "Programme premium ledger");
   XLSX.utils.book_append_sheet(wb, sheet([PROG_HEAD, ...programmeRows(ent, r)], PROG_WIDTHS), "Programme taxes");
   return XLSX.write(wb, { bookType: "xlsx", type: "array" });
 }
@@ -1405,9 +1686,8 @@ function clientWorkbook(c) {
     ...rep.outOfScope.map(c => [cname(c), jur(c), "", "OUT OF SCOPE for this project (non-European country)", "", "", "", "", "", ""])];
   XLSX.utils.book_append_sheet(wb, sheet(tj, [16, 10, 14, 34, 40, 22, 12, 40, 50, 26]), "Taxes by jurisdiction");
   XLSX.utils.book_append_sheet(wb, sheet([TAX_HEAD, ...rep.insurers.flatMap(i => taxSheetRows(i.ent, i.r))], TAX_WIDTHS), "Premium taxes detail");
-  XLSX.utils.book_append_sheet(wb, sheet([["Insurer", "Programme", "Description", "Classes", "Countries"], ...rep.insurers.flatMap(i => programmesOf(i.ent.key).map(pg =>
-    [i.ent.name, pg.name, pg.description || "", (pg.classes || []).join(", "), pg.countries && pg.countries.length ? pg.countries.map(jur).join(", ") : "All countries in scope"]))],
-    [30, 30, 50, 14, 50]), "Programmes");
+  XLSX.utils.book_append_sheet(wb, sheet([PROG_DETAIL_HEAD, ...rep.insurers.flatMap(i => programmesOf(i.ent.key).map(pg => progDetail(i.ent, pg)))], PROG_DETAIL_WIDTHS), "Programmes");
+  XLSX.utils.book_append_sheet(wb, sheet([LEDGER_HEAD, ...rep.insurers.flatMap(i => ledgerRows(i.ent))], LEDGER_WIDTHS), "Programme premium ledger");
   XLSX.utils.book_append_sheet(wb, sheet([PROG_HEAD, ...rep.insurers.flatMap(i => programmeRows(i.ent, i.r))], PROG_WIDTHS), "Programme taxes");
   const scope = [["Company", "Country", "JurCode", "Basis (EIOPA)", "Active passport", "Direct GWP (SFCR, EUR 000)", ...TAX_COLS]];
   rows.forEach(x => scopeRows(x.ent, x.r).forEach(s => scope.push([x.ent.name, cname(s.country), jur(s.country), s.basis, s.active ? "Yes" : "No",
@@ -1446,7 +1726,7 @@ q.addEventListener("input", () => {
   clearTimeout(timer);
   timer = setTimeout(() => { if (location.hash !== "#search") location.hash = "search"; else renderSearch(); }, 150);
 });
-addEventListener("hashchange", () => { state.armed = null; state.progEdit = null; render(); });
+addEventListener("hashchange", () => { state.armed = null; state.progEdit = null; state.txEdit = null; state.allocMsg = null; render(); });
 
 async function connectDb() {
   let db = null;
@@ -1465,7 +1745,7 @@ async function connectDb() {
   }, () => { loaded.research = true; ready(); });
   db.collection("programmes").onSnapshot(snap => {
     state.programmes = new Map(snap.docs.filter(d => d.exists).map(d => [d.id, d.data().list || []]));
-    if (!state.progEdit) render();
+    if (!state.progEdit && !state.txEdit) render();
   }, () => {});
   db.collection("classes").onSnapshot(snap => {
     state.classes = new Map(snap.docs.filter(d => d.exists).map(d => [d.id, d.data()]));
