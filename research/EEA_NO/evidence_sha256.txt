@@ -22,3 +22,4 @@ e31e411bfa2d125fce79838337312c0af2ec981ae29093dbd771d31b7b0d85d9  EEA_NO-L010_bi
 48feb1c421efcdd3cdd004a000db9a492a25e0870baf838236850a846382a01e  EEA_NO-L008_skattebetalingsloven-LOV-2005-06-17-67_Lovdata-sist-endret-LOV-2026-06-19-45_asat-2026-11-13.pdf
 ccaaaf5b9b8545c545dac16a2447571ee7a46c2ba94b391dd9e3ee36a9cd9508  EEA_NO-L002_Stortingsvedtak-avgift-trafikkforsikringer-2025-FOR-2024-12-13-3212_Lovdata_asat-2026-11-13.pdf
 a483f90f66dfb1b691b5b464707b83f253396f9f8fe11680f2a6b87d74f2cb64  EEA_NO-L007_skatteforvaltningsforskriften-FOR-2016-11-23-1360_s8-4_Lovdata_asat-2026-11-13.pdf
+f91105355ec99b155d61aa163bf12c16cbde5b7c5442e503245b3d82e2195ea5  EEA_NO-L011_NNP-circular-05-2024-premium-rate-2025_EN_asat-2026-11-13.pdf
