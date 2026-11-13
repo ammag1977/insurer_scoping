@@ -9,6 +9,10 @@ Validated tax information only, not tax advice. Newest country first within each
 - [x] Register v1.26: all recommendations and all 11 proposed laws accepted 2026-11-13; applied in **seed v1.53** (kept locally, off GitHub).
 - [ ] Save for the seed (E19, B40, B41): current Estonian Insurance Activities Act (riigiteataja.ee), current Luxembourg Versicherungsteuergesetz and Feuerschutzsteuergesetz (Legilux texte coordonne), current Bulgarian ZDZP; Decreto-Lei 1/2015 ASF statutes (Diario da Republica) for EU_PT-L003; mark desk item DL-159 as a Problem (Armed Forces text).
 - [ ] Decide the Polish PIU membership contribution scope (C11 left it open).
+- [x] Evidence Copy Desk: 16 copies saved 2026-11-13 reviewed; 11 correct, recorded in **seed v1.54** (NO L002 and L005 now Confirmed).
+- [ ] Save again (desk items set to Problem): DL-099 Nomos 5113/2024 as published in FEK A 96/2024 (the file saved is an AADE circular); DL-104 ZOZO NN 33/23 consolidated (the file saved is the 2013 amending act); DL-121 the whole Italian Private Insurance Code (only art 1 was printed); DL-138 likumi.lv id 274969; DL-193 likumi.lv id 87547 (both saved from the old wrong URLs).
+- [ ] Still to save: Norway 2025 road traffic tax resolution; Italy 2026 road victims fund decree and the hunting victims fund decrees 2025-2026; Romania 2026 guarantee fund norm (DL-169).
+- [ ] Decide Register v1.27: B44 (Croatia re-cite to ZOZO NN 33/23), E22 (Norway tax base per vehicle per day), EU_GR-L018 (AADE circular, Proposed).
 - [ ] Supply the shared run library from the earlier runs' workspace: work/lib/run_lib.py, classes.py, translit.py, and the run data files (e.g. as a zip or a repository). Needed for the formal run pages, PDFs, client templates and model scoring.
 
 ## EU_EE Estonia (EE-1, statute reading v0.01, 2026-11-13)
