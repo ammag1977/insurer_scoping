@@ -432,4 +432,4 @@ Notes: research/EU_IT/EU_IT_IT-1_working-notes_v0.01.md
 - [x] Bill 17 (members' bill) amends Act 160/2010 art 27 (building managers) only - no effect on the building safety fee (art 50).
 
 ## Seed v1.77 (2026-11-13): Iceland acts from Althingi (saved by the PO)
-- [x] EEA_IS-L010, L011, L012 Confirmed (Lagasafn 158a). Unauthorised scopes Not applicable (licence required). Fees collected with the fire premium (48/1994 art 7). Provider filing not restricted (77/1998 art 2 covers courts only). L013 Proposed.
+- [x] EEA_IS-L010, L011, L012 Confirmed (Lagasafn 158a). Unauthorised scopes Not applicable (licence required). Fees collected with the fire premium (48/1994 art 7). Provider filing not restricted (77/1998 art 2 covers courts only). L013 accepted (v1.78, Confirmed).
