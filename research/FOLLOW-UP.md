@@ -7,6 +7,24 @@ Validated tax information only, not tax advice. Newest country first within each
 - [ ] Upload the seed workbook: Jurisdiction-Research-Seed-EU-Direct-NonLife v1.58 or later (Scopes, Taxes, Legislation, Sources, Forms tabs).
 - [ ] Supply the shared run library from the earlier runs' workspace: work/lib/run_lib.py, classes.py, translit.py, and the run data files (e.g. as a zip or a repository). Needed for the formal run pages, PDFs, client templates and model scoring.
 
+## EU_PL Poland (PL-1, statute reading v0.01, 2026-11-13)
+Notes: research/EU_PL/EU_PL_PL-1_working-notes_v0.01.md
+
+### Documents to supply
+- [ ] Seed rows for EU_PL: Taxes tab and Legislation rows L002 and L003 (not on the desk).
+- [ ] Current Finance Minister regulation setting the UFG contribution rate and payment dates (UFG Act art 117(5)), for 2025 and 2026. Search ISAP or eli.gov.pl for "rozporzadzenie w sprawie wysokosci procentu skladki ... Ubezpieczeniowy Fundusz Gwarancyjny". Claude can download it from eli.gov.pl once the reference is known.
+- [ ] Payment procedure for the fire protection levy (Fire Protection Act art 38): is there an implementing act or guidance from the State Fire Service or the Volunteer Fire Brigades Union?
+- [ ] UFG guidance on whether EU/EEA insurers writing compulsory motor TPL on freedom of services pay the UFG contribution (ufg.pl).
+- [ ] Ministry of Finance or KAS confirmation that Poland has no insurance premium tax (gov.pl/web/finanse can't be reached from Claude's workspace).
+
+### Decisions needed
+- [ ] Financial Ombudsman fee (0.02875% domestic / 0.03125% third-country, art 20) and KNF supervision contribution: out of scope under rule 7 as regulators' cost-recovery fees (recommended)?
+- [ ] PBUK (motor bureau) membership dues and UFG membership: same scope question as Czechia's bureau contributions.
+- [ ] Accept the new rows: Regulation Dz U 2025 poz 93 (insolvency fund, 0.01%) as EU_PL-L011 Confirmed.
+
+### Research still to do (Claude)
+- [ ] Nil-return position (rule 18) and provider filing (P4) for each levy; fiscal representation (none expected).
+
 ## EU_CZ Czechia (CZ-1, statute reading v0.01, 2026-11-13)
 Notes: research/EU_CZ/EU_CZ_CZ-1_working-notes_v0.01.md
 
