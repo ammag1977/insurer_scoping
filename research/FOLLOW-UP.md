@@ -4,7 +4,7 @@ Items the PO (you) needs to supply or decide before each run can be completed an
 Validated tax information only, not tax advice. Newest country first within each section; tick items when done.
 
 ## All runs (needed once)
-- [ ] Upload the seed workbook itself: Jurisdiction-Research-Seed-EU-Direct-NonLife (latest version; Jurisdictions, Scopes, Taxes, Legislation, Sources, Downloads, Forms tabs). Received 2026-11-13: the **Decisions Register v1.25** only (saved in research/seed/), which covers seed v1.27 to v1.30 and settles several items below (marked "Register").
+- [ ] Upload the seed workbook itself: **Jurisdiction-Research-Seed-EU-Captive_v1.33.xlsx**, folder 01_Seed_workbook_latest of EU-Captive-Jurisdiction-Seeding_pack_2026-10-25.zip (per the EU Seeding Hub; the hub page and JDH Europe do not hold the workbook). (Latest version; Jurisdictions, Scopes, Taxes, Legislation, Sources, Downloads, Forms tabs). Received 2026-11-13: the **Decisions Register v1.25** only (saved in research/seed/), which covers seed v1.27 to v1.30 and settles several items below (marked "Register").
 - [ ] Supply the shared run library from the earlier runs' workspace: work/lib/run_lib.py, classes.py, translit.py, and the run data files (e.g. as a zip or a repository). Needed for the formal run pages, PDFs, client templates and model scoring.
 
 ## EU_EE Estonia (EE-1, statute reading v0.01, 2026-11-13)
