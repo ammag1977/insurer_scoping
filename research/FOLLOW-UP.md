@@ -7,6 +7,24 @@ Validated tax information only, not tax advice. Newest country first within each
 - [ ] Upload the seed workbook: Jurisdiction-Research-Seed-EU-Direct-NonLife v1.58 or later (Scopes, Taxes, Legislation, Sources, Forms tabs).
 - [ ] Supply the shared run library from the earlier runs' workspace: work/lib/run_lib.py, classes.py, translit.py, and the run data files (e.g. as a zip or a repository). Needed for the formal run pages, PDFs, client templates and model scoring.
 
+## EU_FI Finland (FI-1, statute reading v0.01, 2026-11-13)
+Notes: research/EU_FI/EU_FI_FI-1_working-notes_v0.01.md
+
+### Documents to supply (Finlex pages load by script; save as PDF from finlex.fi)
+- [ ] DL-073: Laki liikenneturvallisuusmaksusta (471/2016), Road Safety Fee Act, current consolidated text.
+- [ ] DL-071: Liikennevakuutuslaki (460/2016), Motor Liability Insurance Act, current consolidated text.
+- [ ] Laki oma-aloitteisten verojen verotusmenettelysta (768/2016), **current consolidated text**, to replace the as-published copy on DL-074.
+- [ ] Tax Administration (vero.fi) guidance on the insurance premium tax: OmaVero filing, due dates, approval of FOS representatives.
+- [ ] The Lupa- ja valvontavirasto's latest fire protection levy decision or notice (payment date).
+
+### Decisions needed
+- [ ] Insurance premium tax rate: record **25.5%** for insurance periods starting on or after 2024-09-01 (Act 463/2024) and 24% before. Check against the seed's Taxes tab, which may still show 24%.
+- [ ] Fire protection levy: annual, assessed by the agency on the previous year's premiums. Confirm it is in scope (it is collected from insurers, like Germany's fire protection tax).
+
+### Research still to do (Claude)
+- [ ] Monthly return and due date under the consolidated 768/2016; nil-return position (rule 18); provider filing (P4).
+- [ ] Road safety fee once the act is supplied.
+
 ## EU_SE Sweden (SE-1, statute reading v0.01, 2026-11-13)
 Notes: research/EU_SE/EU_SE_SE-1_working-notes_v0.01.md
 
