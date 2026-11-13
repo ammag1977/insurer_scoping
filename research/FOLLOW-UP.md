@@ -356,3 +356,15 @@ Notes: research/EU_IT/EU_IT_IT-1_working-notes_v0.01.md
 
 ## Runs reported, awaiting PO decisions (2026-11-13)
 - [ ] EE-2, PL-2, HU-2, FI-2, BG-2, SK-2: see each country's working notes v0.02.
+
+## Seed v1.64 (2026-11-13): EE-2, PL-2, HU-2, FI-2, BG-2, SK-2, NO-2, CY-1 applied
+- [x] All recommendations accepted and applied (see the v1.64 Change log, 17 lines).
+- [ ] EE: replace desk copy DL-205 with RT I 29.06.2024, 12. FI: replace L006 desk copy with the 2026-04-17 consolidation.
+- [ ] PL: UFG reporting channel, accounts and EU branch/FOS position; fire levy transfer method; CEPiK Fund account.
+- [ ] HU: MABISZ contribution rules, payment dates, account; NAV nil-month practice; blank forms 2620 and T201.
+- [ ] FI: 2026 fire fee due date (Lupa- ja valvontavirasto); Traficom road safety fee form.
+- [ ] BG: DOPK official text; return form order; Guarantee Fund 2026 budget.
+- [ ] SK: SKP rules on member contributions; Interior Ministry account for the s 68 levy.
+- [ ] NO: Lovdata texts (PO to save): 2025 resolution FOR number, skatteforvaltningsforskriften, skattebetalingsloven, trafikktrygdforskriften s 1a.
+- [ ] CY: Minister direction on the MIF surcharge; MIF Internal Agreement; Tax Department notices 7 and 9 Jan 2026.
+- [ ] Review dates: FI crop exemption 2027-09-01; NO pool rate 0.10 per mille from 2027.
