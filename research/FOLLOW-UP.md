@@ -4,7 +4,7 @@ Items the PO (you) needs to supply or decide before each run can be completed an
 Validated tax information only, not tax advice. Newest country first within each section; tick items when done.
 
 ## All runs (needed once)
-- [ ] Upload the seed workbook itself: **Jurisdiction-Research-Seed-EU-Captive_v1.33.xlsx**, folder 01_Seed_workbook_latest of EU-Captive-Jurisdiction-Seeding_pack_2026-10-25.zip (per the EU Seeding Hub; the hub page and JDH Europe do not hold the workbook). (Latest version; Jurisdictions, Scopes, Taxes, Legislation, Sources, Downloads, Forms tabs). Received 2026-11-13: the **Decisions Register v1.25** only (saved in research/seed/), which covers seed v1.27 to v1.30 and settles several items below (marked "Register").
+- [x] Seed workbook v1.33 received 2026-11-13 (research/seed/). Checked against all 18 runs: see **research/seed/seed-v1.33-check_2026-11-13.md** for 10 conflicts, 5 new items and the seed taxes not yet researched.
 - [ ] Supply the shared run library from the earlier runs' workspace: work/lib/run_lib.py, classes.py, translit.py, and the run data files (e.g. as a zip or a repository). Needed for the formal run pages, PDFs, client templates and model scoring.
 
 ## EU_EE Estonia (EE-1, statute reading v0.01, 2026-11-13)
@@ -229,7 +229,7 @@ Notes: research/EU_SE/EU_SE_SE-1_working-notes_v0.01.md
 ### Documents to supply
 - [ ] Seed rows for EU_SE: Taxes tab and Legislation L001 (not on the desk).
 - [ ] Skatteverket guidance on the motor TPL premium tax: registration as an excise taxpayer, tax representative approval for FOS insurers, the punktskattedeklaration e-service.
-- [ ] Confirm whether Sweden has any other insurance levy in scope per the seed's Taxes tab. Register: A04 accepted the 32% motor TPL tax; B09 the group life premium tax (EU_SE-L001) is out of scope.
+- [x] No other Swedish levy in scope: the seed v1.33 Taxes tab has only the motor TPL tax (group life tax out of scope). Register: A04 accepted the 32% motor TPL tax; B09 the group life premium tax (EU_SE-L001) is out of scope.
 
 ### Decisions needed
 - [ ] File the official SFL copy (Riksdagen, amended up to SFS 2026:1305) for desk DL-172.
