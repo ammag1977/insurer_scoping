@@ -1,0 +1,10 @@
+3acec9133063918db0f566ba665e5ac1880519184f05ea363a7f9866dd23c724  EU_HU-L004_197-2022-Korm-rendelet_asat-2026-11-13.pdf
+c58d46fda45a39be32c95c2c2f1dc5f946e92ea91a1b1dd9d4d75177f9a2e6e0  EU_HU-L005_2009-evi-LXII-torveny-kgfb_asat-2026-11-13.pdf
+192d785c957b657db970fec65f3efc143eda702704da242b9536c5bca6d26ef6  EU_HU-L006_2012-evi-CII-torveny-a-biztositasi-adorol_asat-2026-11-13.pdf
+53670bbc188b26ea0f5531eecfb0791a36619eb40bd80d6c72ecf7efcbb31a31  EU_HU-L006_2012-evi-CII-torveny-a-biztositasi-adorol_v2025-01-01_asat-2026-11-13.pdf
+d83ad4aef081a1cd2b2ca0f34414456740319de506edd0d4b39c477cdb45b9b2  EU_HU-NAV_2620-kitoltesi-utmutato_asat-2026-11-13.pdf
+73addea7e7fa218e11e984c6229036ca4cf3102f77a5010b4894e79274d7ce84  EU_HU-NAV_inf-fuzet-45-biztositasi-ado-2026-02-02_asat-2026-11-13.pdf
+942d9a9cb02859f391f055590a3cf041569f2e238da81dfacab972b88a595a1c  EU_HU-NEW_2014-evi-LXXXVIII-torveny-Bit_asat-2026-11-13.pdf
+d27a3f1e7b6752dcf213e9b8fe141552f5d94e481f7200cc0a28bf1d9b07f784  EU_HU-NEW_2017-evi-CL-torveny-Art_asat-2026-11-13.pdf
+73cc1fb1c3d269ef9626da564382fa188f6151be6fc7b01f8153964031ff16b2  EU_HU-NEW_2017-evi-CLI-torveny-Air_asat-2026-11-13.pdf
+b67b6fe9d1259c2f225b0b73b23c11028224ead66065870843e22f3d98105e42  EU_HU-NEW_2025-evi-LIV-torveny_asat-2026-11-13.pdf
