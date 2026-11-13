@@ -5,3 +5,5 @@ fe64ed8dfc799d0d99a5574d3283037932027ed3a20b74db99e374e5b9bb5efa  Bizkaia_NF-2-2
 df084d249f02fee509948a1105c1154d5408ca4936321a833bef12a55275bba6  Araba_OF-1486-1998-model480-approval-BOTHA147-1998_asat-2026-11-13.pdf
 bb9da194d4acea5feeb0f155970381ae1e1db1c8d02f223c8171c12dd862743f  Araba_OF-24-2023-amends-model480-deadline-BOTHA15-2023_asat-2026-11-13.pdf
 398c1d884ef6974ffa4f9ec2e4f633029898a1207053f49048cdcbd9ec8d9f94  Gipuzkoa_NF-2-2005-NFGT-consolidated-NF2-2025_asat-2026-11-13.pdf
+89da6e8ee8167df1b5f5ed8873b800ca7250f98ede88a8d66a8b7cdd6efa5d82  Araba_HFA-Calendario-Fiscal-2026-cuestiones-generales-OF603-2020_asat-2026-11-13.pdf
+42320840e53300118b004bbf323d44abc66fbe2ac6c38e48d829cb527e061e69  Euskadi_resena-normativa-12-2020-OF603-2020-BOTHA137_asat-2026-11-13.pdf
