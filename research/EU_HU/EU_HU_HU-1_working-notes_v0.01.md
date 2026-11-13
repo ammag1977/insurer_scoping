@@ -37,6 +37,12 @@ Rule Model. Valid From 2025-01-01 (default).
 - **Reductions:** for increases in holdings of long-dated forint government bonds (s 5(4)-(17)). Related companies pool their base (s 5(18)-(20)).
 - **Payment:** advance on the first 11 months' base by the **10th of the 12th month** (s 6(2)); the final tax in two equal parts by the **last day of the 1st and 7th months after the tax year** (s 6(3)); any excess advance is refundable from the 7th month (s 6(4)).
 
+### Check against the seed Decisions Register v1.25
+- **B12 (charging act is Act CII of 2012, EU_HU-L006):** **confirmed** by S1 (title, ss 1-6).
+- **B24 (insurance extra-profit tax now in Act CII of 2012, extended to 2026, non-life 3% up to HUF 48bn, 14% above):** **confirmed** for the non-life rates and the 2025-2026 tax years (S1 ss 2(2), 5(3)). S1 also charges **life business at 2% / 6%** on the same HUF 48bn band, which B24 does not mention: record it (life is filtered by line of business under C01/C02). The **repeal of Government Decree 197/2022 is not shown in S1**: not verified from an official text (Gap).
+- **B34 (HU-L002 Act XCII of 2003 out of scope; procedure act is Act CL of 2017):** consistent with S2 (DL-108 holds the original 2003 text). Act CL of 2017 not yet read.
+- **C01/C02:** the motor TPL rate (23%, cap HUF 83 per vehicle per day) and the life supplementary tax are recorded above and filtered by line of business.
+
 ### Not found in the instruments read
 - Whether Hungary has other insurance levies (e.g. a fire-protection or disaster-management contribution): not on the desk. To check against the seed's Taxes tab.
 
