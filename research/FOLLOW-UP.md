@@ -436,4 +436,4 @@ Notes: research/EU_IT/EU_IT_IT-1_working-notes_v0.01.md
 
 ## Seed v1.79 (2026-11-13): Spanish foral ES-2 v2.2 decisions applied
 - [x] P10 system date (authority date for information); Bizkaia 480 due 25 January; old representative wording historical; Bizkaia 430/480 form added; Alava form note corrected; 15 foral law rows added as Proposed (8 with copies held).
-- [ ] ES foral: second-check Bizkaia late-filing surcharge (NF 2/2005 art 27 vs 28 / 26.7) for a late model 430; BOB original of DF 112/2009; OF 603/2020 (Alava) and DF 100/2020 (Bizkaia) texts (low priority); accept or reject the 15 Proposed law rows.
+- [ ] ES foral: second-check Bizkaia late-filing surcharge (NF 2/2005 art 27 vs 28 / 26.7) for a late model 430; BOB original of DF 112/2009; OF 603/2020 (Alava) and DF 100/2020 (Bizkaia) texts (low priority); 15 law rows accepted (v1.80): 7 Confirmed, 8 To check (texts to fetch: VZ OF 230/2021, OF 694/2023; AL OF 1.121/1997, OF 603/2020, NF 6/2005; GU OF 641/1997, 994/1998, 575/2022).
