@@ -30,6 +30,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .bar .wrap { display: flex; align-items: center; gap: 16px; padding-block: 12px; flex-wrap: wrap; }
 .brand { font-weight: 700; font-size: 16px; letter-spacing: .01em; color: var(--ink); text-decoration: none; white-space: nowrap; }
 .brand span { color: var(--accent); }
+.nav a { font-weight: 600; font-size: 14px; text-decoration: none; padding: 6px 12px; border-radius: 6px; color: var(--accent); background: var(--accent-soft); }
 .search { flex: 1 1 320px; display: flex; min-width: 0; }
 input[type=search], input[type=text] { flex: 1; min-width: 0; font: inherit; font-size: 16px; padding: 9px 12px; border: 1px solid var(--line); border-radius: 6px; background: var(--bg); color: var(--ink); }
 input:focus-visible, button:focus-visible, a:focus-visible, label:focus-visible, select:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
@@ -96,6 +97,7 @@ pre.narrative { white-space: pre-wrap; font: 13px/1.5 var(--mono); background: v
 <header class="bar">
   <div class="wrap">
     <a class="brand" href="#clients">Insurer <span>Scoping</span></a>
+    <nav class="nav"><a href="#clients" id="navClients">Clients</a></nav>
     <form class="search" id="searchForm" role="search">
       <input id="q" type="search" placeholder="Search the EIOPA register: name, LEI or identification code" autocomplete="off" aria-label="Search the EIOPA register">
     </form>
@@ -141,7 +143,7 @@ const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&":"&amp;", "<":"&
 const cname = c => COUNTRY[c] || c;
 const fmt = n => (n == null ? "" : Number(n).toLocaleString("en-GB", { maximumFractionDigits: 0 }));
 const today = () => new Date().toISOString().slice(0, 10);
-const clean = s => String(s).normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase()
+const clean = s => String(s).normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase()
   .replace(/&/g, " and ").replace(/designated activity company/g, "dac").replace(/public limited company/g, "plc")
   .replace(/[^a-z0-9 ]/g, " ").split(/\s+/).filter(Boolean);
 const ended = c => !!(c.re || c.oe);
@@ -482,8 +484,13 @@ function clientsWith(key) { return [...state.clients.values()].filter(c => (c.co
    Views
    ====================================================================== */
 function render() {
-  if (!state.data) return;
   const h = decodeURIComponent(location.hash.slice(1));
+  if (!state.data) {
+    if (!h || h === "clients") { state.from = null; renderHome(); }
+    else if (state.registerError) view.innerHTML = registerErrorHtml();
+    else view.innerHTML = `<section class="panel"><p class="muted">Loading the EIOPA register…</p></section>`;
+    return;
+  }
   const active = document.activeElement && document.activeElement.id;
   if (h.startsWith("client-")) {
     const c = state.clients.get(h.slice(7));
@@ -506,7 +513,7 @@ function renderHome() {
     Each company is checked against the EIOPA register and its SFCR to scope premium tax obligations.</p>
     <form class="inline-form" id="newClient"><input id="clientName" type="text" placeholder="New client name, e.g. Kingfisher plc" maxlength="120" required aria-label="New client name">
       <button class="btn" type="submit" ${state.db ? "" : "disabled"}>Create client</button></form>
-    <span class="status" id="clientStatus" aria-live="polite"></span></section>
+    <span class="status" id="clientStatus" aria-live="polite">${state.db ? "" : state.dbStatus === "unavailable" ? "Clients can’t be saved in this view. Open the page on claude.ai while signed in." : "Connecting to saved clients…"}</span></section>
     <section class="panel"><div class="panel-head"><h2>Your clients</h2><span class="status">${clients.length ? clients.length + (clients.length === 1 ? " client" : " clients") : ""}</span></div>
     ${dbNote() || (clients.length ? `<div class="clients">${clients.map(c => {
       const n = (c.companies || []).length, done = (c.companies || []).filter(k => state.research.get(k)?.sfcr).length;
@@ -514,9 +521,11 @@ function renderHome() {
         <span class="small">${n} ${n === 1 ? "company" : "companies"} · ${done} SFCR${done === 1 ? "" : "s"} checked</span>
         <span class="small">Created ${esc(c.createdOn || "")}</span></a>`; }).join("")}</div>`
       : '<p class="muted">No clients yet. Create your first client above.</p>')}</section>
-    <section class="panel"><div class="stats"><span><b>${fmt(state.index.length)}</b> undertakings in the EIOPA register</span>
+    <section class="panel">${state.data ? `<div class="stats"><span><b>${fmt(state.index.length)}</b> undertakings in the EIOPA register</span>
       <span><b>${fmt(state.data.e.reduce((n, r) => n + r[7].length, 0))}</b> country registrations</span>
-      <span><b>${[...state.research.values()].filter(r => r.sfcr).length}</b> SFCRs checked</span></div>
+      <span><b>${[...state.research.values()].filter(r => r.sfcr).length}</b> SFCRs checked</span></div>`
+      : state.registerError ? '<p class="status err" style="margin:0">The EIOPA register couldn’t be loaded, so company search isn’t available. Reload the page to try again.</p>'
+      : '<p class="muted" style="margin:0">Loading the EIOPA register…</p>'}
       <p class="small muted" style="margin:0">Use the search bar to look up any company without adding it to a client.</p></section>`;
   document.getElementById("newClient").addEventListener("submit", async e => {
     e.preventDefault();
@@ -526,7 +535,13 @@ function renderHome() {
     try {
       await saveDoc("clients/" + id, { id, name, companies: [], createdOn: today() });
       location.hash = "client-" + id;
-    } catch { st.textContent = "The client couldn’t be saved. Check you’re signed in to claude.ai and try again."; st.classList.add("err"); }
+    } catch (err) {
+      const code = err && err.code;
+      st.textContent = code === "not_granted" || code === "capability_disabled" ? "This view doesn’t allow the page to save. Open the page on claude.ai in your browser."
+        : code === "invalid_argument" ? "You don’t have permission to save on this page."
+        : "The client couldn’t be saved" + (code ? ` (${code})` : "") + ". Try again.";
+      st.classList.add("err");
+    }
   });
 }
 
@@ -820,6 +835,7 @@ async function connectDb() {
   try { db = await claude.use("db"); } catch { db = null; }
   if (!db) { state.dbStatus = "unavailable"; render(); return; }
   state.db = db;
+  render();
   const loaded = { research: false, clients: false };
   const slow = setTimeout(() => { if (state.dbStatus === "loading") { state.dbStatus = "unavailable"; render(); } }, 10000);
   const ready = () => { if (loaded.research && loaded.clients) { clearTimeout(slow); state.dbStatus = "ready"; } render(); };
@@ -839,11 +855,11 @@ async function connectDownloads() {
   if (state.downloads === null) render();
 }
 
-loadRegister().then(() => {
-  render();
-  if (window.claude && claude.use) { connectDb(); connectDownloads(); }
-  else { state.dbStatus = "unavailable"; state.downloads = null; render(); }
-}).catch(() => {
-  view.innerHTML = `<section class="panel"><h2>The EIOPA register couldn’t be loaded</h2><p class="muted">Reload the page to try again.</p></section>`;
-});
+function registerErrorHtml() {
+  return `<section class="panel"><h2>The EIOPA register couldn’t be loaded</h2><p class="muted">Reload the page to try again. <a href="#clients">Go to clients</a></p></section>`;
+}
+render();
+if (window.claude && claude.use) { connectDb(); connectDownloads(); }
+else { state.dbStatus = "unavailable"; state.downloads = null; render(); }
+loadRegister().then(render).catch(() => { state.registerError = true; render(); });
 </script>
